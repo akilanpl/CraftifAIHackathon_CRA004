@@ -34,5 +34,18 @@
     "compile.data.json": "cec02168ca984dd0ee92ed17bd20c50a33df9deb6b60c0a52148df363dc44ac2",
     "engine.data.json": "5bc4a8f7c17bab3494bb13f6dcde48f7e0e1467dd190983603d449e1412cc235"
   },
-  "caveat": "Engine report has modeled Orin NX estimates; these are not measured power or Jetson deployment. Matching254-frame warehouse output is verified separately; engine timing does not measure full pipeline FPS. No GPU workloads were started by this audit. Official IR/report/run screenshots remain pending."
+  "caveat": "PipeGen reports engine-run GPU-board power using nvidia-smi; this is not whole-system or full-pipeline power and was not independently remeasured by this audit. Orin NX estimates are modeled, not Jetson deployment. Full pipeline FPS and accuracy are not measured here. Matching warehouse output is separately verified.",
+  "reported_engine_throughput_qps": 188.877,
+  "reported_power": {
+    "engine_power_w": 135.222,
+    "power_scope": "engine_run",
+    "power_sensor_scope": "gpu_board",
+    "power_source": "nvidia-smi",
+    "power_min_w": 22.63,
+    "power_max_w": 153.91,
+    "power_samples": 66,
+    "power_sample_basis": "instantaneous_with_1s_average_fallback",
+    "power_accuracy_w": 5.0,
+    "independently_measured_by_this_audit": false
+  }
 }

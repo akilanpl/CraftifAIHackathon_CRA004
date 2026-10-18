@@ -31,17 +31,18 @@
     "observed_exits": 2,
     "hold_observations": 43
   },
-  "main_merge": "READY_AFTER_FINAL_SUITE_AND_SOURCE_REVIEW",
+  "main_merge": "MERGED_FAST_FORWARD_AFTER_TESTS",
   "limitations": [
     "Hypothetical frame-relative zone with moving camera",
     "Native ROI occupancy differs on9frames",
     "Required official PipelineIR/speed-report screenshots pending",
-    "New factory export and judge access pending",
     "No measured INT8, held-out accuracy or Jetson deployment",
-    "Final project form and submission receipt pending"
+    "Final project form and submission receipt pending",
+    "Judge access to private source and export requires confirmation"
   ],
   "baseline": "40d2975972dd5b02e3f183338e02956dfaeb84b2",
   "official_pdf_review": "FULL_DOCUMENT_READ_WITH_PAGE_MAPPED_CHECKLIST",
   "cutoff": "2026-10-18 16:00 Asia/Kolkata",
-  "factory_final_url": "http://127.0.0.1:5173/"
+  "factory_final_url": "http://127.0.0.1:5173/",
+  "factory_export_delivery": "VERIFIED_PRIVATE_PRERELEASE"
 }

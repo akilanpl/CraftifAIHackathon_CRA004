@@ -1,3 +1,27 @@
+# Verified warehouse demonstration — 90 seconds
+
+Use the real recorded warehouse profile at `http://127.0.0.1:5173/`. Do not run another analysis session during ordinary replay: the existing two alerts are persisted, and video controls intentionally do not write duplicates. A clean database needs one explicit metadata analysis first.
+
+**0–15 seconds:** “Hazard Zone Sentinel turns genuine PipeGen person tracks into restricted-zone incidents. This warehouse video was processed by our five-stage PipeGen pipeline using YOLOv8m, TensorRT FP16, NvDCF tracking and NVIDIA analytics. The dashboard is clearly labeled recorded replay.”
+
+**15–35 seconds:** “The actual video and metadata share verified hashes and timestamps. These boxes follow real workers, with original IDs and confidence. The red aisle polygon comes from the generated DeepStream configuration. The camera moves, so this is a hypothetical screen-relative demonstration rather than a calibrated factory safety deployment.”
+
+**35–50 seconds:** “The 254-frame clip contains 522 person observations and 6 observed track IDs, not 6 verified people. Our bottom-center polygon analysis produces 2 entry alerts for track 0, including 1 re-entry, and 2 observed exits. Holding inside suppresses repeated alerts. Native occupancy differs on 9 frames; we report that disagreement.”
+
+**50–65 seconds:** “Open Incident center to inspect the recorded PTS and original track, acknowledge an event, and filter history. FastAPI delivers WebSocket updates; SQLite keeps incidents and acknowledgments across restart. Video pause, seeking and replay keep the same stored count.”
+
+**65–80 seconds:** “The new engine report shows 188.877 inferences/s, 6.19475 ms mean engine latency, and 135.222 W GPU-board power during the engine run. Those are PipeGen-reported engine measurements, not full-pipeline throughput or whole-machine power. INT8, independent accuracy and Jetson deployment are not tested.”
+
+**80–90 seconds:** “The private source and matching PipeGen export are available separately. Show the actual Pipeline IR and speed-report screenshots and the GPU pipeline run for required hardware evidence. The application screenshot supports that demonstration; it does not replace it.”
+
+## Operator evidence before submitting
+
+Capture the actual PipeGen graph, TensorRT speed-report panel and execution evidence. Confirm judges can access the private repository/export, complete the actual project form, and keep its receipt before the **4 PM IST cutoff**. User reports feedback complete; final project-link/receipt still need confirmation.
+
+---
+
+# Historical synthetic rehearsal (preserved)
+
 # Demonstration script
 
 ## Application-only rehearsal (SYNTHETIC TEST MODE)
