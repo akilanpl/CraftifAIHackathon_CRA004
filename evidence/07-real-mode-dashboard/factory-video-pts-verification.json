@@ -1,0 +1,53 @@
+{
+  "video_sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+  "metadata_sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+  "decoded_frames": 254,
+  "metadata_frames": 254,
+  "verified_pts_offset_ns": 80000000,
+  "segments": [
+    {
+      "start_ns": 80000000,
+      "time_ns": 0
+    }
+  ],
+  "samples": [
+    {
+      "frame_index": 0,
+      "decoded_index": 0,
+      "video_pts_ns": 80000000,
+      "metadata_pts_ns": 80000000,
+      "stream_time_ns": 0
+    },
+    {
+      "frame_index": 63,
+      "decoded_index": 63,
+      "video_pts_ns": 2600000000,
+      "metadata_pts_ns": 2600000000,
+      "stream_time_ns": 2520000000
+    },
+    {
+      "frame_index": 127,
+      "decoded_index": 127,
+      "video_pts_ns": 5160000000,
+      "metadata_pts_ns": 5160000000,
+      "stream_time_ns": 5080000000
+    },
+    {
+      "frame_index": 190,
+      "decoded_index": 190,
+      "video_pts_ns": 7680000000,
+      "metadata_pts_ns": 7680000000,
+      "stream_time_ns": 7600000000
+    },
+    {
+      "frame_index": 253,
+      "decoded_index": 253,
+      "video_pts_ns": 10200000000,
+      "metadata_pts_ns": 10200000000,
+      "stream_time_ns": 10120000000
+    }
+  ],
+  "input_unchanged": true,
+  "method": "Existing GStreamer CPU decoder; every decoded frame dimensions and stream timestamp compared by export order. Browser presented mediaTime must additionally be verified.",
+  "limitation": "Timing equivalence does not prove these files came from the same execution; preserve the run configuration and source hashes."
+}

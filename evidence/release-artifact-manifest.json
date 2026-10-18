@@ -16,7 +16,7 @@
     "claim_limit": "Recorded street source; cannot establish factory behavior or model accuracy."
   },
   "factory": {
-    "status": "PENDING",
+    "status": "VERIFIED_RECORDED_APPLICATION",
     "video": {
       "path": "/mnt/seagate4/PipeGenHackathon/demo/warehouse-workers-4281405-1080p.mp4",
       "sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
@@ -31,11 +31,48 @@
       "creator": "Tiger Lily",
       "license": "https://www.pexels.com/license/"
     },
-    "metadata": null,
-    "profile_manifest": null,
+    "metadata": {
+      "artifact": "06-real-metadata/warehouse-fp16-v2-metadata.json",
+      "sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+      "bytes": 175878
+    },
+    "profile_manifest": "../examples/warehouse-profile.json",
     "pipeline_export": null,
     "run_evidence": null,
-    "dashboard_evidence": null
+    "dashboard_evidence": "07-real-mode-dashboard/warehouse-real-video-overlay.jpg",
+    "requirement": "01-requirement-and-flow/factory-RequirementState.redacted.json",
+    "pipeline_ir": "02-pipeline-ir/factory-PipelineIR.redacted.json",
+    "model_evidence": "04-tensorrt-fp16/warehouse-engine-summary.json",
+    "project_id": "5b159399-c172-4ac5-8b45-430bd54a4a99",
+    "configured_roi_normalized": [
+      [
+        0.42,
+        0.74
+      ],
+      [
+        0.62,
+        0.74
+      ],
+      [
+        0.62,
+        0.86
+      ],
+      [
+        0.42,
+        0.86
+      ]
+    ],
+    "roi_caveat": "Saved Requirement and IR config verified; actual generated DeepStream analytics config still pending. Camera moves, so screen-relative demonstration only.",
+    "pipeline_config": "05-deepstream-run/warehouse-config-analytics.txt",
+    "counts": {
+      "frames": 254,
+      "person_observations": 522,
+      "track_ids": 6,
+      "entry_alerts": 2,
+      "reentries": 1,
+      "exits": 2
+    },
+    "pts_offset_ns": 80000000
   },
   "experiments": {
     "reviewed_factory_dataset": "NOT_TESTED",
@@ -67,11 +104,11 @@
     "factory_asset": "PENDING"
   },
   "verification": {
-    "backend_tests": 123,
-    "frontend_tests": 17,
+    "backend_tests": 136,
+    "frontend_tests": 25,
     "typescript": "PASS",
     "production_build": "PASS",
-    "factory_visual_alignment": "PENDING",
+    "factory_visual_alignment": "VERIFIED",
     "baseline": "40d2975972dd5b02e3f183338e02956dfaeb84b2"
   }
 }

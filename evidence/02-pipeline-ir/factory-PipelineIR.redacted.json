@@ -1,0 +1,545 @@
+{
+  "loop": {
+    "next_file": null,
+    "next_task": null,
+    "projectTree": {},
+    "target_function": {
+      "name": "read_file",
+      "parameters": {}
+    },
+    "visited_steps": [
+      "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/video_object_detection.py",
+      "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/yolov8/YOLOv8.py",
+      "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/yolov8/utils.py",
+      "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/models/yolov8m.onnx"
+    ]
+  },
+  "pipeline_ir": {
+    "connections": [
+      [
+        "p01o_frame",
+        "p02i_frame"
+      ],
+      [
+        "p02o_images",
+        "p03i_images"
+      ],
+      [
+        "p03o_output0",
+        "p04i_output0"
+      ],
+      [
+        "p01o_frame",
+        "p04i_frame"
+      ],
+      [
+        "p04o_detections",
+        "p05i_detections"
+      ],
+      [
+        "p01o_frame",
+        "p05i_frame"
+      ],
+      [
+        "p01o_meta",
+        "p05i_meta"
+      ],
+      [
+        "p05o_tracks",
+        "p06i_tracks"
+      ],
+      [
+        "p01o_meta",
+        "p06i_meta"
+      ],
+      [
+        "p06o_record",
+        "p07i_record"
+      ]
+    ],
+    "nodes": [
+      {
+        "description": "Read every warehouse video frame and its timestamp.",
+        "id": 1,
+        "name": "file",
+        "ports": [
+          {
+            "direction": "output",
+            "format": {
+              "color": "BGR",
+              "encoding": "raw"
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p01o_frame",
+            "tensor": {
+              "dtype": "uint8",
+              "shape": [
+                1080,
+                1920,
+                3
+              ]
+            }
+          },
+          {
+            "direction": "output",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p01o_meta",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          }
+        ],
+        "pseudo_code": "import cv2\ncap = cv2.VideoCapture('/home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4')\nif not cap.isOpened():\n    raise RuntimeError('Cannot open warehouse video')\nframe_index = 0\nfps = float(cap.get(cv2.CAP_PROP_FPS)) or 25.0\ntry:\n    while True:\n        ok, frame = cap.read()\n        if not ok:\n            break\n        height, width = frame.shape[:2]\n        position_ms = float(cap.get(cv2.CAP_PROP_POS_MSEC))\n        timestamp_s = position_ms / 1000.0 if position_ms > 0 else frame_index / fps\n        metadata = {'frame_index': frame_index, 'timestamp_s': timestamp_s, 'timestamp_ns': int(round(timestamp_s * 1_000_000_000)), 'width': width, 'height': height}\n        yield {'p01o_frame': frame, 'p01o_meta': metadata}\n        frame_index += 1\nfinally:\n    cap.release()",
+        "resolution": [
+          1920,
+          1080
+        ],
+        "type": "input",
+        "url": "file:///home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4"
+      },
+      {
+        "color_order": "RGB",
+        "description": "Convert BGR frames into resized normalized RGB tensors.",
+        "id": 2,
+        "mean": null,
+        "normalization": 0.00392156862745098,
+        "offset": null,
+        "pad_value": null,
+        "ports": [
+          {
+            "direction": "input",
+            "format": {
+              "color": "BGR",
+              "encoding": "raw"
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p02i_frame",
+            "tensor": {
+              "dtype": "uint8",
+              "shape": [
+                1080,
+                1920,
+                3
+              ]
+            }
+          },
+          {
+            "direction": "output",
+            "format": {
+              "color": "RGB",
+              "encoding": "raw"
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p02o_images",
+            "tensor": {
+              "dtype": "fp32",
+              "shape": [
+                1,
+                3,
+                480,
+                640
+              ]
+            }
+          }
+        ],
+        "pseudo_code": "import cv2\nimport numpy as np\n\ndef process(frame):\n    input_img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\n    input_img = cv2.resize(input_img, (640, 480))\n    input_img = input_img / 255.0\n    input_img = input_img.transpose(2, 0, 1)\n    input_tensor = input_img[np.newaxis, :, :, :].astype(np.float32)\n    return input_tensor",
+        "resize": [
+          640,
+          480
+        ],
+        "resize_mode": "resize",
+        "scale": 0.00392156862745098,
+        "std": null,
+        "type": "preprocess"
+      },
+      {
+        "batchSize": 1,
+        "description": "Run pretrained YOLOv8m detection with TensorRT FP16.",
+        "id": 3,
+        "layout": "NCHW",
+        "model": {
+          "inputs": [
+            {
+              "dtype": "fp32",
+              "name": "images",
+              "shape": [
+                1,
+                3,
+                480,
+                640
+              ]
+            }
+          ],
+          "name": "YOLOv8m COCO detection",
+          "outputs": [
+            {
+              "dtype": "fp32",
+              "name": "output0",
+              "shape": [
+                1,
+                84,
+                6300
+              ]
+            }
+          ],
+          "parameter_count": 25917609,
+          "type": "onnx",
+          "url": "file:///home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/models/yolov8m.onnx"
+        },
+        "ports": [
+          {
+            "direction": "input",
+            "format": {
+              "color": "RGB",
+              "encoding": "raw"
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p03i_images",
+            "tensor": {
+              "dtype": "fp32",
+              "shape": [
+                1,
+                3,
+                480,
+                640
+              ]
+            }
+          },
+          {
+            "direction": "output",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p03o_output0",
+            "tensor": {
+              "dtype": "fp32",
+              "shape": [
+                1,
+                84,
+                6300
+              ]
+            }
+          }
+        ],
+        "pseudo_code": "import numpy as np\n# Compile the specified ONNX model as a TensorRT FP16 engine for the NVIDIA RTX 2060 SUPER; preserve its images and output0 bindings and batch size one.\ndef process(images, engine):\n    assert images.shape == (1, 3, 480, 640) and images.dtype == np.float32\n    output0 = engine.infer({'images': images})['output0']\n    assert output0.shape == (1, 84, 6300)\n    return output0",
+        "type": "inference"
+      },
+      {
+        "description": "Decode YOLO boxes and retain confident person detections.",
+        "id": 4,
+        "label_file_path": null,
+        "num_classes": 80,
+        "ports": [
+          {
+            "direction": "input",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p04i_output0",
+            "tensor": {
+              "dtype": "fp32",
+              "shape": [
+                1,
+                84,
+                6300
+              ]
+            }
+          },
+          {
+            "direction": "input",
+            "format": {
+              "color": "BGR",
+              "encoding": "raw"
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p04i_frame",
+            "tensor": {
+              "dtype": "uint8",
+              "shape": [
+                1080,
+                1920,
+                3
+              ]
+            }
+          },
+          {
+            "direction": "output",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p04o_detections",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          }
+        ],
+        "pseudo_code": "import numpy as np\n\ndef compute_iou(box, boxes):\n    xmin = np.maximum(box[0], boxes[:, 0])\n    ymin = np.maximum(box[1], boxes[:, 1])\n    xmax = np.minimum(box[2], boxes[:, 2])\n    ymax = np.minimum(box[3], boxes[:, 3])\n    intersection_area = np.maximum(0, xmax - xmin) * np.maximum(0, ymax - ymin)\n    box_area = (box[2] - box[0]) * (box[3] - box[1])\n    boxes_area = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])\n    union_area = box_area + boxes_area - intersection_area\n    return intersection_area / union_area\n\ndef nms(boxes, scores, iou_threshold):\n    sorted_indices = np.argsort(scores)[::-1]\n    keep_boxes = []\n    while sorted_indices.size > 0:\n        box_id = sorted_indices[0]\n        keep_boxes.append(box_id)\n        ious = compute_iou(boxes[box_id, :], boxes[sorted_indices[1:], :])\n        keep_indices = np.where(ious < iou_threshold)[0]\n        sorted_indices = sorted_indices[keep_indices + 1]\n    return keep_boxes\n\ndef multiclass_nms(boxes, scores, class_ids, iou_threshold):\n    keep_boxes = []\n    for class_id in np.unique(class_ids):\n        class_indices = np.where(class_ids == class_id)[0]\n        class_keep_boxes = nms(boxes[class_indices, :], scores[class_indices], iou_threshold)\n        keep_boxes.extend(class_indices[class_keep_boxes])\n    return keep_boxes\n\ndef process(output0, frame):\n    img_height, img_width = frame.shape[:2]\n    predictions = np.squeeze(output0).T\n    scores = np.max(predictions[:, 4:], axis=1)\n    selected = scores > 0.5\n    predictions = predictions[selected, :]\n    scores = scores[selected]\n    if len(scores) == 0:\n        return {'detections': []}\n    class_ids = np.argmax(predictions[:, 4:], axis=1)\n    boxes = predictions[:, :4].copy()\n    boxes = np.divide(boxes, np.array([640, 480, 640, 480]), dtype=np.float32)\n    boxes *= np.array([img_width, img_height, img_width, img_height])\n    xyxy = boxes.copy()\n    xyxy[:, 0] = boxes[:, 0] - boxes[:, 2] / 2\n    xyxy[:, 1] = boxes[:, 1] - boxes[:, 3] / 2\n    xyxy[:, 2] = boxes[:, 0] + boxes[:, 2] / 2\n    xyxy[:, 3] = boxes[:, 1] + boxes[:, 3] / 2\n    indices = multiclass_nms(xyxy, scores, class_ids, 0.5)\n    detections = [{'box_xyxy': [float(x) for x in xyxy[i]], 'confidence': float(scores[i]), 'class_id': 0, 'label': 'person'} for i in indices if int(class_ids[i]) == 0]\n    return {'detections': detections}",
+        "task": "detection",
+        "threshold": 0.5,
+        "top_items": null,
+        "type": "postprocess"
+      },
+      {
+        "category": "tracking",
+        "description": "Associate person observations using native DeepStream NvDCF tracking.",
+        "external_assets": [],
+        "id": 5,
+        "inputs": [
+          "detections",
+          "image",
+          "frame_metadata"
+        ],
+        "name": "person tracking",
+        "outputs": [
+          "detections_and_current_observation_tracks"
+        ],
+        "parameters": {
+          "method": "NvDCF"
+        },
+        "placement": {
+          "attach_point": null,
+          "position": "post_nn"
+        },
+        "ports": [
+          {
+            "direction": "input",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p05i_detections",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          },
+          {
+            "direction": "input",
+            "format": {
+              "color": "BGR",
+              "encoding": "raw"
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p05i_frame",
+            "tensor": {
+              "dtype": "uint8",
+              "shape": [
+                1080,
+                1920,
+                3
+              ]
+            }
+          },
+          {
+            "direction": "input",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p05i_meta",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          },
+          {
+            "direction": "output",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p05o_tracks",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          }
+        ],
+        "pseudo_code": "import pyds\nfrom gi.repository import Gst\n\n# Construct this stage once in the DeepStream pipeline, between the person PGIE\n# metadata producer and nvdsanalytics. NvDCF is the requested native tracker:\n# do not replace its correlation-filter association with an IoU tracker.\ndef configure_tracker(tracker, nvdcf_config_absolute_path):\n    tracker.set_property('ll-lib-file', '/opt/nvidia/deepstream/deepstream/lib/libnvds_nvmultiobjecttracker.so')\n    tracker.set_property('ll-config-file', nvdcf_config_absolute_path)\n    tracker.set_property('enable-batch-process', 0)\n    # The generated native low-level config selects tracker type NvDCF.\n    # Keep the same tracker element and its state for the entire video.\n\ndef submit(frame, metadata, detection_record, native_pipeline):\n    # The compiler attaches the unresized frame, its source frame index and\n    # timestamp, and every detection in detection_record['detections'] to the\n    # same GstBuffer. Each NvDsObjectMeta has class_id=0, confidence from the\n    # record, and rect_params converted from xyxy to left/top/width/height.\n    # Feed that buffer through the configured native nvtracker element even\n    # when the detection list is empty; await its output for this buffer.\n    tracked_buffer = native_pipeline.nvtracker_process(frame, metadata, detection_record['detections'])\n    frame_meta = native_pipeline.frame_meta(tracked_buffer, metadata['frame_index'])\n    tracks = []\n    for obj_meta in native_pipeline.object_metas(frame_meta):\n        if int(obj_meta.class_id) != 0:\n            continue\n        # Export only objects associated with a detection observed in THIS\n        # frame; NvDCF may retain unmatched IDs internally for association.\n        matched = native_pipeline.current_detection_for_object(obj_meta, detection_record['detections'])\n        if matched is None:\n            continue\n        tracks.append({'track_id': int(obj_meta.object_id), 'box_xyxy': matched['box_xyxy'], 'confidence': matched['confidence'], 'class_id': 0, 'label': 'person'})\n    return {'detections': detection_record['detections'], 'tracks': tracks}",
+        "reference_path": null,
+        "runs_every_frame": true,
+        "state_key": "global",
+        "triggers": [],
+        "type": "custom"
+      },
+      {
+        "category": "gating",
+        "description": "Report native polygon occupancy and observed track entries.",
+        "external_assets": [],
+        "id": 6,
+        "inputs": [
+          "detections_and_current_observation_tracks",
+          "frame_metadata"
+        ],
+        "name": "restricted-zone entry",
+        "outputs": [
+          "structured_frame_metadata"
+        ],
+        "parameters": {
+          "method": "Native DeepStream analytics for restricted-zone polygon…",
+          "polygon_normalized": [
+            [
+              0.42,
+              0.74
+            ],
+            [
+              0.62,
+              0.74
+            ],
+            [
+              0.62,
+              0.86
+            ],
+            [
+              0.42,
+              0.86
+            ]
+          ]
+        },
+        "placement": {
+          "attach_point": null,
+          "position": "post_tracker"
+        },
+        "ports": [
+          {
+            "direction": "input",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p06i_tracks",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          },
+          {
+            "direction": "input",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p06i_meta",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          },
+          {
+            "direction": "output",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p06o_record",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          }
+        ],
+        "pseudo_code": "import os\nimport tempfile\n\npolygon_normalized = [[0.42, 0.74], [0.62, 0.74], [0.62, 0.86], [0.42, 0.86]]\nprevious_inside = {}  # tracker ID -> last observed native ROI membership\n\ndef configure_analytics(width, height, native_pipeline):\n    points = [(round(x * width), round(y * height)) for x, y in polygon_normalized]\n    polygon = ';'.join(str(value) for xy in points for value in xy)\n    config = ('[property]\\nenable=1\\nconfig-width=' + str(width) + '\\nconfig-height=' + str(height) + '\\n'\n              '[roi-filtering-stream-0]\\nenable=1\\nroi-RestrictedZone=' + polygon + '\\nclass-id=0\\ninverse-roi=0\\n')\n    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', prefix='pipegen-zone-', delete=False) as handle:\n        handle.write(config)\n        config_path = handle.name\n    analytics = native_pipeline.create_element('nvdsanalytics')\n    analytics.set_property('config-file', config_path)\n    return analytics, config_path\n\ndef process(tracked, metadata, native_pipeline):\n    # nvdsanalytics follows nvtracker on the same frame and supplies each\n    # tracked person's native roiStatus. Do not infer a zone event from an\n    # unrelated class or treat a track retained without a detection as seen.\n    native_supported = native_pipeline.has_element('nvdsanalytics')\n    native_objects = native_pipeline.analytics_objects(metadata['frame_index']) if native_supported else {}\n    entries = []\n    inside_track_ids = []\n    tracks = []\n    for track in tracked['tracks']:\n        track_id = track['track_id']\n        native_object = native_objects.get(track_id) if native_supported else None\n        inside = ('RestrictedZone' in native_object.roiStatus) if native_object is not None else None\n        enriched = dict(track)\n        enriched['in_restricted_zone'] = inside\n        tracks.append(enriched)\n        if inside is None:\n            continue\n        if inside:\n            inside_track_ids.append(track_id)\n        if inside and previous_inside.get(track_id) is False:\n            entries.append({'track_id': track_id, 'timestamp_s': metadata['timestamp_s'], 'frame_index': metadata['frame_index']})\n        previous_inside[track_id] = inside\n    # IDs not observed this frame are not counted as present. Retain their\n    # last observed membership for the lifetime of their native tracker ID.\n    return {'frame_index': metadata['frame_index'], 'timestamp_s': metadata['timestamp_s'], 'timestamp_ns': metadata['timestamp_ns'], 'width': metadata['width'], 'height': metadata['height'], 'detections': tracked['detections'], 'tracks': tracks, 'restricted_zone': {'polygon_normalized': polygon_normalized, 'native_supported': native_supported, 'inside_track_ids': inside_track_ids, 'inside_count': len(inside_track_ids), 'entries': entries}}",
+        "reference_path": null,
+        "runs_every_frame": true,
+        "state_key": "track_id",
+        "triggers": [],
+        "type": "custom"
+      },
+      {
+        "description": "Write complete per-frame safety metadata as valid JSON.",
+        "grid": null,
+        "id": 7,
+        "name": "json",
+        "output_type": "single",
+        "ports": [
+          {
+            "direction": "input",
+            "format": {
+              "color": null,
+              "encoding": null
+            },
+            "framerate": {
+              "denominator": 1,
+              "numerator": 25
+            },
+            "id": "p07i_record",
+            "tensor": {
+              "dtype": null,
+              "shape": null
+            }
+          }
+        ],
+        "pseudo_code": "import json\nimport os\n\npath = '/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/output/metadata.json'\nos.makedirs(os.path.dirname(path), exist_ok=True)\nwith open(path, 'w', encoding='utf-8') as sink:\n    sink.write('[')\n    first = True\n    try:\n        for record in incoming_records:\n            if not first:\n                sink.write(',')\n            json.dump(record, sink, ensure_ascii=False, allow_nan=False)\n            sink.flush()\n            first = False\n    finally:\n        sink.write(']')\n        sink.flush()",
+        "resolution": null,
+        "type": "output",
+        "url": "file:///home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/output/metadata.json"
+      }
+    ]
+  }
+}

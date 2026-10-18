@@ -1,0 +1,247 @@
+{
+  "scope": "Actual warehouse video and its genuine PipeGen metadata; visual worker alignment reviewed at1s2s3s4s",
+  "observations": [
+    {
+      "frame": {
+        "deltaNs": "0",
+        "frameIndex": "25",
+        "mediaTime": "1.000000000",
+        "offsetNs": "80000000",
+        "ptsNs": "1080000000"
+      },
+      "rects": [
+        {
+          "height": "501.49999999999994",
+          "width": "244.99999999999994",
+          "x": "1003.8000000000001",
+          "y": "223.9"
+        },
+        {
+          "height": "510.7",
+          "width": "217.19999999999985",
+          "x": "777.9",
+          "y": "203.1"
+        },
+        {
+          "height": "537.4",
+          "width": "266.6",
+          "x": "527.4",
+          "y": "297.6"
+        }
+      ],
+      "step": "warehouse early paused seek",
+      "svg": {
+        "bottom": 331.3125,
+        "height": 374.3125,
+        "left": 296,
+        "right": 963,
+        "top": -43,
+        "width": 667,
+        "x": 296,
+        "y": -43
+      },
+      "video": {
+        "bottom": 331.3125,
+        "height": 374.3125,
+        "left": 296,
+        "right": 963,
+        "top": -43,
+        "width": 667,
+        "x": 296,
+        "y": -43
+      }
+    },
+    {
+      "frame": {
+        "deltaNs": "0",
+        "frameIndex": "50",
+        "mediaTime": "2.000000000",
+        "offsetNs": "80000000",
+        "ptsNs": "2080000000"
+      },
+      "occupancy": "Current displayed footage1 person inside current zonesTransient frame state \u00b7 separate from stored analysis alerts",
+      "rects": [
+        {
+          "height": "556.3999999999999",
+          "width": "230.5",
+          "x": "770.7",
+          "y": "252.4"
+        },
+        {
+          "height": "582.1999999999999",
+          "width": "259.50000000000006",
+          "x": "534.8",
+          "y": "340.4"
+        },
+        {
+          "height": "518.8999999999999",
+          "width": "253.5999999999998",
+          "x": "1048.7",
+          "y": "247.20000000000002"
+        }
+      ],
+      "step": "warehouse inside interval",
+      "svg": {
+        "bottom": 331.3125,
+        "height": 374.3125,
+        "left": 296,
+        "right": 963,
+        "top": -43,
+        "width": 667,
+        "x": 296,
+        "y": -43
+      },
+      "video": {
+        "bottom": 331.3125,
+        "height": 374.3125,
+        "left": 296,
+        "right": 963,
+        "top": -43,
+        "width": 667,
+        "x": 296,
+        "y": -43
+      }
+    },
+    {
+      "frame": {
+        "deltaNs": "0",
+        "frameIndex": "50",
+        "mediaTime": "2.000000000",
+        "offsetNs": "80000000",
+        "ptsNs": "2080000000"
+      },
+      "occupancy": "Current displayed footage1 person inside current zonesTransient frame state \u00b7 separate from stored analysis alerts",
+      "step": "warehouse large view at 2 seconds",
+      "svg": {
+        "bottom": 399.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -114,
+        "width": 915,
+        "x": 296,
+        "y": -114
+      },
+      "video": {
+        "bottom": 399.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -114,
+        "width": 915,
+        "x": 296,
+        "y": -114
+      }
+    },
+    {
+      "frame": {
+        "deltaNs": "0",
+        "frameIndex": "75",
+        "mediaTime": "3.000000000",
+        "offsetNs": "80000000",
+        "ptsNs": "3080000000"
+      },
+      "rects": [
+        {
+          "height": "582.3000000000001",
+          "width": "242.99999999999983",
+          "x": "804.6",
+          "y": "290.7"
+        },
+        {
+          "height": "555.5",
+          "width": "269.00000000000006",
+          "x": "1073.3",
+          "y": "311.99999999999994"
+        },
+        {
+          "height": "606.4999999999998",
+          "width": "313.4",
+          "x": "547",
+          "y": "441.1"
+        }
+      ],
+      "step": "warehouse reentry interval",
+      "svg": {
+        "bottom": 399.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -114,
+        "width": 915,
+        "x": 296,
+        "y": -114
+      },
+      "video": {
+        "bottom": 399.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -114,
+        "width": 915,
+        "x": 296,
+        "y": -114
+      }
+    },
+    {
+      "frame": {
+        "deltaNs": "0",
+        "frameIndex": "100",
+        "mediaTime": "4.000000000",
+        "offsetNs": "80000000",
+        "ptsNs": "4080000000"
+      },
+      "occupancy": "Current displayed footage0 people inside current zonesTransient frame state \u00b7 separate from stored analysis alerts",
+      "rects": [
+        {
+          "height": "536.9",
+          "width": "254.3",
+          "x": "1133.9",
+          "y": "375.3"
+        },
+        {
+          "height": "540.3",
+          "width": "297.6",
+          "x": "568",
+          "y": "539.7"
+        },
+        {
+          "height": "627.2000000000002",
+          "width": "256.09999999999985",
+          "x": "862.5",
+          "y": "345.2"
+        }
+      ],
+      "step": "warehouse after observed exit",
+      "svg": {
+        "bottom": 399.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -114,
+        "width": 915,
+        "x": 296,
+        "y": -114
+      },
+      "video": {
+        "bottom": 399.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -114,
+        "width": 915,
+        "x": 296,
+        "y": -114
+      }
+    }
+  ],
+  "pixel_and_rect_checks_passed": true,
+  "checked_frame_indices": [
+    25,
+    50,
+    50,
+    75,
+    100
+  ],
+  "incident_count_after_playback_and_seeks": 2
+}

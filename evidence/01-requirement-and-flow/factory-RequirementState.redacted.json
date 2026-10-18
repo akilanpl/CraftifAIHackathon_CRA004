@@ -1,0 +1,884 @@
+{
+  "analysis_state": {
+    "architecture": {
+      "connections": [
+        {
+          "from": "n1",
+          "to": "n2"
+        },
+        {
+          "from": "n2",
+          "to": "n3"
+        },
+        {
+          "from": "n3",
+          "to": "n4"
+        },
+        {
+          "from": "n4",
+          "to": "n5"
+        },
+        {
+          "from": "n5",
+          "to": "n6"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "n1",
+          "name": "Video input",
+          "short_description": "Opens the supplied warehouse video and reads frames."
+        },
+        {
+          "id": "n2",
+          "name": "Frame preprocessing",
+          "short_description": "Converts BGR frames to RGB, resizes them to the model's 640×480 input, scales pixels to [0, 1], and creates a batch tensor."
+        },
+        {
+          "id": "n3",
+          "name": "YOLOv8m ONNX inference",
+          "short_description": "Runs object detection on each preprocessed frame."
+        },
+        {
+          "id": "n4",
+          "name": "Detection decoding",
+          "short_description": "Decodes class scores and bounding boxes, retaining detections above the configured confidence threshold."
+        },
+        {
+          "id": "n5",
+          "name": "Box rescaling and suppression",
+          "short_description": "Rescales boxes to the original frame dimensions and applies class-wise non-maximum suppression."
+        },
+        {
+          "id": "n6",
+          "name": "Person detections",
+          "short_description": "Provides frame-level boxes, confidence scores, and class IDs for detected objects, including persons."
+        }
+      ]
+    },
+    "info": {
+      "model_paths": [
+        "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/models/yolov8m.onnx"
+      ],
+      "pipeline_command": "python video_object_detection.py /home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4",
+      "project_name": "ONNX-YOLOv8-Object-Detection",
+      "project_path": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection"
+    },
+    "loop_count": 1,
+    "repo_url": "",
+    "tools_history": [
+      {
+        "result": "The repository applies YOLOv8 object detection to video frames using an ONNX model. Frames are converted from BGR to RGB, resized directly to 640×480, normalized, and passed to the model. Its decoder extracts class scores and box coordinates, filters by confidence, rescales boxes to the original frame, and applies class-wise non-maximum suppression. The detector returns bounding boxes, confidence scores, and class IDs, including the COCO person class.",
+        "tool": "_summary"
+      },
+      {
+        "result": "[read_file]: yolov8/YOLOv8.py: import time\nimport cv2\nimport numpy as np\nimport onnxruntime\n\nfrom yolov8.utils import xywh2xyxy, draw_detections, multiclass_nms\n\n\nclass YOLOv8:\n\n    def __init__(self, path, conf_thres=0.7, iou_thres=0.5):\n        self.conf_threshold = conf_thres\n        self.iou_threshold = iou_thres\n\n        # Initialize model\n        self.initialize_model(path)\n\n    def __call__(self, image):\n        return self.detect_objects(image)\n\n    def initialize_model(self, path):\n        self.session = onnxruntime.",
+        "tool": "read_file"
+      },
+      {
+        "result": "[read_file]: webcam_object_detection.py: import cv2\n\nfrom yolov8 import YOLOv8\n\n# Initialize the webcam\ncap = cv2.VideoCapture(0)\n\n# Initialize YOLOv7 object detector\nmodel_path = \"models/yolov8m.onnx\"\nyolov8_detector = YOLOv8(model_path, conf_thres=0.5, iou_thres=0.5)\n\ncv2.namedWindow(\"Detected Objects\", cv2.WINDOW_NORMAL)\nwhile cap.isOpened():\n\n    # Read frame from the video\n    ret, frame = cap.read()\n\n    if not ret:\n        break\n\n    # Update object localizer\n    boxes, scores, class_ids = yolov8_detector(frame)\n\n    combined_im",
+        "tool": "read_file"
+      }
+    ]
+  },
+  "benchmark_readme": "# PipeGen Benchmark Repository\n\nThis repository is a benchmark collection for PipeGen. It gathers multiple computer vision and perception projects that cover object detection, depth estimation, semantic segmentation, and multi-modal autonomous driving perception, alongside a set of applied retail, logistics, surveillance, and workplace-safety use cases, making it a practical workspace for evaluating pipeline generation and orchestration across varied real-world AI repositories.\n\nFor model setup, each repository may include its own helper shell script such as `download.sh` in models folder, `download_models.sh`, or a similarly named downloader. Users can run the relevant script inside the target repository to fetch the required pretrained models and supporting assets before executing the pipeline. Model weights are not committed here, so running that downloader is a required first step for most folders.\n\n## Repository Overview\n\n`AbandonedObjectDetection` flags unattended luggage in surveillance footage by tracking COCO backpack/handbag/suitcase detections from an Ultralytics YOLO11s ONNX detector with a SORT-style IOU + Hungarian tracker.  \nAn object is reported as abandoned only when it stays stationary (displacement under 20% of its own box diagonal) and no person's box is within three box-diagonals of it, continuously, for `--abandoned-seconds`.  \nWithin the PipeGen benchmark collection, it contributes a security-analytics workload that layers multi-object tracking and owner-association geometry on top of a plain detector rather than a purpose-trained class.\n\n`ANPR` is an automatic number plate recognition pipeline that chains two ONNX models: a YOLOv9-t 384x384 license-plate detector with NMS baked into the graph, then a Compact Convolutional Transformer OCR head that reads 10 character slots over a 37-symbol alphabet plus a 66-way region prediction.  \nIt is a from-scratch onnxruntime implementation rather than a wrapper around the `fast_alpr` package, and `model/download.sh` fetches both weights along with the OCR alphabet/region config the recognizer cannot run without.  \nFor PipeGen benchmarking, it adds a genuinely two-stage detect-then-recognize workload where the second model consumes crops produced by the first.\n\n`Bevfusion` is a bird's-eye-view perception repository focused on fusing camera and LiDAR information for autonomous driving workloads.  \nIt likely includes model setup, pretrained checkpoint download flows, and evaluation or demo utilities for 3D scene understanding tasks.  \nAs part of this benchmark set, it represents a large multi-modal project with heavier dependencies, richer model logic, and end-to-end perception pipelines.\n\n`CheckoutMonitoring` reports per-lane checkout status from a single image or a sequence of frames, using the same Ultralytics YOLO11s COCO person detector reused across the retail use cases in this collection.  \nEach lane in `--zone-file` carries its own cashier polygon and queue polygon, and a lane resolves to OPEN - SERVING, OPEN - IDLE, CLOSED, or UNSTAFFED - QUEUE! — the last being the state a store manager actually needs surfaced.  \nWithin the PipeGen benchmark, it contributes a multi-zone rule engine over detection output, and it expects a low `--conf-threshold` because ceiling-mounted wide-angle shots make people small.\n\n`ContainerFillLevel` estimates how full a container is from one monocular image by running Depth-Anything-V2-metric through ONNX Runtime and reading the per-row median depth profile of the frame.  \nThe largest smoothed discontinuity in that profile is taken as the fill boundary — nearer side filled, farther side empty — and fill percentage is the filled row fraction; a frame with no qualifying jump reads as effectively full.  \nFor PipeGen benchmarking, it adds a dense metric-depth workload whose output is a derived scalar rather than boxes or masks, and it is a heuristic rather than a calibrated volumetric measurement.\n\n`ConveyorBeltMonitoring` runs a YOLOv8 detector fine-tuned for conveyor lines (`abhiejit/package-conveyor-ggu-yolo2`) over four classes: bag, box, carton, and conveyor.  \nInput is `images[1,3,640,640]` RGB letterboxed to 640 with grey padding and scaled by 1/255; output `output0[1,8,8400]` is raw 4-box plus 4-class and needs the usual transpose, confidence filter, and NMS.  \nWithin the PipeGen benchmark collection, it contributes a logistics-domain detection workload driven entirely by the contract embedded in the ONNX metadata.\n\n`CustomerDwellTime` measures how long each individual shopper stays inside a zone, combining the YOLO11s person detector, a from-scratch SORT-style tracker (IOU + Hungarian matching), and a polygon zone from `--zone-file`.  \nDwell is the cumulative seconds a track's foot-point spends inside the zone, converted from frame counts using the source fps, so it needs a video or an ordered directory of frames rather than a single image.  \nFor PipeGen benchmarking, it adds a detect-track-and-clock pipeline where the answer only exists across frames, with no cross-session re-identification once a track is lost.\n\n`CustomerHeatmaps` builds a retail foot-traffic heatmap by accumulating a small Gaussian blob at each detected person's foot-point into a running 2D density map over every frame of a video.  \nThe accumulator is normalized, colorized with the JET colormap, and alpha-blended over a representative frame, so the output is a single composited image rather than per-frame annotations.  \nWithin the PipeGen benchmark collection, it contributes a spatial-accumulation workload that reduces an entire video to one aggregate visualization.\n\n`DeepLabV3-Plus-MobileNet-onnx` appears to center on semantic segmentation using a DeepLabV3+ architecture with a MobileNet backbone exported to ONNX.  \nIt is well suited for benchmarking lightweight vision inference pipelines where accuracy and deployment efficiency both matter.  \nIn this collection, it offers a focused example of image segmentation, ONNX model handling, and practical inference-oriented project structure.\n\n`EfficientNet` looks like an image classification repository built around the EfficientNet ONNX model for compact and efficient inference.  \nIt likely provides a simple application entry point, model download flow, and label mapping for running classification on input images.  \nWithin the PipeGen benchmark, it contributes a lightweight classification workload that is useful for testing straightforward model loading and prediction pipelines.\n\n`EmptyShelfDetection` locates out-of-stock gaps on retail shelves with `wiwiewei18/smart-shelf-tracker`, a single-class YOLO11n whose confidence is badly miscalibrated by its 497-image training set.  \nIt therefore runs at a deliberately very low confidence threshold and suppresses the resulting noise with two filters: drop boxes centred in the bottom `floor_frac` of the frame, and drop boxes below `min_area_frac` of the image area.  \nFor PipeGen benchmarking, it is a useful example of a detector whose usable operating point sits far from the conventional 0.25-0.5 default.\n\n`Facebook-RTDETR` appears to be an object detection repository based on the RT-DETR model family, likely adapted for ONNX inference and practical deployment.  \nIt seems suited for benchmarking transformer-style real-time detection pipelines that differ from YOLO-based architectures in both model design and runtime behavior.  \nIn this benchmark set, it adds another modern detection workload with pretrained model downloads, application-level inference, and visual output generation.\n\n`FaceMaskDetection` classifies faces as with_mask, without_mask, or mask_weared_incorrect using `spacewalk01/yolov5-face-mask-detection`, a YOLOv5s trained on the classic 853-image Kaggle mask dataset.  \nIt is the one repository here on the classic YOLOv5 head convention — `output0[1,25200,8]` with a separate objectness column, so final confidence is objectness times class score rather than class score alone.  \nThe checkpoint predates the unified `ultralytics` package and will not unpickle through it, so `model/download.sh` exports it with the original yolov5 repo's own `export.py`.\n\n`Fast-SCNN` looks like a semantic segmentation repository centered on the Fast-SCNN architecture for efficient scene parsing.  \nIt likely targets lightweight segmentation use cases where real-time or edge-friendly inference is important, especially for road scenes or general pixel-wise labeling tasks.  \nFor PipeGen benchmarking, it contributes another segmentation-focused pipeline with a simpler application flow and an emphasis on speed-oriented deployment.\n\n`LoiteringDetection` alerts on continuous presence rather than presence itself, pairing the YOLO11s person detector with a SORT-style tracker and the named polygon zones of `RestrictedAreaMonitoring`.  \nEach track carries a session clock over consecutive in-zone frames that resets the moment it leaves, so someone who walks away and comes back starts a fresh visit instead of continuing the old one; `--loiter-seconds` defaults to 30.  \nWithin the PipeGen benchmark collection, it sits between the harmless-zone dwell metric and the always-alert restricted zone, and it needs a video for a real time-threshold reading.\n\n`Mask2Former-Instance-Segmentation` appears to be an instance segmentation repository built around the Mask2Former model for mask-level scene understanding.  \nIt likely supports label-aware segmentation of individual objects, making it useful for benchmarking richer outputs than plain bounding-box detection.  \nWithin the PipeGen benchmark suite, it adds a modern transformer-based segmentation workload with model downloads, application inference, and mask generation behavior.\n\n`multi-model-perception-dashboard` is a self-contained four-model perception stack that runs YOLOv8 object detection, YOLO11 instance segmentation, 2D PAF pose estimation, and MiDaS monocular depth in parallel on a single webcam or video source, then composites the outputs into a labeled 2x2 dashboard with an FPS and per-model latency HUD.  \nInference is fanned out across a `ThreadPoolExecutor(4)` so all four ONNX models execute concurrently per frame, and the result can be displayed live, recorded to a video file, or both — with an included `smoke_test.py` that exercises the same composite path on synthetic frames headlessly.  \nWithin the PipeGen benchmark collection, it stands out as the most pipeline-orchestration-heavy entry: it stresses parallel multi-model scheduling, output fusion, and HUD compositing in a way that single-task repositories do not.\n\n`ONNX-MiDaS-Depth-Estimation` is a depth estimation repository built around the MiDaS model running through ONNX Runtime for efficient inference.  \nIt seems intended for processing images, video, or webcam streams to generate monocular depth maps, which makes it a useful example of dense prediction beyond classification or detection.  \nWithin the PipeGen benchmark, it contributes a depth-focused workload with preprocessing, model execution, and visualization steps.\n\n`ONNX-TopFormer-Semantic-Segmentation` looks like a semantic segmentation repository using the TopFormer architecture in ONNX format.  \nIt appears aimed at efficient dense scene parsing, likely with webcam or image inference paths that emphasize practical deployment and lightweight segmentation performance.  \nFor PipeGen benchmarking, it adds another segmentation pipeline with a distinct model family, ONNX runtime flow, and structured pixel-level prediction output.\n\n`onnx-Ultra-Fast-Lane-Detection-Inference` is a lane detection repository using an ONNX version of the Ultra-Fast Lane Detection model.  \nIt appears aimed at detecting road lanes from driving imagery or video, making it especially relevant for real-time transportation and ADAS-style scenarios.  \nFor PipeGen benchmarking, it adds a specialized structured-vision task with temporal or road-scene inference patterns that differ from generic detection and segmentation projects.\n\n`ONNX-Unidepth-Monocular-Metric-Depth-Estimation` appears to focus on metric monocular depth estimation using the UniDepth model in ONNX format.  \nIt likely goes beyond relative depth by targeting scale-aware predictions from a single image, making it especially relevant for applications that need more physically meaningful scene geometry.  \nFor PipeGen benchmarking, it adds another dense prediction workflow with modern ONNX deployment patterns and a different depth-estimation objective than MiDaS or stereo-based models.\n\n`ONNX-YOLOv8-Object-Detection` is an object detection project that uses YOLOv8 models exported to ONNX for streamlined deployment.  \nIt likely provides scripts for loading models, running inference on images or video, and drawing detections in a simple application-ready format.  \nFor benchmarking PipeGen, it serves as a representative detection repository with common modern CV patterns, fast inference expectations, and deployment-friendly model packaging.\n\n`Pose_Estimation` is a human pose estimation repository built around an ONNX model with keypoint and part-affinity-field decoding for multi-person skeletons.  \nIt supports running inference on images, videos, GIFs, or a live webcam stream, drawing limb connections and keypoints directly onto the output frames.  \nWithin the PipeGen benchmark collection, it adds a structured keypoint-prediction workload that differs from classification, detection, segmentation, and depth pipelines.\n\n`ppe-kit` detects personal protective equipment with `Tanishjain9/yolov8n-ppe-detection-6classes`, a YOLOv8n covering gloves, vest, goggles, helmet, mask, and safety_shoe at roughly 0.81 mAP@50.  \nInput is `images[1,3,640,640]` RGB letterboxed and scaled by 1/255; output `output0[1,10,8400]` is raw 4-box plus 6-class and needs transpose, confidence filter, and NMS.  \nFor PipeGen benchmarking, it contributes a compact edge-oriented safety-compliance detector, and its own README carries the full per-class metrics and dataset breakdown.\n\n`QueueLengthMonitoring` counts how many people stand inside a configurable queue polygon, filtering the YOLO11s COCO detector down to the person class.  \nQueue length here is the in-zone headcount that feeds an estimated-wait-time calculation; it does not infer queue order or fit a physical line shape, so a serpentine stanchion layout has to be described through `--zone-file`.  \nWithin the PipeGen benchmark collection, it is the simplest of the zone-rule retail workloads and a useful baseline against the dwell-time and checkout variants.\n\n`realsense_yolo_depth` is a live Intel RealSense + YOLOv8 fusion pipeline that grabs aligned color and Z16 depth frames from the camera, runs YOLOv8 ONNX object detection on the color image, and labels each detection box with the median metric depth sampled at its centre.  \nIt also overlays device metadata (name, serial, USB, firmware) and live accelerometer/gyroscope readings, reusing the YOLOv8 ONNX detector class from `ONNX-YOLOv8-Object-Detection` so only the depth-fusion and overlay logic are new.  \nWithin the PipeGen benchmark collection, it contributes a sensor-driven multi-modal pipeline that couples a RealSense source with neural detection and metric depth fusion, making it a good probe for orchestrating real hardware streams alongside ONNX inference.\n\n`ResNet-Image-Classification` looks like a straightforward image classification repository using a ResNet ONNX model and standard label mapping.  \nIt likely offers a compact inference entry point for classifying input images, making it a simple but useful benchmark for baseline computer vision pipelines.  \nWithin the PipeGen benchmark collection, it adds a classic classification workload that is easy to compare against lightweight or more modern architectures such as EfficientNet.\n\n`ResNet-Object-Detection` appears to be an object detection repository using a ResNet-based detection model, likely tailored for traffic or scene-specific inference.  \nIt seems well suited for benchmarking practical detection pipelines that rely on classic backbone-driven models rather than only the newest detector families.  \nFor PipeGen benchmarking, it contributes another detection example with pretrained model setup, application inference, and labeled visual outputs in a deployment-oriented structure.\n\n`RestrictedAreaMonitoring` treats any presence inside a marked danger zone as a security event, running the YOLO11s person detector, a SORT-style tracker, and a polygon membership test on every frame.  \nEach track resolves to CLEAR, IN ZONE, or INTRUSION! — the last after `--alert-frames` consecutive in-zone frames (default 2, enough to absorb a missed detection at the zone boundary) and reported with the seconds spent inside.  \nOmitting `--zone-file` makes the whole frame restricted, which suits a camera whose entire field of view is off-limits, such as a locked server room.\n\n`ShelfOccupancy` reports a continuous shelf fill percentage from `foduucom/product-detection-in-shelf-yolov8`, a two-class detector over empty and product.  \nOccupancy is the product box area divided by the combined product-plus-empty area, so it measures fill only across the shelf regions the model actually classified, not a segmentation of the whole surface.  \nThe model was trained on retail-cooler imagery and performs best on fridge and cooler shelves; its image loader is EXIF-aware because phone photos are commonly stored sideways.\n\n`SmokeDetection` runs `rabahdev/fire-smoke-yolov8n`, a YOLOv8n fine-tuned on the real-photograph D-Fire dataset over two classes, smoke and fire, with both surfaced since either is safety-critical.  \nA SORT-style tracker gives each detected region a persistent-ish ID so that `--alert-frames` consecutive detections are required before an alert fires, guarding against a single-frame false positive on a diffusing plume.  \nWithin the PipeGen benchmark collection, it contributes an environmental-hazard detection workload validated against both positive and clean-negative real imagery.\n\n`TheftDetection` uses `Nour190/shoplifting-yolo`, a YOLOv8s-Pose model with two classes, normal and shoplifting, tracked across frames with the same SORT-style IOU + Hungarian tracker used elsewhere in this collection.  \nAn alert requires `--alert-frames` consecutive shoplifting classifications on the same track, so per-frame classifier flicker does not fire it.  \nFor PipeGen benchmarking, it adds a pose-backbone behaviour classifier whose verdict is only meaningful as a run of frames rather than as a single detection.\n\n`UnsafeBehaviorDetection` detects smoking with `Enos-123/smoking-detection`, a single-class YOLO11m trained to find cigarettes.  \nInput is `images[1,3,640,640]` RGB letterboxed and scaled by 1/255; output `output0[1,5,8400]` is raw 4-box plus one class score and needs transpose, confidence filter, and NMS — every surviving detection is by definition the unsafe behaviour.  \nWithin the PipeGen benchmark collection, it contributes a small-object detection workload where the target occupies very few pixels relative to the person holding it.\n\n`VehicleDetection` runs Ultralytics' official COCO-pretrained YOLO11s through ONNX Runtime and counts the vehicle classes — bicycle, car, motorcycle, bus, train, truck, and boat.  \nEverything else in COCO-80 is still detected and drawn as a completeness check, but only the vehicle classes feed the count banner.  \nFor PipeGen benchmarking, it is the plain-detection baseline of this use-case group, sharing its `output0[1,84,8400]` decode contract with most of the retail and surveillance entries.\n\n`WorkerFallDetection` runs a YOLO11s-Pose ONNX export in the marcoslucianops DeepStream-Yolo-Pose layout, where the head output is transposed in-graph to `[1,8400,56]` — 4 box, 1 confidence, and 17 COCO keypoints of (x, y, visibility).  \nBox decode, objectness sigmoid, and keypoint pixel-space decode are all baked in by the Ultralytics Pose head at export time, so only single-class NMS is left for the application to do.  \nFalls are estimated from body orientation — a wide, short box plus a near-horizontal shoulder-to-hip line — which is a deliberately approximate single-frame heuristic, not a trained fall classifier.\n\n`yolo11n-instance-segmentation` appears to focus on instance segmentation using a compact YOLO11 segmentation model exported to ONNX.  \nIt likely supports running inference on images or video while producing both object-level detections and segmentation masks in a deployment-friendly workflow.  \nWithin the PipeGen benchmark suite, it adds a strong example of mask-based scene understanding that combines detection and segmentation in a single modern vision pipeline.\n\n`yolov8-multi-camera-input` is an object detection repository that runs a YOLOv8 ONNX model across six synchronized camera streams (front, front-left, front-right, back, back-left, back-right) in a single batched inference pass.  \nIt is well suited for autonomous-driving-style surround-view perception, where multiple video inputs must be processed together and annotated with detections in real time.  \nWithin the PipeGen benchmark collection, it contributes a multi-input batched detection workload that stresses pipeline orchestration across parallel video sources rather than a single image or video stream.\n\n`yolov8_pose_parallel` runs YOLOv8n object detection and YOLO11n-pose keypoint estimation concurrently on each frame via a `ThreadPoolExecutor(2)`, then overlays the detection boxes and the 17-keypoint COCO skeletons onto the same image with an FPS readout.  \nThe YOLOv8 wrapper reuses the `YOLOv8` class from `ONNX-YOLOv8-Object-Detection` (added to `sys.path`), while the pose head is a self-contained letterbox-and-decode port of the DeepStream `pose_render_cpu` reference, supporting webcam, video file, and headless `--output` recording paths.  \nWithin the PipeGen benchmark collection, it adds a focused two-model parallel pipeline that pairs detection with pose in a single per-frame fan-out, complementing the broader four-model `multi-model-perception-dashboard` with a smaller, more targeted concurrency example.\n",
+  "benchmark_subfolder": "ONNX-YOLOv8-Object-Detection",
+  "chat_history": [
+    {
+      "content": "Create a new PipeGen project named **Hazard Zone Sentinel — Warehouse FP16 v2**.\n\nBuild a factory/warehouse workplace-safety monitoring pipeline using this local video:\n\n/home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4\n\nDetect workers/persons with the supported pretrained YOLOv8m ONNX model, track them using NvDCF, and detect entry into a configurable restricted-zone polygon using native DeepStream analytics where supported.\n\nGenerate genuine person detections, bounding boxes, confidence scores, tracker IDs, frame timestamps, restricted-zone analytics, and structured JSON metadata suitable for integration into our existing FastAPI and React dashboard.\n\nUse TensorRT FP16 on the NVIDIA RTX 2060 SUPER and complete all five stages: Requirement, Pipeline IR, Model, Compiler and Run.\n\nPreserve this as a separate factory-video project. Do not overwrite or change our existing traffic-video PipeGen pipeline. Do not perform custom training or INT8 optimization in this first factory baseline run.",
+      "role": "user"
+    },
+    {
+      "content": "I understand this as a separate warehouse-safety project using the specified video to detect and track people, flag restricted-zone entry, and produce JSON metadata. I’ve recorded the requested FP16 device and model constraints without adding custom training or INT8 optimization.\n\nInputs taken from your description: input1 · video file · warehouse-workers-4281405-1080p.mp4 · 1920x1080. Say **review inputs** to change them on a card.\n\nOutputs taken from your description: out1 · metadata_file · url /home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/output/metadata.json. Say **review outputs** to change them on a card.\n\nI need two scene details to finish configuring the pipeline.\n\nA few questions about the scene and camera below: Continue applies what the card shows, Skip adds no step. Skip still records what the footage shows on its own: input1 moves.",
+      "role": "assistant"
+    },
+    {
+      "content": "Scene and camera: Does this camera move? Pans or moves · How big are the targets? Not sure",
+      "role": "user"
+    },
+    {
+      "content": "Draft v1: **1 input(s)** → **person detection, person tracking, restricted-zone entry** → **metadata_file**. Correct it here, or press **Finalize flow**.",
+      "role": "assistant"
+    },
+    {
+      "content": "finalize the flow",
+      "role": "user"
+    },
+    {
+      "content": "Flow locked. Now the details, one task at a time: 3 of 3 to go.\n\nThe person-detection task is settled: use the supported pretrained YOLOv8m ONNX model to detect people and return bounding boxes with confidence scores. No further detection-specific details are needed.\n\n**person detection on input1 (local factory/warehouse workplace-safet…)** done. Next: **person tracking on input1 (local factory/warehouse workplace-safet…)**.\n\nPerson tracking is set to follow detected workers/persons with NvDCF and produce tracker IDs.\n\n**person tracking on input1 (local factory/warehouse workplace-safet…)** done. Next: **restricted-zone entry on input1 (local factory/warehouse workplace-safet…)**.\n\nThe restricted-zone entry task is set to use native DeepStream polygon analytics where supported and include the result in JSON metadata. I need the polygon’s location in the video frame to define which entries count.",
+      "role": "assistant"
+    },
+    {
+      "content": "restricted-zone entry on input1 (local factory/warehouse workplace-safet…): What polygon defines the restricted zone? Give its vertices in order as normalized (x,y) coordinates from 0 to 1, with (0,0) at the top-left. [(0.42, 0.74), (0.62, 0.74), (0.62, 0.86), (0.42, 0.86)]",
+      "role": "user"
+    },
+    {
+      "content": "The restricted zone is now defined by the supplied normalized polygon; entries are evaluated for tracked people and included in the JSON metadata.\n\nAll tasks are detailed. This is the final flow with your conditions; continue to sources, or change something.",
+      "role": "assistant"
+    },
+    {
+      "content": "continue to sources",
+      "role": "user"
+    },
+    {
+      "content": "Code for person detection on input1 (local factory/warehouse workplace-safet…): choose a local repository folder or model file, or the catalog, for each task below, or paste a path here.",
+      "role": "assistant"
+    },
+    {
+      "content": "person detection on input1 (local factory/warehouse workplace-safet…) → catalog · precision FP16",
+      "role": "user"
+    },
+    {
+      "content": "Catalog matches for person detection on input1 (local factory/warehouse workplace-safet…). Suggested: **A** covers all 1 task(s). Tick the ones to use, or paste a local path.",
+      "role": "assistant"
+    },
+    {
+      "content": "A",
+      "role": "user"
+    },
+    {
+      "content": "- **src1** · ONNX-YOLOv8-Object-Detection → person detection on input1 (local factory/warehouse workplace-safet…) · `video_object_detection.py` · `yolov8m.onnx` (scan cached)\n\nAll 12 requirement checks pass.\n\nPress **Generate PIR** to build the pipeline graph. You can still change anything here first.",
+      "role": "assistant"
+    }
+  ],
+  "chat_name": "Warehouse Hazard Sentinel Pipeline",
+  "checks": {
+    "failed": 0,
+    "groups": [
+      {
+        "failed": 0,
+        "name": "Inputs",
+        "passed": 1,
+        "warned": 0
+      },
+      {
+        "failed": 0,
+        "name": "Tasks",
+        "passed": 4,
+        "warned": 0
+      },
+      {
+        "failed": 0,
+        "name": "Sources",
+        "passed": 4,
+        "warned": 0
+      },
+      {
+        "failed": 0,
+        "name": "Outputs",
+        "passed": 1,
+        "warned": 0
+      },
+      {
+        "failed": 0,
+        "name": "Handoff",
+        "passed": 2,
+        "warned": 0
+      }
+    ],
+    "passed": true,
+    "results": [
+      {
+        "fix": null,
+        "group": "Inputs",
+        "id": "input.input1",
+        "message": "input1: /home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4 (1920x1080 · 25.0)",
+        "name": "input1 file",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Sources",
+        "id": "classes.src1.person detection@input1",
+        "message": "src1 supports workers/persons → person for person detection@input1.",
+        "name": "person detection@input1 capabilities",
+        "status": "pass"
+      },
+      {
+        "fix": "sources",
+        "group": "Tasks",
+        "id": "tasks.covered",
+        "message": "All tasks are covered.",
+        "name": "every task has a source",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Tasks",
+        "id": "task.1.input",
+        "message": "person detection runs on input1",
+        "name": "person detection input",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Tasks",
+        "id": "task.2.input",
+        "message": "person tracking runs on input1",
+        "name": "person tracking input",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Tasks",
+        "id": "task.3.input",
+        "message": "restricted-zone entry runs on input1",
+        "name": "restricted-zone entry input",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Sources",
+        "id": "source.src1.root",
+        "message": "src1: /home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection",
+        "name": "src1 folder",
+        "status": "pass"
+      },
+      {
+        "fix": "reanalyse",
+        "group": "Sources",
+        "id": "source.src1.entry",
+        "message": "src1: `python video_object_detection.py /home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4` → video_object_detection.py",
+        "name": "src1 run command",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Sources",
+        "id": "source.src1.model.yolov8m.onnx",
+        "message": "src1: yolov8m.onnx reads fine.",
+        "name": "src1 model yolov8m.onnx",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Outputs",
+        "id": "output.out1.destination",
+        "message": "out1: metadata_file → /home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/output/metadata.json",
+        "name": "out1 destination",
+        "status": "pass"
+      },
+      {
+        "fix": "ask",
+        "group": "Handoff",
+        "id": "contract",
+        "message": "1 task(s), 1 source(s), 1 model(s).",
+        "name": "handoff contract",
+        "status": "pass"
+      },
+      {
+        "fix": null,
+        "group": "Handoff",
+        "id": "pir.readiness",
+        "message": "The PIR stage can start from the captured evidence.",
+        "name": "PIR readiness",
+        "status": "pass"
+      }
+    ],
+    "version": 1,
+    "warned": 0
+  },
+  "class_waivers": [],
+  "clone_base_path": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99",
+  "clone_path": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection",
+  "delivered_references": {},
+  "flow_draft": {
+    "connections": [
+      {
+        "from": "input1",
+        "to": "task:person detection@input1"
+      },
+      {
+        "from": "task:person detection@input1",
+        "to": "task:person tracking@input1"
+      },
+      {
+        "from": "task:person tracking@input1",
+        "to": "task:restricted-zone entry@input1"
+      },
+      {
+        "from": "task:restricted-zone entry@input1",
+        "to": "out1"
+      }
+    ],
+    "finalized": true,
+    "label": "Final flow · with your conditions",
+    "nodes": [
+      {
+        "id": "input1",
+        "kind": "input",
+        "name": "input1 · local factory/warehouse workplace-safety video",
+        "short_description": "video file · warehouse-workers-4281405-1080p.mp4 · 1920x1080"
+      },
+      {
+        "id": "task:person detection@input1",
+        "kind": "task",
+        "name": "person detection",
+        "short_description": "targets: workers/persons · Use the supported pretrained YOLOv8m ONNX model. Produce genuine person detections, bounding boxes, and confidence scores."
+      },
+      {
+        "id": "task:person tracking@input1",
+        "kind": "task",
+        "name": "person tracking",
+        "short_description": "method: NvDCF (you said “track them using NvDCF” · catalogue §2 With a task · Tracking · NvDCF) · targets: workers/persons · Track detected people and produce tracker IDs."
+      },
+      {
+        "id": "task:restricted-zone entry@input1",
+        "kind": "task",
+        "name": "restricted-zone entry",
+        "short_description": "method: Native DeepStream analytics for restricted-zone polygon… (you said “detect entry into a configurable restricted-zone polygon using native DeepStream analytics where supported”) · targets: workers/persons · Detect entry into the configurable restricted-zone polygon using native DeepStream analytics where supported. Polygon vertices in normalized (x,y) frame coordinates, in order: [(0.42, 0.74), (0.62, 0.74), (0.62, 0.86), (0.42, 0.86)]. Include restricted-zone analytics in the structured JSON metadata."
+      },
+      {
+        "id": "out1",
+        "kind": "output",
+        "name": "out1 · metadata_file",
+        "short_description": "metadata_file · url /home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/output/metadata.json"
+      }
+    ],
+    "version": 2
+  },
+  "form_seq": 5,
+  "is_benchmark": true,
+  "mode": "benchmark",
+  "pending_form": {},
+  "pending_source": {},
+  "phase": "complete",
+  "pipeline_information": {
+    "model_paths": [
+      "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/models/yolov8m.onnx"
+    ],
+    "pipeline_command": "python video_object_detection.py /home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4",
+    "project_path": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection"
+  },
+  "pipeline_requirements": {
+    "extras": {
+      "compile": {
+        "precision": "fp16"
+      },
+      "device": "NVIDIA RTX 2060 SUPER",
+      "input_roles": {
+        "input1": "local factory/warehouse workplace-safety video"
+      },
+      "scene_step": {
+        "advice": [],
+        "answered": {
+          "motion__input1": "moves",
+          "size__input1": "not_sure"
+        },
+        "declined": [],
+        "inputs": {
+          "input1": {
+            "basis": {
+              "asks": [],
+              "kind": "video file",
+              "mtime": 1792315086.2076764,
+              "size": 5305270,
+              "tasks": [
+                "person detection@input1"
+              ],
+              "url": "/home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4"
+            },
+            "cues": [
+              "camera_moving"
+            ],
+            "duty": {
+              "colour_cast": 1.0,
+              "dock_daylight": 0.0,
+              "haze": 0.583,
+              "low_light_after_dark": 0.0
+            },
+            "evidence": [
+              "Everything in view moves between frames in 100% of the moments looked at, so the camera moves."
+            ],
+            "footage": {
+              "chroma_offset": 0.1,
+              "clipped_fraction": 0.0,
+              "dark_fraction": 0.001,
+              "fps": 25.0,
+              "frames": 254,
+              "height": 1080,
+              "mean_chroma": 13.1,
+              "motion": "moving",
+              "noise": 0.47,
+              "p50": 0.547,
+              "rms_contrast": 0.176,
+              "rules": [
+                "camera_moving"
+              ],
+              "samples": 12,
+              "source": "video file",
+              "suggest": [
+                "camera_moving"
+              ],
+              "width": 1920
+            },
+            "said": {},
+            "skipped": false
+          }
+        },
+        "ledger": [],
+        "needs": [],
+        "privacy_source": [],
+        "rules": {
+          "camera_angled": [],
+          "camera_fixed": [],
+          "camera_moving": [
+            "input1"
+          ],
+          "camera_shakes": [],
+          "motion_unknown": [],
+          "no_cloud": [],
+          "privacy": [],
+          "small_objects": [],
+          "store_events_only": []
+        },
+        "version": 1
+      }
+    },
+    "inputs": [
+      {
+        "data_kind": [
+          "frames"
+        ],
+        "fps": 25.0,
+        "id": "input1",
+        "resolution": "1920x1080",
+        "role": "local factory/warehouse workplace-safety video",
+        "type": "video file",
+        "url": "/home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4"
+      }
+    ],
+    "needs_model": null,
+    "outputs": [
+      {
+        "id": "out1",
+        "type": "metadata_file",
+        "url": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/output/metadata.json"
+      }
+    ],
+    "parallel": false,
+    "special_algorithms": [
+      {
+        "applies_to": [
+          "person detection@input1"
+        ],
+        "catalogue": "§2 With a task · Tracking · NvDCF",
+        "category": "tracking",
+        "confirmed": true,
+        "description": "Track detected people and produce tracker IDs.",
+        "name": "person tracking",
+        "parameters": {
+          "method": "NvDCF"
+        },
+        "reference_path": null
+      },
+      {
+        "applies_to": [
+          "person tracking@input1"
+        ],
+        "category": "gating",
+        "confirmed": true,
+        "description": "Detect entry into the configurable restricted-zone polygon using native DeepStream analytics where supported. Polygon vertices in normalized (x,y) frame coordinates, in order: [(0.42, 0.74), (0.62, 0.74), (0.62, 0.86), (0.42, 0.86)]. Include restricted-zone analytics in the structured JSON metadata.",
+        "name": "restricted-zone entry",
+        "parameters": {
+          "method": "Native DeepStream analytics for restricted-zone polygon…",
+          "polygon_normalized": [
+            [
+              0.42,
+              0.74
+            ],
+            [
+              0.62,
+              0.74
+            ],
+            [
+              0.62,
+              0.86
+            ],
+            [
+              0.42,
+              0.86
+            ]
+          ]
+        },
+        "reference_path": null
+      }
+    ],
+    "target_classes": [],
+    "task_kind": null,
+    "tasks": [
+      {
+        "details": "Use the supported pretrained YOLOv8m ONNX model. Produce genuine person detections, bounding boxes, and confidence scores.",
+        "for_input": "input1",
+        "needs_model": true,
+        "target_classes": [
+          "workers/persons"
+        ],
+        "type": "person detection"
+      },
+      {
+        "derives_from": [
+          "person detection@input1"
+        ],
+        "details": "Track detected people and produce tracker IDs.",
+        "for_input": "input1",
+        "method": {
+          "catalogue": "§2 With a task · Tracking · NvDCF",
+          "from": "words",
+          "name": "NvDCF",
+          "params": {},
+          "quote": "track them using NvDCF"
+        },
+        "needs_model": false,
+        "target_classes": [
+          "workers/persons"
+        ],
+        "type": "person tracking"
+      },
+      {
+        "derives_from": [
+          "person tracking@input1"
+        ],
+        "details": "Detect entry into the configurable restricted-zone polygon using native DeepStream analytics where supported. Polygon vertices in normalized (x,y) frame coordinates, in order: [(0.42, 0.74), (0.62, 0.74), (0.62, 0.86), (0.42, 0.86)]. Include restricted-zone analytics in the structured JSON metadata.",
+        "for_input": "input1",
+        "method": {
+          "catalogue": null,
+          "from": "words",
+          "name": "Native DeepStream analytics for restricted-zone polygon…",
+          "params": {
+            "polygon_normalized": [
+              [
+                0.42,
+                0.74
+              ],
+              [
+                0.62,
+                0.74
+              ],
+              [
+                0.62,
+                0.86
+              ],
+              [
+                0.42,
+                0.86
+              ]
+            ]
+          },
+          "quote": "detect entry into a configurable restricted-zone polygon using native DeepStream analytics where supported"
+        },
+        "needs_model": false,
+        "target_classes": [
+          "workers/persons"
+        ],
+        "type": "restricted-zone entry"
+      }
+    ],
+    "user_intent_summary": "Create a separate project named Hazard Zone Sentinel — Warehouse FP16 v2 for factory/warehouse workplace-safety monitoring from the specified local video: detect people with pretrained YOLOv8m ONNX, track with NvDCF, detect restricted-zone entry using native DeepStream analytics where supported, and produce structured JSON metadata. Use TensorRT FP16 on the NVIDIA RTX 2060 SUPER; do not overwrite the traffic-video pipeline or perform custom training or INT8 optimization."
+  },
+  "repo_sources": [
+    {
+      "analysis_summaries": [
+        "The repository applies YOLOv8 object detection to video frames using an ONNX model. Frames are converted from BGR to RGB, resized directly to 640×480, normalized, and passed to the model. Its decoder extracts class scores and box coordinates, filters by confidence, rescales boxes to the original frame, and applies class-wise non-maximum suppression. The detector returns bounding boxes, confidence scores, and class IDs, including the COCO person class.",
+        "[read_file]: yolov8/YOLOv8.py: import time\nimport cv2\nimport numpy as np\nimport onnxruntime\n\nfrom yolov8.utils import xywh2xyxy, draw_detections, multiclass_nms\n\n\nclass YOLOv8:\n\n    def __init__(self, path, conf_thres=0.7, iou_thres=0.5):\n        self.conf_threshold = conf_thres\n        self.iou_threshold = iou_thres\n\n        # Initialize model\n        self.initialize_model(path)\n\n    def __call__(self, image):\n        return self.detect_objects(image)\n\n    def initialize_model(self, path):\n        self.session = onnxruntime.",
+        "[read_file]: webcam_object_detection.py: import cv2\n\nfrom yolov8 import YOLOv8\n\n# Initialize the webcam\ncap = cv2.VideoCapture(0)\n\n# Initialize YOLOv7 object detector\nmodel_path = \"models/yolov8m.onnx\"\nyolov8_detector = YOLOv8(model_path, conf_thres=0.5, iou_thres=0.5)\n\ncv2.namedWindow(\"Detected Objects\", cv2.WINDOW_NORMAL)\nwhile cap.isOpened():\n\n    # Read frame from the video\n    ret, frame = cap.read()\n\n    if not ret:\n        break\n\n    # Update object localizer\n    boxes, scores, class_ids = yolov8_detector(frame)\n\n    combined_im"
+      ],
+      "architecture": {
+        "connections": [
+          {
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "from": "n2",
+            "to": "n3"
+          },
+          {
+            "from": "n3",
+            "to": "n4"
+          },
+          {
+            "from": "n4",
+            "to": "n5"
+          },
+          {
+            "from": "n5",
+            "to": "n6"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "n1",
+            "name": "Video input",
+            "short_description": "Opens the supplied warehouse video and reads frames."
+          },
+          {
+            "id": "n2",
+            "name": "Frame preprocessing",
+            "short_description": "Converts BGR frames to RGB, resizes them to the model's 640×480 input, scales pixels to [0, 1], and creates a batch tensor."
+          },
+          {
+            "id": "n3",
+            "name": "YOLOv8m ONNX inference",
+            "short_description": "Runs object detection on each preprocessed frame."
+          },
+          {
+            "id": "n4",
+            "name": "Detection decoding",
+            "short_description": "Decodes class scores and bounding boxes, retaining detections above the configured confidence threshold."
+          },
+          {
+            "id": "n5",
+            "name": "Box rescaling and suppression",
+            "short_description": "Rescales boxes to the original frame dimensions and applies class-wise non-maximum suppression."
+          },
+          {
+            "id": "n6",
+            "name": "Person detections",
+            "short_description": "Provides frame-level boxes, confidence scores, and class IDs for detected objects, including persons."
+          }
+        ]
+      },
+      "class_coverage": {
+        "person detection@input1": {
+          "targets": [
+            {
+              "basis": "The selected model metadata identifies a COCO-trained detection model and names the 'person' class; yolov8/YOLOv8.py decodes class scores and boxes and applies non-maximum suppression.",
+              "kind": "labels",
+              "labels": [
+                "person"
+              ],
+              "model_path": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/models/yolov8m.onnx",
+              "output": "Detected class IDs with confidence scores and bounding boxes, decoded from YOLOv8 output and filtered by confidence and class-wise non-maximum suppression.",
+              "requested": "workers/persons",
+              "status": "supported"
+            }
+          ],
+          "version": 1
+        }
+      },
+      "class_coverage_signature": "f86380902b891021b6d24bff",
+      "covers_tasks": [
+        "person detection@input1"
+      ],
+      "id": "src1",
+      "label_space": {
+        "count": 80,
+        "labels": [
+          "person",
+          "bicycle",
+          "car",
+          "motorcycle",
+          "airplane",
+          "bus",
+          "train",
+          "truck",
+          "boat",
+          "traffic light",
+          "fire hydrant",
+          "stop sign",
+          "parking meter",
+          "bench",
+          "bird",
+          "cat",
+          "dog",
+          "horse",
+          "sheep",
+          "cow",
+          "elephant",
+          "bear",
+          "zebra",
+          "giraffe",
+          "backpack",
+          "umbrella",
+          "handbag",
+          "tie",
+          "suitcase",
+          "frisbee",
+          "skis",
+          "snowboard",
+          "sports ball",
+          "kite",
+          "baseball bat",
+          "baseball glove",
+          "skateboard",
+          "surfboard",
+          "tennis racket",
+          "bottle",
+          "wine glass",
+          "cup",
+          "fork",
+          "knife",
+          "spoon",
+          "bowl",
+          "banana",
+          "apple",
+          "sandwich",
+          "orange",
+          "broccoli",
+          "carrot",
+          "hot dog",
+          "pizza",
+          "donut",
+          "cake",
+          "chair",
+          "couch",
+          "potted plant",
+          "bed",
+          "dining table",
+          "toilet",
+          "tv",
+          "laptop",
+          "mouse",
+          "remote",
+          "keyboard",
+          "cell phone",
+          "microwave",
+          "oven",
+          "toaster",
+          "sink",
+          "refrigerator",
+          "book",
+          "clock",
+          "vase",
+          "scissors",
+          "teddy bear",
+          "hair drier",
+          "toothbrush"
+        ],
+        "source": "models/yolov8m.onnx metadata 'names'; yolov8/utils.py",
+        "version": 3
+      },
+      "model_paths": [
+        "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/models/yolov8m.onnx"
+      ],
+      "model_roles": [
+        {
+          "for_task": "person detection@input1",
+          "path": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection/models/yolov8m.onnx",
+          "role": "Detects COCO objects, including persons, and produces class scores and bounding-box coordinates."
+        }
+      ],
+      "pipeline_command": "python video_object_detection.py /home/LOCAL_USER/.pipegen/factory-inputs/warehouse-workers-4281405-1080p.mp4",
+      "project_path": "/home/LOCAL_USER/.pipegen/PIPEGEN_ACCOUNT/5b159399-c172-4ac5-8b45-430bd54a4a99/src1/ONNX-YOLOv8-Object-Detection",
+      "scan_hash": "17cd0ef34fb17554da2dc55207a749bf31bf46fed5ba22b6eb74479eeac2b210",
+      "source": "benchmark",
+      "subfolder": "ONNX-YOLOv8-Object-Detection",
+      "unused_models": []
+    }
+  ],
+  "req_stage": "complete",
+  "requirement_profile": {
+    "clarify": {},
+    "code": [],
+    "inputs": {
+      "input1": {}
+    },
+    "outputs": {
+      "out1": {}
+    },
+    "tasks": {
+      "restricted-zone entry@input1": {
+        "zone_polygon": {
+          "label": "What polygon defines the restricted zone? Give its vertices in order as normalized (x,y) coordinates from 0 to 1, with (0,0) at the top-left.",
+          "value": "[(0.42, 0.74), (0.62, 0.74), (0.62, 0.86), (0.42, 0.86)]"
+        }
+      }
+    }
+  },
+  "scan_hits": [
+    {
+      "analysis_cached": false,
+      "cache_hit": true,
+      "hash": "17cd0ef34fb17554da2dc55207a749bf31bf46fed5ba22b6eb74479eeac2b210",
+      "source": "src1"
+    }
+  ],
+  "source_strategy": "separate",
+  "task_checklist": {
+    "active": null,
+    "items": [
+      {
+        "id": 1,
+        "indices": [
+          0
+        ],
+        "keys": [
+          "person detection@input1"
+        ],
+        "label": "person detection on input1 (local factory/warehouse workplace-safet…)",
+        "round": 0,
+        "status": "done",
+        "summary": "Detect workers/persons in input1 with pretrained YOLOv8m ONNX and provide bounding boxes and confidence scores."
+      },
+      {
+        "id": 2,
+        "indices": [
+          1
+        ],
+        "keys": [
+          "person tracking@input1"
+        ],
+        "label": "person tracking on input1 (local factory/warehouse workplace-safet…)",
+        "round": 0,
+        "status": "done",
+        "summary": "Track person detections on input1 using NvDCF, producing worker/person track IDs."
+      },
+      {
+        "id": 3,
+        "indices": [
+          2
+        ],
+        "keys": [
+          "restricted-zone entry@input1"
+        ],
+        "label": "restricted-zone entry on input1 (local factory/warehouse workplace-safet…)",
+        "round": 1,
+        "status": "done",
+        "summary": "Restricted-zone entry uses the normalized polygon [(0.42, 0.74), (0.62, 0.74), (0.62, 0.86), (0.42, 0.86)] for tracked people, with analytics included in JSON m"
+      }
+    ],
+    "version": 4
+  },
+  "typed_on_cards": {
+    "10": [],
+    "2": [],
+    "6": [
+      "[(0.42, 0.74), (0.62, 0.74), (0.62, 0.86), (0.42, 0.86)]"
+    ]
+  },
+  "understanding": {
+    "answered": {
+      "device": "NVIDIA RTX 2060 SUPER",
+      "model": "pretrained YOLOv8m ONNX",
+      "optimization": "No INT8 optimization",
+      "precision": "FP16",
+      "project_name": "Hazard Zone Sentinel — Warehouse FP16 v2",
+      "tracker": "NvDCF",
+      "training": "No custom training"
+    },
+    "asked": [
+      "What polygon defines the restricted zone? Give its vertices in order as normalized (x,y) coordinates from 0 to 1, with (0,0) at the top-left."
+    ],
+    "defaulted": {
+      "inputs": {},
+      "outputs": {}
+    },
+    "deferred": [],
+    "input_count": 1,
+    "input_fields": [],
+    "notes": [
+      "turn 1: Recorded the single local video as a video-file input with frame data; its probed resolution and frame rate are handled by the host.",
+      "turn 1: Separated person detection, tracking, and restricted-zone entry into distinct tasks because they produce different results.",
+      "turn 1: Recorded NvDCF and native DeepStream polygon analytics as the requested computation methods; the configurable polygon itself is a task setting.",
+      "turn 1: Used a metadata-file output for the requested structured JSON; the host can collect a destination because none was specified.",
+      "turn 1: Recorded FP16 and the named NVIDIA device; no calibration data or additional compilation constraints were supplied."
+    ],
+    "output_fields": [],
+    "question_turns": 0,
+    "taken": [
+      "inputs",
+      "outputs"
+    ]
+  }
+}

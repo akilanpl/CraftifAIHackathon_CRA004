@@ -103,3 +103,9 @@ SENTINEL_PROFILE_PATH=/absolute/path/to/factory-manifest.json PORT=8002 ./script
 ```
 
 Validator exit code 0 means configured assets passed profile checks; code 2 means pending/invalid. This is asset/schema validation, not inference execution or visual alignment proof. The launcher still serves an honest pending/error state when validation fails. Use a new manifest ID and separate database when changing dataset identity.
+
+## Verified warehouse demo
+
+Use `./scripts/start-warehouse-demo.sh /absolute/path/to/warehouse-workers-4281405-1080p.mp4` for API8003, then `SENTINEL_API_TARGET=http://127.0.0.1:8003 ./scripts/start-frontend.sh --port 5173 --strictPort`. The helper binds the preserved254-frame real metadata and exact video hashes to a separate `data/profiles/warehouse-fp16-v2.sqlite3`. The default local video is under `/home/vijayababu/.pipegen/factory-inputs/`. Video attribution and hashes are in the release manifest.
+
+The two factory events are one track's observed entry and re-entry. Seeks/pause/replay never write incidents; explicit metadata analysis creates a new session. Native ROI counts differ on9frames and are not event records; see the audit.

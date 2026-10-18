@@ -1,0 +1,51 @@
+{
+  "scope": "Historical street regression only; no factory inference",
+  "historical_incident_rows_after_playback": 66,
+  "observations": [
+    {
+      "frame": {
+        "deltaNs": "-299",
+        "frameIndex": "102",
+        "mediaTime": "1.701702000",
+        "offsetNs": "33366700",
+        "ptsNs": "1735068401"
+      },
+      "occupancy": "Current displayed footage3 people inside current zonesTransient frame state · separate from stored analysis alerts",
+      "step": "paused seek"
+    },
+    {
+      "frame": {
+        "deltaNs": "-183",
+        "frameIndex": "1028",
+        "mediaTime": "17.150484000",
+        "offsetNs": "33366700",
+        "ptsNs": "17183850517"
+      },
+      "status": "cam-01 · RECORDEDENDED · 2×",
+      "step": "ended at 2x"
+    },
+    {
+      "frame": {
+        "deltaNs": "0",
+        "frameIndex": "0",
+        "mediaTime": "0.000000000",
+        "offsetNs": "33366700",
+        "ptsNs": "33366700"
+      },
+      "occupancy": "Current displayed footage0 people inside current zonesTransient frame state · separate from stored analysis alerts",
+      "status": "cam-01 · RECORDEDPAUSED · 1×",
+      "step": "repeated reload after dev-server recovery"
+    },
+    {
+      "frame": {
+        "deltaNs": "0",
+        "frameIndex": "0",
+        "mediaTime": "0.000000000",
+        "offsetNs": "33366700",
+        "ptsNs": "33366700"
+      },
+      "status": "cam-01 · RECORDEDPAUSED · 1×",
+      "step": "reload completed and paused seek matched"
+    }
+  ]
+}

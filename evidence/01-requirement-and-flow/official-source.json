@@ -1,0 +1,13 @@
+{
+  "filename": "official-problem-statement.pdf",
+  "sha256": "a1da48261c91d9668e15619b40f5c93e492f40814f0921c31c831db407862966",
+  "bytes": 142647,
+  "pages": 7,
+  "source": "User-provided official PDF recovered from Downloads",
+  "track": "A \u2014 PipeGen",
+  "deadline_text": "4:00 pm",
+  "deadline_timezone_in_pdf": null,
+  "user_supplied_deadline": "2026-10-18 18:00 Asia/Kolkata",
+  "deadline_discrepancy": "User explicitly selected 4 PM IST as the cutoff after reviewing the PDF discrepancy.",
+  "operative_cutoff": "2026-10-18 16:00 Asia/Kolkata"
+}

@@ -1,10 +1,12 @@
 import { Cpu, Gauge, Layers, FileCheck2, CircleHelp } from 'lucide-react';
 import report from '../../evidence/04-tensorrt-fp16/measured-engine-summary.json';
+import warehouse from '../../evidence/04-tensorrt-fp16/warehouse-engine-summary.json';
 
 const measured = (value: unknown, digits = 5) => typeof value === 'number' && Number.isFinite(value) ? value.toFixed(digits) : 'Not reported';
 export default function ModelPerformance() {
  const maximum=Math.max(report.measured_gpu_compute_ms,report.measured_end_to_end_engine_ms);
  return <div className="performance-page">
+  <section className="panel"><div className="panel-heading"><div><span className="eyebrow">WAREHOUSE FP16 V2 · ENGINE EVIDENCE</span><h2>New compiled model</h2></div><span className="badge amber">RECORDED OUTPUT VERIFIED</span></div><div className="performance-provenance"><p>The new project has a genuine FP16 engine and benchmark report. Matching recorded DeepStream output contains 254 frames and 522 person observations. Engine timing and full pipeline performance remain separate measurements.</p><dl className="details"><dt>Model / precision</dt><dd>{warehouse.model} / {warehouse.precision.toUpperCase()}</dd><dt>TensorRT / layers</dt><dd>{warehouse.tensorrt} / {warehouse.layer_count}</dd><dt>GPU compute time</dt><dd>{warehouse.measured_gpu_compute_ms} ms</dd><dt>End-to-end engine time</dt><dd>{warehouse.measured_end_to_end_engine_ms} ms</dd><dt>Derived engine rate</dt><dd>{(1000/warehouse.measured_end_to_end_engine_ms).toFixed(2)} inferences/s · reciprocal of engine time</dd><dt>Benchmark device</dt><dd>{warehouse.benchmark_device_in_report}</dd><dt>Engine size</dt><dd>{warehouse.engine_bytes.toLocaleString()} bytes</dd><dt>Full pipeline / power / INT8 / accuracy</dt><dd>NOT TESTED</dd></dl><p>{warehouse.caveat}</p><code>evidence/04-tensorrt-fp16/warehouse-engine-summary.json</code></div></section>
   <div className="performance-notice"><FileCheck2 size={21}/><div><strong>Historical engine evidence</strong><p>These values come from the existing compiler report. They describe the recorded model’s TensorRT engine benchmark, not the active scene, a new factory run, or complete application throughput.</p></div><span className="badge blue">SOURCE-BACKED</span></div>
   <div className="performance-metrics">
    <section className="stat-card"><div><span>GPU compute time</span><Cpu size={19} className="blue"/></div><strong>{measured(report.measured_gpu_compute_ms)}<em>ms</em></strong><small>Measured engine benchmark</small></section>
@@ -21,7 +23,7 @@ export default function ModelPerformance() {
     ['Precision / recall / mAP','NOT TESTED','No labeled validation dataset and measured accuracy report is supplied.'],
     ['Dataset evaluation','NOT TESTED','Warehouse footage is a demonstration clip; no reviewed held-out ground truth is supplied.'],
     ['Jetson hardware deployment','NOT TESTED','The report contains modeled Orin NX estimates; these are not physical-device results.'],
-    ['Factory-specific validation','NOT TESTED','Historical engine evidence does not verify an unseen factory clip or a new model.'],
+    ['Factory accuracy validation','NOT TESTED','Recorded-video integration is verified; no independent labeled accuracy benchmark is supplied.'],
    ].map(([name,state,description])=><tr key={name}><td><strong>{name}</strong></td><td><span className="badge amber">{state}</span></td><td>{description}</td></tr>)}</tbody></table></div></section>
    <section className="panel full-width"><div className="panel-heading"><h2>Evidence provenance</h2><span className="badge">Static report snapshot</span></div><div className="performance-provenance"><code>evidence/04-tensorrt-fp16/measured-engine-summary.json</code><p>{report.caveat}</p><p>FP16 engine timing alone establishes no accuracy advantage over INT8. Compare latency, power and held-out accuracy on the same device and workload before choosing a deployment trade-off.</p><p>This page reads the original checked-in JSON directly. It does not generate new benchmark results or assign the historical measurements to another profile.</p></div></section>
   </div>

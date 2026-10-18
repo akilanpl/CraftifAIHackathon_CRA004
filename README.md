@@ -4,27 +4,33 @@
 
 Source repository: [akilanpl/hazard-zone-sentinel](https://github.com/akilanpl/hazard-zone-sentinel) (private; authorized GitHub access required).
 
-**Factory release:** `release/factory-safety` preserves the verified historical street baseline and adds an explicit isolated factory profile. Warehouse footage is downloaded and CPU-decode verified; matching factory metadata, a configured factory ROI and new PipeGen run remain pending; the existing street results below are historical evidence. See [factory status](docs/factory-release.md), [release artifact manifest](evidence/release-artifact-manifest.json) and [verified private draft export asset](docs/export-release-assets.md).
+**Submission cutoff: October 18, 2026, 4 PM IST (user selected).** [Official requirements and checklist](docs/submission-checklist.md).
+
+**Verified warehouse replay:** actual warehouse video + matching PipeGen metadata: **254 frames, 522 person observations, 6 tracker IDs, 2 computed entry alerts (including 1 re-entry), and 2 observed exits**. Worker boxes and the generated red ROI were visually checked at video times 1, 2, 3 and 4 seconds. The camera moves; this is a hypothetical frame-relative aisle demonstration, not a calibrated industrial safety system. Historical street results remain separate. [Release evidence](docs/factory-release.md) · [Submission checklist](docs/submission-checklist.md).
 
 A local React + FastAPI safety operations application for CraftifAI PipeGen perception output. Tracked people entering normalized restricted polygons produce persistent incidents, live dashboard updates and optional JSONL output.
 
-**Integration status:** genuine PipeGen metadata replay is integrated and verified: 1,029 frames, 7,688 person observations, 89 observed track IDs, and 33 computed polygon alerts in one replay session. These include 23 initial-inside observations and 10 observed outside-to-inside transitions. The original recorded video now plays in synchronization with those detections; this is recorded replay, not live camera inference. See [real replay](docs/real-pipegen-replay.md) for timestamp, tracking and benchmark limitations.
+**Historical street baseline:** genuine PipeGen metadata replay is integrated and verified: 1,029 frames, 7,688 person observations, 89 observed track IDs, and 33 computed polygon alerts in one replay session. These include 23 initial-inside observations and 10 observed outside-to-inside transitions. The original recorded video now plays in synchronization with those detections; this is recorded replay, not live camera inference. See [real replay](docs/real-pipegen-replay.md) for timestamp, tracking and benchmark limitations.
 
-## Factory profile launch
+## Run the verified warehouse demonstration
 
-Pending factory screen, with no historical fallback:
+The actual MP4 remains external. Download the licensed source or use the already validated local file; the launcher rejects any different SHA-256.
 
 ```bash
-PORT=8002 ./scripts/start-factory-replay.sh
+./scripts/start-warehouse-demo.sh /absolute/path/to/warehouse-workers-4281405-1080p.mp4
 ```
 
 Second terminal:
 
 ```bash
-SENTINEL_API_TARGET=http://127.0.0.1:8002 ./scripts/start-frontend.sh --port 5175 --strictPort
+SENTINEL_API_TARGET=http://127.0.0.1:8003 ./scripts/start-frontend.sh --port 5173 --strictPort
 ```
 
-Open **http://127.0.0.1:5175**. After a genuine factory run, validate its paired manifest and set `SENTINEL_PROFILE_PATH` before starting. See [exact setup](docs/setup.md#factory-release-profiles). PENDING is intentional until verified matching assets arrive.
+Open **http://127.0.0.1:5173/** and press **Play recorded video**. Playback and seeks do not write duplicate incidents. A separate explicit **Analyze new session** action evaluates all genuine metadata and creates one new persisted analysis session; repeating that action intentionally appends another session. The existing demo database contains the two verified warehouse alerts. A clean clone starts with empty history until analysis is requested.
+
+The manifest example is [examples/warehouse-profile.json](examples/warehouse-profile.json); actual matching metadata is preserved in evidence, while large video/model files remain external. The helper writes only ignored local configuration and never overwrites a differing user manifest. [Exact setup](docs/setup.md#factory-release-profiles).
+
+For missing-asset testing only, `PORT=8002 ./scripts/start-factory-replay.sh` without a profile serves an explicit PENDING view and never substitutes another source.
 
 ## Run genuine PipeGen replay
 
@@ -113,7 +119,7 @@ cd ..
 
 For a reproducible pnpm installation, use `pnpm install --frozen-lockfile --store-dir .pnpm-store` in `frontend/` instead of npm. [Setup](docs/setup.md) includes the already-installed Codex bundled runtime paths for this Linux host, where npm is absent.
 
-Latest executed checks: **123 backend tests passed, 17 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
+Latest executed checks: **136 backend tests passed, 25 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
 
 ## API reference
 

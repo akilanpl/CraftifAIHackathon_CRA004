@@ -73,3 +73,15 @@ The original video was fully CPU-decoded using installed GStreamer; all 1,029 ra
 The current release preparation passes **123 backend tests**, **17 frontend tests**, TypeScript, and the production frontend build. Profile tests cover file pairing, timestamps, dimensions, source, explicit polygons, missing/invalid profiles, asset mutation, database restart and cross-profile rejection. Browser checks verified the PENDING factory view has zero history and no substituted video; the historical engine evidence page renders; historical playback still aligns with its SVG. The full original source regression independently reproduced 33 alerts, persisted acknowledgment and history through restart, and reconnected WebSockets twice. See `evidence/07-real-mode-dashboard/release-baseline-regression.json`.
 
 The reusable CPU-only verifier decoded all 1,029 original frames and reproduced its +33,366,700 ns mapping. New factory timing/visual correctness, new incident counts, official PDF compliance and new export remain PENDING. These checks do not rerun GPU inference.
+
+
+## Follow-up hardening and official PDF review
+
+**133 backend tests and 22 frontend tests passed**, plus TypeScript and the production build. The standard check script now includes deferred-request race tests. Profile validation rejects malformed MP4 containers, disallows mismatched pending-zone cameras and binds model/camera identity to history. Container validation does not claim codec decodability. The actual warehouse input passes the structural check.
+
+Browser regression verified paused seek to original frame102 with -299 ns difference, 2× playback through ENDED at frame1028, replay after ending, repeated reload to paused frame0, and recovery after the Vite development process was restarted. Historical incident history remained66rows. The factory view remains PENDING without substituted detections. Official seven-page PDF reviewed; page-mapped checklist and entry-form handoff added. User selected **4 PM IST on October18** as cutoff.
+
+
+## Final warehouse recorded integration
+
+Final suite: **136 backend tests,25frontend tests**, TypeScript and production build passed. Actual new metadata is254frames/522person observations/6trackIDs. Exact generated polygon produces2observed entries including1reentry,2exits,0initial-inside events,43hold observations. NativeROIgeometry differs on9frames and is not forced to agree. Original pixel box values and equal SVG/video rectangles were checked at decoded frames25/50/75/100; sampled PTS deltas zero. Actual warehouse service restart retained both incident IDs and acknowledgment states; browser playback/seeks retained2rows. RequestedURL `http://127.0.0.1:5173/` now targets the isolated warehouse backend8003. No street incidents were moved or deleted.

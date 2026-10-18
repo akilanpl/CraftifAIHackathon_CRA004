@@ -1,0 +1,38 @@
+{
+  "scope": "Warehouse FP16 v2 engine build/benchmark; matching recorded DeepStream output separately verified",
+  "project_id": "5b159399-c172-4ac5-8b45-430bd54a4a99",
+  "model": "YOLOv8m ONNX",
+  "semantic_model_version": "not reported",
+  "input_shape": [
+    1,
+    3,
+    480,
+    640
+  ],
+  "tensorrt": "10.3.0",
+  "precision": "fp16",
+  "built": true,
+  "from_cache": false,
+  "build_seconds": 16.304,
+  "engine_bytes": 52792260,
+  "layer_count": 199,
+  "precision_mix": {
+    "FP16": 185,
+    "FP32": 14
+  },
+  "engine_sha256": "4c11b6a4eee9274f29c55f5be92fee24357dca4d1b167b4ab5ca0ea5a4786750",
+  "measured_gpu_compute_ms": 5.28244,
+  "measured_end_to_end_engine_ms": 6.19475,
+  "measured_basis": "gpu_compute_time",
+  "benchmark_device_in_report": "unidentified",
+  "power_watts_verified": null,
+  "full_pipeline_fps": null,
+  "int8": "NOT TESTED",
+  "accuracy": "NOT TESTED",
+  "jetson": "NOT DEPLOYED / NOT TESTED",
+  "source_hashes": {
+    "compile.data.json": "cec02168ca984dd0ee92ed17bd20c50a33df9deb6b60c0a52148df363dc44ac2",
+    "engine.data.json": "5bc4a8f7c17bab3494bb13f6dcde48f7e0e1467dd190983603d449e1412cc235"
+  },
+  "caveat": "Engine report has modeled Orin NX estimates; these are not measured power or Jetson deployment. Matching254-frame warehouse output is verified separately; engine timing does not measure full pipeline FPS. No GPU workloads were started by this audit. Official IR/report/run screenshots remain pending."
+}

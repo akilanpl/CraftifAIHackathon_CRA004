@@ -66,45 +66,57 @@
   "factory_evidence": [
     {
       "stage": "Requirement",
-      "status": "PENDING",
-      "artifact": null
+      "status": "VERIFIED_SAVED_REQUIREMENT",
+      "artifact": "01-requirement-and-flow/factory-RequirementState.redacted.json"
     },
     {
       "stage": "Pipeline IR",
-      "status": "PENDING",
-      "artifact": null
+      "status": "JSON_VERIFIED_SCREENSHOT_PENDING",
+      "artifact": "02-pipeline-ir/factory-PipelineIR.redacted.json"
     },
     {
       "stage": "Selected model/version",
-      "status": "PENDING",
-      "artifact": null
+      "status": "MODEL_IDENTIFIED_VERSION_UNREPORTED",
+      "artifact": "04-tensorrt-fp16/warehouse-engine-summary.json"
     },
     {
       "stage": "TensorRT FP16 report or documented compatible baseline engine reuse",
-      "status": "PENDING",
-      "artifact": null
+      "status": "NEW_ENGINE_BUILD_AND_NUMERIC_REPORT_VERIFIED_SCREENSHOT_PENDING",
+      "artifact": "04-tensorrt-fp16/warehouse-engine-summary.json"
     },
     {
       "stage": "DeepStream factory execution",
-      "status": "PENDING",
-      "artifact": null
+      "status": "GENUINE_FACTORY_OUTPUT_AND_GENERATED_PIPELINE_VERIFIED_LIVE_CAPTURE_PENDING",
+      "artifact": "06-real-metadata/warehouse-fp16-v2-metadata.json"
     },
     {
       "stage": "Genuine matching factory metadata",
-      "status": "PENDING",
-      "artifact": null
+      "status": "VERIFIED_IMMUTABLE_SOURCE",
+      "artifact": "06-real-metadata/warehouse-fp16-v2-metadata.json",
+      "sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce"
     },
     {
       "stage": "Real factory dashboard replay",
-      "status": "PENDING",
-      "artifact": null
+      "status": "VERIFIED_RECORDED",
+      "artifact": "07-real-mode-dashboard/warehouse-real-video-overlay.jpg",
+      "notes": "Actual browser recorded video checked at1/2/3/4s frames25/50/75/100; pixel boxes/SVG match; PTS delta0. App screenshot, not PipeGen GUI/inference evidence."
     }
   ],
   "factory_policy": "Historical street artifacts remain preserved and cannot satisfy factory scene evidence. New factory video requires its own real run and matching metadata.",
   "baseline_export_audit": "export-archive-audit.json",
   "official_requirements_pdf": {
-    "status": "NOT_LOCATED",
-    "notes": "Not present in pasted attachments or scoped local search. Submission checklist derives from user-provided requirements, not independently read official PDF."
+    "status": "READ_FULL_DOCUMENT",
+    "artifact": "01-requirement-and-flow/official-problem-statement.pdf",
+    "provenance": "01-requirement-and-flow/official-source.json",
+    "pages": 7,
+    "bytes": 142647,
+    "sha256": "a1da48261c91d9668e15619b40f5c93e492f40814f0921c31c831db407862966",
+    "review": "Full pdftotext extraction read; pages 2 and 6 rendered and visually checked",
+    "deadline": {
+      "printed_pdf_page_6": "4:00 pm; no timezone stated",
+      "operative_cutoff": "October 18, 2026, 4 PM IST",
+      "resolution": "User explicitly selected 4 PM IST; earlier 6 PM instructions superseded"
+    }
   },
   "historical_export_release": {
     "repository": "https://github.com/akilanpl/hazard-zone-sentinel",
@@ -121,5 +133,173 @@
     "evidence_scope": "historical_street_baseline",
     "access": "Authorized repository viewers; draft is not a public or final submitted release",
     "verification_source": "Primary agent reported authenticated GitHub API verification"
+  },
+  "official_criteria": [
+    {
+      "criterion": "Complete Requirement, Pipeline IR, Model, Compiler and Run",
+      "pages": [
+        2
+      ],
+      "mandatory": true,
+      "factory_status": "SAVED_REQUIREMENT_IR_NEW_ENGINE_METADATA_VERIFIED_SCREENSHOTS_AND_VENUE_DEMO_PENDING"
+    },
+    {
+      "criterion": "At least one TensorRT engine with PipeGen speed report",
+      "pages": [
+        2
+      ],
+      "mandatory": true,
+      "factory_status": "NEW_BUILD_NUMERIC_REPORT_VERIFIED_SPEED_REPORT_SCREENSHOT_PENDING"
+    },
+    {
+      "criterion": "Actual pipeline execution from video, USB/CSI camera or RTSP on NVIDIA GPU or Jetson",
+      "pages": [
+        2,
+        5
+      ],
+      "mandatory": true,
+      "factory_status": "GENUINE_OUTPUT_VERIFIED_LIVE_VENUE_DEMO_PENDING",
+      "notes": "Recorded downstream replay alone does not satisfy live hardware demonstration"
+    },
+    {
+      "criterion": "Actionable output beyond boxes",
+      "pages": [
+        2
+      ],
+      "mandatory": true,
+      "factory_status": "GENUINE_JSON_AND_2PERSISTED_COMPUTED_ENTRIES_VERIFIED"
+    },
+    {
+      "criterion": "Repository link including PipeGen export folder",
+      "pages": [
+        6
+      ],
+      "mandatory": true,
+      "factory_status": "PENDING",
+      "notes": "Historical export private draft asset preserved; judge access and acceptance of linked asset mechanism not yet validated"
+    },
+    {
+      "criterion": "Description of problem, track, inputs, tasks, models, precision and outputs",
+      "pages": [
+        6
+      ],
+      "mandatory": true,
+      "factory_status": "PENDING_FINAL_RUN_DETAILS"
+    },
+    {
+      "criterion": "Actual Pipeline IR node-graph and TensorRT speed-report screenshots",
+      "pages": [
+        6
+      ],
+      "mandatory": true,
+      "factory_status": "PENDING",
+      "notes": "IR JSON and numeric summaries do not replace screenshots"
+    },
+    {
+      "criterion": "PipeGen central to product",
+      "pages": [
+        2,
+        7
+      ],
+      "mandatory": true,
+      "factory_status": "GENUINE_FACTORY_SOURCE_AND_RECORDED_PRODUCT_VERIFIED_VENUE_LIVE_DEMO_PENDING"
+    },
+    {
+      "criterion": "INT8 execution or actual Jetson deployment plus speed/power/accuracy tradeoffs",
+      "pages": [
+        1,
+        2
+      ],
+      "mandatory": false,
+      "factory_status": "NOT_TESTED"
+    },
+    {
+      "criterion": "Closed loop PipeGen plus FirmGen with real physical board action",
+      "pages": [
+        1,
+        2
+      ],
+      "mandatory": false,
+      "factory_status": "NOT_TESTED"
+    },
+    {
+      "criterion": "Pitch deck/video",
+      "pages": [
+        6
+      ],
+      "mandatory": false,
+      "factory_status": "OPTIONAL"
+    }
+  ],
+  "official_submission": {
+    "track": "Track A \u2014 PipeGen",
+    "form_url": "https://forms.gle/eJyeCKCG2UH757QZ8",
+    "page": 6,
+    "url_source": "Transcribed from official PDF; form not opened/submitted in this review",
+    "submitted": false
+  },
+  "factory_current_stage": "VERIFIED_RECORDED: genuine metadata, new FP16 build, paired profile, browser alignment and2persistentincidents; actualPipeGenGUIIR/speedreport screenshots,newfactoryexport,venueLiveDemo pending",
+  "submission_flow": {
+    "entry_url": "https://forms.gle/eJyeCKCG2UH757QZ8",
+    "entry_browser_verified": true,
+    "entry_title": "Feedback Form: PipeGen Hackathon",
+    "pages": 2,
+    "feedback_submission_required_for_scoring": true,
+    "project_link_location": "Last page per entry-page instructions",
+    "project_link": null,
+    "answers_entered": false,
+    "submitted": false,
+    "receipt": null,
+    "feedback_completed_user_reported": true,
+    "project_link_status": "Awaiting link from user completed-feedback final page"
+  },
+  "factory_metadata_snapshot": {
+    "artifact": "06-real-metadata/warehouse-fp16-v2-metadata.json",
+    "bytes": 175878,
+    "sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+    "frames": 254,
+    "person_observations": 522,
+    "raw_track_ids": 6,
+    "source_id": 0,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "first_pts_ns": 80000000,
+    "last_pts_ns": 10200000000,
+    "verified_pts_offset_ns": 80000000,
+    "timing_verification": "Primary agent CPU decoded all254video frames; completed immutable snapshot retained against source overwrites",
+    "computed_alerts": 2,
+    "visual_qa": "VERIFIED_RECORDED",
+    "new_factory_export": "PENDING",
+    "observed_entries": 2,
+    "observed_reentries": 1,
+    "first_seen_inside": 0,
+    "observed_exits": 2,
+    "suppressed_holds": 43,
+    "audit": "06-real-metadata/factory-metadata-audit.json",
+    "native_roi_disagreement_frames": 9,
+    "native_roi_disagreement_cause": "UNRESOLVED",
+    "reentry_scope": "Observed same raw tracker ID; not independently established physical identity",
+    "screenshot": "07-real-mode-dashboard/warehouse-real-video-overlay.jpg",
+    "browser_verified_frames": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "browser_verified_media_times_seconds": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "sampled_pts_delta_ns": 0,
+    "database_restart": "Two event IDs and acknowledgment states preserved",
+    "physical_zone": "Hypothetical frame-relative ROI; camera moving; no calibrated physical boundary"
+  },
+  "final_local_endpoints": {
+    "frontend": "http://127.0.0.1:5173",
+    "backend": "http://127.0.0.1:8003"
   }
 }

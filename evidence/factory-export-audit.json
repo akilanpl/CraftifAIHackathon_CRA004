@@ -1,0 +1,28 @@
+{
+  "archive_name": "pipegen-warehouse-hazard-sentinel-pipeline.tar.gz",
+  "bytes": 134818189,
+  "sha256": "5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec",
+  "expected_sha256_matches": true,
+  "member_count": 28,
+  "uncompressed_file_bytes": 156820418,
+  "unsafe_path_members": [],
+  "link_members": [],
+  "credential_filename_candidates": [],
+  "text_members_scanned": 19,
+  "credential_pattern_findings": [],
+  "engine_sha256": "4c11b6a4eee9274f29c55f5be92fee24357dca4d1b167b4ab5ca0ea5a4786750",
+  "engine_expected_hash_matches": true,
+  "manifest_project_id": "5b159399-c172-4ac5-8b45-430bd54a4a99",
+  "native_roi_configuration": [
+    {
+      "member": "pipegen-warehouse-hazard-sentinel-pipeline/pipeline/configs/config_analytics.txt",
+      "restricted_zone_present": true,
+      "expected_pixel_roi_present": true
+    }
+  ],
+  "run_script_supports_external_input": true,
+  "input_policy": "Source video remains external; run wrapper --input is required for supplied source media. No bundled video claim.",
+  "review_scope": "Independent read-only full member/path/link audit, streamed engine hash, text secret-pattern screening of text members <=2MB excluding ONNX/plan binaries. No extraction, execution, modifications or upload. Pattern screening does not prove absence of every secret.",
+  "upload_status": "NOT_UPLOADED_BY_AUDITOR",
+  "manifest_expected_project_present": true
+}

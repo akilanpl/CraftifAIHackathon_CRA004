@@ -1,0 +1,60 @@
+{
+  "project_id": "5b159399-c172-4ac5-8b45-430bd54a4a99",
+  "project_name": "Hazard Zone Sentinel \u2014 Warehouse FP16 v2",
+  "evidence_status": "REQUIREMENT_COMPLETE_AND_IR_SAVED_ONLY",
+  "configured_roi_normalized": [
+    [
+      0.42,
+      0.74
+    ],
+    [
+      0.62,
+      0.74
+    ],
+    [
+      0.62,
+      0.86
+    ],
+    [
+      0.42,
+      0.86
+    ]
+  ],
+  "configured_input": "warehouse-workers-4281405-1080p.mp4",
+  "configured_dimensions": [
+    1920,
+    1080
+  ],
+  "configured_fps": 25,
+  "requested_model": "pretrained YOLOv8m ONNX",
+  "requested_precision": "FP16",
+  "requested_tracker": "NvDCF",
+  "ir_node_count": 7,
+  "ir_connection_count": 10,
+  "no_execution_claim": "Saved Requirement/IR describe intended configuration; not model-stage completion, successful compilation, executed NvDCF/analytics, inference, metadata or benchmark evidence.",
+  "official_graph_screenshot": "PENDING_ACTUAL_PIPEGEN_GUI_CAPTURE",
+  "artifacts": [
+    {
+      "source_name": "RequirementState.json",
+      "source_location": "~/.pipegen/<account>/5b159399-c172-4ac5-8b45-430bd54a4a99/RequirementState.json",
+      "original_bytes": 57003,
+      "original_sha256": "a530ab2619cb4ec7f7c8738f14badc7b86116b7758d53fd566a8641172729a3a",
+      "checkpoint_matches_live_at_inspection": true,
+      "distributed_copy": "01-requirement-and-flow/factory-RequirementState.redacted.json",
+      "distributed_bytes": 57078,
+      "distributed_sha256": "3e1c1df03775461e24c86703b7e8f50a8e59e4d0c20a358c0b648ca7d8a0ec37",
+      "redaction": "All local home username and PipeGen account-name occurrences replaced with LOCAL_USER/PIPEGEN_ACCOUNT; JSON pretty-printed. Original private files unchanged."
+    },
+    {
+      "source_name": "PipelineIR.json",
+      "source_location": "~/.pipegen/<account>/5b159399-c172-4ac5-8b45-430bd54a4a99/PipelineIR.json",
+      "original_bytes": 22814,
+      "original_sha256": "b58bbe4457e21e80de4c3e973f7c860af5e4b6dfb94a3efcd1bb3733e49e1e77",
+      "checkpoint_matches_live_at_inspection": true,
+      "distributed_copy": "02-pipeline-ir/factory-PipelineIR.redacted.json",
+      "distributed_bytes": 22849,
+      "distributed_sha256": "c2904affd2cc24f44f367143e2120239be4a59a11cc1b88dce9411e4ddd83c16",
+      "redaction": "All local home username and PipeGen account-name occurrences replaced with LOCAL_USER/PIPEGEN_ACCOUNT; JSON pretty-printed. Original private files unchanged."
+    }
+  ]
+}

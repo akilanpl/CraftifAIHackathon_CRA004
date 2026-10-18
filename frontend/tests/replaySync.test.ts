@@ -67,3 +67,16 @@ test('verified recorded-source PTS offset preserves first-frame alignment throug
  assert.equal(nearestMetadataFrame(actualFrames,.5,options),null);
  assert.equal(nearestMetadataFrame(actualFrames,secondTime,{...options,ptsOffsetNs:null}),null);
 });
+
+test('variable-frame-duration metadata and long gaps never stretch a detection to fill missing video time',()=>{
+ const variable=[{pts_ns:0,track:'first'},{pts_ns:20_000_000,track:'second'},{pts_ns:100_000_000,track:'third'},{pts_ns:130_000_000,track:'last'}];
+ const options={ptsOffsetNs:0,toleranceNs:8_350_000};
+ assert.equal(validMetadataTimeline(variable),true);
+ assert.equal(nearestMetadataFrame(variable,.02,options),variable[1]);
+ assert.equal(nearestMetadataFrame(variable,.055,options),null);
+ assert.equal(nearestMetadataFrame(variable,.1,options),variable[2]);
+ assert.equal(nearestMetadataFrame(variable,.13,options),variable[3]);
+ assert.equal(nearestMetadataFrame(variable,.16,options),null);
+ // Pause and repeated seek operate on the same real observation, not synthetic copies.
+ assert.equal(nearestMetadataFrame(variable,.1,options),nearestMetadataFrame(variable,.1,options));
+});

@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "id": "warehouse-fp16-v2",
+  "name": "Warehouse FP16 v2 \u00b7 Recorded safety replay",
+  "description": "Actual warehouse video and matching PipeGen detections. Hypothetical frame-relative aisle zone; camera moves.",
+  "scene_type": "factory",
+  "source_kind": "recorded_pipegen",
+  "video_path": "/absolute/path/to/warehouse-workers-4281405-1080p.mp4",
+  "metadata_path": "../evidence/06-real-metadata/warehouse-fp16-v2-metadata.json",
+  "video_sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+  "metadata_sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+  "frame_width": 1920,
+  "frame_height": 1080,
+  "source_id": 0,
+  "camera_id": "warehouse-01",
+  "pts_offset_ns": 80000000,
+  "pts_mapping_verified": true,
+  "pts_verification_note": "All254CPUdecodedframes match original metadata; GStreamer streamtime=PTS-80000000ns. Browser presentation validation recorded separately.",
+  "model_name": "YOLOv8m ONNX",
+  "precision": "FP16",
+  "tolerance_ns": 20000000,
+  "zones": [
+    {
+      "name": "RestrictedZone",
+      "camera_id": "warehouse-01",
+      "polygon": [
+        [
+          0.4197916666666667,
+          0.7398148148148148
+        ],
+        [
+          0.6197916666666666,
+          0.7398148148148148
+        ],
+        [
+          0.6197916666666666,
+          0.8601851851851852
+        ],
+        [
+          0.4197916666666667,
+          0.8601851851851852
+        ]
+      ],
+      "confidence_threshold": 0.5,
+      "debounce_frames": 1,
+      "severity": "high"
+    }
+  ]
+}

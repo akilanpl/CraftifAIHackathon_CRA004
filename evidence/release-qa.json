@@ -1,7 +1,7 @@
 {
-  "status": "FACTORY_INFERENCE_PENDING",
-  "backend_tests": 123,
-  "frontend_tests": 17,
+  "status": "FACTORY_RECORDED_INTEGRATION_VERIFIED",
+  "backend_tests": 136,
+  "frontend_tests": 25,
   "typescript": "PASS",
   "production_build": "PASS",
   "browser": {
@@ -13,16 +13,35 @@
     "sampled_pts_ns": 4387721054,
     "sampled_media_seconds": 4.354354,
     "sampled_delta_ns": 354,
-    "video_svg_equal_rect": true
+    "video_svg_equal_rect": true,
+    "ended_replay_reload_verified": true,
+    "historical_incident_rows_after_playback": 66,
+    "factory_visual_alignment": "VERIFIED_FRAMES_25_50_75_100",
+    "actual_factory_service_restart_preserved_ids_and_ack": true
   },
   "factory_video_sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
-  "factory_metadata": null,
-  "factory_counts": null,
-  "main_merge": "WITHHELD_UNTIL_FACTORY_ACCEPTANCE",
+  "factory_metadata": "06-real-metadata/warehouse-fp16-v2-metadata.json",
+  "factory_counts": {
+    "frames": 254,
+    "person_observations": 522,
+    "observed_track_ids": 6,
+    "entry_alerts": 2,
+    "first_observed_inside": 0,
+    "observed_reentries": 1,
+    "observed_exits": 2,
+    "hold_observations": 43
+  },
+  "main_merge": "READY_AFTER_FINAL_SUITE_AND_SOURCE_REVIEW",
   "limitations": [
-    "No factory metadata yet",
-    "No official PDF supplied",
-    "No measured INT8, labeled accuracy or Jetson deployment"
+    "Hypothetical frame-relative zone with moving camera",
+    "Native ROI occupancy differs on9frames",
+    "Required official PipelineIR/speed-report screenshots pending",
+    "New factory export and judge access pending",
+    "No measured INT8, held-out accuracy or Jetson deployment",
+    "Final project form and submission receipt pending"
   ],
-  "baseline": "40d2975972dd5b02e3f183338e02956dfaeb84b2"
+  "baseline": "40d2975972dd5b02e3f183338e02956dfaeb84b2",
+  "official_pdf_review": "FULL_DOCUMENT_READ_WITH_PAGE_MAPPED_CHECKLIST",
+  "cutoff": "2026-10-18 16:00 Asia/Kolkata",
+  "factory_final_url": "http://127.0.0.1:5173/"
 }
