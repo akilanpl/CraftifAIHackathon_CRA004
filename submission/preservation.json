@@ -1,0 +1,14 @@
+{
+  "baseline": "ca5d3668a06a2acf2f08883b4dfafb51f80bd4e5",
+  "hashes": {
+    "evidence/06-real-metadata/warehouse-fp16-v2-metadata.json": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+    "evidence/04-tensorrt-fp16/warehouse-engine-summary.json": "35389cf8c9a8306646c9d62c4da9e80c0f8ba49114f393510d87d938695f2a00",
+    "examples/warehouse-profile.json": "b921fa5f5ea59b7713dc616c0b37ce46070d41b81bd3c14c4fad69892545b568",
+    "evidence/factory-export-audit.json": "87f4ad74a1cd95aa1337f854a51a4c9435e34d1b32912066dc4776bed0b1c326",
+    "evidence/release-artifact-manifest.json": "3f744b576c8a8d8fec4e858f86b00d0ad803fe48aa805d027726cf89199680bb",
+    "backend/engine.py": "19efbe6f01f132f15ed25faf22b217f2a443d846e512b10eeb6d39967aeb00b5",
+    "backend/replay.py": "47ff573bc0cf645b96afbb39ff0077dc21bc87575712b2aada9e5ea02430c363",
+    "backend/main.py": "d32c295e5c9a3c8ad8f733abc982ec924513938407201808a31b8eb0220a9edc",
+    "backend/ai_monitor.py": "26cc2b63ffb2d70794414e759b318e2409fc87d12c10df821c89b64e03978ddc"
+  }
+}

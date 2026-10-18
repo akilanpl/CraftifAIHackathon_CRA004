@@ -1,0 +1,130 @@
+{
+  "baseline_commit": "ca5d3668a06a2acf2f08883b4dfafb51f80bd4e5",
+  "scope": "Existing genuine warehouse artifacts plus separate Mac application validation; no new GPU run",
+  "official_requirements": {
+    "path": "evidence/01-requirement-and-flow/official-problem-statement.pdf",
+    "sha256": "a1da48261c91d9668e15619b40f5c93e492f40814f0921c31c831db407862966",
+    "verification_method": "Read committed artifact and compute SHA-256"
+  },
+  "stages": [
+    {
+      "stage": "Requirement",
+      "status": "VERIFIED_ARTIFACT",
+      "facts": [
+        "Saved warehouse RequirementState and checkpoint manifest identify project 5b159399-c172-4ac5-8b45-430bd54a4a99.",
+        "Configured warehouse video, YOLOv8m, FP16, NvDCF and normalized ROI."
+      ],
+      "sources": [
+        {
+          "path": "evidence/01-requirement-and-flow/factory-RequirementState.redacted.json",
+          "sha256": "3e1c1df03775461e24c86703b7e8f50a8e59e4d0c20a358c0b648ca7d8a0ec37",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        },
+        {
+          "path": "evidence/01-requirement-and-flow/factory-checkpoint-manifest.json",
+          "sha256": "5bfbfecaf1f539d0d01b2aa97a439322ff0d7e52530c7d47605d851ebb3d94de",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        }
+      ],
+      "missing": [
+        "Original PipeGen GUI stage capture: PENDING_GUI_CAPTURE"
+      ]
+    },
+    {
+      "stage": "Pipeline IR",
+      "status": "VERIFIED_ARTIFACT",
+      "facts": [
+        "Seven saved nodes: video, preprocessing, detection, postprocessing, tracking, analytics and JSON output."
+      ],
+      "sources": [
+        {
+          "path": "evidence/02-pipeline-ir/factory-PipelineIR.redacted.json",
+          "sha256": "c2904affd2cc24f44f367143e2120239be4a59a11cc1b88dce9411e4ddd83c16",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        }
+      ],
+      "missing": [
+        "Original PipeGen node-graph screenshot: PENDING_GUI_CAPTURE"
+      ]
+    },
+    {
+      "stage": "Model",
+      "status": "VERIFIED_ARTIFACT",
+      "facts": [
+        "YOLOv8m ONNX model referenced by saved IR and distributed in the exported archive.",
+        "Export audit ties the archive to the warehouse project and engine hash."
+      ],
+      "sources": [
+        {
+          "path": "evidence/02-pipeline-ir/factory-PipelineIR.redacted.json",
+          "sha256": "c2904affd2cc24f44f367143e2120239be4a59a11cc1b88dce9411e4ddd83c16",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        },
+        {
+          "path": "evidence/factory-export-audit.json",
+          "sha256": "87f4ad74a1cd95aa1337f854a51a4c9435e34d1b32912066dc4776bed0b1c326",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        }
+      ],
+      "release_location": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18",
+      "verification_method": "Inspect saved IR and existing full archive audit; confirm current public release metadata. Model binary was not executed or downloaded on Mac.",
+      "missing": []
+    },
+    {
+      "stage": "Compiler",
+      "status": "VERIFIED_ARTIFACT",
+      "facts": [
+        "TensorRT 10.3.0 FP16; 199 layers (185 FP16, 14 FP32).",
+        "5.28244 ms GPU compute; 6.19475 ms engine execution; 188.877 reported engine inferences/sec.",
+        "52,792,260-byte engine; SHA-256 4c11b6a4eee9274f29c55f5be92fee24357dca4d1b167b4ab5ca0ea5a4786750.",
+        "Existing PipeGen-reported engine measurements; not a Mac benchmark or full-pipeline FPS."
+      ],
+      "sources": [
+        {
+          "path": "evidence/04-tensorrt-fp16/warehouse-engine-summary.json",
+          "sha256": "35389cf8c9a8306646c9d62c4da9e80c0f8ba49114f393510d87d938695f2a00",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        },
+        {
+          "path": "evidence/factory-export-audit.json",
+          "sha256": "87f4ad74a1cd95aa1337f854a51a4c9435e34d1b32912066dc4776bed0b1c326",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        }
+      ],
+      "release_location": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18",
+      "missing": [
+        "Original PipeGen speed-report GUI screenshot: PENDING_GUI_CAPTURE"
+      ]
+    },
+    {
+      "stage": "Run",
+      "status": "VERIFIED_RECORDED_OUTPUT",
+      "facts": [
+        "Genuine previous PipeGen warehouse output: 254 frames, 522 person observations, six observed tracking IDs.",
+        "Source 0, 1920x1080, original PTS 80,000,000 through 10,200,000,000 ns in 40 ms steps.",
+        "New Mac application replay is SIMULATED_APPLICATION_TEST: delivery of recorded data through production APIs, not inference."
+      ],
+      "sources": [
+        {
+          "path": "evidence/06-real-metadata/warehouse-fp16-v2-metadata.json",
+          "sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        },
+        {
+          "path": "evidence/final-product/warehouse-audit.json",
+          "sha256": "a7072714265e6b3485d76749c8593b5e8ff529983fe01f737015f7928af11001",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        },
+        {
+          "path": "examples/warehouse-profile.json",
+          "sha256": "b921fa5f5ea59b7713dc616c0b37ce46070d41b81bd3c14c4fad69892545b568",
+          "verification_method": "Read committed artifact and compute SHA-256"
+        }
+      ],
+      "missing": [
+        "New NVIDIA/venue execution: PENDING_GPU_DEMONSTRATION",
+        "Original PipeGen Run GUI capture: PENDING_GUI_CAPTURE"
+      ]
+    }
+  ]
+}

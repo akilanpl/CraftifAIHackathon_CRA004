@@ -203,6 +203,8 @@ Evidence: [Executed test results](evidence/final-product/tests.txt) · [Browser 
 
 ## Evidence and PipeGen Export
 
+[Judge-facing submission package](submission/README.md) · [Reproducible Mac recorded-metadata integration check](submission/mac-validation.md).
+
 The [Warehouse FP16 v2 PipeGen release](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18) distributes the original pipeline, model and engine artifacts separately from ordinary Git history in `pipegen-warehouse-hazard-sentinel-pipeline.tar.gz`. The archive is **134,818,189 bytes** with SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`.
 
 - [Seven-node Pipeline IR](evidence/02-pipeline-ir/factory-PipelineIR.redacted.json)

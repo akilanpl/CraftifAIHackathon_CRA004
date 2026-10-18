@@ -1,5 +1,7 @@
 # Official submission form handoff
 
+> Current consolidated evidence and Mac validation: [submission package](../submission/README.md). Historical status notes below describe earlier checkpoints; current public export access is verified in the [export manifest](../pipegen_export/manifest.json). New NVIDIA/venue execution, original PipeGen GUI captures and final organizer receipt remain pending.
+
 Cutoff selected by the user: **October 18, 2026, 4 PM IST**.
 
 The PipeGen URL printed on page 6 of the official statement is:
