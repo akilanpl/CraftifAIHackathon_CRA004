@@ -1,0 +1,21 @@
+{
+  "source_sha256": "ae10cfba371d2d553f4804058240e56ade5653c83c86916f354892c55df6d941",
+  "frames_received_over_websocket": 1029,
+  "person_observations_received": 7688,
+  "unique_observed_track_ids": 89,
+  "computed_incidents": 33,
+  "entry_basis": {
+    "first_observed_inside": 23,
+    "observed_outside_to_inside": 10
+  },
+  "distinct_incident_tracks": 33,
+  "final_visible_active_intrusions": 3,
+  "sqlite_incidents": 33,
+  "acknowledge_persistence_verified": true,
+  "input_unchanged": true,
+  "mode": "REAL PIPEGEN REPLAY",
+  "video": "metadata-only",
+  "session_id": "050c9476-c523-4e57-9123-4a46a56b6925",
+  "elapsed_verification_seconds": 1.516,
+  "note": "Verification elapsed time is not inference performance; incident counts depend on the seeded polygon and session."
+}

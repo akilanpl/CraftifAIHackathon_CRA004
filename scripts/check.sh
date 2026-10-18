@@ -8,5 +8,6 @@ fi
 .venv/bin/python -m pytest -q
 cd frontend
 node tests/domain.test.ts
+node tests/replaySync.test.ts
 node node_modules/typescript/bin/tsc -b
 node node_modules/vite/bin/vite.js build

@@ -1,0 +1,25 @@
+{
+  "video_browser_verified": true,
+  "all_video_frames_pts_match_metadata": 1029,
+  "pts_offset_ns": 33366700,
+  "tolerance_ns": 8350000,
+  "visual_alignment_observed_seconds": [
+    1.701702,
+    4.504505,
+    6.856857,
+    15.448782
+  ],
+  "pause_resume_verified": true,
+  "seek_verified": true,
+  "speed_2x_verified": true,
+  "playback_ends_cleanly": true,
+  "responsive_video_svg_identical_bounds": true,
+  "existing_incident_rows_before": 66,
+  "existing_incident_rows_after": 66,
+  "all_incident_records_and_acknowledgments_unchanged": true,
+  "sqlite_matches_api": true,
+  "websocket_proxy_updates_verified": true,
+  "metadata_original_hash_unchanged": true,
+  "scope": "Recorded real-video replay of genuine metadata; no new inference, no capture UTC fabricated, no metadata regenerated",
+  "history_note": "66 rows were already present from two prior 33-alert analysis sessions; video operations added none"
+}

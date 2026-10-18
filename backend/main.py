@@ -6,7 +6,7 @@ from pathlib import Path
 import time
 from uuid import uuid4
 from collections import Counter
-from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 from .adapters.pipegen_adapter import PipeGenAdapter
@@ -15,9 +15,10 @@ from .engine import ZoneEngine
 from .models import Acknowledge, Frame, Zone, ZoneInput
 from .websocket import ConnectionManager
 from .replay import ReplayController, ReplayStart
+from .video import ReplayVideo, ReplayTimeline
 
 
-def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,replay_path=None):
+def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,replay_path=None,replay_video_path=None):
     mode = mode or os.getenv('SENTINEL_MODE','live')
     if mode not in ('live','synthetic','replay'):
         raise ValueError('SENTINEL_MODE must be live, synthetic or replay')
@@ -33,6 +34,8 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
         db.save_zone(Zone(id='synthetic-zone',name='Synthetic restricted area',camera_id='cam-01',polygon=[(.45,.35),(.9,.35),(.9,.9),(.45,.9)]).model_dump(mode='json'))
 
     replay = None
+    replay_video = ReplayVideo(replay_video_path) if mode=='replay' else None
+    replay_timeline = None
     if mode=='replay' and not db.zones():
         db.save_zone(Zone(id='replay-restricted-zone',name='PipeGen restricted_zone (replay polygon)',camera_id=os.getenv('SENTINEL_REPLAY_CAMERA','cam-01'),polygon=[(.55,.45),(.95,.45),(.95,.95),(.55,.95)]).model_dump(mode='json'))
 
@@ -40,7 +43,7 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
         connected = runtime['last_received'] is not None and clock()-runtime['last_received'] <= source_timeout
         result = dict(mode=mode,connected=connected,connection_state='connected' if connected else 'disconnected',integration_status='receiving metadata' if connected and runtime['source']=='pipegen' else ('adapter configured; awaiting metadata' if adapter.parser else 'not connected'),source_name=runtime['source_name'],last_event_time=runtime['last_event_time'],fps=runtime['fps'] if connected else None,inference_latency_ms=runtime['inference_latency_ms'] if connected else None,gpu_name=runtime['gpu_name'],video_url=runtime['video_url'] if connected else None,active_intrusions=engine.occupancy,session_incidents=runtime['session_incidents'],errors=runtime['errors'],configured_zones=len(db.zones()),source=runtime['source'])
         if mode=='replay':
-            result.update(source='pipegen_replay',replay=replay.status() if replay else None,integration_status='recorded PipeGen metadata replay',timestamp_basis='replay_session_clock')
+            result.update(source='pipegen_replay',replay={**replay.status(),'video':replay_video.status()} if replay else None,integration_status='recorded PipeGen metadata replay',timestamp_basis='replay_session_clock')
         return result
 
     @asynccontextmanager
@@ -160,6 +163,7 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
 
     if mode=='replay':
         replay = ReplayController(replay_path or os.getenv('SENTINEL_REPLAY_PATH'),os.getenv('SENTINEL_REPLAY_CAMERA','cam-01'),ingest,reset_replay)
+        replay_timeline = ReplayTimeline(replay.path,replay.camera,replay_video)
     app.state.replay = replay
 
     def require_replay():
@@ -169,7 +173,17 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
 
     @app.get('/api/replay')
     async def replay_status():
-        return require_replay().status()
+        return {**require_replay().status(),'video':replay_video.status()}
+
+    @app.api_route('/api/replay/video',methods=['GET','HEAD'])
+    async def replay_video_stream(request: Request):
+        require_replay()
+        return replay_video.response(request)
+
+    @app.get('/api/replay/timeline')
+    async def replay_timeline_data():
+        require_replay()
+        return replay_timeline.payload()
 
     @app.post('/api/replay/start')
     async def replay_start(payload: ReplayStart=ReplayStart()):

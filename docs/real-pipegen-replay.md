@@ -1,6 +1,6 @@
 # Real PipeGen replay
 
-The existing dashboard now accepts the observed PipeGen `video_json_export` batch through `backend.replay.load_export`. It uses genuine recorded detections. **REAL PIPEGEN REPLAY is neither live inference nor synthetic testing.** The initial implementation is metadata-only: it does not claim a synchronized or annotated video feed.
+The existing dashboard now accepts the observed PipeGen `video_json_export` batch through `backend.replay.load_export`. It uses genuine recorded detections. **REAL PIPEGEN REPLAY is neither live inference nor synthetic testing.** Synchronized original-video playback is now implemented and browser-verified; see [video replay](synchronized-video-replay.md). The metadata-only fallback and optional event-analysis session remain separate.
 
 ## Start
 

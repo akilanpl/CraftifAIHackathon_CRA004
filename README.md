@@ -6,7 +6,7 @@ Source repository: [akilanpl/hazard-zone-sentinel](https://github.com/akilanpl/h
 
 A local React + FastAPI safety operations application for CraftifAI PipeGen perception output. Tracked people entering normalized restricted polygons produce persistent incidents, live dashboard updates and optional JSONL output.
 
-**Integration status:** genuine PipeGen metadata replay is integrated and verified: 1,029 frames, 7,688 person observations, 89 observed track IDs, and 33 computed polygon alerts in one replay session. These include 23 initial-inside observations and 10 observed outside-to-inside transitions. This is explicitly metadata-only replay, not live camera inference. See [real replay](docs/real-pipegen-replay.md) for timestamp, tracking and benchmark limitations.
+**Integration status:** genuine PipeGen metadata replay is integrated and verified: 1,029 frames, 7,688 person observations, 89 observed track IDs, and 33 computed polygon alerts in one replay session. These include 23 initial-inside observations and 10 observed outside-to-inside transitions. The original recorded video now plays in synchronization with those detections; this is recorded replay, not live camera inference. See [real replay](docs/real-pipegen-replay.md) for timestamp, tracking and benchmark limitations.
 
 ## Run genuine PipeGen replay
 
@@ -95,7 +95,7 @@ cd ..
 
 For a reproducible pnpm installation, use `pnpm install --frozen-lockfile --store-dir .pnpm-store` in `frontend/` instead of npm. [Setup](docs/setup.md) includes the already-installed Codex bundled runtime paths for this Linux host, where npm is absent.
 
-Latest executed checks: **68 backend/adapter tests passed, 3 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
+Latest executed checks: **103 backend tests passed, 15 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
 
 ## API reference
 
@@ -136,3 +136,9 @@ The selected input is `people-crossing.mp4`, H.264 MP4, 1920×1080, approximatel
 ## Pending submission evidence
 
 Genuine metadata and the explicitly labeled replay dashboard are now verified in [the ledger](evidence/checklist.json). Model/compiler summaries are partial evidence; the official Pipeline IR screenshot, full export and original run evidence still need packaging. Clearly named directories under `evidence/` cover Requirement/finalized flow, official Pipeline IR, actual model details, TensorRT FP16 report, DeepStream execution, real metadata and real-mode dashboard demonstration. Historical synthetic screenshots remain labeled; the new real replay screenshot is under `evidence/07-real-mode-dashboard/`.
+
+## Synchronized real recorded video
+
+Run `./scripts/start-synchronized-replay.sh` and `./scripts/start-synchronized-frontend.sh` in separate terminals, then open **http://127.0.0.1:5174**. These helpers verify the known original-video/metadata hashes before applying the inspected 33,366,700 ns timestamp offset. Video, raw metadata and databases remain outside Git.
+
+The generic backend settings are `SENTINEL_REPLAY_VIDEO`, `SENTINEL_REPLAY_VIDEO_PTS_OFFSET_NS` and optional `SENTINEL_REPLAY_VIDEO_TOLERANCE_NS`; configure them only from verified media timing. See [synchronized replay setup and verification](docs/synchronized-video-replay.md) for exact paths, alternate ports, API Range support, metadata-only fallback and screenshots. Playback uses the presented video clock and never creates duplicate incident rows. The existing database retains 66 historical rows from two earlier 33-alert analysis sessions; the verified single-session analysis remains 33 alerts.

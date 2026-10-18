@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { incidentZoneOptions, normalizedPoint } from '../src/domain.ts';
+import { incidentZoneOptions, normalizedPoint, pointInPolygon } from '../src/domain.ts';
 
 test('incident filters retain a deleted zone and avoid duplicate options', () => {
   const options = incidentZoneOptions([{id:'active',name:'Renamed zone'}], [
@@ -52,4 +52,13 @@ test('original replay IDs preserve raw ID zero and fall back without fabricating
   assert.equal(originalTrackId('session:0:0',{'session:0:0':'0'}),'0');
   assert.equal(originalTrackId('unmapped',{}),'unmapped');
   assert.equal(originalTrackId(null,{}),null);
+});
+
+
+test('recorded-video polygon highlights the same boundary-inclusive foot points as the backend', () => {
+  const polygon=[[.55,.45],[.95,.45],[.95,.95],[.55,.95]];
+  assert.equal(pointInPolygon([.7,.8],polygon),true);
+  assert.equal(pointInPolygon([.55,.8],polygon),true);
+  assert.equal(pointInPolygon([.4,.8],polygon),false);
+  assert.equal(pointInPolygon([.8,.99],polygon),false);
 });

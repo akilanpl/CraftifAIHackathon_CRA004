@@ -1,0 +1,53 @@
+{
+  "video_sha256": "cfb10db5adb8869240e78ef68185f429a52efac1054b26aca4ccc3534c6094b5",
+  "metadata_sha256": "ae10cfba371d2d553f4804058240e56ade5653c83c86916f354892c55df6d941",
+  "decoded_frames": 1029,
+  "matching_metadata_frames": 1029,
+  "pts_mismatches": [],
+  "segments": [
+    {
+      "start_ns": 33366700,
+      "time_ns": 0
+    }
+  ],
+  "verified_pts_offset_ns": 33366700,
+  "samples": [
+    {
+      "frame_index": 0,
+      "video_pts_ns": 33366700,
+      "metadata_pts_ns": 33366700,
+      "browser_stream_time_ns": 0
+    },
+    {
+      "frame_index": 100,
+      "video_pts_ns": 1701701701,
+      "metadata_pts_ns": 1701701701,
+      "browser_stream_time_ns": 1668335001
+    },
+    {
+      "frame_index": 300,
+      "video_pts_ns": 5038371705,
+      "metadata_pts_ns": 5038371705,
+      "browser_stream_time_ns": 5005005005
+    },
+    {
+      "frame_index": 600,
+      "video_pts_ns": 10043376710,
+      "metadata_pts_ns": 10043376710,
+      "browser_stream_time_ns": 10010010010
+    },
+    {
+      "frame_index": 900,
+      "video_pts_ns": 15048381715,
+      "metadata_pts_ns": 15048381715,
+      "browser_stream_time_ns": 15015015015
+    },
+    {
+      "frame_index": 1028,
+      "video_pts_ns": 17183850517,
+      "metadata_pts_ns": 17183850517,
+      "browser_stream_time_ns": 17150483817
+    }
+  ],
+  "method": "Existing GStreamer CPU avdec_h264 decoded entire original MP4; every buffer PTS compared to original metadata. Browser rVFC first mediaTime=0 was independently observed."
+}

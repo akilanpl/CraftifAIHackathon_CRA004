@@ -42,3 +42,16 @@ export function incidentEventLabel(eventType: string, source?: string, synthetic
 export function originalTrackId(trackId: string | null, mapping?: Record<string, string>): string | null {
   return trackId == null ? null : mapping?.[trackId] ?? trackId;
 }
+
+/** Same boundary-inclusive bottom-center membership convention as the backend. */
+export function pointInPolygon(point: readonly number[], polygon: readonly (readonly number[])[]): boolean {
+  let inside = false;
+  const [x,y] = point;
+  for (let i=0,j=polygon.length-1;i<polygon.length;j=i++) {
+    const a=polygon[j], b=polygon[i];
+    const cross=(x-a[0])*(b[1]-a[1])-(y-a[1])*(b[0]-a[0]);
+    if (Math.abs(cross)<1e-10 && x>=Math.min(a[0],b[0])-1e-10 && x<=Math.max(a[0],b[0])+1e-10 && y>=Math.min(a[1],b[1])-1e-10 && y<=Math.max(a[1],b[1])+1e-10) return true;
+    if ((a[1]>y)!==(b[1]>y) && x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0]) inside=!inside;
+  }
+  return inside;
+}

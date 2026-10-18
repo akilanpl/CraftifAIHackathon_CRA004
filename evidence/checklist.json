@@ -46,8 +46,8 @@
       "stage": "Real-mode dashboard",
       "status": "VERIFIED_REPLAY",
       "required": "Dashboard incident and source status matched to genuine source metadata and actual pipeline run",
-      "artifact": "07-real-mode-dashboard/real-pipegen-replay-dashboard.jpg",
-      "notes": "REAL PIPEGEN REPLAY, metadata-only. Not a synchronized video feed or live camera inference."
+      "artifact": "07-real-mode-dashboard/synchronized-overview.jpg",
+      "notes": "Original recorded video plus genuine metadata synchronized by verified source PTS; browser play/pause/seeking/rate/resize verified. Recorded replay, not live camera inference. Playback does not append incidents."
     }
   ],
   "synthetic_qa_only": [

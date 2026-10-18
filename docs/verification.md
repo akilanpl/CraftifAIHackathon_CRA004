@@ -60,3 +60,9 @@ Reproduce actual-source validation against a **new** verification database:
 ```bash
 .venv/bin/python scripts/verify_real_replay.py /absolute/path/to/actual/metadata.json --db data/new-verification.sqlite3 --report data/replay-verification.json
 ```
+
+## Synchronized recorded-video feature verification
+
+Latest suite: **103 backend tests + 15 frontend tests passed**, TypeScript and Vite production build passed. Read-only video/timeline transport, strict timestamp matching and shared normalized foot-point membership were added. The isolated unchanged-source regression still yields 33 computed alerts (23 initial-inside + 10 entries), and verifies all 1,029 frames / 7,688 person observations over HTTP/WebSocket, SQLite and acknowledgment persistence. Existing 66 historical rows and all acknowledgment states remained unchanged during actual video controls.
+
+The original video was fully CPU-decoded using installed GStreamer; all 1,029 raw buffer PTS matched metadata, with verified browser offset 33,366,700 ns. Actual browser playback, visual alignment at early/middle/late frames, pause/resume, seeks, 2× rate, ended state and narrow/desktop viewport geometry were observed. No new GPU inference was run. Detailed evidence, configuration and limitations: `synchronized-video-replay.md`.

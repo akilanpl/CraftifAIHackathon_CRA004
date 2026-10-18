@@ -1,0 +1,126 @@
+{
+  "scope": "Observed actual Chromium recorded-video presentation and real metadata overlay; not live inference",
+  "observations": [
+    {
+      "label": "early paused seek",
+      "currentTime": 1.717,
+      "diagnostics": {
+        "deltaNs": "-299",
+        "frameIndex": "102",
+        "mediaTime": "1.701702000",
+        "offsetNs": "33366700",
+        "ptsNs": "1735068401"
+      },
+      "paused": true,
+      "rate": 1
+    },
+    {
+      "label": "middle paused seek",
+      "currentTime": 6.868,
+      "diagnostics": {
+        "deltaNs": "-144",
+        "frameIndex": "411",
+        "mediaTime": "6.856857000",
+        "offsetNs": "33366700",
+        "ptsNs": "6890223556"
+      },
+      "overlayBounds": {
+        "bottom": 452.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -61,
+        "width": 915,
+        "x": 296,
+        "y": -61
+      },
+      "paused": true,
+      "rate": 1,
+      "videoBounds": {
+        "bottom": 452.8125,
+        "height": 513.8125,
+        "left": 296,
+        "right": 1211,
+        "top": -61,
+        "width": 915,
+        "x": 296,
+        "y": -61
+      }
+    },
+    {
+      "label": "late paused seek",
+      "currentTime": 15.45,
+      "diagnostics": {
+        "deltaNs": "115",
+        "frameIndex": "926",
+        "mediaTime": "15.448782000",
+        "offsetNs": "33366700",
+        "ptsNs": "15482148815"
+      },
+      "paused": true,
+      "rate": 1
+    },
+    {
+      "label": "2x playback",
+      "currentTime": 0.616,
+      "diagnostics": {
+        "deltaNs": "300",
+        "frameIndex": "38",
+        "mediaTime": "0.633967000",
+        "offsetNs": "33366700",
+        "ptsNs": "667334000"
+      },
+      "paused": false,
+      "rate": 2
+    },
+    {
+      "label": "playback ended",
+      "currentTime": 17.167167,
+      "diagnostics": {
+        "deltaNs": "-183",
+        "frameIndex": "1028",
+        "mediaTime": "17.150484000",
+        "offsetNs": "33366700",
+        "ptsNs": "17183850517"
+      },
+      "ended": true,
+      "paused": true,
+      "rate": 2
+    },
+    {
+      "label": "responsive narrow viewport",
+      "currentTime": 17.167167,
+      "diagnostics": {
+        "deltaNs": "-183",
+        "frameIndex": "1028",
+        "mediaTime": "17.150484000",
+        "offsetNs": "33366700",
+        "ptsNs": "17183850517"
+      },
+      "documentWidth": 585,
+      "ended": true,
+      "overlayBounds": {
+        "bottom": 624.8125,
+        "height": 297.8125,
+        "left": 27,
+        "right": 558,
+        "top": 327,
+        "width": 531,
+        "x": 27,
+        "y": 327
+      },
+      "paused": true,
+      "rate": 2,
+      "videoBounds": {
+        "bottom": 624.8125,
+        "height": 297.8125,
+        "left": 27,
+        "right": 558,
+        "top": 327,
+        "width": 531,
+        "x": 27,
+        "y": 327
+      }
+    }
+  ]
+}
