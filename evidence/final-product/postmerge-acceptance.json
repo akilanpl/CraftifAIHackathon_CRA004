@@ -1,0 +1,22 @@
+{
+  "source_commit": "d7b8e2a62f40dc077c29af2f21260606b3179aba",
+  "backend_passed": 239,
+  "frontend_postmerge_passed": 89,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "browser_routes": 8,
+  "genuine_cpu_detections": 3,
+  "measured_cpu_latency_ms": 718.79,
+  "replay_frame": 106,
+  "replay_timestamp_drift_ms": 0,
+  "console_errors": 0,
+  "integrity": {
+    "8003/incidents": "exactly unchanged",
+    "8003/zones": "exactly unchanged",
+    "8006/incidents": "exactly unchanged",
+    "8006/zones": "exactly unchanged"
+  },
+  "root_free_bytes": 1075703808,
+  "accuracy": "PENDING HUMAN REVIEW",
+  "physical_usb_int8_jetson_firmgen": "NOT TESTED"
+}
