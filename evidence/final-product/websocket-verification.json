@@ -1,0 +1,16 @@
+{
+  "8003": {
+    "initial_events": [
+      "status",
+      "zones"
+    ],
+    "mode": "replay"
+  },
+  "8006": {
+    "initial_events": [
+      "status",
+      "zones"
+    ],
+    "mode": "replay"
+  }
+}

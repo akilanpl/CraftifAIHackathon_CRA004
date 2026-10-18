@@ -1,0 +1,137 @@
+{
+  "verified_at_utc": "2026-10-18T14:00:42.392814+00:00",
+  "baseline": "3d067a5c81f3e90faa299b4b0ac0ceebb1950487",
+  "backend_tests": 239,
+  "frontend_tests": 89,
+  "skips": 0,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "test_warnings": [
+    "Existing Starlette/AnyIO deprecation",
+    "Existing duplicate OpenAPI operation ID for replay-video GET/HEAD"
+  ],
+  "browser": "Actual in-app graphical browser controlled through cua_repl;no separate Computer Use SKILL.md available;API instructions read",
+  "routes": [
+    "Overview",
+    "Recorded Monitoring",
+    "Incident Center",
+    "Zone Management",
+    "Analytics",
+    "Model Performance",
+    "AI Camera Monitor",
+    "Integration"
+  ],
+  "viewports": [
+    [
+      1600,
+      900
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "max_projected_bbox_drift_px": 6.293402793744463e-05,
+  "normal_browser_console": [],
+  "screenshots_inspected": true,
+  "visual_correction_pass": [
+    "Compact monitoring cards/health spacing forstagevisibility",
+    "Improve operational text readability",
+    "Add clear service-specific statuslabels",
+    "Add previewaccessiblelabel,mobilevisibility/focus,reducedmotion",
+    "Add canonical/nativecontractlinks and scopeerrors toV2"
+  ],
+  "matrix": [
+    {
+      "workflow": "Warehouse V2",
+      "status": "PASS",
+      "evidence": "254 frames,522 observations,6 tracker IDs; original2incidents preserved;0msPTSerror"
+    },
+    {
+      "workflow": "Independent CPU virtual video",
+      "status": "PASS",
+      "evidence": "Three real worker boxes visually checked;715.19ms sample; matching captured frame"
+    },
+    {
+      "workflow": "Simulated USB lifecycle",
+      "status": "PASS",
+      "evidence": "A/Bselection,denial,unavailable,grantedcapture,inference,disconnect,reconnect;0streams/0tracks afterstop"
+    },
+    {
+      "workflow": "Local MP4",
+      "status": "PASS",
+      "evidence": "Actual file chooser;3 realdetections;pause/resume0.5x;765.26ms initial,664.76ms resumed sample"
+    },
+    {
+      "workflow": "Simulation",
+      "status": "PASS",
+      "evidence": "Nine steps complete:2entries,2exits,1reentry; explicitfixtureprovenance"
+    },
+    {
+      "workflow": "Incidents/analytics",
+      "status": "PASS",
+      "evidence": "Filters/emptyfilter,export2IDs,details,ack0\u21921\u21920 inQA;SQLiteandUIagree"
+    },
+    {
+      "workflow": "Zone editing",
+      "status": "PASS",
+      "evidence": "DisposableQAzonecreated/saved;editcancelpreserved;confirmeddelete;originalzoneunchanged"
+    },
+    {
+      "workflow": "Integration",
+      "status": "PASS",
+      "evidence": "Read-onlyservicechecks;clipboardHTTP/WSURLsverified;actualGitHubcontractopened;replayingestion409"
+    },
+    {
+      "workflow": "Unavailable independent service",
+      "status": "PASS",
+      "evidence": "DedicatedUI5182targetedclosedAIport;V2remainedconnected;unavailableoperationsdisabled;healthyworker8005untouched"
+    },
+    {
+      "workflow": "Responsive layouts",
+      "status": "PASS",
+      "evidence": "8pages\u00d74sizes;32screenshots;nohorizontaloverflow"
+    },
+    {
+      "workflow": "Keyboard/accessibility",
+      "status": "PASS",
+      "evidence": "RadiogroupEnd/Home;dialogfocus trap+Escape;headingfocusafternav;mobilehiddennav;previewlabel;reducedmotion"
+    },
+    {
+      "workflow": "API/WebSocket/persistence",
+      "status": "PASS",
+      "evidence": "RealHTTP+WS source tests;isolateddatabase restartcontracts;no workinghostservicerestart"
+    },
+    {
+      "workflow": "PhysicalUSB/INT8/Jetson/FirmGenhardware",
+      "status": "NOT TESTED",
+      "evidence": "No hardwareoroptimizationexecutionclaim"
+    },
+    {
+      "workflow": "Formal independentaccuracy",
+      "status": "PENDING HUMAN REVIEW",
+      "evidence": "No precision/recall/F1/mAP or thresholdaccuracyclaimed"
+    }
+  ],
+  "original_incidents_unchanged": true,
+  "original_zone_unchanged": true,
+  "original_assets_unchanged": true,
+  "production_threshold_changed": false,
+  "pipegen_or_host_configuration_changed": false,
+  "known_limits": [
+    "Moving-camera screen-relative polygon,notcalibratedphysicalboundary",
+    "Approximate CPU tracking;notphysicalidentity",
+    "FormalWCAGconformanceauditnotperformed",
+    "PhysicalUSB,INT8,Jetson,FirmGenhardwareuntested",
+    "Formalaccuracy pendinghumanreview",
+    "FullpipelineFPS,camera-to-alertlatency,whole-systempowerunmeasured"
+  ]
+}

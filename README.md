@@ -1,169 +1,212 @@
 # Hazard Zone Sentinel
 
-**Camera detections become actionable restricted-zone incidents.**
+A safety operations dashboard that turns PipeGen person detections into visible restricted-zone activity and reviewable incidents.
 
-[Public source repository](https://github.com/akilanpl/hazard-zone-sentinel) · [Warehouse evidence](docs/factory-release.md) · [Independent AI guide](docs/independent-ai-monitor.md) · [Submission checklist](docs/submission-checklist.md)
+## Overview
 
-Hazard Zone Sentinel is a local React/TypeScript and FastAPI safety-monitoring prototype. It combines video overlays, editable polygon zones, incident history, acknowledgments, SQLite persistence and WebSocket updates.
+Factory operators need to see where people enter restricted areas and retain enough context to review each event. Hazard Zone Sentinel combines a genuine CraftifAI PipeGen warehouse execution with synchronized video, tracked detections, configurable polygons, incident history and analytics.
 
-Two processing paths are implemented and kept separate:
+The core demonstration replays the original Warehouse FP16 v2 video and its matching DeepStream metadata. An independent AI Camera Monitor processes new recorded-video or camera pixels with ONNX Runtime on the CPU, using separate sessions and incident storage.
 
-| Path | Input and perception | Verified scope |
-| --- | --- | --- |
-| **Warehouse V2 — PipeGen** | Original recorded warehouse video and matching real PipeGen/DeepStream metadata from YOLOv8m TensorRT FP16 | Recorded video/box synchronization, polygon analysis, two persisted entry alerts and restart recovery |
-| **Independent AI Camera Monitor** | Actual video pixels through ONNX Runtime CPU; virtual video, browser-selected MP4 and simulated USB stream | Genuine inference, correlated frame overlays, source/session isolation, simulation, browser lifecycle and persistence |
+## Key Capabilities
 
-**Physical USB camera hardware: NOT TESTED.** The simulated USB pathway uses prerecorded video through `captureStream()` and real inference; it is not evidence of a connected physical camera. This moving-camera, image-space demonstration is not a calibrated industrial protective system.
+- **PipeGen warehouse replay:** matching MP4 and genuine YOLOv8m TensorRT FP16 detections, NvDCF track IDs, confidence and PTS-aligned overlays.
+- **Restricted-zone analysis:** normalized polygons, bottom-center person membership, entry/hold/exit/re-entry evaluation, configurable confidence and debounce rules.
+- **Incident review:** SQLite history, severity/zone/event filters, JSON export, details and persistent acknowledgments.
+- **Safety analytics:** stored incident totals, daily or Monday-starting UTC weekly trends, severity/zone distributions and acknowledgment summaries.
+- **Model evidence:** separate warehouse engine, historical engine and independent CPU measurements, with source JSON and explicit measurement boundaries.
+- **Independent AI Camera Monitor:** genuine CPU inference from warehouse virtual video, locally selected MP4 files and an explicit simulated USB capture harness; deterministic simulation remains clearly labeled.
+- **USB camera interface:** device selection, explicit permission/connection, disconnect handling and media-track cleanup. Physical USB hardware acceptance remains untested.
+- **Integration visibility:** primary API, WebSocket and independent-service health are distinguished; endpoint contracts and source provenance are visible.
 
-![Overview · light three-page workspace](evidence/ui-light-redesign/design-overview-desktop.png)
+The verified warehouse recording contains **254 frames, 522 person observations and six tracker IDs**. The preserved demonstration database contains **two computed entry incidents**; analysis also observed two exits. Observations are not unique people. A clean clone has no bundled incident database.
 
-## What works
+## System Architecture
 
-- Person boxes, confidence and reported/estimated track IDs aligned with the displayed source frame.
-- Normalized polygon drawing/editing and validated zone configuration.
-- Entry/hold/exit/reentry logic, with first-observed-inside distinguished from observed crossings.
-- Incident filtering, details, acknowledgment and persistent session history.
-- REST/WebSocket updates, reconnect behavior, bounded frame processing and explicit source errors.
-- Separate V2 and independent-source databases; replay visualization does not silently append incidents.
-- Explicit **SIMULATED TEST DATA** scenarios, distinct from actual model detections.
+```mermaid
+flowchart LR
+  V[Warehouse MP4] --> P[CraftifAI PipeGen]
+  P --> T[YOLOv8m TensorRT FP16]
+  T --> D[DeepStream NvDCF tracking + ROI analytics]
+  D --> J[Recorded JSON metadata + PTS]
+  J --> F[FastAPI adapter + polygon decisions]
+  F --> S[(Warehouse SQLite)]
+  F --> W[WebSocket updates]
+  W --> R[React safety dashboard]
+  V --> R
+  S --> R
+  U[Virtual video / uploaded MP4 / authorized camera] --> O[Independent ONNX Runtime CPU worker]
+  O --> A[Separate AI API + session zone decisions]
+  A --> Q[(Independent session SQLite)]
+  A --> X[Independent WebSockets]
+  X --> R
+  Q --> R
+```
 
-### Verified warehouse result
+PipeGen supplies the core warehouse model, tracking and recorded inference evidence. The browser replays that execution; it does not rerun a GPU engine. Independent CPU processing uses captured image pixels, not prerecorded PipeGen boxes. Simulation fixtures are labeled and isolated from both real-data paths.
 
-The preserved Warehouse V2 run contains **254 frames, 522 person observations and 6 raw tracker IDs**. Application analysis produced **2 observed-entry alerts, including 1 same-track reentry**, **2 observed exits**, **0 first-seen-inside alerts** and **43 suppressed inside holds**. Track IDs are not a count of unique physical people.
+## Screenshots
 
-All source timestamps were checked with the verified **+80 ms** mapping. Browser frames at 1, 2, 3 and 4 seconds were reviewed against actual boxes and viewport bounds. Native ROI occupancy disagrees with application bottom-center geometry on **9 frames**; the cause remains unresolved. The camera moves and the ROI is a hypothetical frame-relative aisle region. [Detailed audit and limitations](evidence/06-real-metadata/factory-metadata-audit.json).
+Actual rendered application views; media and evidence remain distinct from illustrative simulation.
 
-Historical street footage, its 1,029-frame run and its 33-alert analysis remain preserved as separate fallback evidence; they are not factory results.
+| Overview | Recorded Monitoring |
+|---|---|
+| ![Overview](evidence/final-product/overview-1600.png) | ![Recorded Monitoring](evidence/final-product/monitoring-1600.png) |
 
-## Performance: keep the measurement scopes separate
+| Incident Center | Analytics |
+|---|---|
+| ![Incident Center](evidence/final-product/incidents-1600.png) | ![Analytics](evidence/final-product/analytics-1600.png) |
 
-| Evidence | Result | Scope and limitation |
-| --- | --- | --- |
-| Factory TensorRT FP16 engine | **188.877 reported QPS**, **5.28244 ms GPU compute**, **6.19475 ms engine end-to-end latency** | Existing PipeGen engine report; not full DeepStream FPS. The report's measured-device field is unidentified |
-| Reported factory engine power | **135.222 W**, 66 samples, stated ±5 W | GPU-board power during the engine run, reported from `nvidia-smi`; not whole-system power or independently remeasured here |
-| Independent simulated-USB CPU sample | **12 WebSocket frames, 25 person observations; 685.28 ms median processing**, approximately **1.46 reciprocal-median frames/s** | ONNX Runtime CPU JPEG/preprocess/inference/postprocess; not camera throughput, GPU timing or a controlled FP16 comparison |
+| Zone Management | Model Performance |
+|---|---|
+| ![Zone Management](evidence/final-product/zones-1600.png) | ![Model Performance](evidence/final-product/model-1600.png) |
 
-The factory engine is TensorRT **10.3.0**, **52,792,260 bytes**, with **199 layers: 185 FP16 and 14 FP32**. Exact hashes and measurement fields are in the [factory engine summary](evidence/04-tensorrt-fp16/warehouse-engine-summary.json). Independent inference uses **ONNX Runtime 1.31.0 / CPUExecutionProvider**, YOLOv8m input `[1,3,480,640]`; [browser acceptance evidence](evidence/independent-ai/final-browser-acceptance.json) records the CPU sample.
+| AI Camera Monitor | Integration |
+|---|---|
+| ![AI Camera Monitor](evidence/final-product/ai-1600.png) | ![Integration](evidence/final-product/integration-1600.png) |
 
-A shelving false positive was observed near media time 4.24 seconds at confidence approximately 0.54. IoU-based independent IDs are approximate associations; looping test footage does not establish unique people or physical reentry. **No formal precision, recall, F1 or mAP is currently claimed.** Modeled Orin values are not measured Jetson performance.
+## Demonstration
 
-## Run locally
+1. Open **http://127.0.0.1:5173/** and use Recorded Monitoring to play, pause or seek the verified warehouse recording. Boxes, track IDs and the red polygon follow the selected recorded frame.
+2. Review the stored events in Incident Center and compare them with Analytics. Video playback and seeking do not create incidents. Optional **Analyze new session** explicitly starts another persisted metadata analysis.
+3. In AI Camera Monitor, check the independent service and choose Warehouse Virtual Camera or Upload MP4. Start monitoring to inspect captured pixels with their matching inference result. The source preview intentionally has no detection overlay.
+4. Use Simulation for the labeled nine-step safety-logic scenario: two entries, two exits and one re-entry. Stop & release closes sampling and capture resources.
 
-Use **Python 3.12** for the tested lockfile and **Node 22.18+** for the complete checks (tested Node 24). Install application dependencies on a clean checkout:
+The simulated USB harness is available only on localhost in development with `?cameraTest=1`; it uses real prerecorded video pixels through an app-owned camera adapter. It does not validate physical camera hardware. See the [camera protocol and lifecycle guide](docs/independent-ai-monitor.md).
+
+## Performance
+
+| Evidence | Result | Measurement scope |
+|---|---|---|
+| Warehouse FP16 engine | YOLOv8m ONNX, TensorRT 10.3.0, 199 layers | 185 FP16 +14 FP32 layers; semantic model version not reported |
+| GPU compute | **5.28244 ms** | Model engine benchmark |
+| End-to-end engine | **6.19475 ms** | Engine run; excludes the complete application pipeline |
+| Reported engine throughput | **188.877 inferences/s** | Reported benchmark field; not video FPS or camera-to-alert throughput |
+| Reported GPU-board power | **135.222 W**, 66 samples, reported accuracy **±5 W** | nvidia-smi during engine run; not independently remeasured or whole-system power |
+| Engine size | **52,792,260 bytes** | Exported FP16 engine hash verified |
+| Recorded DeepStream output | **254 frames / 522 person observations / 6 tracker IDs** | Genuine recorded execution output; replay speed is not inference performance |
+| Independent CPU audit | **629.744 ms median** across 41 frames | Stored ONNX Runtime CPU processing sample; not a TensorRT or complete-pipeline benchmark |
+| Complete pipeline FPS / camera-to-alert latency | **Not measured** | No value inferred from engine timing or replay speed |
+
+The measured GPU device is unidentified in the report. Modeled Orin NX estimates do not establish a Jetson deployment. Historical engine measurements remain separately labeled on Model Performance.
+
+Sources: [warehouse engine summary](evidence/04-tensorrt-fp16/warehouse-engine-summary.json), [historical engine summary](evidence/04-tensorrt-fp16/measured-engine-summary.json), [CPU audit](evidence/evaluation/audit-summary.json), [CPU processing sample](evidence/independent-ai/cpu-runtime-validation.json).
+
+## Getting Started
+
+### Requirements
+
+- Python 3.10+ for the application; the verified environment uses Python 3.12.
+- Node.js 22.18+ for the complete native TypeScript regression suite; the verified environment uses Node 24. React/Vite dependencies are in `frontend/package.json` and `frontend/pnpm-lock.yaml`.
+- A modern browser. Camera access requires localhost or HTTPS and explicit user permission. The simulated USB harness also requires browser video `captureStream()` support.
+- The matching licensed warehouse MP4, stored outside Git. The launcher validates the source video and metadata hashes.
+- For independent inference: a compatible YOLOv8m ONNX model, ONNX Runtime CPU 1.31.0, NumPy 2.5.4 and Pillow 13.0.0. These optional runtime/model files are external; missing dependencies produce an unavailable state.
+
+Application setup does not require Docker, GPU drivers or changes to PipeGen. Keep large media/models and optional dependencies on storage with sufficient capacity.
+
+### Install application dependencies
+
+On a clean checkout, create a virtual environment and install the tested Python requirements:
 
 ```bash
-python3.12 -m venv .venv
+python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-lock.txt
 cd frontend
 npm install
 cd ..
 ```
 
-For lockfile-based pnpm installation, use `pnpm install --frozen-lockfile --store-dir .pnpm-store` in `frontend/` instead of npm. [Setup](docs/setup.md) includes the existing bundled runtime paths for the development host.
+For a reproducible frontend installation with pnpm, use `pnpm install --frozen-lockfile` instead of `npm install`. Use `requirements.txt` if the Python 3.12 lock is incompatible with another supported environment. Reuse an existing compatible environment when available. [Detailed setup](docs/setup.md).
 
-The licensed warehouse MP4 and model/runtime binaries are **external assets**, not included in ordinary Git history. The V2 launcher validates the known video/metadata hashes and refuses a mismatched source. From the repository root, use separate terminals:
+### Start the warehouse demonstration
 
-**1. Warehouse V2 backend, port 8003**
+Run these from the repository root in separate terminals:
 
 ```bash
+# Warehouse V2 API, port 8003
 ./scripts/start-warehouse-demo.sh /absolute/path/to/warehouse-workers-4281405-1080p.mp4
-```
 
-**2. Optional independent AI backend, port 8005**
-
-```bash
+# Optional independent AI API, port 8005
+SENTINEL_AI_HOME=/absolute/path/to/independent-ai-monitor \
 AI_PORT=8005 ./scripts/start-ai-monitor.sh
-```
 
-This independent service needs the separately configured ONNX model and CPU runtime. The launcher reads `SENTINEL_AI_HOME` or explicit model/dependency/data paths; its development-host default is `/mnt/seagate4/PipeGenHackathon/independent-ai-monitor`. Missing inference dependencies produce an unavailable state, never fabricated detections. See the [independent setup and protocol](docs/independent-ai-monitor.md).
-
-**3. Frontend, port 5173**
-
-```bash
+# React frontend, port 5173
 SENTINEL_API_TARGET=http://127.0.0.1:8003 \
 SENTINEL_AI_TARGET=http://127.0.0.1:8005 \
 ./scripts/start-frontend.sh --port 5173 --strictPort
 ```
 
-Open **http://127.0.0.1:5173/**. Choose Warehouse V2 for recorded metadata replay or AI Camera Monitor for independent sources. Playback/seek does not create new V2 incidents; **Analyze new session** intentionally creates a separate analysis. A clean checkout has no preexisting SQLite incident history until analysis is requested.
+Open **http://127.0.0.1:5173/**. If the services are already running, reuse them. The independent AI service is optional; its absence does not prevent Warehouse V2 replay.
 
-The simulated USB harness is an explicit localhost **development-only** opt-in, `?cameraTest=1`; production defaults leave it disabled. The separately tested development URL was `http://127.0.0.1:5177/?cameraTest=1`. Read the [physical-camera acceptance procedure](docs/camera-hardware-acceptance.md) before claiming hardware readiness has been tested.
+### Configuration
 
-Keep this unauthenticated prototype on localhost. Run the storage guard before additional large assets or experiments; preserve at least 1 GiB root and 20 GiB external reserve. No Docker, GPU or PipeGen process is needed merely to replay existing metadata or run the independent CPU module.
+| Variable | Purpose |
+|---|---|
+| `SENTINEL_WAREHOUSE_VIDEO` | Matching external MP4; the warehouse launcher also accepts its path as the first argument |
+| `SENTINEL_PROFILE_PATH` | Validated dataset manifest for the generic factory replay launcher |
+| `PORT` / `AI_PORT` | API listener ports; warehouse helper defaults to 8003, independent service defaults to 8004 unless overridden |
+| `SENTINEL_API_TARGET` / `SENTINEL_AI_TARGET` | Frontend API/WebSocket proxy destinations; launch examples use 8003 /8005 |
+| `SENTINEL_AI_HOME` | External independent runtime root containing `models/`, `dependencies/` and `sessions/` |
+| `SENTINEL_AI_MODEL_PATH` | Explicit compatible ONNX model path |
+| `SENTINEL_AI_DEPENDENCIES_PATH` | Optional existing CPU dependency directory |
+| `SENTINEL_AI_DATA_DIR` | Independent session storage; never point it at the warehouse database |
 
-## Architecture
+The setup script `scripts/setup-independent-ai-host.sh` prepares optional dependencies only after its host storage guard passes. Inspect its paths before running it. No automatic model download or GPU fallback occurs. [Independent runtime setup](docs/independent-ai-monitor.md).
 
-```mermaid
-flowchart LR
-    P[PipeGen / TensorRT / DeepStream run] --> M[Preserved genuine metadata]
-    V[Matching recorded video] --> R[V2 synchronized replay]
-    M --> R
-    R --> Z[Zone and incident processing]
-    F[Independent real video / browser frames] --> O[ONNX Runtime CPU]
-    O --> I[Independent session and zone processing]
-    S[Explicit simulated fixtures] -. simulated provenance .-> I
-    Z --> D[V2 SQLite / REST / WebSocket]
-    I --> A[Separate AI SQLite / REST / WebSocket]
-    D --> U[React dashboard]
-    A --> U
-```
+### Synthetic backend and external ingestion
 
-PipeGen remains the actual perception source for the hackathon V2 pipeline. The optional CPU worker processes real image pixels independently and never consumes old V2 detections as its inference result. [Architecture](docs/architecture.md) · [Canonical API schema](docs/canonical-schema.md) · [PipeGen handoff](docs/pipegen-handoff.md).
+For a separate synthetic backend, use `SENTINEL_MODE=synthetic PORT=8000 ./scripts/start-backend.sh` and point the frontend's primary API target at port8000. Keep its database separate from Warehouse V2.
 
-## Verification and evaluation status
+In live ingestion mode, `POST /api/ingest/detections` accepts canonical normalized person detections. `POST /api/ingest/pipegen` requires a configured native-schema parser. Replay and synthetic modes reject external real-data ingestion. The independent AI service has its own session/frame API. [Canonical detection contract](docs/canonical-schema.md) · [API setup](docs/setup.md).
 
-The released application checkpoint passed **161 backend tests, 35 frontend tests, TypeScript and production build**. This included three actual-model HTTP/WebSocket source tests, simulated USB discovery/permission/device cleanup, genuine upload, mobile layout, acknowledgment/restart recovery and V2 regression. Physical USB testing remains NOT TESTED. [Executed browser evidence](evidence/independent-ai/final-browser-acceptance.json) · [Restart/isolation evidence](evidence/independent-ai/restart-isolation-verification.json).
+## Verification
+
+**239 backend tests and 89 frontend tests passed**, with the genuine CPU-worker integration tests enabled. TypeScript validation and the production build passed. Browser acceptance covered all eight pages at desktop, laptop and mobile sizes. Two nonblocking dependency/OpenAPI warnings are recorded in the test log. The combined regression runs backend tests, frontend tests, TypeScript and production build:
 
 ```bash
-./scripts/check.sh
+bash scripts/check.sh
 ```
 
-The isolated evaluation audit adds **70 passing fixture checks**: 40 detection-metric cases, 20 alert-robustness cases and 10 human-review gate cases. These validate evaluation software; they are **not measured detector accuracy**. The host completed genuine YOLOv8m CPU inference for all **41 real warehouse frames** (median processing latency **629.744 ms**); **1/41 frames are marked reviewed in the latest available partial export**, so precision, recall, F1 and AP remain PENDING HUMAN REVIEW. Predictions are not ground truth; incomplete review must leave formal metrics unavailable. The user reports completing review, but the available exported file is still PARTIAL; a complete export must be validated before formal metrics. The optional accuracy study is explicitly decoupled from the tested application release.
+Genuine CPU-worker HTTP/WebSocket source tests are opt-in and require the running independent service plus locally prepared review JPEGs:
 
-- [Evaluation tools](evaluation/) and [reproducibility workflow](docs/evaluation/reproducibility.md).
-- [Alert robustness fixtures](evidence/evaluation/alert-robustness-tests.json).
-- [INT8 feasibility](docs/evaluation/int8-feasibility.md): technically plausible as a separate future candidate, but execution is NO-GO in this read-only audit. No INT8 advantage or completed bonus is claimed.
-- **Jetson: NOT DEPLOYED / NOT TESTED. Closed-loop physical board action: NOT TESTED.**
+```bash
+SENTINEL_AI_E2E_URL=http://127.0.0.1:8005/api/ai \
+SENTINEL_AI_E2E_FRAMES=/absolute/path/to/review-jpegs \
+SENTINEL_AI_MODEL_PATH=/absolute/path/to/yolov8m.onnx \
+SENTINEL_AI_DEPENDENCIES_PATH=/absolute/path/to/cpu-dependencies \
+bash scripts/check.sh
+```
 
-The integrated release full check actually passed **231 backend tests, 35 frontend tests, TypeScript and production build**. The three existing actual-model HTTP/WebSocket tests ran against the available CPU worker. These totals include the 70 new evaluation fixtures; they do not establish detector accuracy. See [post-integration acceptance](evidence/evaluation/integrated-release-acceptance.json) and [executed test output](evidence/evaluation/integrated-tests.txt).
+Without the opt-in environment, actual-worker tests are reported as skipped; fixture tests are not presented as real inference. Browser CRUD and acknowledgment mutation checks use an isolated copy of the incident database. [Final acceptance](evidence/final-product/acceptance.json) · [Executed tests](evidence/final-product/tests.txt).
 
-## Export and hackathon submission
+## Project Structure
 
-The [factory PipeGen export release](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18) and its [local audit](evidence/factory-export-audit.json) identify the genuine **134,818,189-byte** archive, SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`. The source video is external and its launcher requires `--input`. Historical private-access wording in old evidence records describes that earlier checkpoint; the repository is now **public**. Current release-asset access should still be checked for judges.
+| Directory | Contents |
+|---|---|
+| `backend/` | Warehouse API, adapters, polygon/event logic, SQLite and independent CPU/session service |
+| `frontend/` | React dashboard, synchronized replay, camera lifecycle and responsive workspace |
+| `tests/`, `frontend/tests/` | API, persistence, inference, lifecycle, geometry and presentation regressions |
+| `config/`, `examples/` | Dataset profiles and canonical metadata examples |
+| `scripts/` | Launchers, validation and bounded verification tools |
+| `evaluation/` | Human-review workflow and gated offline evaluation |
+| `docs/`, `evidence/` | Contracts, setup, model/compiler provenance and executed verification |
 
-The [official problem statement](evidence/01-requirement-and-flow/official-problem-statement.pdf) requires actual PipeGen flow, TensorRT/report evidence, GPU execution and actionable output. **Actual PipeGen IR node-graph and speed-report GUI screenshots remain gaps**; saved IR JSON and application screenshots do not replace them. A venue/live GPU demonstration is distinct from recorded dashboard replay.
+## Evidence and Reproducibility
 
-The user reports completing prerequisite feedback. The final project-submission link, receipt and judging access remain unconfirmed; **no final submission is claimed**. [Form handoff](docs/submission-form-handoff.md) · [Page-mapped checklist](docs/submission-checklist.md) · [Evidence ledger](evidence/checklist.json). The operative event cutoff selected by the user was **October 18, 2026, 4 PM IST**.
+- [PipeGen Warehouse V2 export](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18): 134,818,189-byte archive, SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`.
+- [Export integrity audit](evidence/factory-export-audit.json), [Pipeline IR evidence](evidence/02-pipeline-ir/README.md), [model/compiler evidence](evidence/04-tensorrt-fp16/README.md), [DeepStream execution evidence](evidence/05-deepstream-run/README.md).
+- [Genuine warehouse metadata](evidence/06-real-metadata/warehouse-fp16-v2-metadata.json), [video/overlay alignment](evidence/07-real-mode-dashboard/warehouse-browser-alignment.json), [dataset profile example](examples/warehouse-profile.json).
+- [Independent inference protocol](docs/independent-ai-monitor.md), [evaluation and review artifacts](evidence/evaluation/audit-summary.json), [evidence checklist](evidence/checklist.json).
 
-## Source and media credits
+Videos, model binaries, runtime environments, secrets and incident databases are excluded from ordinary Git history. Use the release archive and its input wrapper for the exported pipeline; source video remains an external licensed input.
 
-`backend/` contains the two services, validation, event processing and persistence; `frontend/` contains the existing React dashboard; `tests/` and `frontend/tests/` hold checks; `evaluation/` adds review-gated offline evaluation; `docs/` and `evidence/` retain scoped provenance. This audit changes documentation/evaluation tooling, not the dashboard's visual design.
+Warehouse footage: [Men Working in a Warehouse](https://www.pexels.com/video/men-working-in-a-warehouse-4281405/) by Tiger Lily /Pexels, under the [Pexels License](https://www.pexels.com/license/). Historical street evidence uses [Busy City Intersection with Pedestrians and Traffic](https://www.pexels.com/video/busy-city-intersection-with-pedestrians-and-traffic-36306747/) by Nothing Ahead /Pexels. Footage licenses are separate from application source and do not imply endorsement. [Media provenance](demo-video/README.md).
 
-Warehouse footage: [Men Working in a Warehouse](https://www.pexels.com/video/men-working-in-a-warehouse-4281405/) by **Tiger Lily / Pexels**, under the [Pexels License](https://www.pexels.com/license/). Historical street footage: [Busy City Intersection with Pedestrians and Traffic](https://www.pexels.com/video/busy-city-intersection-with-pedestrians-and-traffic-36306747/) by **Nothing Ahead / Pexels**. Source media remains external; footage licenses are separate from application source and do not imply endorsement. [Video provenance and recording notes](demo-video/README.md).
+## Limitations
 
-## Integrated release acceptance
-
-The post-integration browser run verified V2 replay, simulation, genuine independent virtual-camera and simulated USB inference, permission denial, disconnect/reconnect cleanup, uploaded MP4, pause/resume/half-speed/end, session acknowledgments and source isolation. Mobile390 × 844 passed visual inspection; the console warning/error check was empty. The original two V2 incidents and all source/model/engine hashes remained unchanged. Formal independent accuracy remains **PENDING HUMAN REVIEW** and does not block this verified application release. INT8, Jetson, FirmGen closed-loop hardware and physical USB hardware remain **NOT TESTED**. No final hackathon submission receipt has been verified.
-
-![Integrated genuine CPU detections from uploaded video](evidence/evaluation/released-upload.png)
-
-## Three-page light workspace
-
-Overview, Recorded Monitoring and Incident Center now follow the supplied light design references: white cards, a pale sidebar, compact breadcrumbs, video-first layout, pipeline context and real incident data. The three pages retain source-hash checks, synchronized PTS overlays, original IDs/timestamps, polygon occupancy, filters, JSON export, incident details and acknowledgments. Mobile tables scroll inside their cards, and detail dialogs support keyboard focus and Escape. The full source 16:9frame is preserved; tall video views may require vertical scrolling. Other pages retain their existing styling.
-
-Actual browser comparisons covered1600 × 900, 1920 × 1080, 1366 × 768, and 390 × 844. **231 backend and 35 frontend tests,TypeScript and production build passed.** Original V2 incidents,acknowledgments and video/model/engine/metadata hashes remain unchanged. [Visual and functional acceptance](evidence/ui-light-redesign/acceptance.json) · [Screenshots and test guide](docs/three-page-ui-redesign.md).
-
-
-## Model evidence, analytics and zone workspace (Phase 2)
-
-Model Performance, Analytics and Zone Management now share the released light workspace. Evidence cards and source JSON links distinguish Warehouse V2 TensorRT, historical engine results and independent CPU processing. The genuine warehouse report records **52,792,260 bytes**, **199 layers**, **5.28244 ms GPU compute**, **6.19475 ms engine end-to-end**, **188.877 reported engine inferences/s**, and **135.222 W reported GPU-board power, ±5 W**. The benchmark device remains unidentified. These are engine-scope reports, not full-pipeline FPS or whole-system power.
-
-Analytics uses persisted API totals, daily or Monday-starting UTC weekly trends, actual severity/zone counts, and acknowledgment summaries. UTC labels preserve original timestamps. Zone Management supports selection, SVG/keyboard/numeric polygon edits, rule validation, deep-cloned cancelable drafts, explicit save feedback and confirmed deletion. The moving-camera polygon remains a screen-relative demonstration region, not a calibrated physical safety boundary. Application zone changes do not alter original DeepStream exports.
-
-**233 backend tests and 70 frontend tests passed**, including genuine local CPU-worker HTTP/WebSocket tests for recorded-video, upload and simulated USB sources. TypeScript and production build passed. Browser acceptance covered 1600 × 900, 1920 × 1080, 1366 × 768 and 390 × 844, with isolated-database zone CRUD and acknowledgment tests. Original V2 incidents, polygon and asset hashes were preserved. [Detailed scope and reproduction](docs/frontend-phase2.md) · [Executed acceptance](evidence/ui-phase2/acceptance.json). Launch commands above remain unchanged.
-
-Formal independent detection accuracy remains **PENDING HUMAN REVIEW**. INT8 execution, Jetson, physical USB and FirmGen closed-loop hardware remain **NOT TESTED**. The existing Warehouse V2 release archive is retained.
-
-| Model Performance | Analytics | Zone Management |
-|---|---|---|
-| ![Model Performance](evidence/ui-phase2/model-1600.png) | ![Analytics](evidence/ui-phase2/analytics-1920.png) | ![Zone Management](evidence/ui-phase2/zones-1600.png) |
+- Warehouse V2 is a recorded demonstration with a moving camera. Its polygon is a frame-relative region, not a calibrated physical safety boundary.
+- Independent CPU processing is slower than the source video rate; approximate track associations do not establish physical identity.
+- Physical USB hardware has not been tested. Simulated camera lifecycle tests do not replace hardware acceptance.
+- Formal independent person-detection accuracy is **PENDING HUMAN REVIEW**. Predictions and partial annotation exports are not ground truth.
+- INT8 execution, Jetson deployment and FirmGen closed-loop hardware are **NOT TESTED**. Full-pipeline FPS, camera-to-alert latency and whole-system power are not measured.
+- This is a demonstrator, not a certified industrial safety system. No safety certification or security standard compliance is claimed.

@@ -1,0 +1,199 @@
+{
+  "dataset": "factory",
+  "source": "genuine recorded PipeGen metadata",
+  "synthetic": false,
+  "verification_scope": "CPU read-only metadata/config audit; no inference, video decoding or identity verification",
+  "metadata_sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+  "analytics_config_sha256": "e218ab1f624b7f1800f493beb6a69514002a186691d94b12ca5b4e4cb8a94563",
+  "input_unchanged": true,
+  "total_frames": 254,
+  "person_observations": 522,
+  "unique_tracker_ids": 6,
+  "source_id": 0,
+  "frame_width": 1920,
+  "frame_height": 1080,
+  "first_pts_ns": 80000000,
+  "last_pts_ns": 10200000000,
+  "confidence_threshold": 0.5,
+  "metadata_min_confidence": 0.0,
+  "config_matches_requested_polygon_at_integer_pixel_rounding": true,
+  "native_roi_name": "RestrictedZone",
+  "config_matches_app_polygon_at_integer_pixel_rounding": true,
+  "computed_alerts": 2,
+  "observed_track_transitions": {
+    "first_observed_inside": 0,
+    "first_observed_outside": 6,
+    "observed_entries": 2,
+    "observed_reentries": 1,
+    "observed_exits": 2,
+    "hold_observations": 43
+  },
+  "native_roi_geometry_comparison": {
+    "native_compared_frames": 254,
+    "native_vs_actual_config_disagreeing_frames": 9,
+    "native_vs_app_polygon_all_boxes_disagreeing_frames": 9,
+    "native_vs_app_polygon_confidence_filtered_disagreeing_frames": 9,
+    "app_vs_rounded_native_polygon_disagreeing_frames": 0
+  },
+  "comparison_note": "Native ROI occupancy and application geometry differ in some frames; the cause is not established by this metadata alone. Native counts are preserved and are not asserted to be zone-entry events.",
+  "track_gap_audit": {
+    "tracks_with_gaps": 4,
+    "total_gap_reappearances": 13,
+    "gaps": [
+      {
+        "track_id": "3",
+        "last_seen_frame": 113,
+        "reappeared_frame": 116,
+        "missing_frames": 2,
+        "gap_pts_ns": 120000000
+      },
+      {
+        "track_id": "1",
+        "last_seen_frame": 143,
+        "reappeared_frame": 145,
+        "missing_frames": 1,
+        "gap_pts_ns": 80000000
+      },
+      {
+        "track_id": "3",
+        "last_seen_frame": 117,
+        "reappeared_frame": 150,
+        "missing_frames": 32,
+        "gap_pts_ns": 1320000000
+      },
+      {
+        "track_id": "5",
+        "last_seen_frame": 154,
+        "reappeared_frame": 156,
+        "missing_frames": 1,
+        "gap_pts_ns": 80000000
+      },
+      {
+        "track_id": "3",
+        "last_seen_frame": 154,
+        "reappeared_frame": 159,
+        "missing_frames": 4,
+        "gap_pts_ns": 200000000
+      },
+      {
+        "track_id": "0",
+        "last_seen_frame": 161,
+        "reappeared_frame": 163,
+        "missing_frames": 1,
+        "gap_pts_ns": 80000000
+      },
+      {
+        "track_id": "0",
+        "last_seen_frame": 164,
+        "reappeared_frame": 166,
+        "missing_frames": 1,
+        "gap_pts_ns": 80000000
+      },
+      {
+        "track_id": "0",
+        "last_seen_frame": 166,
+        "reappeared_frame": 168,
+        "missing_frames": 1,
+        "gap_pts_ns": 80000000
+      },
+      {
+        "track_id": "3",
+        "last_seen_frame": 159,
+        "reappeared_frame": 170,
+        "missing_frames": 10,
+        "gap_pts_ns": 440000000
+      },
+      {
+        "track_id": "3",
+        "last_seen_frame": 172,
+        "reappeared_frame": 177,
+        "missing_frames": 4,
+        "gap_pts_ns": 200000000
+      },
+      {
+        "track_id": "3",
+        "last_seen_frame": 188,
+        "reappeared_frame": 195,
+        "missing_frames": 6,
+        "gap_pts_ns": 280000000
+      },
+      {
+        "track_id": "3",
+        "last_seen_frame": 197,
+        "reappeared_frame": 199,
+        "missing_frames": 1,
+        "gap_pts_ns": 80000000
+      },
+      {
+        "track_id": "3",
+        "last_seen_frame": 200,
+        "reappeared_frame": 203,
+        "missing_frames": 2,
+        "gap_pts_ns": 120000000
+      }
+    ],
+    "per_track": {
+      "0": {
+        "observations": 164,
+        "confidence_eligible_observations": 164,
+        "inside_observations": 45,
+        "first_frame": 2,
+        "last_frame": 168,
+        "gaps": 3,
+        "max_missing_frames": 1,
+        "last_pts_ns": 6800000000
+      },
+      "2": {
+        "observations": 157,
+        "confidence_eligible_observations": 157,
+        "inside_observations": 0,
+        "first_frame": 2,
+        "last_frame": 158,
+        "gaps": 0,
+        "max_missing_frames": 0,
+        "last_pts_ns": 6400000000
+      },
+      "1": {
+        "observations": 144,
+        "confidence_eligible_observations": 144,
+        "inside_observations": 0,
+        "first_frame": 2,
+        "last_frame": 146,
+        "gaps": 1,
+        "max_missing_frames": 1,
+        "last_pts_ns": 5920000000
+      },
+      "3": {
+        "observations": 33,
+        "confidence_eligible_observations": 33,
+        "inside_observations": 0,
+        "first_frame": 110,
+        "last_frame": 203,
+        "gaps": 8,
+        "max_missing_frames": 32,
+        "last_pts_ns": 8200000000
+      },
+      "5": {
+        "observations": 8,
+        "confidence_eligible_observations": 8,
+        "inside_observations": 0,
+        "first_frame": 149,
+        "last_frame": 157,
+        "gaps": 1,
+        "max_missing_frames": 1,
+        "last_pts_ns": 6360000000
+      },
+      "6": {
+        "observations": 16,
+        "confidence_eligible_observations": 16,
+        "inside_observations": 0,
+        "first_frame": 171,
+        "last_frame": 186,
+        "gaps": 0,
+        "max_missing_frames": 0,
+        "last_pts_ns": 7520000000
+      }
+    },
+    "interpretation": "Missing observations are not exits; recurring IDs after gaps do not verify identity or prove tracker-ID reuse."
+  }
+}

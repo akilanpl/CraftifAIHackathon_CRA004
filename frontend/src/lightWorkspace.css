@@ -1,4 +1,4 @@
-/* Screenshot-led light surfaces are deliberately limited to the six redesigned pages. */
+/* Screenshot-led light surfaces are deliberately shared across the complete workspace. */
 .light-workspace {
   --panel:#fff; --border:#e7ebf0; --muted:#718096; --accent:#2379d8;
   color:#172238; background:#fcfdff; font-family:'DM Sans',system-ui,sans-serif;
@@ -252,3 +252,16 @@
 .light-workspace .replay-analysis summary {color:#718096;font-size:13px;}
 .light-workspace .replay-analysis .replay-panel {background:#fff;color:#465a73;border-color:#e5eaf1;}
 .light-workspace .replay-analysis p,.light-workspace .replay-progress {color:#718096;}
+
+/* Complete workspace: retain one set of navigation, typography and status tokens. */
+.light-workspace.page-ai .page-title .eyebrow {display:none;}
+.light-workspace.page-ai .page-title h1 {font-size:30px;margin-top:0;}
+.light-workspace:is(.page-ai,.page-integration) .title-actions>.badge {background:none;border:0;color:#586d88;font-size:10px;}
+.light-workspace.page-ai .page-title {margin-bottom:20px;}
+.light-workspace .sidebar-bottom {opacity:1;}
+@media(max-width:650px){.light-workspace.page-ai .page-title h1{font-size:27px}.light-workspace.page-ai .title-actions{justify-content:flex-start}}
+
+.light-workspace.page-ai .content{padding-top:18px;}
+@media(max-width:650px){.light-workspace .sidebar:not(.open){visibility:hidden}.light-workspace .sidebar.open{visibility:visible}}
+@media(prefers-reduced-motion:reduce){.light-workspace *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.light-workspace .page-title p{color:#62738b;}

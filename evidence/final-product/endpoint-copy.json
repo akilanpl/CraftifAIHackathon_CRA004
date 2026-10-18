@@ -1,0 +1,5 @@
+{
+  "/api/ingest/pipegen": "http://127.0.0.1:5181/api/ingest/pipegen",
+  "/ws/live": "ws://127.0.0.1:5181/ws/live",
+  "/api/ai/status": "http://127.0.0.1:5181/api/ai/status"
+}

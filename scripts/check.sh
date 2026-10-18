@@ -16,5 +16,7 @@ node tests/cameraDevices.test.ts
 node tests/modelEvidence.test.ts
 node tests/analyticsPresentation.test.ts
 node tests/zoneEditor.test.ts
+node tests/aiMonitorPresentation.test.ts
+node tests/integrationHealth.test.ts
 node node_modules/typescript/bin/tsc -b
 node node_modules/vite/bin/vite.js build

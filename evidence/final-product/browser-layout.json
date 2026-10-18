@@ -1,0 +1,570 @@
+[
+  {
+    "page": "Overview",
+    "key": "overview",
+    "alignment": {
+      "boxDrift": [
+        0.00003851996518733358,
+        0.00002423321760147701,
+        0.000060763888939163735
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 677.0625,
+        "height": 512.6875,
+        "left": 294,
+        "right": 1207,
+        "top": 164.375,
+        "width": 913,
+        "x": 294,
+        "y": 164.375
+      },
+      "video": {
+        "bottom": 677.0625,
+        "height": 512.6875,
+        "left": 294,
+        "right": 1207,
+        "top": 164.375,
+        "width": 913,
+        "x": 294,
+        "y": 164.375
+      }
+    },
+    "clientWidth": 1585,
+    "heading": "Overview",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1585,
+    "width": 1600
+  },
+  {
+    "page": "Recorded Monitoring",
+    "key": "monitoring",
+    "alignment": {
+      "boxDrift": [
+        0.00006293402793744463,
+        0.00002929687502728484,
+        0.00003978587949404755
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 550.4375,
+        "height": 696.0625,
+        "left": 294,
+        "right": 1533,
+        "top": -145.625,
+        "width": 1239,
+        "x": 294,
+        "y": -145.625
+      },
+      "video": {
+        "bottom": 550.4375,
+        "height": 696.0625,
+        "left": 294,
+        "right": 1533,
+        "top": -145.625,
+        "width": 1239,
+        "x": 294,
+        "y": -145.625
+      }
+    },
+    "clientWidth": 1585,
+    "heading": "Recorded Monitoring",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1585,
+    "width": 1600
+  },
+  {
+    "page": "Incident Center",
+    "key": "incidents",
+    "alignment": null,
+    "clientWidth": 1600,
+    "heading": "Incident Center",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1600,
+    "width": 1600
+  },
+  {
+    "page": "Zone Management",
+    "key": "zones",
+    "alignment": null,
+    "clientWidth": 1600,
+    "heading": "Zone Management",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1600,
+    "width": 1600
+  },
+  {
+    "page": "Analytics",
+    "key": "analytics",
+    "alignment": null,
+    "clientWidth": 1585,
+    "heading": "Analytics",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1585,
+    "width": 1600
+  },
+  {
+    "page": "Model Performance",
+    "key": "model",
+    "alignment": null,
+    "clientWidth": 1585,
+    "heading": "Model Performance",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1585,
+    "width": 1600
+  },
+  {
+    "page": "AI Camera Monitor",
+    "key": "ai",
+    "alignment": null,
+    "clientWidth": 1585,
+    "heading": "AI Camera Monitor",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1585,
+    "width": 1600
+  },
+  {
+    "page": "Integration",
+    "key": "integration",
+    "alignment": null,
+    "clientWidth": 1585,
+    "heading": "Integration",
+    "height": 900,
+    "overflow": false,
+    "scrollWidth": 1585,
+    "width": 1600
+  },
+  {
+    "page": "Overview",
+    "key": "overview",
+    "alignment": {
+      "boxDrift": [
+        0.00005560980901009316,
+        0.000018536602993890483,
+        0.00005832248263004658
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 833.4375,
+        "height": 669.0625,
+        "left": 298,
+        "right": 1489,
+        "top": 164.375,
+        "width": 1191,
+        "x": 298,
+        "y": 164.375
+      },
+      "video": {
+        "bottom": 833.4375,
+        "height": 669.0625,
+        "left": 298,
+        "right": 1489,
+        "top": 164.375,
+        "width": 1191,
+        "x": 298,
+        "y": 164.375
+      }
+    },
+    "clientWidth": 1905,
+    "heading": "Overview",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1905,
+    "width": 1920
+  },
+  {
+    "page": "Recorded Monitoring",
+    "key": "monitoring",
+    "alignment": {
+      "boxDrift": [
+        0.000025092230941936577,
+        0.000048828125045474735,
+        0.000051992910698572814
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 729.9375,
+        "height": 871.5625,
+        "left": 298,
+        "right": 1849,
+        "top": -141.625,
+        "width": 1551,
+        "x": 298,
+        "y": -141.625
+      },
+      "video": {
+        "bottom": 729.9375,
+        "height": 871.5625,
+        "left": 298,
+        "right": 1849,
+        "top": -141.625,
+        "width": 1551,
+        "x": 298,
+        "y": -141.625
+      }
+    },
+    "clientWidth": 1905,
+    "heading": "Recorded Monitoring",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1905,
+    "width": 1920
+  },
+  {
+    "page": "Incident Center",
+    "key": "incidents",
+    "alignment": null,
+    "clientWidth": 1920,
+    "heading": "Incident Center",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1920,
+    "width": 1920
+  },
+  {
+    "page": "Zone Management",
+    "key": "zones",
+    "alignment": null,
+    "clientWidth": 1920,
+    "heading": "Zone Management",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1920,
+    "width": 1920
+  },
+  {
+    "page": "Analytics",
+    "key": "analytics",
+    "alignment": null,
+    "clientWidth": 1920,
+    "heading": "Analytics",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1920,
+    "width": 1920
+  },
+  {
+    "page": "Model Performance",
+    "key": "model",
+    "alignment": null,
+    "clientWidth": 1905,
+    "heading": "Model Performance",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1905,
+    "width": 1920
+  },
+  {
+    "page": "AI Camera Monitor",
+    "key": "ai",
+    "alignment": null,
+    "clientWidth": 1905,
+    "heading": "AI Camera Monitor",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1905,
+    "width": 1920
+  },
+  {
+    "page": "Integration",
+    "key": "integration",
+    "alignment": null,
+    "clientWidth": 1905,
+    "heading": "Integration",
+    "height": 1080,
+    "overflow": false,
+    "scrollWidth": 1905,
+    "width": 1920
+  },
+  {
+    "page": "Overview",
+    "key": "overview",
+    "alignment": {
+      "boxDrift": [
+        0.00003851996530102042,
+        0.000041323061338971456,
+        0.00004159432879191627
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 545.4375,
+        "height": 381.0625,
+        "left": 294,
+        "right": 973,
+        "top": 164.375,
+        "width": 679,
+        "x": 294,
+        "y": 164.375
+      },
+      "video": {
+        "bottom": 545.4375,
+        "height": 381.0625,
+        "left": 294,
+        "right": 973,
+        "top": 164.375,
+        "width": 679,
+        "x": 294,
+        "y": 164.375
+      }
+    },
+    "clientWidth": 1351,
+    "heading": "Overview",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "Recorded Monitoring",
+    "key": "monitoring",
+    "alignment": {
+      "boxDrift": [
+        0.00005063657408754807,
+        0.000025860821750711693,
+        0.00003445095484266858
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 417.8125,
+        "height": 564.4375,
+        "left": 294,
+        "right": 1299,
+        "top": -146.625,
+        "width": 1005,
+        "x": 294,
+        "y": -146.625
+      },
+      "video": {
+        "bottom": 417.8125,
+        "height": 564.4375,
+        "left": 294,
+        "right": 1299,
+        "top": -146.625,
+        "width": 1005,
+        "x": 294,
+        "y": -146.625
+      }
+    },
+    "clientWidth": 1351,
+    "heading": "Recorded Monitoring",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "Incident Center",
+    "key": "incidents",
+    "alignment": null,
+    "clientWidth": 1351,
+    "heading": "Incident Center",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "Zone Management",
+    "key": "zones",
+    "alignment": null,
+    "clientWidth": 1351,
+    "heading": "Zone Management",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "Analytics",
+    "key": "analytics",
+    "alignment": null,
+    "clientWidth": 1351,
+    "heading": "Analytics",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "Model Performance",
+    "key": "model",
+    "alignment": null,
+    "clientWidth": 1351,
+    "heading": "Model Performance",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "AI Camera Monitor",
+    "key": "ai",
+    "alignment": null,
+    "clientWidth": 1351,
+    "heading": "AI Camera Monitor",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "Integration",
+    "key": "integration",
+    "alignment": null,
+    "clientWidth": 1351,
+    "heading": "Integration",
+    "height": 768,
+    "overflow": false,
+    "scrollWidth": 1351,
+    "width": 1366
+  },
+  {
+    "page": "Overview",
+    "key": "overview",
+    "alignment": {
+      "boxDrift": [
+        0.000014716254355562342,
+        0.000012659143521887016,
+        0.000011935763893689
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 377.875,
+        "height": 180.8125,
+        "left": 26,
+        "right": 349,
+        "top": 197.0625,
+        "width": 323,
+        "x": 26,
+        "y": 197.0625
+      },
+      "video": {
+        "bottom": 377.875,
+        "height": 180.8125,
+        "left": 26,
+        "right": 349,
+        "top": 197.0625,
+        "width": 323,
+        "x": 26,
+        "y": 197.0625
+      }
+    },
+    "clientWidth": 375,
+    "heading": "Overview",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "page": "Recorded Monitoring",
+    "key": "monitoring",
+    "alignment": {
+      "boxDrift": [
+        0.000014716254355562342,
+        0.000012659143521887016,
+        0.000011935763893689
+      ],
+      "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+      "svg": {
+        "bottom": 514.46875,
+        "height": 180.8125,
+        "left": 26,
+        "right": 349,
+        "top": 333.65625,
+        "width": 323,
+        "x": 26,
+        "y": 333.65625
+      },
+      "video": {
+        "bottom": 514.46875,
+        "height": 180.8125,
+        "left": 26,
+        "right": 349,
+        "top": 333.65625,
+        "width": 323,
+        "x": 26,
+        "y": 333.65625
+      }
+    },
+    "clientWidth": 375,
+    "heading": "Recorded Monitoring",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "page": "Incident Center",
+    "key": "incidents",
+    "alignment": null,
+    "clientWidth": 375,
+    "heading": "Incident Center",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "page": "Zone Management",
+    "key": "zones",
+    "alignment": null,
+    "clientWidth": 375,
+    "heading": "Zone Management",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "page": "Analytics",
+    "key": "analytics",
+    "alignment": null,
+    "clientWidth": 375,
+    "heading": "Analytics",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "page": "Model Performance",
+    "key": "model",
+    "alignment": null,
+    "clientWidth": 375,
+    "heading": "Model Performance",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "page": "AI Camera Monitor",
+    "key": "ai",
+    "alignment": null,
+    "clientWidth": 375,
+    "heading": "AI Camera Monitor",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "page": "Integration",
+    "key": "integration",
+    "alignment": null,
+    "clientWidth": 375,
+    "heading": "Integration",
+    "height": 844,
+    "overflow": false,
+    "scrollWidth": 375,
+    "width": 390
+  }
+]
