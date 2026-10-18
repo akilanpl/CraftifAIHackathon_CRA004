@@ -1,0 +1,31 @@
+{
+  "tested_source_commit": "a3936f4af0ecb5e904bd78bf5ce98c3a93484805",
+  "backend_passed": 233,
+  "frontend_passed": 70,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "main_browser_smoke": "PASS port5173",
+  "original_incidents_unchanged": true,
+  "original_zone_unchanged": true,
+  "hashes_unchanged": {
+    "video": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+    "metadata": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+    "original_model": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+    "fp16_engine": "4c11b6a4eee9274f29c55f5be92fee24357dca4d1b167b4ab5ca0ea5a4786750"
+  },
+  "release_asset_unchanged": {
+    "assets": [
+      {
+        "digest": "sha256:5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec",
+        "id": 653142177,
+        "name": "pipegen-warehouse-hazard-sentinel-pipeline.tar.gz",
+        "size": 134818189,
+        "state": "uploaded"
+      }
+    ],
+    "html_url": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18",
+    "id": 416371459,
+    "tag_name": "warehouse-fp16-v2-2026-10-18"
+  },
+  "root_free_bytes": 1134661632
+}

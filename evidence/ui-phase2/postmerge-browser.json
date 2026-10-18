@@ -1,0 +1,22 @@
+{
+  "url": "http://127.0.0.1:5173/",
+  "analytics": {
+    "kpis": "Computed replay alerts2Persisted across replay sessionsAnalysis occupancy0Separate analysis frames, not videoSession alerts0Current replay analysis sessionLast incident09:53UTC18 Oct 2026 · replay session clock",
+    "severity": "Critical0High2Medium0Low0",
+    "trend": "Daily stored incident counts. 2026-10-18: 2",
+    "zone": "RestrictedZone2"
+  },
+  "zone": {
+    "polygon": "419.7916666666667,416.1458333333333 619.7916666666666,416.1458333333333 619.7916666666666,483.85416666666663 419.7916666666667,483.85416666666663",
+    "summary": "Camerawarehouse-01SeverityhighConfidence≥ 50%Entry debounce1 frame"
+  },
+  "replay": {
+    "frame": "Frame 106 · PTS 4.320000 smedia 4.240000 s · Δ 0.000 ms",
+    "persons": 3,
+    "polygon": "806,799 1190,799 1190,929 806,929"
+  },
+  "ai": {
+    "text": "HAZARD ZONE SENTINELAI Camera MonitorOptional independent inference, isolated from the Warehouse V2 recording.INDEPENDENT AI MODULEIndependent AI Camera MonitorOptional service · separate sessions, inference, and incident database. Warehouse V2 and its PipeGen recording remain the default workspace.PHYSICAL CAMERA: NOT TESTEDSimulationDeterministic safety-logic fixtures. No AI claim.Warehouse virtual cameraReal recorded pixels → independent inference. No PipeGen metadata.Upload MP4Browser-local video → sampled JPEG frames. Original file stays local.USB cameraUser-authorized physical camera. Hardware acceptance remains untested.INDEPENDENT INFERENCE CAPABILITYonnxruntime_cpuReal frames are processed only by the independent service. Tracking associations are estimates, not proof of physical identity.Check serviceSIMULATED_TEST_DATA Synthetic rectangles and known tracks validate event logic only. They are not evidence of YOLO detecting real people.Start monitoring sessionNext test stepRun remaining scenarioStop & releaseIDLEAUTHORITATIVE PROCESSED FRAMEBusiness-logic fixtureSIMULATED_TEST_DATAStart a session, then run test stepsNo boxes are drawn over an advancing source preview.No processed frameProcessing latency Not AI inferenceReported processing FPS Not AI inferenceProcessed-frame occupancy UnavailableTransitions at displayed frame: not availableTracking: not reported · physical identity not verifiedSOURCE PREVIEW · NO DETECTION OVERLAYSimulationNine deterministic scenario stepsEmpty → outside → entry → hold → hold → exit → re-entry → hold → exit. Expected: two entries, two exits, one re-entry.SESSION-SPECIFIC SAFETY RULERestricted-zone polygonEdit zoneINDEPENDENT SESSION HISTORYSafety incidents 0Select or start an independent sessionAI updates disconnectedInspect independent sessionChoose a stored sessionGenuine opt-in HTTP WS acceptance · c9c6b7a4-bef · independent_ai_inferenceGenuine opt-in HTTP WS acceptance · c387d0dd-015 · independent_ai_inferenceWarehouse v"
+  },
+  "console": []
+}
