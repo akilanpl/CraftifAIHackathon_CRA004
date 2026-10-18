@@ -1,0 +1,32 @@
+{
+  "database": "isolated QA copy, port 8006",
+  "created_updated_zone": {
+    "name": "Phase 2 disposable QA",
+    "camera_id": "warehouse-01",
+    "polygon": [
+      [
+        0.2,
+        0.2
+      ],
+      [
+        0.8,
+        0.2
+      ],
+      [
+        0.8,
+        0.8
+      ],
+      [
+        0.2,
+        0.8
+      ]
+    ],
+    "severity": "high",
+    "confidence_threshold": 0.6,
+    "debounce_frames": 1,
+    "id": "c0c17104-6c52-4450-b6fa-d1619ac32bf8"
+  },
+  "production_api_untouched": true,
+  "qa_disposable_zone_deleted": true,
+  "qa_original_zone_and_incidents_restored_exactly": true
+}

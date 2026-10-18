@@ -1,0 +1,146 @@
+{
+  "8003": {
+    "analytics": {
+      "total_incidents": 2,
+      "acknowledged": 0,
+      "by_severity": {
+        "high": 2
+      },
+      "by_zone": {
+        "RestrictedZone": 2
+      },
+      "trend": [
+        {
+          "date": "2026-10-18",
+          "count": 2
+        }
+      ]
+    },
+    "incident_ids": [
+      "6c5b78c4-d694-4488-a079-313496f5415b",
+      "3da55579-c362-491b-a530-24e1531209ff"
+    ]
+  },
+  "8006": {
+    "analytics": {
+      "total_incidents": 2,
+      "acknowledged": 0,
+      "by_severity": {
+        "high": 2
+      },
+      "by_zone": {
+        "RestrictedZone": 2
+      },
+      "trend": [
+        {
+          "date": "2026-10-18",
+          "count": 2
+        }
+      ]
+    },
+    "incident_ids": [
+      "6c5b78c4-d694-4488-a079-313496f5415b",
+      "3da55579-c362-491b-a530-24e1531209ff"
+    ]
+  },
+  "sha256": {
+    "video": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+    "metadata": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+    "original_model": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+    "fp16_engine": "4c11b6a4eee9274f29c55f5be92fee24357dca4d1b167b4ab5ca0ea5a4786750"
+  },
+  "production_incidents": [
+    {
+      "id": "6c5b78c4-d694-4488-a079-313496f5415b",
+      "timestamp": "2026-10-18T09:53:53.969855+00:00",
+      "camera_id": "warehouse-01",
+      "zone_id": "warehouse-fp16-v2-zone-1",
+      "zone_name": "RestrictedZone",
+      "track_id": "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:0",
+      "confidence": 0.8755,
+      "event_type": "zone_entry",
+      "severity": "high",
+      "acknowledged": false,
+      "source": "pipegen_replay",
+      "synthetic": false,
+      "timestamp_basis": "replay_session_clock",
+      "replay": {
+        "session_id": "8eb17281-384d-4a8b-aaaa-010e460f47d6",
+        "frame_index": 66,
+        "pts_ns": 2720000000,
+        "source_id": 0,
+        "original_track_ids": {
+          "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:0": "0",
+          "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:2": "2",
+          "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:1": "1"
+        },
+        "raw_roi_counts": [
+          {
+            "RestrictedZone": 1
+          }
+        ]
+      },
+      "entry_basis": "observed_outside_to_inside"
+    },
+    {
+      "id": "3da55579-c362-491b-a530-24e1531209ff",
+      "timestamp": "2026-10-18T09:53:52.849855+00:00",
+      "camera_id": "warehouse-01",
+      "zone_id": "warehouse-fp16-v2-zone-1",
+      "zone_name": "RestrictedZone",
+      "track_id": "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:0",
+      "confidence": 0.9043,
+      "event_type": "zone_entry",
+      "severity": "high",
+      "acknowledged": false,
+      "source": "pipegen_replay",
+      "synthetic": false,
+      "timestamp_basis": "replay_session_clock",
+      "replay": {
+        "session_id": "8eb17281-384d-4a8b-aaaa-010e460f47d6",
+        "frame_index": 38,
+        "pts_ns": 1600000000,
+        "source_id": 0,
+        "original_track_ids": {
+          "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:2": "2",
+          "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:0": "0",
+          "8eb17281-384d-4a8b-aaaa-010e460f47d6:0:1": "1"
+        },
+        "raw_roi_counts": [
+          {
+            "RestrictedZone": 0
+          }
+        ]
+      },
+      "entry_basis": "observed_outside_to_inside"
+    }
+  ],
+  "production_zones": [
+    {
+      "name": "RestrictedZone",
+      "camera_id": "warehouse-01",
+      "polygon": [
+        [
+          0.4197916666666667,
+          0.7398148148148148
+        ],
+        [
+          0.6197916666666666,
+          0.7398148148148148
+        ],
+        [
+          0.6197916666666666,
+          0.8601851851851852
+        ],
+        [
+          0.4197916666666667,
+          0.8601851851851852
+        ]
+      ],
+      "severity": "high",
+      "confidence_threshold": 0.5,
+      "debounce_frames": 1,
+      "id": "warehouse-fp16-v2-zone-1"
+    }
+  ]
+}

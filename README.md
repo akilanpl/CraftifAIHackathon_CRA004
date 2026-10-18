@@ -152,3 +152,18 @@ The post-integration browser run verified V2 replay, simulation, genuine indepen
 Overview, Recorded Monitoring and Incident Center now follow the supplied light design references: white cards, a pale sidebar, compact breadcrumbs, video-first layout, pipeline context and real incident data. The three pages retain source-hash checks, synchronized PTS overlays, original IDs/timestamps, polygon occupancy, filters, JSON export, incident details and acknowledgments. Mobile tables scroll inside their cards, and detail dialogs support keyboard focus and Escape. The full source 16:9frame is preserved; tall video views may require vertical scrolling. Other pages retain their existing styling.
 
 Actual browser comparisons covered1600 × 900, 1920 × 1080, 1366 × 768, and 390 × 844. **231 backend and 35 frontend tests,TypeScript and production build passed.** Original V2 incidents,acknowledgments and video/model/engine/metadata hashes remain unchanged. [Visual and functional acceptance](evidence/ui-light-redesign/acceptance.json) · [Screenshots and test guide](docs/three-page-ui-redesign.md).
+
+
+## Model evidence, analytics and zone workspace (Phase 2)
+
+Model Performance, Analytics and Zone Management now share the released light workspace. Evidence cards and source JSON links distinguish Warehouse V2 TensorRT, historical engine results and independent CPU processing. The genuine warehouse report records **52,792,260 bytes**, **199 layers**, **5.28244 ms GPU compute**, **6.19475 ms engine end-to-end**, **188.877 reported engine inferences/s**, and **135.222 W reported GPU-board power, ±5 W**. The benchmark device remains unidentified. These are engine-scope reports, not full-pipeline FPS or whole-system power.
+
+Analytics uses persisted API totals, daily or Monday-starting UTC weekly trends, actual severity/zone counts, and acknowledgment summaries. UTC labels preserve original timestamps. Zone Management supports selection, SVG/keyboard/numeric polygon edits, rule validation, deep-cloned cancelable drafts, explicit save feedback and confirmed deletion. The moving-camera polygon remains a screen-relative demonstration region, not a calibrated physical safety boundary. Application zone changes do not alter original DeepStream exports.
+
+**233 backend tests and 70 frontend tests passed**, including genuine local CPU-worker HTTP/WebSocket tests for recorded-video, upload and simulated USB sources. TypeScript and production build passed. Browser acceptance covered 1600 × 900, 1920 × 1080, 1366 × 768 and 390 × 844, with isolated-database zone CRUD and acknowledgment tests. Original V2 incidents, polygon and asset hashes were preserved. [Detailed scope and reproduction](docs/frontend-phase2.md) · [Executed acceptance](evidence/ui-phase2/acceptance.json). Launch commands above remain unchanged.
+
+Formal independent detection accuracy remains **PENDING HUMAN REVIEW**. INT8 execution, Jetson, physical USB and FirmGen closed-loop hardware remain **NOT TESTED**. The existing Warehouse V2 release archive is retained.
+
+| Model Performance | Analytics | Zone Management |
+|---|---|---|
+| ![Model Performance](evidence/ui-phase2/model-1600.png) | ![Analytics](evidence/ui-phase2/analytics-1920.png) | ![Zone Management](evidence/ui-phase2/zones-1600.png) |

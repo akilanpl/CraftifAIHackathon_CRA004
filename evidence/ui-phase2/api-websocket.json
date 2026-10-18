@@ -1,0 +1,87 @@
+{
+  "8003": {
+    "websocket_initial_events": [
+      "status",
+      "zones"
+    ],
+    "mode": "replay",
+    "health": {
+      "status": "ok",
+      "service": "Hazard Zone Sentinel",
+      "mode": "replay"
+    },
+    "analytics/summary": {
+      "total_incidents": 2,
+      "acknowledged": 0,
+      "by_severity": {
+        "high": 2
+      },
+      "by_zone": {
+        "RestrictedZone": 2
+      },
+      "trend": [
+        {
+          "date": "2026-10-18",
+          "count": 2
+        }
+      ]
+    }
+  },
+  "8006": {
+    "websocket_initial_events": [
+      "status",
+      "zones"
+    ],
+    "mode": "replay",
+    "health": {
+      "status": "ok",
+      "service": "Hazard Zone Sentinel",
+      "mode": "replay"
+    },
+    "analytics/summary": {
+      "total_incidents": 2,
+      "acknowledged": 0,
+      "by_severity": {
+        "high": 2
+      },
+      "by_zone": {
+        "RestrictedZone": 2
+      },
+      "trend": [
+        {
+          "date": "2026-10-18",
+          "count": 2
+        }
+      ]
+    }
+  },
+  "ai": {
+    "service": "independent_ai_monitor",
+    "inference": {
+      "available": true,
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "model": "YOLOv8m ONNX",
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "input_shape": [
+        1,
+        3,
+        480,
+        640
+      ],
+      "physical_camera_hardware_test": "NOT TESTED"
+    },
+    "simulation_available": true,
+    "physical_camera_hardware_test": "NOT TESTED",
+    "max_frame_bytes": 2097152,
+    "max_detections_per_frame": 128,
+    "max_active_sessions": 8,
+    "worker_busy": false,
+    "queue_capacity": 0,
+    "upload_storage_enabled": false,
+    "upload_note": "Browser-selected videos are sampled as JPEG frames; server-side upload storage is disabled until off-root storage is configured and verified"
+  }
+}

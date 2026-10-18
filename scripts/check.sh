@@ -13,5 +13,8 @@ node tests/replayResources.test.ts
 node tests/datasetScope.test.ts
 node tests/aiCamera.test.ts
 node tests/cameraDevices.test.ts
+node tests/modelEvidence.test.ts
+node tests/analyticsPresentation.test.ts
+node tests/zoneEditor.test.ts
 node node_modules/typescript/bin/tsc -b
 node node_modules/vite/bin/vite.js build

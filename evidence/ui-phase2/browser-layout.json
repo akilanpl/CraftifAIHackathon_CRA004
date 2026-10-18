@@ -1,0 +1,280 @@
+[
+  {
+    "page": "Model Performance",
+    "width": 1600,
+    "height": 900,
+    "clientWidth": 1585,
+    "heading": "Model Performance",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 2341.421875,
+      "height": 2341.421875,
+      "left": 242,
+      "right": 1585,
+      "top": 0,
+      "width": 1343,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1585,
+    "viewport": {
+      "height": 900,
+      "width": 1600
+    }
+  },
+  {
+    "page": "Analytics",
+    "width": 1600,
+    "height": 900,
+    "clientWidth": 1585,
+    "heading": "Analytics",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 1053.96875,
+      "height": 1053.96875,
+      "left": 242,
+      "right": 1585,
+      "top": 0,
+      "width": 1343,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1585,
+    "viewport": {
+      "height": 900,
+      "width": 1600
+    }
+  },
+  {
+    "page": "Zone Management",
+    "width": 1600,
+    "height": 900,
+    "clientWidth": 1600,
+    "heading": "Zone Management",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 841,
+      "height": 841,
+      "left": 242,
+      "right": 1600,
+      "top": 0,
+      "width": 1358,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1600,
+    "viewport": {
+      "height": 900,
+      "width": 1600
+    }
+  },
+  {
+    "page": "Model Performance",
+    "width": 1920,
+    "height": 1080,
+    "clientWidth": 1905,
+    "heading": "Model Performance",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 2341.421875,
+      "height": 2341.421875,
+      "left": 242,
+      "right": 1905,
+      "top": 0,
+      "width": 1663,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1905,
+    "viewport": {
+      "height": 1080,
+      "width": 1920
+    }
+  },
+  {
+    "page": "Analytics",
+    "width": 1920,
+    "height": 1080,
+    "clientWidth": 1920,
+    "heading": "Analytics",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 1053.96875,
+      "height": 1053.96875,
+      "left": 242,
+      "right": 1920,
+      "top": 0,
+      "width": 1678,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1920,
+    "viewport": {
+      "height": 1080,
+      "width": 1920
+    }
+  },
+  {
+    "page": "Zone Management",
+    "width": 1920,
+    "height": 1080,
+    "clientWidth": 1920,
+    "heading": "Zone Management",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 841,
+      "height": 841,
+      "left": 242,
+      "right": 1920,
+      "top": 0,
+      "width": 1678,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1920,
+    "viewport": {
+      "height": 1080,
+      "width": 1920
+    }
+  },
+  {
+    "page": "Model Performance",
+    "width": 1366,
+    "height": 768,
+    "clientWidth": 1351,
+    "heading": "Model Performance",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 2438,
+      "height": 2438,
+      "left": 242,
+      "right": 1351,
+      "top": 0,
+      "width": 1109,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1351,
+    "viewport": {
+      "height": 768,
+      "width": 1366
+    }
+  },
+  {
+    "page": "Analytics",
+    "width": 1366,
+    "height": 768,
+    "clientWidth": 1351,
+    "heading": "Analytics",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 1053.96875,
+      "height": 1053.96875,
+      "left": 242,
+      "right": 1351,
+      "top": 0,
+      "width": 1109,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1351,
+    "viewport": {
+      "height": 768,
+      "width": 1366
+    }
+  },
+  {
+    "page": "Zone Management",
+    "width": 1366,
+    "height": 768,
+    "clientWidth": 1351,
+    "heading": "Zone Management",
+    "headingTop": 120,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 841,
+      "height": 841,
+      "left": 242,
+      "right": 1351,
+      "top": 0,
+      "width": 1109,
+      "x": 242,
+      "y": 0
+    },
+    "scrollWidth": 1351,
+    "viewport": {
+      "height": 768,
+      "width": 1366
+    }
+  },
+  {
+    "page": "Model Performance",
+    "width": 390,
+    "height": 844,
+    "clientWidth": 375,
+    "heading": "Model Performance",
+    "headingTop": 110,
+    "horizontalOverflow": false,
+    "scrollWidth": 375,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "page": "Analytics",
+    "width": 390,
+    "height": 844,
+    "clientWidth": 375,
+    "heading": "Analytics",
+    "headingTop": 110,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 1557.484375,
+      "height": 1557.484375,
+      "left": 0,
+      "right": 375,
+      "top": 0,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "scrollWidth": 375,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "page": "Zone Management",
+    "width": 390,
+    "height": 844,
+    "clientWidth": 375,
+    "heading": "Zone Management",
+    "headingTop": 110,
+    "horizontalOverflow": false,
+    "main": {
+      "bottom": 1039.390625,
+      "height": 1039.390625,
+      "left": 0,
+      "right": 375,
+      "top": 0,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "scrollWidth": 375,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  }
+]

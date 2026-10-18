@@ -1,0 +1,8 @@
+{
+  "before": 0.4197916666666667,
+  "after": 0.4541360951447567,
+  "expectedDelta": 0.03390459036367971,
+  "normalized_error": 0.00043983811441034026,
+  "pixel_error": 0.2594563802083371,
+  "pixel_rounding_tolerance": 1
+}

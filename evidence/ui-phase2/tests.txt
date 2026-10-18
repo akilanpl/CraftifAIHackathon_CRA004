@@ -1,0 +1,164 @@
+........................................................................ [ 30%]
+........................................................................ [ 61%]
+........................................................................ [ 92%]
+.................                                                        [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/starlette/testclient.py:37
+  /home/vijayababu/Documents/Codex/2026-10-18/files-pasted-by-the-user-mission/work/frontend-redesign/.venv/lib/python3.12/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+233 passed, 1 warning in 9.09s
+✔ incident filters retain a deleted zone and avoid duplicate options (2.138713ms)
+✔ polygon coordinates remain normalized when dragging beyond the frame (0.601544ms)
+✔ normalized polygon vertex coordinates adapt to a resized canvas (0.500694ms)
+✔ recorded PipeGen evidence is distinct from live and synthetic input (0.581076ms)
+✔ relative video PTS handles offsets, zero, and unavailable timestamps (0.54934ms)
+✔ replay first-inside observations are never labeled as observed boundary crossings (0.555329ms)
+✔ original replay IDs preserve raw ID zero and fall back without fabricating IDs (0.615064ms)
+✔ recorded-video polygon highlights the same boundary-inclusive foot points as the backend (0.372995ms)
+✔ profile labels never substitute street scene or model for a pending factory profile (0.909617ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18.63847
+✔ matches exact actual PTS and returns original metadata without interpolation (1.469686ms)
+✔ missing metadata and clip boundaries remain honestly unmatched (0.31914ms)
+✔ strict tolerance includes boundary, rejects beyond it and uses earlier midpoint tie (0.234479ms)
+✔ pause repeats same frame and backward/forward seeks do not retain stale selection (1.171552ms)
+✔ playback rate does not affect mapping of sampled media time (0.313551ms)
+✔ requires an explicitly verified offset, never guesses it from first metadata (0.231759ms)
+✔ rejects invalid controls and empty or malformed timelines (0.43887ms)
+✔ verified recorded-source PTS offset preserves first-frame alignment through seek and resume (0.308842ms)
+✔ variable-frame-duration metadata and long gaps never stretch a detection to fill missing video time (0.401653ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15.606385
+✔ late failed timeline cannot evict newer successful retry cached under the same profile (1.541389ms)
+✔ retry, profile change and disposal reject late fetch completions (0.293274ms)
+✔ profile and source hashes never accept old street metadata as factory evidence (0.22017ms)
+✔ failed resource is retryable and separate profile caches remain isolated (0.55077ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11.799722
+✔ a WebSocket factory transition invalidates an in-flight historical REST snapshot (1.362665ms)
+✔ same-profile telemetry preserves valid snapshots but READY and source-hash changes invalidate them (0.233538ms)
+✔ a profile switch away and back never revalidates a stale response (0.162535ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11.298417
+✔ one frame in flight and exact session, sequence and source media time correlate boxes (1.280534ms)
+✔ stop/source change rejects late inference responses and permits a fresh session (0.235658ms)
+✔ mock browser camera denial, missing hardware, disconnected resource release (0.916126ms)
+✔ uploaded video limits reject malformed, empty and oversized inputs without storing files (0.507233ms)
+✔ independent incident labels distinguish first observation from a verified observed crossing (0.383985ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.572321
+✔ camera harness is explicit localhost development only (1.342938ms)
+✔ app-owned permission denial and unavailable devices never request real capture (1.5282ms)
+✔ device discovery, switch, disconnect, reconnect and clean release use the same adapter path (0.710355ms)
+✔ camera permission resolving after stop/disposal releases its late media stream (0.358967ms)
+✔ stop cancels an app-owned pending recorded camera resource request immediately (0.381605ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15.010939
+✔ warehouse cards use verified source values and keep engine throughput distinct from FPS (21.208552ms)
+✔ historical and independent CPU evidence remain separate measured samples (0.738202ms)
+✔ accuracy state remains gated for incomplete human annotation exports (0.33384ms)
+✔ missing or nonfinite measurements never become zero benchmarks (0.612704ms)
+✔ copy source JSON preserves exact bytes, power uncertainty and null measurement scope (0.523942ms)
+✔ copy failure remains explicit when clipboard is unavailable or permission denied (2.290911ms)
+✔ source JSON links replace blocked data navigation with a released browser blob URL (0.774859ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.79173
+✔ daily counts sort actual dates and combine supplied totals without inserting missing days (12.492277ms)
+✔ Monday UTC weeks include Sunday in the preceding week and preserve Monday boundary (0.389905ms)
+✔ weekly grouping crosses month/year boundaries deterministically (0.400974ms)
+✔ empty trends stay empty and genuine zero observations are retained (0.357647ms)
+✔ weekly gaps do not generate synthetic time points (0.387025ms)
+✔ invalid calendar dates, malformed periods and non-count values are reported and excluded (0.355388ms)
+✔ count validation distinguishes unknown and malformed values from a measured zero (0.272415ms)
+✔ latest timestamp compares actual instants across timezone offsets rather than lexical order (0.796108ms)
+✔ latest timestamp handles UTC day transitions and fractional seconds (0.32447ms)
+✔ timezone-naive, impossible or malformed timestamps never become a guessed local time (1.371916ms)
+✔ epoch zero is a real latest incident and source rows remain unchanged (0.43432ms)
+✔ zone totals support API name keys, current IDs, deleted historical IDs and stable count order (0.680848ms)
+✔ distinct zone IDs are not merged merely because they currently share a name (0.428841ms)
+✔ chart ticks are integer-scaled and never imply padded incident records (0.668599ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.995994
+✔ existing zone drafts are deep copies and cancellation cannot change the source polygon (1.465117ms)
+✔ a new zone starts empty and uses the explicitly supplied camera (0.76598ms)
+✔ save payload trims labels, omits id and does not share polygon arrays (0.527622ms)
+✔ valid clockwise, counterclockwise and concave polygons are accepted (0.392115ms)
+✔ missing name and camera are rejected before any request can be created (0.638852ms)
+✔ invalid vertex counts, duplicate closing points and zero-area configurations are rejected (0.394884ms)
+✔ bow ties and non-adjacent edge touches are rejected (0.307232ms)
+✔ adjacent overlap and reversal are rejected but forward collinear edges are valid (0.414872ms)
+✔ numeric coordinates fail closed for out-of-range and nonfinite values (1.812785ms)
+✔ confidence and debounce match the backend bounds (0.458919ms)
+✔ pointer normalization adapts to size and clamps only pointer movement (0.377375ms)
+✔ moving a vertex leaves both the existing shape and other points independent (0.176934ms)
+✔ keyboard Add vertex provides a valid initial rectangle (0.22106ms)
+✔ 64 vertices are supported and the 65th is rejected (1.708155ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20.496624
+vite v5.4.21 building for production...
+transforming...
+✓ 1608 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                               0.43 kB │ gzip:  0.31 kB
+dist/assets/cpu-runtime-validation-UHRXXyVg.json              6.51 kB │ gzip:  1.52 kB
+dist/assets/independent-detection-evaluation-CTxH3loZ.json    9.53 kB │ gzip:  2.08 kB
+dist/assets/index-zxkGlMp6.css                               88.17 kB │ gzip: 16.49 kB
+dist/assets/index-D0ZLCL1f.js                               290.96 kB │ gzip: 90.38 kB
+✓ built in 2.48s

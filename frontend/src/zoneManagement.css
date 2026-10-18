@@ -1,0 +1,109 @@
+/* Zone Management only. All selectors stay inside the light workspace page. */
+.light-workspace .zone-management-page {color:#18263e;}
+.light-workspace .zone-management-page .zm-layout {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.03fr);gap:18px;align-items:stretch;}
+.light-workspace .zone-management-page .zm-pane {min-width:0;min-height:462px;border:1px solid #e5eaf1;border-radius:7px;background:#fff;box-shadow:0 1px 2px #15243d02;}
+.light-workspace .zone-management-page .zm-pane-heading {display:flex;align-items:center;justify-content:space-between;gap:14px;padding:24px 25px 25px;min-height:91px;}
+.light-workspace .zone-management-page .zm-pane-heading h2 {font:600 20px/1.35 'DM Sans',system-ui,sans-serif;letter-spacing:-.45px;margin:0;color:#14233b;display:flex;align-items:center;gap:10px;overflow-wrap:anywhere;}
+.light-workspace .zone-management-page .zm-count {font-size:13px;line-height:24px;letter-spacing:0;min-width:24px;text-align:center;border-radius:3px;background:#f0f3f7;color:#586b85;}
+.light-workspace .zone-management-page .zm-button {display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:40px;padding:9px 14px;border:1px solid #e1e7ef;border-radius:5px;background:#fff;color:#4b607b;font-family:inherit;font-size:13px;font-weight:500;line-height:1.4;cursor:pointer;transition:background .15s,border-color .15s;}
+.light-workspace .zone-management-page .zm-button:hover {background:#f5f8fc;border-color:#cad8e9;}
+.light-workspace .zone-management-page .zm-button.zm-primary {color:#fff;background:#2479ee;border-color:#2479ee;box-shadow:0 2px 3px #2479ee15;}
+.light-workspace .zone-management-page .zm-button.zm-primary:hover {background:#1766ce;border-color:#1766ce;}
+.light-workspace .zone-management-page button:disabled {opacity:.5;cursor:not-allowed;}
+.light-workspace .zone-management-page .zm-zone-list {padding:0 25px 25px;display:grid;gap:14px;}
+.light-workspace .zone-management-page .zm-zone-card {border:1px solid #e6ebf1;border-radius:6px;background:#fff;transition:border-color .15s,box-shadow .15s;overflow:hidden;}
+.light-workspace .zone-management-page .zm-zone-card.is-selected {border-color:#8ab6ed;box-shadow:0 0 0 2px #edf5ff;}
+.light-workspace .zone-management-page .zm-card-main {display:flex;align-items:center;gap:20px;text-align:left;background:none;color:inherit;border:0;width:100%;padding:18px 16px 17px;min-height:80px;cursor:pointer;}
+.light-workspace .zone-management-page .zm-card-main:hover:not(:disabled) {background:#fbfdff;}
+.light-workspace .zone-management-page .zm-card-main:disabled {opacity:1;}
+.light-workspace .zone-management-page .zm-card-name {display:flex;flex-direction:column;gap:7px;min-width:0;flex:1;}
+.light-workspace .zone-management-page .zm-card-name strong {font-size:14px;font-weight:600;line-height:1.4;overflow-wrap:anywhere;color:#1e2c45;}
+.light-workspace .zone-management-page .zm-card-name small {font-size:12px;color:#8190a6;line-height:1.5;overflow-wrap:anywhere;}
+.light-workspace .zone-management-page .zm-zone-icon {flex-shrink:0;color:#ae303d;display:grid;place-items:center;width:36px;}
+.light-workspace .zone-management-page .zm-severity {text-transform:uppercase;font-size:11px;font-weight:600;letter-spacing:.1px;color:#cc3744;white-space:nowrap;}
+.light-workspace .zone-management-page .zm-severity-medium {color:#9a741e;}
+.light-workspace .zone-management-page .zm-severity-low {color:#3b78ad;}
+.light-workspace .zone-management-page .zm-severity-critical {color:#b32846;}
+.light-workspace .zone-management-page .zm-card-footer {display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #edf0f5;margin:0 15px;padding:10px 0;color:#8391a6;font-size:12px;}
+.light-workspace .zone-management-page .zm-card-footer>div {display:flex;gap:12px;}
+.light-workspace .zone-management-page .zm-icon-button {display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:32px;height:32px;border:0;border-radius:5px;background:transparent;color:#798ba4;cursor:pointer;}
+.light-workspace .zone-management-page .zm-icon-button:hover:not(:disabled) {background:#eff5fb;color:#2477c7;}
+.light-workspace .zone-management-page .zm-danger-icon:hover:not(:disabled) {color:#c83e4d;background:#fff2f3;}
+.light-workspace .zone-management-page .zm-empty {display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:330px;padding:28px 20px 42px;gap:12px;}
+.light-workspace .zone-management-page .zm-empty-icon {width:80px;height:80px;display:grid;place-items:center;border:1px solid #edf0f5;border-radius:50%;background:#f8f9fb;color:#243b5d;margin-bottom:1px;}
+.light-workspace .zone-management-page .zm-empty h3 {margin:0;color:#23314a;font-size:16px;line-height:1.5;font-weight:600;letter-spacing:-.25px;}
+.light-workspace .zone-management-page .zm-empty p {margin:0;color:#7d8ca3;font-size:14px;line-height:1.85;max-width:410px;}
+.light-workspace .zone-management-page .zm-list-empty {padding-top:30px;min-height:300px;}
+.light-workspace .zone-management-page .zm-workspace-body {padding:0 25px 24px;}
+.light-workspace .zone-management-page .zm-form-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 16px;margin-bottom:23px;}
+.light-workspace .zone-management-page .zm-form-grid label {display:flex;flex-direction:column;gap:7px;color:#657790;font-size:12px;font-weight:500;min-width:0;}
+.light-workspace .zone-management-page .zm-label-note {font-weight:400;color:#8e9aab;display:contents;}
+.light-workspace .zone-management-page input,.light-workspace .zone-management-page select {width:100%;min-width:0;min-height:39px;padding:9px 11px;font-family:inherit;font-size:13px;font-weight:400;line-height:1.5;color:#344b68;border:1px solid #dde5ef;border-radius:5px;background:#fff;}
+.light-workspace .zone-management-page input::placeholder {color:#9aa7b8;}
+.light-workspace .zone-management-page input[aria-invalid=true] {border-color:#d65a67;background:#fffafa;}
+.light-workspace .zone-management-page .zm-canvas-caption {display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;font-size:10px;color:#8594a8;line-height:1.5;}
+.light-workspace .zone-management-page .zm-canvas-caption>span:first-child {display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#5a708b;font-weight:500;}
+.light-workspace .zone-management-page .zm-canvas-wrap {position:relative;overflow:hidden;border:1px solid #e3eaf2;border-radius:6px;background:#f9fbfe;}
+.light-workspace .zone-management-page .zm-canvas-wrap svg {display:block;width:100%;aspect-ratio:16/9;touch-action:none;user-select:none;}
+.light-workspace .zone-management-page .zm-polygon {stroke:#e54d5d;stroke-width:2.5;fill:#ee526c20;vector-effect:non-scaling-stroke;}
+.light-workspace .zone-management-page .zm-polygon.is-invalid {stroke:#d39220;stroke-dasharray:6 4;fill:#e9bc5920;}
+.light-workspace .zone-management-page .zm-vertex {fill:#fff;stroke:#e65a67;stroke-width:2;vector-effect:non-scaling-stroke;cursor:grab;}
+.light-workspace .zone-management-page .zm-vertex.is-active {fill:#267fe7;stroke:#fff;stroke-width:2.5;}
+.light-workspace .zone-management-page .zm-vertex:focus-visible {outline:0;stroke:#1c5ba5;stroke-width:4;}
+.light-workspace .zone-management-page .zm-canvas-wrap text {fill:#6c5262;font-size:20px;font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:4;stroke-linejoin:round;}
+.light-workspace .zone-management-page .zm-canvas-empty {position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;font-size:12px;color:#9aa9bc;pointer-events:none;}
+.light-workspace .zone-management-page .zm-editor-help {font-size:11px;color:#8593a8;line-height:1.7;margin:11px 0 17px;}
+.light-workspace .zone-management-page .zm-vertices-heading {display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#5c6e87;margin:14px 0 9px;}
+.light-workspace .zone-management-page .zm-vertices-heading strong {font-weight:500;}
+.light-workspace .zone-management-page .zm-vertices-heading>div {display:flex;gap:17px;}
+.light-workspace .zone-management-page .zm-text-button {display:inline-flex;align-items:center;gap:5px;padding:0;border:0;background:none;color:#2b79c8;cursor:pointer;font-size:11px;}
+.light-workspace .zone-management-page .zm-text-button:hover:not(:disabled) {text-decoration:underline;}
+.light-workspace .zone-management-page .zm-coordinate-list {list-style:none;display:grid;gap:8px;margin:0;padding:0;max-height:240px;overflow:auto;}
+.light-workspace .zone-management-page .zm-coordinate-list li {display:grid;grid-template-columns:26px minmax(0,1fr) minmax(0,1fr) 30px;align-items:center;gap:11px;border:1px solid #edf1f6;border-radius:5px;padding:7px 8px;}
+.light-workspace .zone-management-page .zm-vertex-number {display:grid;place-items:center;background:#f0f4f9;border-radius:4px;width:23px;height:23px;font-size:11px;color:#6c809b;}
+.light-workspace .zone-management-page .zm-coordinate-list label {display:flex;align-items:center;gap:8px;font-size:11px;color:#8291a6;}
+.light-workspace .zone-management-page .zm-coordinate-list input {padding:5px 8px;min-height:32px;font-variant-numeric:tabular-nums;}
+.light-workspace .zone-management-page .zm-form-error {background:#fff4f4;border:1px solid #f4d9dd;padding:10px 12px;border-radius:5px;color:#b43a4d;font-size:12px;line-height:1.6;margin:14px 0;}
+.light-workspace .zone-management-page .zm-analysis-note {font-size:11px;color:#8a97a9;line-height:1.75;margin:17px 0 0;}
+.light-workspace .zone-management-page .zm-editor-actions {display:flex;justify-content:flex-end;gap:10px;border-top:1px solid #edf1f6;padding-top:17px;margin-top:18px;}
+.light-workspace .zone-management-page .zm-zone-summary {display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 23px;}
+.light-workspace .zone-management-page .zm-zone-summary>div {min-width:0;}
+.light-workspace .zone-management-page .zm-zone-summary dt {font-size:11px;color:#8d9aab;margin-bottom:6px;}
+.light-workspace .zone-management-page .zm-zone-summary dd {margin:0;font-size:13px;color:#526981;overflow-wrap:anywhere;}
+.light-workspace .zone-management-page .zm-dialog-backdrop {position:fixed;inset:0;background:#23365055;backdrop-filter:blur(2px);z-index:100;display:flex;align-items:center;justify-content:center;padding:22px;}
+.light-workspace .zone-management-page .zm-dialog {width:100%;max-width:440px;box-shadow:0 18px 70px #10233d26;border:1px solid #e2e8f1;border-radius:9px;background:#fff;padding:28px;color:#263752;}
+.light-workspace .zone-management-page .zm-dialog h2 {font:600 21px/1.4 'DM Sans',system-ui,sans-serif;margin:18px 0 10px;letter-spacing:-.4px;color:#1b2d48;}
+.light-workspace .zone-management-page .zm-dialog p {color:#76869d;font-size:13px;line-height:1.8;margin:0;overflow-wrap:anywhere;}
+.light-workspace .zone-management-page .zm-delete-icon {display:grid;place-items:center;width:48px;height:48px;border-radius:9px;color:#ce4052;background:#fff0f2;}
+.light-workspace .zone-management-page .zm-dialog-actions {display:flex;justify-content:flex-end;gap:10px;margin-top:25px;}
+.light-workspace .zone-management-page .zm-delete-button {color:#fff;background:#d74456;border-color:#d74456;}
+.light-workspace .zone-management-page .zm-delete-button:hover {background:#bd3345;border-color:#bd3345;}
+@media (max-width:1150px) {
+  .light-workspace .zone-management-page .zm-layout {grid-template-columns:minmax(0,1fr);}
+  .light-workspace .zone-management-page .zm-pane {min-height:0;}
+  .light-workspace .zone-management-page .zm-zone-list {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .light-workspace .zone-management-page .zm-list-empty {grid-column:1/-1;}
+  .light-workspace .zone-management-page .zm-empty {min-height:300px;}
+}
+@media (max-width:650px) {
+  .light-workspace .zone-management-page .zm-pane-heading {padding:18px;gap:10px;min-height:78px;}
+  .light-workspace .zone-management-page .zm-pane-heading h2 {font-size:18px;}
+  .light-workspace .zone-management-page .zm-zone-list {padding:0 18px 18px;grid-template-columns:minmax(0,1fr);}
+  .light-workspace .zone-management-page .zm-workspace-body {padding:0 18px 18px;}
+  .light-workspace .zone-management-page .zm-button {padding:9px 12px;font-size:12px;}
+  .light-workspace .zone-management-page .zm-form-grid {gap:15px 12px;}
+  .light-workspace .zone-management-page .zm-form-grid label:first-child {grid-column:1/-1;}
+  .light-workspace .zone-management-page .zm-card-main {gap:12px;padding-left:12px;padding-right:12px;}
+  .light-workspace .zone-management-page .zm-canvas-caption {align-items:flex-start;}
+  .light-workspace .zone-management-page .zm-canvas-caption>span:last-child {text-align:right;max-width:55%;}
+  .light-workspace .zone-management-page .zm-desktop-break {display:none;}
+  .light-workspace .zone-management-page .zm-empty {padding:18px 14px 30px;min-height:280px;}
+  .light-workspace .zone-management-page .zm-empty p {font-size:13px;}
+  .light-workspace .zone-management-page .zm-coordinate-list li {gap:7px;grid-template-columns:23px minmax(0,1fr) minmax(0,1fr) 27px;}
+  .light-workspace .zone-management-page .zm-coordinate-list label {gap:4px;}
+  .light-workspace .zone-management-page .zm-coordinate-list input {padding:5px;font-size:12px;}
+  .light-workspace .zone-management-page .zm-dialog {padding:23px;}
+  .light-workspace .zone-management-page .zm-dialog-actions {gap:8px;}
+}
+
+.light-workspace .zone-management-page .zm-feedback{display:flex;align-items:center;gap:8px;margin:0 0 15px;padding:11px 15px;border:1px solid #d7eadf;border-radius:6px;background:#f2faf5;color:#28764d;font-size:12px}

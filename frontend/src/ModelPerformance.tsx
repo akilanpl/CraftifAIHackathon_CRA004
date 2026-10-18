@@ -1,31 +1,70 @@
-import { Cpu, Gauge, Layers, FileCheck2, CircleHelp } from 'lucide-react';
-import report from '../../evidence/04-tensorrt-fp16/measured-engine-summary.json';
+import {useEffect,useState} from 'react';
+import {Copy,Check,FileText,ExternalLink,Info} from 'lucide-react';
+import historical from '../../evidence/04-tensorrt-fp16/measured-engine-summary.json';
 import warehouse from '../../evidence/04-tensorrt-fp16/warehouse-engine-summary.json';
+import cpu from '../../evidence/independent-ai/cpu-runtime-validation.json';
+import exportAudit from '../../evidence/factory-export-audit.json';
+import evaluation from '../../evidence/evaluation/independent-detection-evaluation.json';
+import warehouseUrl from '../../evidence/04-tensorrt-fp16/warehouse-engine-summary.json?url';
+import historicalUrl from '../../evidence/04-tensorrt-fp16/measured-engine-summary.json?url';
+import cpuUrl from '../../evidence/independent-ai/cpu-runtime-validation.json?url';
+import evaluationUrl from '../../evidence/evaluation/independent-detection-evaluation.json?url';
+import {accuracyReviewState,copyEvidenceJson,evidenceSourceUrl,evidenceNumber,measuredRange,warehouseMetrics,type EvidenceMetric} from './modelEvidence';
+import './modelPerformance.css';
 
-const measured = (value: unknown, digits = 5) => typeof value === 'number' && Number.isFinite(value) ? value.toFixed(digits) : 'Not reported';
-export default function ModelPerformance() {
- const maximum=Math.max(report.measured_gpu_compute_ms,report.measured_end_to_end_engine_ms);
- return <div className="performance-page">
-  <section className="panel"><div className="panel-heading"><div><span className="eyebrow">WAREHOUSE FP16 V2 · ENGINE EVIDENCE</span><h2>New compiled model</h2></div><span className="badge amber">RECORDED OUTPUT VERIFIED</span></div><div className="performance-provenance"><p>The new project has a genuine FP16 engine and benchmark report. Matching recorded DeepStream output contains 254 frames and 522 person observations. Engine timing and full pipeline performance remain separate measurements.</p><dl className="details"><dt>Model / precision</dt><dd>{warehouse.model} / {warehouse.precision.toUpperCase()}</dd><dt>TensorRT / layers</dt><dd>{warehouse.tensorrt} / {warehouse.layer_count}</dd><dt>GPU compute time</dt><dd>{warehouse.measured_gpu_compute_ms} ms</dd><dt>End-to-end engine time</dt><dd>{warehouse.measured_end_to_end_engine_ms} ms</dd><dt>Reported engine throughput</dt><dd>{warehouse.reported_engine_throughput_qps} inferences/s · engine benchmark</dd><dt>Reported engine GPU-board power</dt><dd>{warehouse.reported_power.engine_power_w} W · {warehouse.reported_power.power_samples} samples</dd><dt>Power scope / reported accuracy</dt><dd>nvidia-smi · engine run · ±{warehouse.reported_power.power_accuracy_w} W</dd><dt>Benchmark device</dt><dd>{warehouse.benchmark_device_in_report}</dd><dt>Engine size</dt><dd>{warehouse.engine_bytes.toLocaleString()} bytes</dd><dt>Full pipeline / INT8 / accuracy</dt><dd>NOT TESTED</dd></dl><p>{warehouse.caveat}</p><code>evidence/04-tensorrt-fp16/warehouse-engine-summary.json</code></div></section>
-  <div className="performance-notice"><FileCheck2 size={21}/><div><strong>Historical engine evidence</strong><p>These values come from the existing compiler report. They describe the recorded model’s TensorRT engine benchmark, not the active scene, a new factory run, or complete application throughput.</p></div><span className="badge blue">SOURCE-BACKED</span></div>
-  <div className="performance-metrics">
-   <section className="stat-card"><div><span>GPU compute time</span><Cpu size={19} className="blue"/></div><strong>{measured(report.measured_gpu_compute_ms)}<em>ms</em></strong><small>Measured engine benchmark</small></section>
-   <section className="stat-card"><div><span>End-to-end engine time</span><Gauge size={19} className="mint"/></div><strong>{measured(report.measured_end_to_end_engine_ms)}<em>ms</em></strong><small>Engine scope · excludes full pipeline</small></section>
-   <section className="stat-card"><div><span>Engine precision</span><Layers size={19} className="amber"/></div><strong>{report.precision.toUpperCase()}</strong><small>{report.layer_count} layers · TensorRT {report.tensorrt}</small></section>
-  </div>
-  <div className="performance-grid">
-   <section className="panel"><div className="panel-heading"><div><span className="eyebrow">MEASURED · ENGINE SCOPE</span><h2>Reported execution timing</h2></div><span className="badge">Milliseconds</span></div><div className="performance-timing">{[{title:'GPU compute',value:report.measured_gpu_compute_ms,tone:'compute'},{title:'End-to-end engine',value:report.measured_end_to_end_engine_ms,tone:'engine'}].map(metric=><div className="timing-row" key={metric.title}><div><span>{metric.title}</span><strong>{measured(metric.value)} ms</strong></div><progress className={metric.tone} max={maximum} value={metric.value} aria-label={`${metric.title} ${measured(metric.value)} milliseconds`}/></div>)}<p>These timing scopes overlap and must not be added together. The benchmark device is unidentified in the report.</p></div><div className="performance-scope"><CircleHelp size={17}/><p>Full pipeline FPS, camera-to-alert latency, dashboard latency, and video playback speed are separate measurements. This engine report does not establish any of them.</p></div></section>
-   <section className="panel"><div className="panel-heading"><div><span className="eyebrow">COMPILED ARTIFACT</span><h2>Model and engine details</h2></div></div><dl className="details"><dt>Model</dt><dd>{report.model}</dd><dt>Semantic model version</dt><dd>{report.semantic_model_version}</dd><dt>Input shape</dt><dd>{report.input_shape.join(' × ')}</dd><dt>Engine size</dt><dd>{report.engine_bytes.toLocaleString()} bytes</dd><dt>Layer precision</dt><dd>{report.precision_mix.FP16} FP16 · {report.precision_mix.FP32} FP32</dd><dt>Derived engine rate</dt><dd>{(1000/report.measured_end_to_end_engine_ms).toFixed(2)} inferences/s · reciprocal of engine time</dd><dt>Benchmark device</dt><dd>Not identified in report</dd></dl></section>
-   <section className="panel full-width"><div className="panel-heading"><div><span className="eyebrow">EVIDENCE BOUNDARIES</span><h2>What remains unmeasured</h2></div><span className="badge amber">NO INFERRED RESULTS</span></div><div className="table-scroll"><table className="performance-boundaries"><thead><tr><th>METRIC / TARGET</th><th>STATUS</th><th>WHAT THE CURRENT EVIDENCE ESTABLISHES</th></tr></thead><tbody>{[
-    ['Full pipeline performance','NOT MEASURED','Engine timing does not include decoding, tracking, analytics, storage, or the dashboard.'],
-    ['Whole-system / full-pipeline power','NOT TESTED','New engine-run GPU-board power is reported above; no whole-system or complete-pipeline power measurement is supplied.'],
-    ['INT8 engine / accuracy','NOT TESTED','No measured INT8 build or comparison is supplied.'],
-    ['Precision / recall / mAP','NOT TESTED','No labeled validation dataset and measured accuracy report is supplied.'],
-    ['Dataset evaluation','NOT TESTED','Warehouse footage is a demonstration clip; no reviewed held-out ground truth is supplied.'],
-    ['Jetson hardware deployment','NOT TESTED','The report contains modeled Orin NX estimates; these are not physical-device results.'],
-    ['Factory accuracy validation','NOT TESTED','Recorded-video integration is verified; no independent labeled accuracy benchmark is supplied.'],
-   ].map(([name,state,description])=><tr key={name}><td><strong>{name}</strong></td><td><span className="badge amber">{state}</span></td><td>{description}</td></tr>)}</tbody></table></div></section>
-   <section className="panel full-width"><div className="panel-heading"><h2>Evidence provenance</h2><span className="badge">Static report snapshot</span></div><div className="performance-provenance"><code>evidence/04-tensorrt-fp16/measured-engine-summary.json</code><p>{report.caveat}</p><p>FP16 engine timing alone establishes no accuracy advantage over INT8. Compare latency, power and held-out accuracy on the same device and workload before choosing a deployment trade-off.</p><p>This page reads the original checked-in JSON directly. It does not generate new benchmark results or assign the historical measurements to another profile.</p></div></section>
-  </div>
+function SourceFile({path,url,data,label}:{path:string;url:string;data:unknown;label:string}){
+ const [message,setMessage]=useState(''),[copied,setCopied]=useState(false),[failed,setFailed]=useState(false),[sourceUrl,setSourceUrl]=useState(url.startsWith('data:')?'':url);
+ useEffect(()=>{try{const source=evidenceSourceUrl(url,data);setSourceUrl(source.url);return source.release}catch(error){setFailed(true);setMessage(`Source unavailable: ${error instanceof Error?error.message:'Open the repository JSON manually.'}`)}},[url,data]);
+ const copy=async()=>{setMessage('');setFailed(false);setCopied(false);try{await copyEvidenceJson(data,navigator.clipboard);setCopied(true);setMessage(`${label} source JSON copied.`)}catch(error){setFailed(true);setMessage(`Copy failed: ${error instanceof Error?error.message:'Clipboard permission was denied.'}`)}};
+ return <div className="me-source-group"><div className="me-source"><span>Source JSON file</span><a href={sourceUrl||undefined} aria-disabled={!sourceUrl} target="_blank" rel="noreferrer" aria-label={`Open ${label} source JSON in a new tab`}>{path}<ExternalLink size={12}/></a><button type="button" onClick={()=>void copy()} aria-label={`Copy ${label} source JSON`} title="Copy source JSON">{copied?<Check size={16}/>:<Copy size={16}/>}</button></div>{message&&<p className={failed?'me-copy-message failed':'me-copy-message'} role={failed?'alert':'status'}>{message}</p>}</div>;
+}
+function Metrics({items}:{items:EvidenceMetric[]}){
+ return <div className="me-metrics">{items.map(metric=><article className="me-metric" key={metric.label}><span>{metric.label}</span><strong>{metric.value}{metric.unit&&<small>{metric.unit}</small>}</strong><p>{metric.scope}</p></article>)}</div>;
+}
+export default function ModelPerformance(){
+ const review=accuracyReviewState(evaluation);
+ const power=warehouse.reported_power;
+ const warehouseDetails=[
+  ['Model / precision',`${warehouse.model} / ${warehouse.precision.toUpperCase()}`],
+  ['TensorRT / layers',`${warehouse.tensorrt} / ${warehouse.layer_count}`],
+  ['Input tensor',warehouse.input_shape.join(' × ')],
+  ['Layer precision',`${warehouse.precision_mix.FP16} FP16 · ${warehouse.precision_mix.FP32} FP32`],
+  ['Benchmark device',warehouse.benchmark_device_in_report],
+  ['Engine size',`${evidenceNumber(warehouse.engine_bytes)} bytes`],
+  ['Build duration',`${warehouse.build_seconds} s · new build, not cache`],
+  ['Compilation / export',warehouse.built && exportAudit.engine_expected_hash_matches && exportAudit.engine_sha256===warehouse.engine_sha256?'Compiled · exported engine hash verified':'Verification unavailable'],
+  ['Power source / sampling',`${power.power_source} · ${power.power_samples} samples · ${power.power_sample_basis.replace(/_/g,' ')}`],
+  ['Power scope / reported accuracy',`GPU board · engine run · ±${evidenceNumber(power.power_accuracy_w)} W`],
+  ['Power verification','Reported by PipeGen; not independently remeasured by this audit'],
+  ['Semantic model version',warehouse.semantic_model_version],
+  ['Engine SHA-256',warehouse.engine_sha256],
+ ];
+ const untested=[
+  ['Full-pipeline performance','NOT MEASURED','Engine timings exclude the complete decode, tracking, analytics, storage, and application path.'],
+  ['Whole-system / full-pipeline power','NOT TESTED','Reported GPU-board engine-run power does not measure whole-system or full-pipeline consumption.'],
+  ['INT8 comparison','NOT TESTED','No measured INT8 engine, power, or accuracy comparison is supplied. FP16 alone establishes no accuracy advantage.'],
+  ['Precision / recall / mAP',review.label,'Formal accuracy remains gated until all evaluation frames have approved human ground truth. Predictions are never ground truth.'],
+  ['Jetson deployment','NOT TESTED','Orin NX values in the historical report are modeled estimates, not results from a deployed Jetson.'],
+  ['Physical USB camera','NOT TESTED','Recorded-video and simulated-USB tests do not establish physical camera acceptance.'],
+ ];
+ return <div className="model-evidence">
+  <section className="me-panel" aria-labelledby="warehouse-engine-title"><div className="me-heading"><div><span className="me-eyebrow">WAREHOUSE FP16 V2 · ENGINE EVIDENCE</span><h2 id="warehouse-engine-title">Compiled model benchmark</h2></div><span className="me-status reported">RECORDED REPORT</span></div><p className="me-intro">Reported TensorRT engine results for the warehouse build. Engine timing, independent CPU processing, and complete pipeline performance are separate scopes.</p>
+   <Metrics items={warehouseMetrics(warehouse)}/>
+   <div className="me-details" role="region" tabIndex={0} aria-label="Warehouse engine details"><table><caption>Warehouse compiled engine details</caption><tbody>{warehouseDetails.map(([label,value])=><tr key={label}><th scope="row">{label}</th><td className={label==='Engine SHA-256'?'me-hash':''}>{value}</td></tr>)}</tbody></table></div>
+   <div className="me-caveat"><Info size={15}/><p>Throughput is the report’s engine benchmark value, not camera FPS or a reciprocal derived from either latency above. {warehouse.caveat} <a href="https://github.com/akilanpl/hazard-zone-sentinel/blob/main/evidence/factory-export-audit.json" target="_blank" rel="noreferrer">Export audit</a></p></div>
+   <SourceFile path="evidence/04-tensorrt-fp16/warehouse-engine-summary.json" url={warehouseUrl} data={warehouse} label="Warehouse engine"/>
+  </section>
+  <section className="me-historical" aria-labelledby="historical-engine-title"><div className="me-notice"><FileText size={24}/><div><h2 id="historical-engine-title">Historical engine evidence</h2><p>Separate earlier model benchmark. These measurements are not assigned to the warehouse build or the independent CPU service.</p></div><span className="me-status">HISTORICAL REPORT</span></div><Metrics items={[
+   {label:'GPU compute time',value:evidenceNumber(historical.measured_gpu_compute_ms,5),unit:'ms',scope:'Earlier engine benchmark'},
+   {label:'End-to-end engine time',value:evidenceNumber(historical.measured_end_to_end_engine_ms,5),unit:'ms',scope:'Engine scope · not full pipeline'},
+   {label:'Engine precision',value:historical.precision.toUpperCase(),scope:`${historical.layer_count} layers · ${evidenceNumber(historical.engine_bytes)} bytes`},
+  ]}/><p className="me-section-note">Benchmark device: {historical.benchmark_device_in_report}. {historical.caveat}</p><SourceFile path="evidence/04-tensorrt-fp16/measured-engine-summary.json" url={historicalUrl} data={historical} label="Historical engine"/></section>
+  <section className="me-panel" aria-labelledby="cpu-validation-title"><div className="me-heading"><div><span className="me-eyebrow">INDEPENDENT AI · CPU VALIDATION SAMPLE</span><h2 id="cpu-validation-title">Recorded-frame CPU processing</h2></div><span className="me-status">{cpu.model.engine} · {cpu.model.runtime_version}</span></div><p className="me-intro">{cpu.frames.length} genuine recorded-video frames processed by the independent ONNX Runtime CPU worker. This stored sample is not current service telemetry or an NVIDIA engine benchmark.</p><Metrics items={[
+   {label:'Processing latency range',value:measuredRange(cpu.frames.map(frame=>frame.processing_latency_ms)),unit:'ms',scope:`${cpu.frames.length}-frame CPU process sample`},
+   {label:'Reported processing rate',value:measuredRange(cpu.frames.map(frame=>frame.processing_fps)),unit:'frames/s',scope:'Per-frame worker reports · not full-pipeline FPS'},
+   {label:'Execution provider',value:'CPU',scope:cpu.model.providers.join(', ')},
+  ]}/><p className="me-section-note">{cpu.source}. Model: {cpu.model.model}. Inference confidence threshold: {cpu.confidence_threshold}. Physical camera hardware: {cpu.physical_camera_hardware_test}.</p><SourceFile path="evidence/independent-ai/cpu-runtime-validation.json" url={cpuUrl} data={cpu} label="Independent CPU validation"/></section>
+  <section className="me-panel" aria-labelledby="evidence-boundaries-title"><div className="me-heading"><div><span className="me-eyebrow">MEASUREMENT BOUNDARIES</span><h2 id="evidence-boundaries-title">What the evidence does not establish</h2></div><span className="me-status pending">NO INFERRED RESULTS</span></div><div className="me-boundary-table" role="region" tabIndex={0} aria-label="Untested measurements"><table><caption>Measurement scope and remaining validation</caption><thead><tr><th scope="col">Metric / target</th><th scope="col">Status</th><th scope="col">Evidence boundary</th></tr></thead><tbody>{untested.map(([name,status,explanation])=><tr key={name}><th scope="row">{name}</th><td><span className="me-status pending">{status}</span></td><td>{explanation}</td></tr>)}</tbody></table></div></section>
+  <section className="me-panel" aria-labelledby="accuracy-review-title"><div className="me-heading"><div><span className="me-eyebrow">FORMAL ACCURACY · SEPARATE REVIEW WORKFLOW</span><h2 id="accuracy-review-title">Human annotation review</h2></div><span className="me-status pending">{review.label}</span></div><p className="me-intro">The review package contains {review.total} frames. Partial annotation exports do not establish completed evaluation. Precision, recall, and AP remain withheld until the complete ground-truth set is approved.</p><p className="me-review-note">The release audit and formal evaluation are separate snapshots. Partial review is not a measured accuracy result.</p><SourceFile path="evidence/evaluation/independent-detection-evaluation.json" url={evaluationUrl} data={evaluation} label="Formal evaluation"/></section>
  </div>;
 }

@@ -1,0 +1,29 @@
+{
+  "qa_analytics_after_ack": {
+    "total_incidents": 2,
+    "acknowledged": 1,
+    "by_severity": {
+      "high": 2
+    },
+    "by_zone": {
+      "RestrictedZone": 2
+    },
+    "trend": [
+      {
+        "date": "2026-10-18",
+        "count": 2
+      }
+    ]
+  },
+  "qa_sqlite_rows": [
+    {
+      "id": "3da55579-c362-491b-a530-24e1531209ff",
+      "acknowledged": false
+    },
+    {
+      "id": "6c5b78c4-d694-4488-a079-313496f5415b",
+      "acknowledged": true
+    }
+  ],
+  "production_untouched": true
+}

@@ -1,4 +1,4 @@
-/* Screenshot-led light surfaces are deliberately limited to the three redesigned pages. */
+/* Screenshot-led light surfaces are deliberately limited to the six redesigned pages. */
 .light-workspace {
   --panel:#fff; --border:#e7ebf0; --muted:#718096; --accent:#2379d8;
   color:#172238; background:#fcfdff; font-family:'DM Sans',system-ui,sans-serif;
@@ -244,3 +244,11 @@
 .light-workspace .incident-table th{color:#65758c;}
 .light-workspace .incident-table td small{color:#6a7c94;}
 .light-workspace .incident-history .table-scroll{border-radius:4px;}
+
+/* Phase 2 reuses the released workspace chrome. Page content owns its scoped layout. */
+.light-workspace:is(.page-performance,.page-analytics,.page-zones) .title-actions>.badge {display:none;}
+.light-workspace:is(.page-performance,.page-analytics,.page-zones) .replay-analysis {margin-bottom:20px;}
+.light-workspace .replay-analysis {background:#fafbfd;border-color:#e5eaf1;color:#718096;}
+.light-workspace .replay-analysis summary {color:#718096;font-size:13px;}
+.light-workspace .replay-analysis .replay-panel {background:#fff;color:#465a73;border-color:#e5eaf1;}
+.light-workspace .replay-analysis p,.light-workspace .replay-progress {color:#718096;}

@@ -1,0 +1,99 @@
+{
+  "date_utc": "2026-10-18T13:30:18.728119+00:00",
+  "baseline": "9e1c61109eb669a2763cdd7ca50ee134ee3c380e",
+  "backend_passed": 233,
+  "frontend_passed": 70,
+  "skipped": 0,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "pages": [
+    "Model Performance",
+    "Analytics",
+    "Zone Management"
+  ],
+  "viewports": [
+    [
+      1600,
+      900
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "browser": "Actual in-app graphical browser via cua_repl; API documentation read. No separate Computer Use SKILL.md was available.",
+  "console_warnings_errors": [],
+  "model_source_json_opened": true,
+  "source_copy": "Browser reported source JSON copied",
+  "analytics": {
+    "daily": {
+      "2026-10-18": 2
+    },
+    "weekly_monday_utc": {
+      "2026-10-12": 2
+    },
+    "severity": {
+      "critical": 0,
+      "high": 2,
+      "medium": 0,
+      "low": 0
+    },
+    "zone": {
+      "RestrictedZone": 2
+    },
+    "acknowledgment": "0\u21921\u21920 in QA copy; SQLite/API/UI matched"
+  },
+  "zones": {
+    "create_update_delete": "PASS isolated QA database only",
+    "invalid_out_of_range": "Rejected before API save",
+    "draft_cancel": "Original unchanged",
+    "keyboard_arrow_edit": "0.4197916666666667\u21920.4297916666666667; canceled",
+    "drag": "PASS within one rendered pixel; canceled",
+    "delete_confirmation_cancel": "PASS"
+  },
+  "v2": {
+    "original_incidents": 2,
+    "original_zone_unchanged": true,
+    "original_asset_hashes_unchanged": true,
+    "replay_frame": 38,
+    "media_seconds": 1.52,
+    "pts_seconds": 1.6,
+    "pts_error_ms": 0,
+    "visible_detections": 3,
+    "inside": 1
+  },
+  "ai": {
+    "simulation": "Complete 9 steps:2 entries,2 exits,1 re-entry",
+    "genuine_cpu_browser": "3 real person boxes visually verified; seq1 media0.04,712.20ms,CPU1.40processingFPS; independent session stopped",
+    "actual_model_http_ws_sources": [
+      "virtual_video",
+      "uploaded_video",
+      "simulated_usb_camera"
+    ],
+    "physical_usb": "NOT TESTED"
+  },
+  "visual_corrections": [
+    "Reset page scroll on navigation",
+    "Compact model detail rows for visible provenance",
+    "Fix mobile source link wrapping with two-row grid",
+    "Explicit zone save/cancel/delete feedback"
+  ],
+  "reference_comparison": "Retained pale sidebar,navy headings,white cards,refined spacing; real severity colors and actual UTC2026 dates intentionally differ from screenshot; enginebytes/poweraccuracy corrected from source.",
+  "limitations": {
+    "accuracy": "PENDING HUMAN REVIEW",
+    "int8": "NOT TESTED",
+    "jetson": "NOT TESTED",
+    "physical_usb": "NOT TESTED",
+    "firmgen_hardware": "NOT TESTED",
+    "full_pipeline_fps": "NOT MEASURED",
+    "whole_system_power": "NOT TESTED"
+  }
+}

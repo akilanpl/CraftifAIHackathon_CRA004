@@ -1,0 +1,23 @@
+{
+  "compile.data.json": {
+    "sha256": "cec02168ca984dd0ee92ed17bd20c50a33df9deb6b60c0a52148df363dc44ac2",
+    "matches_evidence": true
+  },
+  "engine.data.json": {
+    "sha256": "5bc4a8f7c17bab3494bb13f6dcde48f7e0e1467dd190983603d449e1412cc235",
+    "matches_evidence": true
+  },
+  "direct_measurement_crosscheck": {
+    "latency_mean_ms": 6.19475,
+    "compute_mean_ms": 5.28244,
+    "throughput_qps": 188.877,
+    "engine_power_w": 135.222,
+    "power_accuracy_w": 5.0,
+    "power_samples": 66,
+    "power_source": "nvidia-smi",
+    "power_scope": "engine_run",
+    "power_sensor_scope": "gpu_board"
+  },
+  "measured_device": "unidentified",
+  "modeled_device_not_measured": "orin_nx"
+}
