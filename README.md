@@ -12,10 +12,32 @@ The [official problem statement](evidence/01-requirement-and-flow/official-probl
 
 | Mandatory requirement | Actual implementation | Evidence |
 |---|---|---|
-| **Full PipeGen flow** | Requirement → Pipeline IR → Model → Compiler → Run, completed for the seven-node Warehouse FP16 v2 pipeline. | [Requirement checkpoint](evidence/01-requirement-and-flow/factory-checkpoint-manifest.json) · [Pipeline IR](evidence/02-pipeline-ir/factory-PipelineIR.redacted.json) · [Full export](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18) |
+| **Full PipeGen flow** | Requirement → Pipeline IR → Model → Compiler → Run, completed for the seven-node Warehouse FP16 v2 pipeline. | [Requirement checkpoint](evidence/01-requirement-and-flow/factory-checkpoint-manifest.json) · [Pipeline IR](evidence/02-pipeline-ir/factory-PipelineIR.redacted.json) · [Full export](https://github.com/akilanpl/CraftifAIHackathon_CRA004/releases/tag/warehouse-fp16-v2-2026-10-18) |
 | **TensorRT engine and speed report** | YOLOv8m ONNX compiled in PipeGen to TensorRT 10.3.0 FP16, with retained compiler and engine measurements. | [Engine benchmark](evidence/04-tensorrt-fp16/warehouse-engine-summary.json) · [Compiler evidence](evidence/04-tensorrt-fp16/README.md) |
 | **Run on NVIDIA hardware** | The generated DeepStream pipeline processed a warehouse MP4 on an NVIDIA GPU machine. The official rules permit video-file input. | [Warehouse audit](evidence/final-product/warehouse-audit.json) · [Recorded DeepStream metadata](evidence/06-real-metadata/warehouse-fp16-v2-metadata.json) |
 | **Actionable output** | Structured JSON feeds restricted-zone decisions, persistent incidents, acknowledgment, analytics and WebSocket updates. | [Dashboard alignment and incidents](evidence/07-real-mode-dashboard/warehouse-browser-alignment.json) · [Acceptance matrix](evidence/final-product/matrix.md) · [API contract](docs/canonical-schema.md) |
+
+## Original PipeGen Pipeline Evidence
+
+The following are screenshots captured from the original **Hazard Zone Sentinel — Warehouse FP16 v2** project in CraftifAI PipeGen v0.5.1. They document the actual Pipeline IR, TensorRT compiler benchmark, and completed DeepStream pipeline run. Select an image to open the original full-screen capture.
+
+### 1. Pipeline IR — seven-node graph
+
+[![Original CraftifAI PipeGen Pipeline IR node graph, showing warehouse video input, preprocessing, YOLOv8m inference, detection postprocessing, NvDCF person tracking, restricted-zone analytics, and JSON output](evidence/pipegen-gui/warehouse-ir-graph-crop.png)](evidence/pipegen-gui/warehouse-ir-graph-original.png)
+
+The seven nodes connect **warehouse video → preprocessing → YOLOv8m inference → postprocessing → NvDCF tracking → restricted-zone analytics → JSON output**. The [saved Pipeline IR](evidence/02-pipeline-ir/factory-PipelineIR.redacted.json) preserves its configuration.
+
+### 2. TensorRT FP16 model speed report
+
+[![Original PipeGen TensorRT FP16 speed report showing 6.195 ms per engine execution, 161 fps display metric, and 135.2 watts of reported GPU-board power](evidence/pipegen-gui/warehouse-fp16-benchmark-crop.png)](evidence/pipegen-gui/warehouse-fp16-benchmark-original.png)
+
+PipeGen's on-screen benchmark presents approximately **6.195 ms per engine execution** and **135.2 W GPU-board power**. The [engine report JSON](evidence/04-tensorrt-fp16/warehouse-engine-summary.json) separately records **188.877 engine inferences/s**; both figures refer to engine benchmarks rather than full video-pipeline FPS.
+
+### 3. DeepStream pipeline run and export
+
+[![Original PipeGen Run Pipeline summary confirming completed warehouse video execution, 254 processed frames, and 573 detected objects across classes](evidence/pipegen-gui/warehouse-deepstream-run-crop.png)](evidence/pipegen-gui/warehouse-deepstream-run-original.png)
+
+The original PipeGen run reports **254 processed frames in 10.12 seconds** and **573 detected objects** across classes. The [warehouse metadata audit](evidence/final-product/warehouse-audit.json) identifies **522 person observations** in the corresponding detection output, along with six tracker IDs. The [exported pipeline archive](https://github.com/akilanpl/CraftifAIHackathon_CRA004/releases/tag/warehouse-fp16-v2-2026-10-18) preserves the model, engine, and generated pipeline files.
 
 ## How It Works
 
@@ -31,7 +53,7 @@ PipeGen v0.5.1 builds the core seven-node perception workflow:
 
 FastAPI consumes the recorded metadata, evaluates tracked person positions against application-managed polygons and persists entry incidents in SQLite. State-based deduplication prevents continued occupancy from producing repeated entry alerts. WebSockets deliver updates to the React dashboard, where operators review, acknowledge and export incidents. Native ROI metadata remains available alongside the application's zone decisions; native occupancy counts and application entry events have distinct meanings.
 
-The warehouse dashboard synchronizes the matching source video and saved DeepStream metadata for playback and seeking. The complete [PipeGen export](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18) preserves the original pipeline, model and engine artifacts.
+The warehouse dashboard synchronizes the matching source video and saved DeepStream metadata for playback and seeking. The complete [PipeGen export](https://github.com/akilanpl/CraftifAIHackathon_CRA004/releases/tag/warehouse-fp16-v2-2026-10-18) preserves the original pipeline, model and engine artifacts.
 
 ## System Architecture
 
@@ -146,8 +168,8 @@ Use **Python 3.12**, **Node.js 24** and **pnpm** for the tested application envi
 Clone the repository, then install application dependencies:
 
 ```bash
-git clone https://github.com/akilanpl/hazard-zone-sentinel.git
-cd hazard-zone-sentinel
+git clone https://github.com/akilanpl/CraftifAIHackathon_CRA004.git
+cd CraftifAIHackathon_CRA004
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-lock.txt
 cd frontend
@@ -205,7 +227,7 @@ Evidence: [Executed test results](evidence/final-product/tests.txt) · [Browser 
 
 [Judge-facing submission package](submission/README.md) · [Reproducible Mac recorded-metadata integration check](submission/mac-validation.md).
 
-The [Warehouse FP16 v2 PipeGen release](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18) distributes the original pipeline, model and engine artifacts separately from ordinary Git history in `pipegen-warehouse-hazard-sentinel-pipeline.tar.gz`. The archive is **134,818,189 bytes** with SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`.
+The [Warehouse FP16 v2 PipeGen release](https://github.com/akilanpl/CraftifAIHackathon_CRA004/releases/tag/warehouse-fp16-v2-2026-10-18) distributes the original pipeline, model and engine artifacts separately from ordinary Git history in `pipegen-warehouse-hazard-sentinel-pipeline.tar.gz`. The archive is **134,818,189 bytes** with SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`.
 
 - [Seven-node Pipeline IR](evidence/02-pipeline-ir/factory-PipelineIR.redacted.json)
 - [TensorRT FP16 compiler and engine report](evidence/04-tensorrt-fp16/warehouse-engine-summary.json)
