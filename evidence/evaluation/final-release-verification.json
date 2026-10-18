@@ -1,0 +1,112 @@
+{
+  "status": "VERIFIED WORK RELEASE CANDIDATE; OPTIONAL ACCURACY PENDING HUMAN REVIEW",
+  "remote_main": "6e1c5dd4aa224bed05b459afde6123a974bedd98",
+  "feature_branch": "feature/ai-evaluation-and-release-audit",
+  "main_worktree": "clean at inspection",
+  "feature_worktree": "uncommitted evaluation/documentation changes preserved",
+  "identity": {
+    "name": "Akilan",
+    "email": "248480019+akilanpl@users.noreply.github.com",
+    "user_confirmed": true,
+    "new_commit_created": "See Git history"
+  },
+  "tests": {
+    "backend_passed": 231,
+    "frontend_passed": 35,
+    "typescript": "PASS",
+    "production_build": "PASS",
+    "v2_http_ws_sqlite": "PASS (isolated verification DB)",
+    "annotation_validation": "REJECTED PARTIAL EXPORT"
+  },
+  "simulation": {
+    "session_id": "6ed06840-5d07-4877-a5b0-543583c613bb",
+    "expected": {
+      "entries": 2,
+      "exits": 2,
+      "reentries": 1
+    },
+    "observed": {
+      "entries": 2,
+      "exits": 2,
+      "reentries": 1
+    },
+    "acknowledgment_ui": "PASS"
+  },
+  "simulated_usb": {
+    "session_prefix": "7435bd76",
+    "permission_denied": "PASS",
+    "device_discovery": "PASS two devices",
+    "device_selection": "PASS B then A",
+    "genuine_inference": "PASS",
+    "pause_resume": "PASS",
+    "disconnect_cleanup": "PASS 0 streams / 0 live tracks / session stopped",
+    "reconnect": "PASS",
+    "sampled_ws_frames": 6,
+    "person_observations": 18,
+    "observations_are_not_unique_people": true,
+    "median_latency_ms": 725.9398144997249,
+    "physical_usb_hardware": "NOT TESTED"
+  },
+  "uploaded_video": {
+    "session_prefix": "7c4d13c5",
+    "input": "warehouse-workers-4281405-1080p.mp4",
+    "genuine_boxes_visually_checked": 3,
+    "pause_resume_half_speed": "PASS",
+    "acknowledgment_ui": "PASS",
+    "playback_end": "PASS",
+    "source_isolation": "PASS"
+  },
+  "v2": {
+    "frames": 254,
+    "observations": 522,
+    "track_ids": 6,
+    "original_incidents_preserved": 2,
+    "acknowledgments_unchanged": true,
+    "pipeline_rebuilt": false
+  },
+  "human_review": {
+    "path": "/home/vijayababu/Downloads/annotations-human-reviewed.json",
+    "sha256": "cdfce0f6d0d72a839c398d954d9f78148b25c6deb7106fdb276facd10c0fd641",
+    "record_status": "PARTIAL",
+    "declared_reviewed_frames": 1,
+    "actual_reviewed_frames": 1,
+    "total_frames": 41,
+    "box_count": 7,
+    "nonempty_records": [
+      {
+        "image_id": "warehouse-frame-000",
+        "boxes": 6,
+        "reviewed": false
+      },
+      {
+        "image_id": "warehouse-frame-006",
+        "boxes": 1,
+        "reviewed": true
+      }
+    ],
+    "accepted_for_formal_accuracy": false,
+    "reason": "Incomplete export: partial human review; unknown frames cannot be treated as negatives",
+    "user_reports_approval": true,
+    "formal_accuracy": "PENDING HUMAN REVIEW"
+  },
+  "bonuses": {
+    "INT8_actual_execution": "NOT TESTED",
+    "Jetson": "NOT TESTED",
+    "FirmGen_closed_loop_hardware": "NOT TESTED"
+  },
+  "design_coordination": "Integration freeze: all three subagents completed; frontend agent notified; primary main clean; no active separate redesign chat/worktree found; no frontend changes included",
+  "submission_receipt": "NOT VERIFIED; user previously reported feedback complete",
+  "browser_notes": [
+    "V2 backend stopped responding during testing; process ended with SIGTERM (exit143), no exception identified. Existing profile/backend restarted; original history recovered.",
+    "Normal final isolated QA console warning/error inspection returned no entries; transient API500 occurred during backend outage.",
+    "Mobile390x844 visually inspected; viewport restored.",
+    "No standalone Settings page exists; configuration is exposed through zone/AI controls and Integration.",
+    "User explicitly decoupled incomplete optional annotations from application release."
+  ],
+  "release_asset": {
+    "id": 653142177,
+    "size": 134818189,
+    "sha256": "5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec",
+    "unchanged": true
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "audit_scope": "Read-only feasibility in isolated feature/ai-evaluation-and-release-audit worktree; no compiler, quantizer, GPU workload, Docker, PipeGen or system modifications",
+  "decision": {
+    "technical": "CONDITIONAL_GO_FUTURE_SEPARATE_TENSORRT_INT8_CANDIDATE",
+    "execution_now": "NO_GO_NOT_AUTHORIZED_BY_THIS_READONLY_AUDIT",
+    "official_bonus": "NOT_TESTED_NOT_CLAIMED",
+    "jetson": "NOT_DEPLOYED_NOT_TESTED",
+    "closed_loop": "NOT_TESTED"
+  },
+  "official_rules": {
+    "pdf": "evidence/01-requirement-and-flow/official-problem-statement.pdf",
+    "sha256": "a1da48261c91d9668e15619b40f5c93e492f40814f0921c31c831db407862966",
+    "full_document_read": true,
+    "mandatory_pages": [
+      2
+    ],
+    "live_venue_demo_page": 5,
+    "submission_screenshots_page": 6,
+    "edge_bonus_pages": [
+      1,
+      2
+    ],
+    "edge_bonus_requirement": "RunINT8oractualJetsondeploymentwithspeedpoweraccuracytradeofffromPipeGenreports",
+    "cpu_quantization_is_pipegen_bonus": false
+  },
+  "hardware_feasibility": {
+    "reported_gpu": "RTX2060SUPER",
+    "architecture": "Turing",
+    "architecture_compute_capability": "7.5",
+    "architecture_int8_tensor_operations": "SupportedbyofficialNVIDIAdocumentation",
+    "actual_current_gpu_query": "nvidia-smifailedtocommunicatewithdriverinthissandbox;hostGPUhealthnotdiagnosed",
+    "current_vram_verified": false,
+    "speedup_proven": false
+  },
+  "baseline": {
+    "onnx_bytes": 103767487,
+    "onnx_sha256_independently_read": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+    "onnx_qdq_structure": "NOT_INSPECTED",
+    "tensorrt": "10.3.0",
+    "engine_precision": "fp16",
+    "engine_sha256_reported": "4c11b6a4eee9274f29c55f5be92fee24357dca4d1b167b4ab5ca0ea5a4786750",
+    "engine_bytes": 52792260,
+    "layers": 199,
+    "layer_precision_mix": {
+      "FP16": 185,
+      "FP32": 14
+    },
+    "input_shape": [
+      1,
+      3,
+      480,
+      640
+    ],
+    "gpu_compute_ms": 5.28244,
+    "engine_end_to_end_ms": 6.19475,
+    "reported_engine_throughput_qps": 188.877,
+    "benchmark_device_in_report": "unidentified",
+    "reported_gpu_board_engine_power_w": 135.222,
+    "power_source": "nvidia-smi priorreport",
+    "power_samples": 66,
+    "power_independently_remeasured_in_audit": false,
+    "full_pipeline_fps": null,
+    "accuracy": null,
+    "int8_engine": null,
+    "int8_calibration_cache": null
+  },
+  "tooling": {
+    "trtexec_host_path": "NOT_FOUND",
+    "nvcc_host_path": "NOT_FOUND",
+    "scoped_trtexec_search": "Noresultwithinmaxdepth4 /usr /usr/local /opt externalstorage",
+    "container_tools_inspected": false,
+    "runtime_found": "ONNXRuntimeCPUindependentapplication",
+    "no_installation_performed": true
+  },
+  "disk_snapshot": {
+    "root_available_bytes": 1443016704,
+    "external_ext4_available_bytes": 41311166464,
+    "root_required_bytes": 1073741824,
+    "external_required_bytes": 21474836480,
+    "thresholds_exceeded_at_snapshot": true,
+    "storage_guard_run_in_this_audit": false,
+    "note": "dfsnapshotonly;currenthostguardandRAMVRAMbuildspaceverificationrequiredbeforefutureauthorizedwork"
+  },
+  "unmet_execution_gates": [
+    "Explicitauthorizationfornewquantization/build/PipeGencandidate",
+    "AccessibleverifiedTensorRT10.3builderandGPU",
+    "SupportedPipeGenINT8calibration/importpath",
+    "RepresentativecalibrationmanifestandgenuinecacheorQDQmodel",
+    "Independentheldoutlabeledqualityevaluation",
+    "MatchedFP16INT8runtimepowermeasurements",
+    "ActualPipeGenINT8runandreportsevidence"
+  ],
+  "artifact_availability": {
+    "official_pdf": true,
+    "requirement_ir_json": true,
+    "fp16_numeric_report": true,
+    "factory_metadata": true,
+    "app_overlay_screenshots": true,
+    "actual_pipegen_ir_gui_screenshot": "NOT_LOCATED_IN_SCOPED_STAGE_DIRECTORIES",
+    "actual_pipegen_speed_report_gui_screenshot": "NOT_LOCATED_IN_SCOPED_STAGE_DIRECTORIES",
+    "app_performance_view_is_official_report_screenshot": false,
+    "factory_export_audit": "evidence/factory-export-audit.json",
+    "release_visibility_and_judge_access": "NOT_REVERIFIED_BY_THIS_READONLY_AUDIT",
+    "submission_receipt": "NOT_LOCATED_LEDGER_NULL",
+    "submission_state_in_ledger": false
+  },
+  "sources": [
+    {
+      "title": "NVIDIA RTX2060SUPERspecifications",
+      "url": "https://www.nvidia.com/content/nvidiaGDC/gb/en_GB/geforce/graphics-cards/rtx-2060-super.html"
+    },
+    {
+      "title": "NVIDIATuringTuningGuideCUDA12.6",
+      "url": "https://docs.nvidia.com/cuda/archive/12.6.0/turing-tuning-guide/index.html"
+    },
+    {
+      "title": "TensorRT10.3DeveloperGuideprintedpage55quantizationtable",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/archives/tensorrt-1030/pdf/TensorRT-Developer-Guide.pdf",
+      "access_note": "Officialindexedtabletextread;directPDFopenfailed;archivedHTMLredirectedcurrentdocs"
+    },
+    {
+      "title": "NVIDIAquantizedtypescalibration",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/10.x.x/inference-library/work-quantized-types.html"
+    },
+    {
+      "title": "TensorRT10.1DeveloperGuidetrtexecappendixrandomrangeswarning",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/archives/tensorrt-1010/pdf/TensorRT-Developer-Guide.pdf"
+    },
+    {
+      "title": "NVIDIATensorRT10xto11xmigrationversionboundary",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/api/migration/tensorrt-10x-to-11x-python-api-patterns.html"
+    }
+  ],
+  "checks": [
+    "OfficiallocalPDFfulltextextractionread",
+    "ExistingfactorycompileandenginereportJSONreadonlyinspection",
+    "IndependentstreamingONNXSHA256match",
+    "HostPATHandscopedfilesearchreadchecks",
+    "Readonlynvidia-smiqueryfailedsandboxnothostdiagnosis",
+    "Readonlydfthresholdsnapshot",
+    "Evidencefileandreceiptledgerinspection",
+    "OfficialNVIDIAsourcesbrowsed"
+  ],
+  "workloads_started": false,
+  "downloads_or_installs": false,
+  "gpu_or_container_changes": false,
+  "git_commit_performed": false
+}

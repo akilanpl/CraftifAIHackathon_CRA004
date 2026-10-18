@@ -1,173 +1,142 @@
 # Hazard Zone Sentinel
 
-**Turning ordinary cameras into real-time workplace safety intelligence.**
+**Camera detections become actionable restricted-zone incidents.**
 
-Source repository: [akilanpl/hazard-zone-sentinel](https://github.com/akilanpl/hazard-zone-sentinel) (private; authorized GitHub access required).
+[Public source repository](https://github.com/akilanpl/hazard-zone-sentinel) · [Warehouse evidence](docs/factory-release.md) · [Independent AI guide](docs/independent-ai-monitor.md) · [Submission checklist](docs/submission-checklist.md)
 
-**Submission cutoff: October 18, 2026, 4 PM IST (user selected).** [Official requirements and checklist](docs/submission-checklist.md).
+Hazard Zone Sentinel is a local React/TypeScript and FastAPI safety-monitoring prototype. It combines video overlays, editable polygon zones, incident history, acknowledgments, SQLite persistence and WebSocket updates.
 
-**Verified warehouse replay:** actual warehouse video + matching PipeGen metadata: **254 frames, 522 person observations, 6 tracker IDs, 2 computed entry alerts (including 1 re-entry), and 2 observed exits**. Worker boxes and the generated red ROI were visually checked at video times 1, 2, 3 and 4 seconds. The camera moves; this is a hypothetical frame-relative aisle demonstration, not a calibrated industrial safety system. Historical street results remain separate. [Release evidence](docs/factory-release.md) · [Submission checklist](docs/submission-checklist.md).
+Two processing paths are implemented and kept separate:
 
-A local React + FastAPI safety operations application for CraftifAI PipeGen perception output. Tracked people entering normalized restricted polygons produce persistent incidents, live dashboard updates and optional JSONL output.
+| Path | Input and perception | Verified scope |
+| --- | --- | --- |
+| **Warehouse V2 — PipeGen** | Original recorded warehouse video and matching real PipeGen/DeepStream metadata from YOLOv8m TensorRT FP16 | Recorded video/box synchronization, polygon analysis, two persisted entry alerts and restart recovery |
+| **Independent AI Camera Monitor** | Actual video pixels through ONNX Runtime CPU; virtual video, browser-selected MP4 and simulated USB stream | Genuine inference, correlated frame overlays, source/session isolation, simulation, browser lifecycle and persistence |
 
-**Historical street baseline:** genuine PipeGen metadata replay is integrated and verified: 1,029 frames, 7,688 person observations, 89 observed track IDs, and 33 computed polygon alerts in one replay session. These include 23 initial-inside observations and 10 observed outside-to-inside transitions. The original recorded video now plays in synchronization with those detections; this is recorded replay, not live camera inference. See [real replay](docs/real-pipegen-replay.md) for timestamp, tracking and benchmark limitations.
+**Physical USB camera hardware: NOT TESTED.** The simulated USB pathway uses prerecorded video through `captureStream()` and real inference; it is not evidence of a connected physical camera. This moving-camera, image-space demonstration is not a calibrated industrial protective system.
 
-## Run the verified warehouse demonstration
+![Verified recorded warehouse video with person boxes and restricted zone](evidence/07-real-mode-dashboard/warehouse-real-video-overlay.jpg)
 
-The actual MP4 remains external. Download the licensed source or use the already validated local file; the launcher rejects any different SHA-256.
+## What works
+
+- Person boxes, confidence and reported/estimated track IDs aligned with the displayed source frame.
+- Normalized polygon drawing/editing and validated zone configuration.
+- Entry/hold/exit/reentry logic, with first-observed-inside distinguished from observed crossings.
+- Incident filtering, details, acknowledgment and persistent session history.
+- REST/WebSocket updates, reconnect behavior, bounded frame processing and explicit source errors.
+- Separate V2 and independent-source databases; replay visualization does not silently append incidents.
+- Explicit **SIMULATED TEST DATA** scenarios, distinct from actual model detections.
+
+### Verified warehouse result
+
+The preserved Warehouse V2 run contains **254 frames, 522 person observations and 6 raw tracker IDs**. Application analysis produced **2 observed-entry alerts, including 1 same-track reentry**, **2 observed exits**, **0 first-seen-inside alerts** and **43 suppressed inside holds**. Track IDs are not a count of unique physical people.
+
+All source timestamps were checked with the verified **+80 ms** mapping. Browser frames at 1, 2, 3 and 4 seconds were reviewed against actual boxes and viewport bounds. Native ROI occupancy disagrees with application bottom-center geometry on **9 frames**; the cause remains unresolved. The camera moves and the ROI is a hypothetical frame-relative aisle region. [Detailed audit and limitations](evidence/06-real-metadata/factory-metadata-audit.json).
+
+Historical street footage, its 1,029-frame run and its 33-alert analysis remain preserved as separate fallback evidence; they are not factory results.
+
+## Performance: keep the measurement scopes separate
+
+| Evidence | Result | Scope and limitation |
+| --- | --- | --- |
+| Factory TensorRT FP16 engine | **188.877 reported QPS**, **5.28244 ms GPU compute**, **6.19475 ms engine end-to-end latency** | Existing PipeGen engine report; not full DeepStream FPS. The report's measured-device field is unidentified |
+| Reported factory engine power | **135.222 W**, 66 samples, stated ±5 W | GPU-board power during the engine run, reported from `nvidia-smi`; not whole-system power or independently remeasured here |
+| Independent simulated-USB CPU sample | **12 WebSocket frames, 25 person observations; 685.28 ms median processing**, approximately **1.46 reciprocal-median frames/s** | ONNX Runtime CPU JPEG/preprocess/inference/postprocess; not camera throughput, GPU timing or a controlled FP16 comparison |
+
+The factory engine is TensorRT **10.3.0**, **52,792,260 bytes**, with **199 layers: 185 FP16 and 14 FP32**. Exact hashes and measurement fields are in the [factory engine summary](evidence/04-tensorrt-fp16/warehouse-engine-summary.json). Independent inference uses **ONNX Runtime 1.31.0 / CPUExecutionProvider**, YOLOv8m input `[1,3,480,640]`; [browser acceptance evidence](evidence/independent-ai/final-browser-acceptance.json) records the CPU sample.
+
+A shelving false positive was observed near media time 4.24 seconds at confidence approximately 0.54. IoU-based independent IDs are approximate associations; looping test footage does not establish unique people or physical reentry. **No formal precision, recall, F1 or mAP is currently claimed.** Modeled Orin values are not measured Jetson performance.
+
+## Run locally
+
+Use **Python 3.12** for the tested lockfile and **Node 22.18+** for the complete checks (tested Node 24). Install application dependencies on a clean checkout:
+
+```bash
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements-lock.txt
+cd frontend
+npm install
+cd ..
+```
+
+For lockfile-based pnpm installation, use `pnpm install --frozen-lockfile --store-dir .pnpm-store` in `frontend/` instead of npm. [Setup](docs/setup.md) includes the existing bundled runtime paths for the development host.
+
+The licensed warehouse MP4 and model/runtime binaries are **external assets**, not included in ordinary Git history. The V2 launcher validates the known video/metadata hashes and refuses a mismatched source. From the repository root, use separate terminals:
+
+**1. Warehouse V2 backend, port 8003**
 
 ```bash
 ./scripts/start-warehouse-demo.sh /absolute/path/to/warehouse-workers-4281405-1080p.mp4
 ```
 
-Second terminal:
+**2. Optional independent AI backend, port 8005**
 
 ```bash
-SENTINEL_API_TARGET=http://127.0.0.1:8003 ./scripts/start-frontend.sh --port 5173 --strictPort
+AI_PORT=8005 ./scripts/start-ai-monitor.sh
 ```
 
-Open **http://127.0.0.1:5173/** and press **Play recorded video**. Playback and seeks do not write duplicate incidents. A separate explicit **Analyze new session** action evaluates all genuine metadata and creates one new persisted analysis session; repeating that action intentionally appends another session. The existing demo database contains the two verified warehouse alerts. A clean clone starts with empty history until analysis is requested.
+This independent service needs the separately configured ONNX model and CPU runtime. The launcher reads `SENTINEL_AI_HOME` or explicit model/dependency/data paths; its development-host default is `/mnt/seagate4/PipeGenHackathon/independent-ai-monitor`. Missing inference dependencies produce an unavailable state, never fabricated detections. See the [independent setup and protocol](docs/independent-ai-monitor.md).
 
-The manifest example is [examples/warehouse-profile.json](examples/warehouse-profile.json); actual matching metadata is preserved in evidence, while large video/model files remain external. The helper writes only ignored local configuration and never overwrites a differing user manifest. [Exact setup](docs/setup.md#factory-release-profiles).
-
-For missing-asset testing only, `PORT=8002 ./scripts/start-factory-replay.sh` without a profile serves an explicit PENDING view and never substitutes another source.
-
-## Run genuine PipeGen replay
+**3. Frontend, port 5173**
 
 ```bash
-bash scripts/start-real-replay.sh /absolute/path/to/actual/metadata.json
+SENTINEL_API_TARGET=http://127.0.0.1:8003 \
+SENTINEL_AI_TARGET=http://127.0.0.1:8005 \
+./scripts/start-frontend.sh --port 5173 --strictPort
 ```
 
-Then run `bash scripts/start-frontend.sh`, open `http://127.0.0.1:5173`, and click **Start replay**. The full genuine metadata stays local; its fingerprint, a real frame excerpt, API/WebSocket/SQLite validation, and a real replay dashboard screenshot are included in `evidence/`. Replay uses its own database and explicit labels. [Instructions and verified semantics](docs/real-pipegen-replay.md).
+Open **http://127.0.0.1:5173/**. Choose Warehouse V2 for recorded metadata replay or AI Camera Monitor for independent sources. Playback/seek does not create new V2 incidents; **Analyze new session** intentionally creates a separate analysis. A clean checkout has no preexisting SQLite incident history until analysis is requested.
 
-## Run locally for synthetic QA
+The simulated USB harness is an explicit localhost **development-only** opt-in, `?cameraTest=1`; production defaults leave it disabled. The separately tested development URL was `http://127.0.0.1:5177/?cameraTest=1`. Read the [physical-camera acceptance procedure](docs/camera-hardware-acceptance.md) before claiming hardware readiness has been tested.
 
-From this directory, install dependencies as described in [setup](docs/setup.md), then use two terminals:
+Keep this unauthenticated prototype on localhost. Run the storage guard before additional large assets or experiments; preserve at least 1 GiB root and 20 GiB external reserve. No Docker, GPU or PipeGen process is needed merely to replay existing metadata or run the independent CPU module.
 
-```bash
-SENTINEL_MODE=synthetic ./scripts/start-backend.sh
+## Architecture
+
+```mermaid
+flowchart LR
+    P[PipeGen / TensorRT / DeepStream run] --> M[Preserved genuine metadata]
+    V[Matching recorded video] --> R[V2 synchronized replay]
+    M --> R
+    R --> Z[Zone and incident processing]
+    F[Independent real video / browser frames] --> O[ONNX Runtime CPU]
+    O --> I[Independent session and zone processing]
+    S[Explicit simulated fixtures] -. simulated provenance .-> I
+    Z --> D[V2 SQLite / REST / WebSocket]
+    I --> A[Separate AI SQLite / REST / WebSocket]
+    D --> U[React dashboard]
+    A --> U
 ```
 
-```bash
-./scripts/start-frontend.sh
-```
+PipeGen remains the actual perception source for the hackathon V2 pipeline. The optional CPU worker processes real image pixels independently and never consumes old V2 detections as its inference result. [Architecture](docs/architecture.md) · [Canonical API schema](docs/canonical-schema.md) · [PipeGen handoff](docs/pipegen-handoff.md).
 
-Open `http://127.0.0.1:5173`. Synthetic mode has distinct labels, explicit synthetic provenance and a separate SQLite database. Switch to `SENTINEL_MODE=live` for genuine data; it starts without demonstration incidents. Keep the default mode-specific database paths.
+## Verification and evaluation status
 
-## Implemented application
-
-- React/TypeScript industrial dashboard, detection metadata view and source/connection status.
-- Polygon zone CRUD, normalized coordinates and validation.
-- Bottom-center foot position, confidence thresholds, entry/exit/re-entry, per-track deduplication and stale-state expiry.
-- SQLite incident history, acknowledgment, filters and analytics.
-- FastAPI REST endpoints and WebSocket updates with frontend reconnect.
-- Canonical detection/native analytics ingestion, optional JSONL export and a fail-closed PipeGen parser boundary.
-- Explicit synthetic test controls and meaningful backend tests.
-
-The backend remains usable while PipeGen is disconnected. Missing GPU/FPS/latency telemetry stays unavailable. This local prototype has no authentication and should bind localhost.
-
-## Integration boundary
-
-```text
-Camera/video → CraftifAI PipeGen → ONNX/TensorRT → DeepStream tracked metadata
-  → genuine metadata adapter → zone-entry engine → SQLite/JSONL → WebSocket/REST → dashboard
-```
-
-`POST /api/ingest/detections` consumes **our canonical schema**, shown in [the example](examples/canonical-detection.json), with normalized `[x1,y1,x2,y2]` bounding boxes. It is not a statement of PipeGen's native format. `POST /api/ingest/pipegen` intentionally returns 501 until `SENTINEL_PIPEGEN_PARSER=module:callable` is configured from genuine metadata. Read [integration instructions](docs/pipegen-integration.md).
-
-## Verify
+The released application checkpoint passed **161 backend tests, 35 frontend tests, TypeScript and production build**. This included three actual-model HTTP/WebSocket source tests, simulated USB discovery/permission/device cleanup, genuine upload, mobile layout, acknowledgment/restart recovery and V2 regression. Physical USB testing remains NOT TESTED. [Executed browser evidence](evidence/independent-ai/final-browser-acceptance.json) · [Restart/isolation evidence](evidence/independent-ai/restart-isolation-verification.json).
 
 ```bash
 ./scripts/check.sh
 ```
 
-The frontend build includes TypeScript checking. Setup includes Codex bundled-runtime alternatives when npm or pip is absent on the host. See [verification results](docs/verification.md) for checks actually run; commands above are reproducible checks, not a claim they passed on every machine.
+The isolated evaluation audit adds **70 passing fixture checks**: 40 detection-metric cases, 20 alert-robustness cases and 10 human-review gate cases. These validate evaluation software; they are **not measured detector accuracy**. The host completed genuine YOLOv8m CPU inference for all **41 real warehouse frames** (median processing latency **629.744 ms**); **1/41 frames are marked reviewed in the latest available partial export**, so precision, recall, F1 and AP remain PENDING HUMAN REVIEW. Predictions are not ground truth; incomplete review must leave formal metrics unavailable. The user reports completing review, but the available exported file is still PARTIAL; a complete export must be validated before formal metrics. The optional accuracy study is explicitly decoupled from the tested application release.
 
-## Source guide
+- [Evaluation tools](evaluation/) and [reproducibility workflow](docs/evaluation/reproducibility.md).
+- [Alert robustness fixtures](evidence/evaluation/alert-robustness-tests.json).
+- [INT8 feasibility](docs/evaluation/int8-feasibility.md): technically plausible as a separate future candidate, but execution is NO-GO in this read-only audit. No INT8 advantage or completed bonus is claimed.
+- **Jetson: NOT DEPLOYED / NOT TESTED. Closed-loop physical board action: NOT TESTED.**
 
-- `backend/`: API, data models, geometry, state engine, SQLite and adapter.
-- `frontend/`: React application and Vite proxy.
-- `tests/`: backend logic/API regression tests.
-- `scripts/`: local launchers and explicit JSONL ingestion utility.
-- `.env.example`, `examples/`: configuration and canonical data references.
-- [Architecture](docs/architecture.md), [setup](docs/setup.md), [demo script](docs/demo-script.md).
-- [GitHub/source handoff](docs/github-readiness.md), [seven-stage evidence ledger](evidence/checklist.json).
-- [Submission checklist](docs/submission-checklist.md), [PipeGen export location](pipegen_export/README.md), [required real evidence](evidence/README.md).
+The isolated audit full check actually passed **231 backend tests, 35 frontend tests, TypeScript and production build**. The three existing actual-model HTTP/WebSocket tests ran against the available CPU worker. These totals include the 70 new evaluation fixtures; they do not establish detector accuracy. See the [current audit summary](evidence/evaluation/audit-summary.json).
 
-Required genuine hackathon artifacts remain: real Pipeline IR screenshot, real TensorRT speed report, GPU DeepStream run, PipeGen export and actionable output connected to real source data. Synthetic application screenshots are not substitutes.
+## Export and hackathon submission
 
-## Integration and recording handoff
+The [factory PipeGen export release](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18) and its [local audit](evidence/factory-export-audit.json) identify the genuine **134,818,189-byte** archive, SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`. The source video is external and its launcher requires `--input`. Historical private-access wording in old evidence records describes that earlier checkpoint; the repository is now **public**. Current release-asset access should still be checked for judges.
 
-- [Exact metadata contract](docs/canonical-schema.md) and [PipeGen operator handoff](docs/pipegen-handoff.md).
-- [Footage recording guide](demo-video/README.md) and [90-second narration](docs/demo-script.md).
-- [Expanded application QA](docs/application-qa.md) and [executed verification](docs/verification.md).
+The [official problem statement](evidence/01-requirement-and-flow/official-problem-statement.pdf) requires actual PipeGen flow, TensorRT/report evidence, GPU execution and actionable output. **Actual PipeGen IR node-graph and speed-report GUI screenshots remain gaps**; saved IR JSON and application screenshots do not replace them. A venue/live GPU demonstration is distinct from recorded dashboard replay.
 
-## Setup requirements and verified checks
+The user reports completing prerequisite feedback. The final project-submission link, receipt and judging access remain unconfirmed; **no final submission is claimed**. [Form handoff](docs/submission-form-handoff.md) · [Page-mapped checklist](docs/submission-checklist.md) · [Evidence ledger](evidence/checklist.json). The operative event cutoff selected by the user was **October 18, 2026, 4 PM IST**.
 
-Use **Python 3.12** for the tested locked environment and **Node 22.18+** for the complete checks (tested Node 24.19.0). Python source targets 3.10+, but execution on 3.10 has not been verified. The tested dependency versions are captured in `requirements-lock.txt` and `frontend/pnpm-lock.yaml`. No GPU, Docker, Redis or cloud database is needed for the application alone.
+## Source and media credits
 
-On a clean checkout with Python/pip and Node/npm available:
+`backend/` contains the two services, validation, event processing and persistence; `frontend/` contains the existing React dashboard; `tests/` and `frontend/tests/` hold checks; `evaluation/` adds review-gated offline evaluation; `docs/` and `evidence/` retain scoped provenance. This audit changes documentation/evaluation tooling, not the dashboard's visual design.
 
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements-lock.txt
-cd frontend
-npm install
-cd ..
-./scripts/check.sh
-```
-
-For a reproducible pnpm installation, use `pnpm install --frozen-lockfile --store-dir .pnpm-store` in `frontend/` instead of npm. [Setup](docs/setup.md) includes the already-installed Codex bundled runtime paths for this Linux host, where npm is absent.
-
-Latest executed checks: **136 backend tests passed, 25 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
-
-## API reference
-
-| Endpoint | Purpose |
-| --- | --- |
-| `GET /api/health`, `GET /api/status` | Application and source status; genuine telemetry when supplied |
-| `GET /api/zones`, `POST /api/zones` | List/create normalized restricted polygons |
-| `PUT /api/zones/{id}`, `DELETE /api/zones/{id}` | Edit/delete a zone; incident history is retained |
-| `GET /api/incidents`, `GET /api/incidents/{id}` | Filtered history and incident details |
-| `PATCH /api/incidents/{id}/acknowledge` | Acknowledge or unacknowledge |
-| `GET /api/analytics/summary` | Counts and daily trends from SQLite |
-| `POST /api/ingest/detections` | This application's canonical frame schema |
-| `POST /api/ingest/pipegen` | Genuine metadata through an explicitly configured parser |
-| `POST /api/synthetic/step` | Test generator; rejected in live mode |
-| `WS /ws/live` | Frame, incident, status and zone updates |
-
-Interactive OpenAPI documentation: `http://127.0.0.1:8000/docs` after starting the backend. Exact validation contracts are in `schemas/` and [canonical schema documentation](docs/canonical-schema.md).
-
-## Real mode after genuine integration
-
-Stop the synthetic backend. Configure the mapper only from actual PipeGen output, create matching camera zones in the separate live database, then run:
-
-```bash
-SENTINEL_MODE=live \
-SENTINEL_PIPEGEN_PARSER=backend.adapters.field_mapping:parse \
-SENTINEL_FIELD_MAPPING="$PWD/config/local-pipegen-mapping.json" \
-./scripts/start-backend.sh
-```
-
-Keep the frontend running in the other terminal. Feed actual producer records through the configured adapter, using the [metadata handoff](docs/pipegen-handoff.md). Without a genuine mapping, start `SENTINEL_MODE=live ./scripts/start-backend.sh` to inspect an empty waiting-for-source dashboard; native ingestion deliberately remains unconfigured.
-
-## Video credit and licensing
-
-Prepared source footage: [Busy City Intersection with Pedestrians and Traffic](https://www.pexels.com/video/busy-city-intersection-with-pedestrians-and-traffic-36306747/) by **Nothing Ahead**, provided under the [Pexels License](https://www.pexels.com/license/). The original and losslessly remuxed test input remain on external storage and are excluded from Git. Respect the linked license and avoid implying endorsement. This credit does not relicense the footage as application source.
-
-The selected input is `people-crossing.mp4`, H.264 MP4, 1920×1080, approximately 17.17 seconds. Its SHA-256 was checked against the PipeGen operator's provenance record. See [source provenance](demo-video/source-provenance.json) and [recording instructions](demo-video/README.md). This is source preparation only: the clip does not establish the same person's exit/re-entry, genuine detections, TensorRT performance or a real dashboard alert.
-
-## Pending submission evidence
-
-Genuine metadata and the explicitly labeled replay dashboard are now verified in [the ledger](evidence/checklist.json). Model/compiler summaries are partial evidence; the official Pipeline IR screenshot, full export and original run evidence still need packaging. Clearly named directories under `evidence/` cover Requirement/finalized flow, official Pipeline IR, actual model details, TensorRT FP16 report, DeepStream execution, real metadata and real-mode dashboard demonstration. Historical synthetic screenshots remain labeled; the new real replay screenshot is under `evidence/07-real-mode-dashboard/`.
-
-## Synchronized real recorded video
-
-Run `./scripts/start-synchronized-replay.sh` and `./scripts/start-synchronized-frontend.sh` in separate terminals, then open **http://127.0.0.1:5174**. These helpers verify the known original-video/metadata hashes before applying the inspected 33,366,700 ns timestamp offset. Video, raw metadata and databases remain outside Git.
-
-The generic backend settings are `SENTINEL_REPLAY_VIDEO`, `SENTINEL_REPLAY_VIDEO_PTS_OFFSET_NS` and optional `SENTINEL_REPLAY_VIDEO_TOLERANCE_NS`; configure them only from verified media timing. See [synchronized replay setup and verification](docs/synchronized-video-replay.md) for exact paths, alternate ports, API Range support, metadata-only fallback and screenshots. Playback uses the presented video clock and never creates duplicate incident rows. The existing database retains 66 historical rows from two earlier 33-alert analysis sessions; the verified single-session analysis remains 33 alerts.
-
-
-## Optional independent AI Camera Monitor
-
-The separate `feature/independent-ai-camera` work adds simulation, recorded-video sampling, browser MP4 input and future USB capture through an independent ONNX Runtime CPU service. It preserves Warehouse V2. See [implementation and executed evidence](docs/independent-ai-monitor.md) and [hardware acceptance — NOT TESTED](docs/camera-hardware-acceptance.md). Independent real CPU inference is verified on 26 sampled frames and genuine virtual/upload browser checks. Final checks passed 161 backend tests, 35 frontend tests, TypeScript and production build. Host storage guard now passes (exit 0; about 1.4 GB root/39 GB external free). The user approved public feature push and a main merge only after final checks/V2 regression pass. Simulated USB captureStream genuinely processes real video through the CPU model; final disconnect/reconnect, cleanup, persistence and V2 regression passed. Physical USB hardware remains NOT TESTED.
+Warehouse footage: [Men Working in a Warehouse](https://www.pexels.com/video/men-working-in-a-warehouse-4281405/) by **Tiger Lily / Pexels**, under the [Pexels License](https://www.pexels.com/license/). Historical street footage: [Busy City Intersection with Pedestrians and Traffic](https://www.pexels.com/video/busy-city-intersection-with-pedestrians-and-traffic-36306747/) by **Nothing Ahead / Pexels**. Source media remains external; footage licenses are separate from application source and do not imply endorsement. [Video provenance and recording notes](demo-video/README.md).

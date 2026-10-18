@@ -1,8 +1,8 @@
-.venv/
+.venv
 __pycache__/
 *.py[cod]
 .pytest_cache/
-node_modules/
+node_modules
 frontend/dist/
 .env
 .env.local
@@ -49,3 +49,7 @@ core.*
 
 # Reviewed local field mappings may contain private camera identifiers
 config/local-*
+
+# Evaluation frames/predictions stay on approved external storage
+/evaluation-data/
+/evaluation-artifacts/

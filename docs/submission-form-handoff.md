@@ -12,18 +12,18 @@ The link opens **Feedback Form: PipeGen Hackathon**, page 1 of 2. Its introducti
 
 This first page asks for the participant's name, experience, setup, model/input provenance, progress, time spent, interventions, subjective product ratings and feedback. The participant must supply their own honest answers. No answers were entered or submitted during this read-only review; no account details were copied into source.
 
-Complete feedback, open the project-submission link shown on the final page, then review the actual project fields. The final project link and successful submission receipt are still **PENDING**. Do not assume the feedback URL alone is the final project submission.
+The user reports having completed the prerequisite feedback. This is user-reported status, not an assistant-submitted receipt. Open the project-submission link revealed by that flow and review its actual project fields. The final project link and successful submission receipt are still **PENDING**. Do not assume the feedback URL alone is the final project submission.
 
 ## Project material to have ready
 
 - Project: Hazard Zone Sentinel; Track A — PipeGen; workplace restricted-zone safety.
-- Source: https://github.com/akilanpl/hazard-zone-sentinel (private; judge access must be arranged).
+- Source: https://github.com/akilanpl/hazard-zone-sentinel (public; current release-asset access and organizer acceptance still need checking).
 - Explain actual input, tasks, selected model/version, engine precision and actionable output.
 - Attach genuine Pipeline IR node-graph and TensorRT speed-report screenshots.
-- Link the exact matching export through an organizer-accepted accessible mechanism; a private draft release may be inaccessible to judges.
+- Link the exact matching export through an organizer-accepted accessible mechanism; historical private/draft access records do not establish current judge access. The factory export has a separate release link; verify it directly before submission.
 - Demonstrate the GPU pipeline on hardware; downstream recorded replay is supporting application evidence.
-- Separate historical street results from the new warehouse run; fill factory counts only after validation.
+- Separate historical street results from verified warehouse V2: 254 frames, 522 person observations, 6 raw IDs, 2 computed entries including 1 same-track reentry, and 2 exits. Independent CPU/simulated USB results are separate.
 - Claim INT8/Jetson or other bonuses only with genuine measurements/evidence.
 - Keep the final submission confirmation/receipt and timestamp.
 
-No form has been submitted by this assistant.
+No form has been submitted by this assistant. The final project-submission receipt remains UNKNOWN/PENDING; do not equate reported feedback completion with final project submission.

@@ -1,0 +1,12 @@
+{
+  "scope": "Read-only preservation inventory; no study data overwritten",
+  "dataset_manifest_sha256": "fffb4409485d6a01a08081b69a5bb2ad28d30bd92dfc2fa6a3ece391f4c69fc0",
+  "prediction_sha256": "f33f76fa56e477bf6baacf8970fc8e5404e28dc8ef477f17ab593717d049c326",
+  "original_partial_annotation_sha256": "cdfce0f6d0d72a839c398d954d9f78148b25c6deb7106fdb276facd10c0fd641",
+  "partial_backup": "evidence/evaluation/annotations-human-reviewed.partial.json",
+  "external_experiment": "/mnt/seagate4/PipeGenHackathon/independent-ai-monitor/evaluation-2026-10-18",
+  "frames": 41,
+  "formal_accuracy": "PENDING HUMAN REVIEW",
+  "production_threshold": 0.5,
+  "production_threshold_changed": false
+}

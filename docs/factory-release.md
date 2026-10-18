@@ -15,7 +15,7 @@ The new Warehouse FP16 v2 project `5b159399-c172-4ac5-8b45-430bd54a4a99` produce
 | Observed exits / initially inside | 2 / 0 |
 | Repeated inside observations suppressed | 43 |
 | Native ROI disagreement | 9 frames; cause unresolved, not hidden or forced to agree |
-| Final automated checks | 136 backend tests, 25 frontend tests, TypeScript and production build passed |
+| Current released application checks | 161 backend tests, 35 frontend tests, TypeScript and production build passed; includes independent module while preserving V2 |
 
 The actual generated `RestrictedZone` polygon uses pixels `(806,799),(1190,799),(1190,929),(806,929)`. The application uses these exact coordinates normalized by 1920×1080. The camera moves and the zone is hypothetical and frame-relative; this is not a calibrated industrial safety deployment.
 
@@ -55,7 +55,7 @@ The launcher binds the explicit video/metadata hashes, source, dimensions, verif
 
 ## Export and remaining submission gates
 
-The actual new export is independently audited and uploaded as a [private repository prerelease asset](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18): **134,818,189 bytes**, SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`. GitHub's digest matches the unchanged local archive. The video stays external and its wrapper requires `--input`; the archive is outside ordinary Git history.
+The actual new export is independently audited and uploaded as a [factory export prerelease asset](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18): **134,818,189 bytes**, SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`. GitHub's digest matches the unchanged local archive. The video stays external and its wrapper requires `--input`; the archive is outside ordinary Git history.
 
 The [official seven-page PDF](../evidence/01-requirement-and-flow/official-problem-statement.pdf) requires the five-stage flow, TensorRT report, actual GPU execution and actionable output (page 2), a hardware demonstration (page 5), and source/export, description and actual IR/speed-report screenshots (page 6). Pitch/video and INT8/Jetson bonuses are optional. See the [page-mapped checklist](submission-checklist.md).
 
@@ -63,7 +63,12 @@ Remaining gates:
 
 - Actual PipeGen GUI Pipeline IR and speed-report screenshots; app screenshots do not replace them.
 - Venue/live hardware demonstration and its required execution evidence.
-- Authorized judge access to the private source/export and organizer acceptance of the asset mechanism.
+- Repository is now public. Verify current release-asset availability to judges and organizer acceptance of the linked export mechanism; historical private-access records remain preserved.
 - Actual project-submission link and receipt. User reports the prerequisite feedback complete; the final project link is still awaited.
 
 The application is verified as **recorded factory replay**. The hackathon submission is not marked complete.
+
+
+## Current release/audit boundary
+
+Public main includes the independent AI Camera Monitor; the existing dashboard has not undergone a visual redesign. The evaluation audit is isolated from the released baseline. Its 70 new passing fixture checks test metrics/alert/review-gate software, not model accuracy; the new 41-frame real evaluation still awaits host data and independent human annotation. No formal accuracy or new INT8/Jetson/closed-loop result is established. See `evaluation/int8-feasibility.md` and the forthcoming review-gated evaluation/reproducibility report. The user reports prerequisite feedback complete; final project receipt remains unconfirmed.

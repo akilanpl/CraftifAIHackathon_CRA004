@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "scope": "Deterministic fixture business logic and direct API handler audit",
+  "real_model_inference_executed": false,
+  "physical_camera_hardware_test": "NOT TESTED",
+  "websocket_scope": "In-process socket doubles; no browser or network transport claim",
+  "database_scope": "Temporary isolated test databases only; V2 databases never opened",
+  "pytest_case_count": 20,
+  "assertion_cases_passed": 20,
+  "verified_contract_cases": 16,
+  "observed_limitation_cases": 4,
+  "unexpected_failure_cases": 0,
+  "interpretation": "Passing tests characterize current behavior; observed limitations are not robustness successes.",
+  "not_evaluated": [
+    "Real detector accuracy",
+    "Browser permission handling",
+    "Physical USB hardware",
+    "V2 full regression",
+    "Actual network WebSocket delivery"
+  ],
+  "cases": [
+    {
+      "case": "test_case_01_empty_frames_are_safe",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "frames": 3,
+        "incidents": 0,
+        "final_occupancy": 0
+      }
+    },
+    {
+      "case": "test_case_02_entry_then_long_hold_is_one_alert",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "frames": 11,
+        "inside_frames": 10,
+        "incidents": 1,
+        "entry_basis": "observed_outside_to_inside"
+      }
+    },
+    {
+      "case": "test_case_03_initial_inside_is_not_a_claimed_crossing",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "incidents": 1,
+        "entry_basis": "first_observed_inside",
+        "synthetic": true
+      }
+    },
+    {
+      "case": "test_case_04_exit_and_reentry_use_observed_positions",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "alerts": 2,
+        "observed_exits": 2,
+        "observed_reentries": 1
+      }
+    },
+    {
+      "case": "test_case_05_multiple_people_do_not_share_entry_state",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "distinct_fixture_tracks": 2,
+        "incidents": 2,
+        "held_duplicate_alerts": 0
+      }
+    },
+    {
+      "case": "test_case_06_low_confidence_does_not_make_false_exit",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "threshold": 0.5,
+        "low_confidence": 0.4,
+        "incidents": 1,
+        "false_exits": 0
+      }
+    },
+    {
+      "case": "test_case_07_missing_tracking_id_is_not_invented",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "missing_ids_skipped": 1,
+        "incidents": 0,
+        "warning_emitted": true
+      }
+    },
+    {
+      "case": "test_case_08_short_occlusion_is_not_an_exit_or_new_entry",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "missed_observations": 2,
+        "incidents": 1,
+        "observed_exits": 0,
+        "duplicate_on_return": false
+      }
+    },
+    {
+      "case": "test_case_09_long_loss_reacquisition_has_limited_identity_evidence",
+      "assertions_completed": true,
+      "classification": "OBSERVED_LIMITATION",
+      "observations": {
+        "gap_seconds": 4,
+        "incidents": 2,
+        "claimed_observed_exits": 0,
+        "claimed_verified_reentries": 0
+      },
+      "limitation": "After the retention timeout, reacquisition can create another initial-inside alert; physical identity is not established."
+    },
+    {
+      "case": "test_case_10_boundary_jitter_can_repeat_alerts_without_hysteresis",
+      "assertions_completed": true,
+      "classification": "OBSERVED_LIMITATION",
+      "observations": {
+        "boundary_x": 0.4,
+        "jitter_amplitude": 0.001,
+        "observations": 6,
+        "incidents": 3
+      },
+      "limitation": "Default one-frame entry logic has no spatial hysteresis; small boundary jitter produces repeated geometric entries."
+    },
+    {
+      "case": "test_case_11_estimated_id_changes_can_repeat_initial_inside_alerts",
+      "assertions_completed": true,
+      "classification": "OBSERVED_LIMITATION",
+      "observations": {
+        "nonoverlapping_positions": 2,
+        "estimated_ids": 2,
+        "incidents": 2
+      },
+      "limitation": "Greedy IoU associations cannot prove that a rapidly moving or reassigned track is the same physical person; duplicate physical-person alerts remain possible."
+    },
+    {
+      "case": "test_case_12_polygon_boundary_and_resolution_are_consistent",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "boundary_is_inside": true,
+        "frame_dimensions": [
+          1280,
+          720
+        ],
+        "coordinates": "normalized xyxy",
+        "browser_alignment_tested": false
+      }
+    },
+    {
+      "case": "test_case_13_nonmonotonic_or_nonfinite_media_clock_rejected",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "rejected_inputs": 7,
+        "status_codes": [
+          409,
+          409,
+          409,
+          409,
+          422,
+          422,
+          422
+        ],
+        "inference_calls": 0,
+        "incidents": 0
+      }
+    },
+    {
+      "case": "test_case_14_identical_retry_cached_changed_bytes_rejected",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "identical_retry": "cached",
+        "changed_bytes": "409 rejected",
+        "inference_calls": 0
+      }
+    },
+    {
+      "case": "test_case_15_source_and_capture_mismatch_cannot_claim_hardware",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "rejected_origin_source_combinations": 4,
+        "hardware_claims_generated": 0
+      }
+    },
+    {
+      "case": "test_case_16_malformed_shapes_and_oversize_frames_leave_no_incidents",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "invalid_polygons": 3,
+        "rejected_frame_inputs": 4,
+        "inference_calls": 0,
+        "worker_released": true,
+        "incidents": 0
+      }
+    },
+    {
+      "case": "test_case_17_pause_stop_and_worker_backpressure_are_bounded",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "queue_capacity": 0,
+        "busy_status": 429,
+        "paused_and_stopped_status": 409,
+        "controls_idempotent": true,
+        "stale_result_cleared": true
+      }
+    },
+    {
+      "case": "test_case_18_session_isolation_restart_and_ack_preserve_history",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "sessions": 2,
+        "source_databases_separate": true,
+        "recovered_incidents": 1,
+        "acknowledgment_persisted": true,
+        "restart_state": "stopped",
+        "v2_database_opened": false
+      }
+    },
+    {
+      "case": "test_case_19_slow_or_disconnected_socket_does_not_lose_alert",
+      "assertions_completed": true,
+      "classification": "OBSERVED_LIMITATION",
+      "observations": {
+        "slow_client_removed": true,
+        "disconnected_client_removed": true,
+        "healthy_message_types": [
+          "frame",
+          "incident",
+          "status"
+        ],
+        "persisted_incidents": 1,
+        "measured_handler_seconds": 1.003
+      },
+      "limitation": "Broadcast waits up to one second per failing client and sends sequentially; many slow clients can delay the response and hold the single inference slot. This is a transport double, not real network evidence."
+    },
+    {
+      "case": "test_case_20_simulated_usb_is_not_fixture_inference_or_hardware_proof",
+      "assertions_completed": true,
+      "classification": "VERIFIED_CONTRACT",
+      "observations": {
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_verified": false,
+        "hardware_test": "NOT TESTED",
+        "unavailable_inference_status": 501,
+        "fake_fallback_detections": 0
+      }
+    }
+  ]
+}

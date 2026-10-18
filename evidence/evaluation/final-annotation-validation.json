@@ -1,0 +1,25 @@
+{
+  "path": "/home/vijayababu/Downloads/annotations-human-reviewed.json",
+  "sha256": "cdfce0f6d0d72a839c398d954d9f78148b25c6deb7106fdb276facd10c0fd641",
+  "record_status": "PARTIAL",
+  "declared_reviewed_frames": 1,
+  "actual_reviewed_frames": 1,
+  "total_frames": 41,
+  "box_count": 7,
+  "nonempty_records": [
+    {
+      "image_id": "warehouse-frame-000",
+      "boxes": 6,
+      "reviewed": false
+    },
+    {
+      "image_id": "warehouse-frame-006",
+      "boxes": 1,
+      "reviewed": true
+    }
+  ],
+  "accepted_for_formal_accuracy": false,
+  "reason": "Incomplete export: partial human review; unknown frames cannot be treated as negatives",
+  "user_reports_approval": true,
+  "formal_accuracy": "PENDING COMPLETE ANNOTATION EXPORT"
+}

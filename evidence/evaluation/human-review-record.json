@@ -1,0 +1,11 @@
+{
+  "record": {
+    "status": "PENDING",
+    "reviewer_name": null,
+    "complete": false,
+    "model_predictions_used_as_ground_truth": false
+  },
+  "accepted": false,
+  "annotation_file_sha256": "fa1e7c712988f0316a2b4fad8724358e5357e55901694f5c0ec38dff529f3983",
+  "independently_human_reviewed_images": 0
+}

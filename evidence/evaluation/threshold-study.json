@@ -1,0 +1,77 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "human_review_record_accepted": false,
+  "confidence_thresholds": [
+    {
+      "confidence_threshold": 0.25,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 94,
+      "threshold_rejection_count": 4006,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.4,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 88,
+      "threshold_rejection_count": 4012,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.5,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 82,
+      "threshold_rejection_count": 4018,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.6,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 80,
+      "threshold_rejection_count": 4020,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.7,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 80,
+      "threshold_rejection_count": 4020,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    }
+  ],
+  "precision_recall_f1_available": false,
+  "recommendation": "Retain existing production0.50; do not tune on unreviewed predictions",
+  "production_threshold_changed": false,
+  "detection_rejection_is_not_false_positive_count": true,
+  "limitations": [
+    "Single short moving-camera source, no deployment generalization",
+    "Detector outputs capped at100 NMS0.45 person candidates perframe;AP conditional on these bounded outputs",
+    "Review boxes cover visible extents, not hidden full bodies",
+    "No crowd/ignore/area-ranges or full COCO benchmark semantics",
+    "CPU processing is not PipeGen TensorRT FP16 speed evidence"
+  ]
+}

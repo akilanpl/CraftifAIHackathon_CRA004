@@ -1,0 +1,18 @@
+{
+  "scope": "Read-only GETs; no history or production settings changed",
+  "health": {
+    "status": "ok",
+    "service": "Hazard Zone Sentinel",
+    "mode": "replay"
+  },
+  "incident_ids": [
+    "6c5b78c4-d694-4488-a079-313496f5415b",
+    "3da55579-c362-491b-a530-24e1531209ff"
+  ],
+  "incident_count": 2,
+  "acknowledged": [
+    false,
+    false
+  ],
+  "matches_preserved_baseline": true
+}
