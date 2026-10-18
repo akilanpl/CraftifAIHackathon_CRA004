@@ -239,7 +239,7 @@
           "status"
         ],
         "persisted_incidents": 1,
-        "measured_handler_seconds": 1.003
+        "measured_handler_seconds": 1.004
       },
       "limitation": "Broadcast waits up to one second per failing client and sends sequentially; many slow clients can delay the response and hold the single inference slot. This is a transport double, not real network evidence."
     },

@@ -1,0 +1,111 @@
+{
+  "status": "PASS \u2014 VERIFIED APPLICATION RELEASE; ACCURACY DEFERRED",
+  "tested_source_commit": "eaa3efd6c149395ae2a8cb9cc7cb48c29ccb16c3",
+  "followup_commit_scope": "Evidence and README only; functional tree unchanged after this test run",
+  "backend_passed": 231,
+  "frontend_passed": 35,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "test_skips": 0,
+  "actual_model_http_websocket_sources": 3,
+  "browser": {
+    "v2_warehouse_box_alignment": "PASS frame106 media4.24s PTS4.32s delta0ms",
+    "simulation": "PASS two entries/two exits/one reentry",
+    "simulated_usb_permission_denied": "PASS",
+    "simulated_usb_device_selection": "PASS sim-usb-b",
+    "simulated_usb_real_inference": "PASS visually aligned actual workers",
+    "simulated_usb_pause_resume": "PASS",
+    "simulated_usb_disconnect_cleanup": "PASS zero streams/live tracks and stopped session",
+    "simulated_usb_reconnect": "PASS",
+    "uploaded_mp4": "PASS genuine 960x540 frame with three visible workers",
+    "uploaded_pause_resume_speed_end": "PASS half-speed, pause/resume, COMPLETE",
+    "session_acknowledgments": "PASS simulation and uploaded session API history",
+    "source_switching_isolation": "PASS new source starts with empty selected history",
+    "virtual_camera": "PASS13 independently inferred frames and isolated history",
+    "mobile": "PASS390x844",
+    "console_warnings": 0,
+    "console_errors": 0
+  },
+  "sessions": {
+    "e6793c18": {
+      "id": "e6793c18-ffd0-48b5-bd66-66bb607d4735",
+      "source_type": "simulation",
+      "last_seq": 8,
+      "state": "stopped",
+      "incident_count": 2,
+      "transition_counts": {
+        "entries": 2,
+        "exits": 2,
+        "reentries": 1
+      }
+    },
+    "581db37b": {
+      "id": "581db37b-f918-4b0c-b9d9-4cbd8fb9d6a7",
+      "source_type": "usb_camera",
+      "last_seq": 25,
+      "state": "stopped",
+      "incident_count": 4,
+      "transition_counts": {
+        "entries": 4,
+        "exits": 2,
+        "reentries": 1
+      }
+    },
+    "4bccf598": {
+      "id": "4bccf598-b28d-429e-93ae-84ba79383e98",
+      "source_type": "uploaded_video",
+      "last_seq": 25,
+      "state": "stopped",
+      "incident_count": 2,
+      "transition_counts": {
+        "entries": 2,
+        "exits": 1,
+        "reentries": 1
+      }
+    },
+    "832f2807": {
+      "id": "832f2807-5fac-4e71-9d53-fa0a9dc730b1",
+      "source_type": "virtual_video",
+      "last_seq": 13,
+      "state": "stopped",
+      "incident_count": 1,
+      "transition_counts": {
+        "entries": 1,
+        "exits": 1,
+        "reentries": 0
+      }
+    }
+  },
+  "simulated_usb_ws_sample": {
+    "frames": 3,
+    "person_observations": 4,
+    "median_processing_latency_ms": 694.5962040008453,
+    "observations_are_not_unique_people": true
+  },
+  "v2_original_incidents": {
+    "count": 2,
+    "ids": [
+      "6c5b78c4-d694-4488-a079-313496f5415b",
+      "3da55579-c362-491b-a530-24e1531209ff"
+    ],
+    "acknowledgments_unchanged": true
+  },
+  "original_sha256": {
+    "video": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+    "metadata": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+    "original_model": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+    "fp16_engine": "4c11b6a4eee9274f29c55f5be92fee24357dca4d1b167b4ab5ca0ea5a4786750"
+  },
+  "review_frames_preserved": 41,
+  "production_threshold": 0.5,
+  "threshold_changed": false,
+  "formal_independent_accuracy": "PENDING HUMAN REVIEW",
+  "hardware": {
+    "physical_usb": "NOT TESTED",
+    "INT8_execution": "NOT TESTED",
+    "Jetson": "NOT TESTED",
+    "FirmGen_closed_loop": "NOT TESTED"
+  },
+  "design": "Freeze established; no active separate redesign or dirty shared-source worktree; no design changes merged",
+  "submission_receipt": "NOT VERIFIED"
+}

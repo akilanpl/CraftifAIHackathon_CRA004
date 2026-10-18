@@ -125,7 +125,7 @@ The isolated evaluation audit adds **70 passing fixture checks**: 40 detection-m
 - [INT8 feasibility](docs/evaluation/int8-feasibility.md): technically plausible as a separate future candidate, but execution is NO-GO in this read-only audit. No INT8 advantage or completed bonus is claimed.
 - **Jetson: NOT DEPLOYED / NOT TESTED. Closed-loop physical board action: NOT TESTED.**
 
-The isolated audit full check actually passed **231 backend tests, 35 frontend tests, TypeScript and production build**. The three existing actual-model HTTP/WebSocket tests ran against the available CPU worker. These totals include the 70 new evaluation fixtures; they do not establish detector accuracy. See the [current audit summary](evidence/evaluation/audit-summary.json).
+The integrated release full check actually passed **231 backend tests, 35 frontend tests, TypeScript and production build**. The three existing actual-model HTTP/WebSocket tests ran against the available CPU worker. These totals include the 70 new evaluation fixtures; they do not establish detector accuracy. See [post-integration acceptance](evidence/evaluation/integrated-release-acceptance.json) and [executed test output](evidence/evaluation/integrated-tests.txt).
 
 ## Export and hackathon submission
 
@@ -140,3 +140,9 @@ The user reports completing prerequisite feedback. The final project-submission 
 `backend/` contains the two services, validation, event processing and persistence; `frontend/` contains the existing React dashboard; `tests/` and `frontend/tests/` hold checks; `evaluation/` adds review-gated offline evaluation; `docs/` and `evidence/` retain scoped provenance. This audit changes documentation/evaluation tooling, not the dashboard's visual design.
 
 Warehouse footage: [Men Working in a Warehouse](https://www.pexels.com/video/men-working-in-a-warehouse-4281405/) by **Tiger Lily / Pexels**, under the [Pexels License](https://www.pexels.com/license/). Historical street footage: [Busy City Intersection with Pedestrians and Traffic](https://www.pexels.com/video/busy-city-intersection-with-pedestrians-and-traffic-36306747/) by **Nothing Ahead / Pexels**. Source media remains external; footage licenses are separate from application source and do not imply endorsement. [Video provenance and recording notes](demo-video/README.md).
+
+## Integrated release acceptance
+
+The post-integration browser run verified V2 replay, simulation, genuine independent virtual-camera and simulated USB inference, permission denial, disconnect/reconnect cleanup, uploaded MP4, pause/resume/half-speed/end, session acknowledgments and source isolation. Mobile390×844 passed visual inspection; the console warning/error check was empty. The original two V2 incidents and all source/model/engine hashes remained unchanged. Formal independent accuracy remains **PENDING HUMAN REVIEW** and does not block this verified application release. INT8, Jetson, FirmGen closed-loop hardware and physical USB hardware remain **NOT TESTED**. No final hackathon submission receipt has been verified.
+
+![Integrated genuine CPU detections from uploaded video](evidence/evaluation/released-upload.png)
