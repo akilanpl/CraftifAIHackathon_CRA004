@@ -10,7 +10,7 @@ The repository is an ordinary local directory, verified with `realpath` and `sta
 
 `stat` reported a directory owned by `vijayababu`, mode `775`; its README is a regular file owned by `vijayababu`, mode `664`. `git rev-parse --show-toplevel` resolved to that same directory. These checks establish a physical filesystem source directory rather than a hosted-only artifact. They do not imply that a remote GitHub repository exists.
 
-At this verification, `git remote` returned no configured remotes and `remote.origin.url` was unset. No repository was created on GitHub, and no source was published. Final local staging, commit and archive are handled separately by the primary agent.
+The authenticated GitHub account is `akilanpl`. The private repository is https://github.com/akilanpl/hazard-zone-sentinel and `origin` is `https://github.com/akilanpl/hazard-zone-sentinel.git`. Source is pushed on `main` using normal Git history, without a force-push. Repository visibility remains private; public publication has not been authorized. Credentials are kept outside this source repository.
 
 ## Exact launch commands on this host
 
@@ -46,4 +46,4 @@ Use the existing `frontend/pnpm-lock.yaml` and `requirements-lock.txt` for repro
 
 ## Submission state
 
-The application implementation and synthetic verification are ready for review. The seven required genuine PipeGen evidence stages remain **PENDING** in `../evidence/checklist.json`. A working synthetic application is not completion of the perception track. Capture genuine evidence, configure the actual metadata parser, verify real-mode behavior, and review the submission checklist before creating or publishing any remote repository.
+The application implementation and synthetic verification are ready for review. The seven required genuine PipeGen evidence stages remain **PENDING** in `../evidence/checklist.json`. A working synthetic application is not completion of the perception track. Capture genuine evidence, configure the actual metadata parser, verify real-mode behavior, and review the submission checklist before making the private repository public or submitting it for judging.

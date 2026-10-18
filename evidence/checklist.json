@@ -51,7 +51,9 @@
     "synthetic-submission-qa.jpg"
   ],
   "github_remote": {
-    "status": "NOT_CONFIGURED",
-    "published": false
+    "status": "PRIVATE",
+    "url": "https://github.com/akilanpl/hazard-zone-sentinel",
+    "branch": "main",
+    "publicly_published": false
   }
 }

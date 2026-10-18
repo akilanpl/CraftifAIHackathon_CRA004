@@ -2,6 +2,8 @@
 
 **Turning ordinary cameras into real-time workplace safety intelligence.**
 
+Source repository: [akilanpl/hazard-zone-sentinel](https://github.com/akilanpl/hazard-zone-sentinel) (private; authorized GitHub access required).
+
 A local React + FastAPI safety operations application for CraftifAI PipeGen perception output. Tracked people entering normalized restricted polygons produce persistent incidents, live dashboard updates and optional JSONL output.
 
 **Integration status:** the application and synthetic test workflow are implemented. The real PipeGen installation, native metadata mapping, TensorRT compilation/speed report and live DeepStream run are pending external integration. No model, live camera inference or benchmark result is fabricated. PipeGen is the required actual vision pipeline.
