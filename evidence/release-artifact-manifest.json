@@ -1,0 +1,77 @@
+{
+  "release_branch": "release/factory-safety",
+  "historical_street": {
+    "status": "PRESERVED",
+    "archive_audit": "export-archive-audit.json",
+    "metadata_and_dashboard_ledger": "checklist.json",
+    "measured_engine_summary": "04-tensorrt-fp16/measured-engine-summary.json",
+    "frame_count": 1029,
+    "person_observations": 7688,
+    "recurring_raw_track_ids": 89,
+    "computed_alerts": 33,
+    "initial_inside": 23,
+    "observed_entries": 10,
+    "observed_exits": 11,
+    "verified_reentries": 0,
+    "claim_limit": "Recorded street source; cannot establish factory behavior or model accuracy."
+  },
+  "factory": {
+    "status": "PENDING",
+    "video": {
+      "path": "/mnt/seagate4/PipeGenHackathon/demo/warehouse-workers-4281405-1080p.mp4",
+      "sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+      "bytes": 5305270,
+      "width": 1920,
+      "height": 1080,
+      "fps": 25,
+      "decoded_frames": 254,
+      "duration_seconds": 10.16,
+      "status": "CPU_DECODE_VERIFIED_INFERENCE_PENDING",
+      "source": "https://www.pexels.com/video/men-working-in-a-warehouse-4281405/",
+      "creator": "Tiger Lily",
+      "license": "https://www.pexels.com/license/"
+    },
+    "metadata": null,
+    "profile_manifest": null,
+    "pipeline_export": null,
+    "run_evidence": null,
+    "dashboard_evidence": null
+  },
+  "experiments": {
+    "reviewed_factory_dataset": "NOT_TESTED",
+    "fine_tuning": "NOT_TESTED",
+    "held_out_accuracy": "NOT_TESTED",
+    "fp16_vs_int8": "NOT_TESTED",
+    "jetson": "NOT_DEPLOYED_NOT_TESTED"
+  },
+  "distribution": {
+    "mechanism": "Private GitHub draft release asset",
+    "upload_executed": true,
+    "visibility_change": false,
+    "historical_release": {
+      "repository": "https://github.com/akilanpl/hazard-zone-sentinel",
+      "release_id": 416346957,
+      "tag": "safety/pre-factory-40d2975",
+      "draft": true,
+      "private_repository": true,
+      "release_url": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/untagged-08c98dc0944deddac332",
+      "asset_id": 653041956,
+      "asset_bytes": 134814850,
+      "asset_state": "uploaded",
+      "asset_digest": "sha256:f6d0caa49fa5957d1dc2c46e76af17bea62132c1af2d9dc53c42105b74253f1a",
+      "digest_matches_local": true,
+      "evidence_scope": "historical_street_baseline",
+      "access": "Authorized repository viewers; draft is not a public or final submitted release",
+      "verification_source": "Primary agent reported authenticated GitHub API verification"
+    },
+    "factory_asset": "PENDING"
+  },
+  "verification": {
+    "backend_tests": 123,
+    "frontend_tests": 17,
+    "typescript": "PASS",
+    "production_build": "PASS",
+    "factory_visual_alignment": "PENDING",
+    "baseline": "40d2975972dd5b02e3f183338e02956dfaeb84b2"
+  }
+}

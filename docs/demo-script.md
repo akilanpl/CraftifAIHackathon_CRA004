@@ -37,3 +37,9 @@ Never substitute the synthetic rehearsal for the genuine pipeline demonstration.
 **65–80 seconds:** “Operators can edit zone vertices and severity, then save validated normalized coordinates. Missing video, FPS and inference telemetry remain clearly unavailable. No camera stream or benchmark is simulated as real evidence.”
 
 **80–90 seconds:** “The remaining integration is to map genuine PipeGen metadata, retain the actual IR and TensorRT report, and record the live DeepStream entry-to-incident demonstration. The application is ready for that connection.”
+
+## Factory release narration and fallback
+
+Until genuine factory assets and a successful new run exist, introduce the screen as **factory dataset pending**. Demonstrate profile validation and separate storage, then explicitly switch to **historical street replay** if demonstrating the known-good application. Never call the street scene a factory or overlay street detections onto a factory video.
+
+Once the factory profile is READY, verify the actual footage/boxes/ROI together before recording. State the real source, model and run; show entry/hold/exit only where actually observed. Describe first-seen-inside separately from an observed crossing. Do not promise reentry evidence when none exists. Retain the original street capture and its known 33-alert single-session analysis as historical fallback evidence.

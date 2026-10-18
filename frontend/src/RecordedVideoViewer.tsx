@@ -1,24 +1,26 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Play, Pause, RotateCcw, Film, AlertTriangle } from 'lucide-react';
-import { pointInPolygon } from './domain';
+import { type ReplayProfile, replayProfileKey, replayProfileLabels, pointInPolygon } from './domain';
 import { nearestMetadataFrame, validMetadataTimeline } from './replaySync';
 
 type Detection = { bbox: number[]; track_id: string|null; class_name: string; confidence: number };
 type TimelineFrame = { frame_index: number; pts_ns: number; camera_id: string; frame_width:number; frame_height:number; detections: Detection[] };
-type Timeline = { video_url: string|null; video_available: boolean; frame_width:number; frame_height:number; camera_id:string; pts_offset_ns:number|null; timestamp_mapping_configured:boolean; tolerance_ns:number; metadata_sha256:string; frames: TimelineFrame[] };
+type Timeline = { video_url: string|null; video_available: boolean; frame_width:number; frame_height:number; camera_id:string; pts_offset_ns:number|null; timestamp_mapping_configured:boolean; tolerance_ns:number; metadata_sha256:string; profile?:ReplayProfile; frames: TimelineFrame[] };
 type Zone = {id:string;name:string;camera_id:string;polygon:number[][];confidence_threshold:number};
-type Props = {zones:Zone[];socketUp:boolean;large:boolean;fallback:React.ReactNode};
+type Props = {profile?:ReplayProfile;zones:Zone[];socketUp:boolean;large:boolean;fallback:React.ReactNode};
 const stamp=(seconds:number)=>`${Math.floor(seconds/60)}:${(seconds%60).toFixed(2).padStart(5,'0')}`;
-let timelineRequest:Promise<Timeline>|null=null;
-function loadTimeline(){
- if(!timelineRequest)timelineRequest=fetch('/api/replay/timeline').then(async res=>{if(!res.ok)throw new Error(`Timeline unavailable (${res.status})`);return res.json() as Promise<Timeline>}).then(value=>{if(!validMetadataTimeline(value.frames))throw new Error('Metadata timeline has invalid or unsorted PTS; overlays disabled.');return value}).catch(error=>{timelineRequest=null;throw error});
+const timelineRequests=new Map<string,Promise<Timeline>>();
+function loadTimeline(key:string){
+ let timelineRequest=timelineRequests.get(key);
+ if(!timelineRequest){timelineRequest=fetch('/api/replay/timeline').then(async res=>{if(!res.ok)throw new Error(`Timeline unavailable (${res.status})`);return res.json() as Promise<Timeline>}).then(value=>{if(!validMetadataTimeline(value.frames))throw new Error('Metadata timeline has invalid or unsorted PTS; overlays disabled.');return value}).catch(error=>{timelineRequests.delete(key);throw error});timelineRequests.set(key,timelineRequest)}
  return timelineRequest;
 }
-export default function RecordedVideoViewer({zones,socketUp,large,fallback}:Props){
+export default function RecordedVideoViewer({profile,zones,socketUp,large,fallback}:Props){
  const [timeline,setTimeline]=useState<Timeline|null>(null),[error,setError]=useState(''),[videoFailed,setVideoFailed]=useState(false),[time,setTime]=useState(0),[duration,setDuration]=useState(0),[paused,setPaused]=useState(true),[speed,setSpeed]=useState('1'),[matched,setMatched]=useState<TimelineFrame|null>(null),[seeking,setSeeking]=useState(false),[mismatch,setMismatch]=useState(false);
+ const profileKey=replayProfileKey(profile);const labels=replayProfileLabels(profile??timeline?.profile);
  const video=useRef<HTMLVideoElement>(null);const timeRef=useRef(0);const seekPending=useRef(false);
- const reload=useCallback(()=>{setError('');setVideoFailed(false);timelineRequest=null;void loadTimeline().then(setTimeline).catch(err=>setError((err as Error).message))},[]);
- useEffect(()=>{let disposed=false;void loadTimeline().then(value=>{if(!disposed)setTimeline(value)}).catch(err=>{if(!disposed)setError((err as Error).message)});return()=>{disposed=true}},[]);
+ const reload=useCallback(()=>{setError('');setVideoFailed(false);timelineRequests.delete(profileKey);void loadTimeline(profileKey).then(setTimeline).catch(err=>setError((err as Error).message))},[profileKey]);
+ useEffect(()=>{let disposed=false;setTimeline(null);setMatched(null);setTime(0);setVideoFailed(false);setError('');if(replayProfileLabels(profile).blocked)return;void loadTimeline(profileKey).then(value=>{if(!disposed)setTimeline(value)}).catch(err=>{if(!disposed)setError((err as Error).message)});return()=>{disposed=true}},[profileKey]);
  const synchronize=useCallback((mediaTime:number)=>{
   if(!timeline||!Number.isFinite(mediaTime))return;
   timeRef.current=mediaTime;setTime(mediaTime);
@@ -40,13 +42,14 @@ export default function RecordedVideoViewer({zones,socketUp,large,fallback}:Prop
  const occupancy=detections.filter(inside).length;
  const seek=(value:number)=>{if(video.current){seekPending.current=true;setSeeking(true);setMatched(null);setTime(value);video.current.currentTime=value}};
  const toggle=()=>{const element=video.current;if(!element)return;if(element.paused)void element.play().catch(err=>setError(`Video playback failed: ${(err as Error).message}`));else element.pause()};
+ if(labels.blocked)return <section className="panel profile-blocked" aria-label="Dataset profile unavailable"><AlertTriangle size={29}/><span className="badge amber">{profile?.state}</span><h2>{labels.title}</h2><p>{profile?.description||'The selected dataset is not ready. No other scene is substituted.'}</p><ul>{[...(profile?.errors??[]),...(profile?.requirements??[])].map((item,index)=><li key={index}>{item}</li>)}</ul><small>Original detections, a matching video, and verified timing are required before this profile can be displayed.</small></section>;
  if(!timeline&&!error)return <section className="panel recorded-loading"><Film size={24}/><h2>Loading recorded video timeline…</h2><p>Reading genuine PipeGen metadata. No detection boxes are synthesized.</p></section>;
  if(!available)return <><div className="recorded-fallback"><AlertTriangle size={18}/><span>{error||'Original recorded video is unavailable. Showing metadata only.'}</span><button className="text-button" onClick={reload}>Retry video</button></div>{fallback}</>;
  const width=timeline!.frame_width,height=timeline!.frame_height;
  return <section className={`panel recorded-viewer ${large?'large':''}`} aria-label="Synchronized recorded PipeGen video viewer">
-  <div className="panel-heading"><div><span className="eyebrow">REAL PIPEGEN REPLAY · RECORDED VIDEO</span><h2>People crossing · Safety monitoring</h2></div><div className="monitor-status"><span className="badge blue">YOLOv8m / TensorRT FP16</span>{occupancy>0&&<span className="badge critical">{occupancy} INSIDE ZONE</span>}</div></div>
+  <div className="panel-heading"><div><span className="eyebrow">RECORDED PIPEGEN REPLAY · RECORDED VIDEO</span><h2>{labels.title}</h2></div><div className="monitor-status"><span className="badge blue">{labels.model}</span><span className={'badge '+((profile??timeline?.profile)?.verified?'green':'neutral')}>{(profile??timeline?.profile)?.verified?'SOURCE HASHES VERIFIED':'PROFILE UNVERIFIED'}</span>{occupancy>0&&<span className="badge critical">{occupancy} INSIDE ZONE</span>}</div></div>
   <div className="recorded-stage" style={{aspectRatio:`${width}/${height}`}}>
-   <video ref={video} src={timeline!.video_url!} preload="auto" muted playsInline onLoadedMetadata={e=>{const element=e.currentTarget;setDuration(element.duration);setMismatch(element.videoWidth!==width||element.videoHeight!==height);synchronize(element.currentTime)}} onPlay={()=>setPaused(false)} onPause={()=>setPaused(true)} onEnded={()=>{setPaused(true);if(video.current&&typeof video.current.requestVideoFrameCallback!=='function')synchronize(video.current.currentTime)}} onSeeking={()=>{seekPending.current=true;setSeeking(true);setMatched(null)}} onSeeked={e=>{if(typeof e.currentTarget.requestVideoFrameCallback!=='function'){seekPending.current=false;setSeeking(false);synchronize(e.currentTarget.currentTime)}else if(!seekPending.current)setSeeking(false)}} onTimeUpdate={e=>{if(typeof e.currentTarget.requestVideoFrameCallback!=='function'&&!e.currentTarget.seeking)synchronize(e.currentTarget.currentTime)}} onError={()=>{setVideoFailed(true);setError('The recorded MP4 could not be played. Metadata-only fallback is active.')}} aria-label="Original recorded people-crossing video"/>
+   <video ref={video} src={timeline!.video_url!} preload="auto" muted playsInline onLoadedMetadata={e=>{const element=e.currentTarget;setDuration(element.duration);setMismatch(element.videoWidth!==width||element.videoHeight!==height);synchronize(element.currentTime)}} onPlay={()=>setPaused(false)} onPause={()=>setPaused(true)} onEnded={()=>{setPaused(true);if(video.current&&typeof video.current.requestVideoFrameCallback!=='function')synchronize(video.current.currentTime)}} onSeeking={()=>{seekPending.current=true;setSeeking(true);setMatched(null)}} onSeeked={e=>{if(typeof e.currentTarget.requestVideoFrameCallback!=='function'){seekPending.current=false;setSeeking(false);synchronize(e.currentTarget.currentTime)}else if(!seekPending.current)setSeeking(false)}} onTimeUpdate={e=>{if(typeof e.currentTarget.requestVideoFrameCallback!=='function'&&!e.currentTarget.seeking)synchronize(e.currentTarget.currentTime)}} onError={()=>{setVideoFailed(true);setError('The recorded MP4 could not be played. Metadata-only fallback is active.')}} aria-label={`Original recorded video: ${labels.title}`}/>
    <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet" aria-label="Synchronized real person detection and restricted zone overlay">
     {!mismatch&&relevantZones.map(zone=><g key={zone.id}><polygon className="recorded-zone" points={zone.polygon.map(p=>`${p[0]*width},${p[1]*height}`).join(' ')}/><text className="recorded-zone-label" x={zone.polygon[0][0]*width+10} y={zone.polygon[0][1]*height+31}>{zone.name}</text></g>)}
     {detections.map((d,index)=>{const [x1,y1,x2,y2]=d.bbox;const alert=inside(d);const caption=`ID ${d.track_id??'untracked'} · ${Math.round(d.confidence*100)}%${alert?' · INSIDE':''}`;const labelY=Math.max(0,y1*height-32);return <g key={`${d.track_id}-${index}`} className={alert?'recorded-person inside':'recorded-person'}><rect className="person-box" x={x1*width} y={y1*height} width={(x2-x1)*width} height={(y2-y1)*height}/><rect className="person-caption-bg" x={x1*width} y={labelY} width={Math.min(width-x1*width,caption.length*13+16)} height="30" rx="3"/><text className="person-caption" x={x1*width+8} y={labelY+22}>{caption}</text><circle cx={(x1+x2)/2*width} cy={y2*height} r="5" className="foot-point"/></g>})}

@@ -12,11 +12,11 @@ from .replay import load_export
 
 
 class ReplayVideo:
-    def __init__(self,path=None,offset_ns=None,tolerance_ns=None):
-        configured=path or os.getenv('SENTINEL_REPLAY_VIDEO')
+    def __init__(self,path=None,offset_ns=None,tolerance_ns=None,use_env=True):
+        configured=path or (os.getenv('SENTINEL_REPLAY_VIDEO') if use_env else None)
         self.path=Path(configured).resolve() if configured else None
-        self.offset_ns=self._integer_setting(offset_ns if offset_ns is not None else os.getenv('SENTINEL_REPLAY_VIDEO_PTS_OFFSET_NS'),None,'PTS offset')
-        self.tolerance_ns=self._integer_setting(tolerance_ns if tolerance_ns is not None else os.getenv('SENTINEL_REPLAY_VIDEO_TOLERANCE_NS'),8350000,'timestamp tolerance')
+        self.offset_ns=self._integer_setting(offset_ns if offset_ns is not None else (os.getenv('SENTINEL_REPLAY_VIDEO_PTS_OFFSET_NS') if use_env else None),None,'PTS offset')
+        self.tolerance_ns=self._integer_setting(tolerance_ns if tolerance_ns is not None else (os.getenv('SENTINEL_REPLAY_VIDEO_TOLERANCE_NS') if use_env else None),8350000,'timestamp tolerance')
         if self.tolerance_ns<0 or self.tolerance_ns>1000000000:
             raise ValueError('Replay timestamp tolerance must be between zero and one second')
 

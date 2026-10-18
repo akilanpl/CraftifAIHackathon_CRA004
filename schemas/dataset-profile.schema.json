@@ -1,0 +1,215 @@
+{
+  "$defs": {
+    "ZoneInput": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "camera_id": {
+          "default": "cam-01",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Camera Id",
+          "type": "string"
+        },
+        "polygon": {
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Polygon",
+          "type": "array"
+        },
+        "severity": {
+          "default": "high",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "confidence_threshold": {
+          "default": 0.5,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence Threshold",
+          "type": "number"
+        },
+        "debounce_frames": {
+          "default": 1,
+          "maximum": 120,
+          "minimum": 1,
+          "title": "Debounce Frames",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "polygon"
+      ],
+      "title": "ZoneInput",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "id": {
+      "pattern": "^[a-z][a-z0-9-]{0,63}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "maxLength": 1000,
+      "title": "Description",
+      "type": "string"
+    },
+    "scene_type": {
+      "enum": [
+        "factory",
+        "historical_street"
+      ],
+      "title": "Scene Type",
+      "type": "string"
+    },
+    "source_kind": {
+      "const": "recorded_pipegen",
+      "title": "Source Kind",
+      "type": "string"
+    },
+    "video_path": {
+      "minLength": 1,
+      "title": "Video Path",
+      "type": "string"
+    },
+    "metadata_path": {
+      "minLength": 1,
+      "title": "Metadata Path",
+      "type": "string"
+    },
+    "video_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Video Sha256",
+      "type": "string"
+    },
+    "metadata_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Metadata Sha256",
+      "type": "string"
+    },
+    "frame_width": {
+      "exclusiveMinimum": 0,
+      "maximum": 32768,
+      "title": "Frame Width",
+      "type": "integer"
+    },
+    "frame_height": {
+      "exclusiveMinimum": 0,
+      "maximum": 32768,
+      "title": "Frame Height",
+      "type": "integer"
+    },
+    "source_id": {
+      "minimum": 0,
+      "title": "Source Id",
+      "type": "integer"
+    },
+    "camera_id": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Camera Id",
+      "type": "string"
+    },
+    "pts_offset_ns": {
+      "title": "Pts Offset Ns",
+      "type": "integer"
+    },
+    "pts_mapping_verified": {
+      "const": true,
+      "title": "Pts Mapping Verified",
+      "type": "boolean"
+    },
+    "pts_verification_note": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Pts Verification Note",
+      "type": "string"
+    },
+    "model_name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Model Name",
+      "type": "string"
+    },
+    "precision": {
+      "maxLength": 50,
+      "minLength": 1,
+      "title": "Precision",
+      "type": "string"
+    },
+    "zones": {
+      "items": {
+        "$ref": "#/$defs/ZoneInput"
+      },
+      "maxItems": 64,
+      "title": "Zones",
+      "type": "array"
+    },
+    "tolerance_ns": {
+      "default": 8350000,
+      "maximum": 1000000000,
+      "minimum": 0,
+      "title": "Tolerance Ns",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "version",
+    "id",
+    "name",
+    "scene_type",
+    "source_kind",
+    "video_path",
+    "metadata_path",
+    "video_sha256",
+    "metadata_sha256",
+    "frame_width",
+    "frame_height",
+    "source_id",
+    "camera_id",
+    "pts_offset_ns",
+    "pts_mapping_verified",
+    "pts_verification_note",
+    "model_name",
+    "precision"
+  ],
+  "title": "ProfileManifest",
+  "type": "object"
+}

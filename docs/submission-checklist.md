@@ -45,6 +45,27 @@ No boxes are automatically checked by documentation generation. Consult the fina
 | Genuine TensorRT FP16 report | PARTIAL — selected actual report facts |
 | Actual DeepStream execution | PARTIAL — real output audited; run screenshot/log not packaged |
 | Genuine metadata | VERIFIED |
-| Real-mode dashboard evidence | VERIFIED REPLAY — metadata only |
+| Real-mode dashboard evidence | VERIFIED HISTORICAL REPLAY — synchronized street video |
 
 See `../evidence/checklist.json` for the structured ledger. Historical synthetic screenshots remain application QA only; the real replay capture is separately labeled. Local source handoff and exact launch commands are in `github-readiness.md`. The configured GitHub repository is private; code updates use the existing authorized origin.
+
+## Factory release acceptance gate
+
+All checks below apply to the **new factory dataset**, not the historical street baseline:
+
+- [x] Licensed warehouse video decoded and dimension/FPS/PTS checked; matching new inference remains pending.
+- [ ] Separate actual PipeGen Requirement → IR → Model → Compiler → Run evidence captured.
+- [ ] Compatible FP16 engine reuse identified as reuse; any new benchmark documented with its actual conditions.
+- [ ] Genuine factory metadata produced by that run and preserved unchanged.
+- [ ] Factory manifest contains matching video/metadata hashes, source ID and dimensions.
+- [ ] Timing offset/tolerance inspected from that source pair and visually checked.
+- [ ] Factory floor ROI reviewed on the actual footage; valid polygons assigned to the manifest camera.
+- [ ] Separate dataset-bound SQLite storage retains acknowledgments without mixing street incidents.
+- [ ] Browser pause/seek/rate/resize verified; playback does not duplicate persisted history.
+- [ ] Real factory screenshot and actionable incident linked to exact metadata timestamps.
+- [ ] Factory export separately archived, hashed and reviewed; baseline export preserved.
+- [ ] Reviewed labels and held-out evaluation supplied before claiming precision/recall/mAP.
+- [ ] INT8/fine-tuning/Jetson results marked NOT TESTED unless actually executed and measured.
+- [ ] Final source/tests/build and artifact manifest reviewed before private release upload.
+
+Current gate status: **PENDING**, because genuine factory run metadata has not been supplied to this documentation pass. Historical street metadata/dashboard are verified separately. See `../evidence/release-artifact-manifest.json` and `factory-release.md`. Official PDF requirements remain unverified because the document was not located; this checklist follows the user's supplied requirements.

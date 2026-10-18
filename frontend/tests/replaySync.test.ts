@@ -54,3 +54,16 @@ test('rejects invalid controls and empty or malformed timelines', () => {
   assert.equal(validMetadataTimeline([{pts_ns:1},{pts_ns:1}]),false);
   assert.equal(validMetadataTimeline([{pts_ns:Infinity}]),false);
 });
+
+test('verified recorded-source PTS offset preserves first-frame alignment through seek and resume', () => {
+ const actualOffset=33_366_700;
+ const actualFrames=[{pts_ns:33_366_700,index:0},{pts_ns:50_050_050,index:1},{pts_ns:66_733_400,index:2}];
+ const options={ptsOffsetNs:actualOffset,toleranceNs:8_350_000};
+ assert.equal(nearestMetadataFrame(actualFrames,0,options),actualFrames[0]);
+ const secondTime=(actualFrames[1].pts_ns-actualOffset)/1e9;
+ assert.equal(nearestMetadataFrame(actualFrames,secondTime,options),actualFrames[1]);
+ assert.equal(nearestMetadataFrame(actualFrames,secondTime,options),actualFrames[1]);
+ assert.equal(nearestMetadataFrame(actualFrames,0,options),actualFrames[0]);
+ assert.equal(nearestMetadataFrame(actualFrames,.5,options),null);
+ assert.equal(nearestMetadataFrame(actualFrames,secondTime,{...options,ptsOffsetNs:null}),null);
+});

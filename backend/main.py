@@ -16,14 +16,21 @@ from .models import Acknowledge, Frame, Zone, ZoneInput
 from .websocket import ConnectionManager
 from .replay import ReplayController, ReplayStart
 from .video import ReplayVideo, ReplayTimeline
+from .profiles import DatasetProfile
 
 
-def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,replay_path=None,replay_video_path=None):
+def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,replay_path=None,replay_video_path=None,profile_path=None,dataset_profile=None):
+    profile=DatasetProfile(profile_path,dataset_profile)
     mode = mode or os.getenv('SENTINEL_MODE','live')
+    if profile.explicit and mode!='replay':
+        raise ValueError('Dataset profiles require replay mode; live and synthetic sources cannot mix')
     if mode not in ('live','synthetic','replay'):
         raise ValueError('SENTINEL_MODE must be live, synthetic or replay')
     default_path = Path(__file__).resolve().parent.parent / 'data' / ('synthetic.sqlite3' if mode == 'synthetic' else 'replay.sqlite3' if mode == 'replay' else 'sentinel.sqlite3')
+    if profile.explicit:
+        default_path=Path(__file__).resolve().parent.parent/'data'/'profiles'/(profile.id+'.sqlite3')
     db = Database(db_path or os.getenv('SENTINEL_DB_PATH',str(default_path)),os.getenv('SENTINEL_JSONL_PATH'))
+    profile.bind_database(db)
     replay_clock = [0.]
     engine = ZoneEngine(db,float('inf') if mode=='replay' else float(os.getenv('SENTINEL_TRACK_TIMEOUT','5')), (lambda: replay_clock[0]) if mode=='replay' else clock,visible_only=mode=='replay')
     manager = ConnectionManager()
@@ -34,9 +41,13 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
         db.save_zone(Zone(id='synthetic-zone',name='Synthetic restricted area',camera_id='cam-01',polygon=[(.45,.35),(.9,.35),(.9,.9),(.45,.9)]).model_dump(mode='json'))
 
     replay = None
-    replay_video = ReplayVideo(replay_video_path) if mode=='replay' else None
+    manifest=profile.manifest if profile.state=='READY' else None
+    replay_video = (ReplayVideo(profile.video_path if manifest else None,offset_ns=manifest.pts_offset_ns if manifest else None,tolerance_ns=manifest.tolerance_ns if manifest else None,use_env=False) if profile.explicit else ReplayVideo(replay_video_path)) if mode=='replay' else None
     replay_timeline = None
-    if mode=='replay' and not db.zones():
+    if mode=='replay' and profile.explicit and manifest and not db.zones():
+        for index,zone in enumerate(manifest.zones):
+            db.save_zone(Zone(id=f'{profile.id}-zone-{index+1}',**zone.model_dump()).model_dump(mode='json'))
+    if mode=='replay' and not profile.explicit and not db.zones():
         db.save_zone(Zone(id='replay-restricted-zone',name='PipeGen restricted_zone (replay polygon)',camera_id=os.getenv('SENTINEL_REPLAY_CAMERA','cam-01'),polygon=[(.55,.45),(.95,.45),(.95,.95),(.55,.95)]).model_dump(mode='json'))
 
     def status():
@@ -44,6 +55,7 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
         result = dict(mode=mode,connected=connected,connection_state='connected' if connected else 'disconnected',integration_status='receiving metadata' if connected and runtime['source']=='pipegen' else ('adapter configured; awaiting metadata' if adapter.parser else 'not connected'),source_name=runtime['source_name'],last_event_time=runtime['last_event_time'],fps=runtime['fps'] if connected else None,inference_latency_ms=runtime['inference_latency_ms'] if connected else None,gpu_name=runtime['gpu_name'],video_url=runtime['video_url'] if connected else None,active_intrusions=engine.occupancy,session_incidents=runtime['session_incidents'],errors=runtime['errors'],configured_zones=len(db.zones()),source=runtime['source'])
         if mode=='replay':
             result.update(source='pipegen_replay',replay={**replay.status(),'video':replay_video.status()} if replay else None,integration_status='recorded PipeGen metadata replay',timestamp_basis='replay_session_clock')
+        result['profile']=profile.public()
         return result
 
     @asynccontextmanager
@@ -65,6 +77,7 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
     app.add_middleware(CORSMiddleware,allow_origins=['http://localhost:5173','http://127.0.0.1:5173','http://localhost:4173','http://127.0.0.1:4173'],allow_methods=['*'],allow_headers=['*'])
     app.state.db, app.state.engine, app.state.runtime = db,engine,runtime
     app.state.adapter = adapter
+    app.state.profile = profile
 
     @app.get('/api/health')
     async def health():
@@ -73,6 +86,10 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
     @app.get('/api/status')
     async def get_status():
         return status()
+
+    @app.get('/api/profile')
+    async def dataset_profile_info():
+        return profile.public()
 
     @app.get('/api/zones')
     async def zones():
@@ -162,32 +179,36 @@ def create_app(db_path=None,mode=None,clock=time.monotonic,parser_path=None,repl
         runtime.update(last_received=None,last_event_time=None,session_incidents=0,errors=[])
 
     if mode=='replay':
-        replay = ReplayController(replay_path or os.getenv('SENTINEL_REPLAY_PATH'),os.getenv('SENTINEL_REPLAY_CAMERA','cam-01'),ingest,reset_replay)
+        selected_metadata=(profile.metadata_path if manifest else None) if profile.explicit else (replay_path or os.getenv('SENTINEL_REPLAY_PATH'))
+        selected_camera=(manifest.camera_id if manifest else 'factory-pending') if profile.explicit else os.getenv('SENTINEL_REPLAY_CAMERA','cam-01')
+        replay = ReplayController(selected_metadata,selected_camera,ingest,reset_replay)
         replay_timeline = ReplayTimeline(replay.path,replay.camera,replay_video)
     app.state.replay = replay
 
-    def require_replay():
+    def require_replay(require_ready=False):
         if replay is None:
             raise HTTPException(409,'Replay controls require SENTINEL_MODE=replay')
+        if require_ready and profile.explicit and not profile.integrity():
+            raise HTTPException(409,dict(message='Selected dataset is not verified and ready; no historical fallback',profile=profile.public()))
         return replay
 
     @app.get('/api/replay')
     async def replay_status():
-        return {**require_replay().status(),'video':replay_video.status()}
+        return {**require_replay().status(),'video':replay_video.status(),'profile':profile.public()}
 
     @app.api_route('/api/replay/video',methods=['GET','HEAD'])
     async def replay_video_stream(request: Request):
-        require_replay()
+        require_replay(require_ready=True)
         return replay_video.response(request)
 
     @app.get('/api/replay/timeline')
     async def replay_timeline_data():
-        require_replay()
-        return replay_timeline.payload()
+        require_replay(require_ready=True)
+        return {**replay_timeline.payload(),'profile':profile.public()}
 
     @app.post('/api/replay/start')
     async def replay_start(payload: ReplayStart=ReplayStart()):
-        controller=require_replay()
+        controller=require_replay(require_ready=True)
         try:
             result=await controller.start(payload.speed)
         except (OSError,ValueError,KeyError,TypeError,OverflowError) as exc:

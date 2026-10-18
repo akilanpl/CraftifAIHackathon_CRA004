@@ -60,5 +60,66 @@
     "url": "https://github.com/akilanpl/hazard-zone-sentinel",
     "branch": "main",
     "publicly_published": false
+  },
+  "historical_dataset": "street",
+  "release_branch": "release/factory-safety",
+  "factory_evidence": [
+    {
+      "stage": "Requirement",
+      "status": "PENDING",
+      "artifact": null
+    },
+    {
+      "stage": "Pipeline IR",
+      "status": "PENDING",
+      "artifact": null
+    },
+    {
+      "stage": "Selected model/version",
+      "status": "PENDING",
+      "artifact": null
+    },
+    {
+      "stage": "TensorRT FP16 report or documented compatible baseline engine reuse",
+      "status": "PENDING",
+      "artifact": null
+    },
+    {
+      "stage": "DeepStream factory execution",
+      "status": "PENDING",
+      "artifact": null
+    },
+    {
+      "stage": "Genuine matching factory metadata",
+      "status": "PENDING",
+      "artifact": null
+    },
+    {
+      "stage": "Real factory dashboard replay",
+      "status": "PENDING",
+      "artifact": null
+    }
+  ],
+  "factory_policy": "Historical street artifacts remain preserved and cannot satisfy factory scene evidence. New factory video requires its own real run and matching metadata.",
+  "baseline_export_audit": "export-archive-audit.json",
+  "official_requirements_pdf": {
+    "status": "NOT_LOCATED",
+    "notes": "Not present in pasted attachments or scoped local search. Submission checklist derives from user-provided requirements, not independently read official PDF."
+  },
+  "historical_export_release": {
+    "repository": "https://github.com/akilanpl/hazard-zone-sentinel",
+    "release_id": 416346957,
+    "tag": "safety/pre-factory-40d2975",
+    "draft": true,
+    "private_repository": true,
+    "release_url": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/untagged-08c98dc0944deddac332",
+    "asset_id": 653041956,
+    "asset_bytes": 134814850,
+    "asset_state": "uploaded",
+    "asset_digest": "sha256:f6d0caa49fa5957d1dc2c46e76af17bea62132c1af2d9dc53c42105b74253f1a",
+    "digest_matches_local": true,
+    "evidence_scope": "historical_street_baseline",
+    "access": "Authorized repository viewers; draft is not a public or final submitted release",
+    "verification_source": "Primary agent reported authenticated GitHub API verification"
   }
 }

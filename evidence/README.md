@@ -36,3 +36,9 @@ No synthetic screenshot fills any row. Do not rename synthetic QA captures to im
 `synthetic-submission-qa.jpg` documents the final historical-zone filtering and persisted acknowledgment QA. It contains only explicitly synthetic test records.
 
 Seven numbered evidence folders mirror the ledger. Verified replay artifacts are in 06 and 07; other folders retain their explicit partial/pending status. Source video provenance is in `../demo-video/source-provenance.json`; no raw footage is included.
+
+## Factory release evidence remains separate
+
+`checklist.json` retains the historical street ledger and adds `factory_evidence`: all seven new factory stages remain **PENDING**. `release-artifact-manifest.json` distinguishes source scenes, experiments and distribution. No historical street screenshot, metadata record, model confidence or modeled performance estimate establishes factory inference accuracy.
+
+`export-archive-audit.json` records the historical PipeGen archive and private draft release asset whose API digest matches the local SHA-256. This archive is preserved baseline evidence, not a new factory export. See `../docs/export-release-assets.md` for authenticated access and draft limitations. No factory metadata/export or factory video/box screenshot has been supplied to this documentation pass.

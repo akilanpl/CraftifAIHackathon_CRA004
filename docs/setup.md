@@ -76,3 +76,30 @@ This uses `data/synthetic.sqlite3` by default. Keep `SENTINEL_DB_PATH` unset to 
 ```
 
 The build runs TypeScript checking before Vite. The check script uses installed Node binaries directly and supports the bundled runtime. `npm run build` also works when npm is available. Troubleshooting: confirm backend `/api/health`; check the browser errors; confirm correct port and synthetic/live mode. A connected API with no metadata is an expected state, not successful PipeGen integration.
+
+## Factory release profiles
+
+Use the explicit profile interface for new factory footage. Do not use the historical synchronized street launcher with a factory clip. The backend reads `SENTINEL_MODE=replay`, `SENTINEL_DATASET_PROFILE=factory` and `SENTINEL_PROFILE_PATH=/absolute/path/to/factory-manifest.json`. `GET /api/profile` exposes `PENDING`, `READY` or `INVALID`. Missing factory assets remain pending with no street fallback. The default profile database is `data/profiles/<manifest-id>.sqlite3`; an existing database bound to another dataset is rejected.
+
+The factory manifest must include paired file hashes, original dimensions/source ID, verified timing and nonempty camera-matched zone polygons. See [factory release](factory-release.md) for the complete contract and evidence caveats. Create the manifest only after the factory video has its own genuine PipeGen run and metadata.
+
+From the repository root, start the explicit pending factory screen on separate ports, preserving an existing street replay service:
+
+```bash
+PORT=8002 ./scripts/start-factory-replay.sh
+```
+
+In a second terminal:
+
+```bash
+SENTINEL_API_TARGET=http://127.0.0.1:8002 ./scripts/start-frontend.sh --port 5175 --strictPort
+```
+
+Open `http://127.0.0.1:5175`; inspect `http://127.0.0.1:8002/api/profile`. An unset manifest intentionally yields PENDING. After Chat 2 supplies a genuine factory pair and a reviewed manifest, stop the pending backend and validate then launch:
+
+```bash
+.venv/bin/python scripts/validate_dataset_profile.py /absolute/path/to/factory-manifest.json --scene factory
+SENTINEL_PROFILE_PATH=/absolute/path/to/factory-manifest.json PORT=8002 ./scripts/start-factory-replay.sh
+```
+
+Validator exit code 0 means configured assets passed profile checks; code 2 means pending/invalid. This is asset/schema validation, not inference execution or visual alignment proof. The launcher still serves an honest pending/error state when validation fails. Use a new manifest ID and separate database when changing dataset identity.

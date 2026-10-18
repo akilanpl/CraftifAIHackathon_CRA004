@@ -62,3 +62,18 @@ test('recorded-video polygon highlights the same boundary-inclusive foot points 
   assert.equal(pointInPolygon([.4,.8],polygon),false);
   assert.equal(pointInPolygon([.8,.99],polygon),false);
 });
+
+test('profile labels never substitute street scene or model for a pending factory profile', async () => {
+ const {replayProfileLabels,replayProfileKey}=await import('../src/domain.ts');
+ const factory={id:'factory',name:'Factory safety · awaiting assets',state:'PENDING' as const,verified:false,model_name:null,precision:null};
+ assert.deepEqual(replayProfileLabels(factory),{title:factory.name,model:'Model not reported',blocked:true});
+ assert.equal(replayProfileLabels().title,'Recorded video · Safety monitoring');
+ assert.equal(replayProfileLabels().model,'Model not reported');
+ const historical={...factory,id:'historical-street',name:'Historical street clip',state:'READY' as const,model_name:'YOLOv8m',precision:'fp16',metadata_sha256:'old'};
+ assert.equal(replayProfileLabels(historical).model,'YOLOv8m / FP16');
+ assert.notEqual(replayProfileKey(factory),replayProfileKey(historical));
+ assert.notEqual(replayProfileKey(historical),replayProfileKey({...historical,metadata_sha256:'replacement'}));
+ assert.equal(replayProfileLabels({...factory,state:'INVALID'}).blocked,true);
+ assert.equal(replayProfileLabels({...historical,state:'LEGACY',scene_type:'historical_street'}).blocked,false);
+ assert.equal(replayProfileLabels({...factory,state:'LEGACY',scene_type:'factory'}).blocked,true);
+});

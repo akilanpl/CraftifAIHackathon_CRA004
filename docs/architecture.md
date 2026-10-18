@@ -6,8 +6,8 @@ Hazard Zone Sentinel converts tracked person metadata into actionable, persisted
 Camera / video
   → CraftifAI PipeGen: Requirement → Pipeline IR → Model → Compiler → Run
   → ONNX → actual TensorRT FP16 engine → DeepStream person tracking
-  → genuine metadata (format pending observation)
-  → backend/adapters/pipegen_adapter.py (native parser is intentionally unconfigured)
+  → genuine per-frame DeepStream metadata (observed historical schema; new factory pair pending)
+  → validated actual-export replay adapter / explicitly configured live parser
   → canonical detections or native zone-entry events
   → zone-entry engine
   → SQLite + optional JSONL → REST / WebSocket → React dashboard
@@ -43,3 +43,18 @@ flowchart LR
 ```
 
 Solid flow describes the intended genuine integration. The synthetic branch verifies application behavior only. Real-mode dashboard evidence requires genuine source data and the actual PipeGen run; the implemented UI alone cannot satisfy that stage.
+
+## Factory profile isolation
+
+```mermaid
+flowchart LR
+    Street[Historical street assets] --> StreetProfile[Historical profile / preserved fallback]
+    Factory[New factory clip + new matching PipeGen metadata] --> Verify[Verify hashes, PTS, dimensions, source and scene ROI]
+    Verify --> FactoryProfile[Explicit factory manifest]
+    FactoryProfile --> State{PENDING / READY / INVALID}
+    State -->|READY only| Replay[Read-only synchronized replay]
+    State -->|missing or mismatched| Empty[Honest pending/error view; no street fallback]
+    FactoryProfile --> DB[Separate dataset-bound SQLite database]
+```
+
+Each profile identifies its own recorded source pair and model provenance. Factory mode never discovers historical street assets as a fallback. Factory zones are validated from the selected scene's normalized geometry. Playback remains transient; analysis/persistence is an explicit separate action, so seeking does not append duplicate incidents. Changing a zone changes application-computed safety analysis, not PipeGen's stored detections.

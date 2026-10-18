@@ -55,3 +55,12 @@ export function pointInPolygon(point: readonly number[], polygon: readonly (read
   }
   return inside;
 }
+
+export type ReplayProfile = {id:string;name:string;description?:string;scene_type?:string;source_kind?:string;state:'PENDING'|'READY'|'INVALID'|'LEGACY';verified:boolean;model_name:string|null;precision:string|null;metadata_sha256?:string|null;video_sha256?:string|null;errors?:string[];requirements?:string[]};
+/** A profile boundary is also a cache boundary; never reuse another scene's video. */
+export function replayProfileKey(profile?: ReplayProfile|null): string {
+  return profile ? [profile.id,profile.state,profile.metadata_sha256??'',profile.video_sha256??''].join(':') : 'unprofiled';
+}
+export function replayProfileLabels(profile?:ReplayProfile|null): {title:string;model:string;blocked:boolean} {
+  return {title:profile?.name||'Recorded video · Safety monitoring',model:profile?.model_name?[profile.model_name,profile.precision?.toUpperCase()].filter(Boolean).join(' / '):'Model not reported',blocked:Boolean(profile&&profile.state!=='READY'&&!(profile.state==='LEGACY'&&profile.scene_type==='historical_street'))};
+}

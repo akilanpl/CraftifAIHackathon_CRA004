@@ -4,9 +4,27 @@
 
 Source repository: [akilanpl/hazard-zone-sentinel](https://github.com/akilanpl/hazard-zone-sentinel) (private; authorized GitHub access required).
 
+**Factory release:** `release/factory-safety` preserves the verified historical street baseline and adds an explicit isolated factory profile. Warehouse footage is downloaded and CPU-decode verified; matching factory metadata, a configured factory ROI and new PipeGen run remain pending; the existing street results below are historical evidence. See [factory status](docs/factory-release.md), [release artifact manifest](evidence/release-artifact-manifest.json) and [verified private draft export asset](docs/export-release-assets.md).
+
 A local React + FastAPI safety operations application for CraftifAI PipeGen perception output. Tracked people entering normalized restricted polygons produce persistent incidents, live dashboard updates and optional JSONL output.
 
 **Integration status:** genuine PipeGen metadata replay is integrated and verified: 1,029 frames, 7,688 person observations, 89 observed track IDs, and 33 computed polygon alerts in one replay session. These include 23 initial-inside observations and 10 observed outside-to-inside transitions. The original recorded video now plays in synchronization with those detections; this is recorded replay, not live camera inference. See [real replay](docs/real-pipegen-replay.md) for timestamp, tracking and benchmark limitations.
+
+## Factory profile launch
+
+Pending factory screen, with no historical fallback:
+
+```bash
+PORT=8002 ./scripts/start-factory-replay.sh
+```
+
+Second terminal:
+
+```bash
+SENTINEL_API_TARGET=http://127.0.0.1:8002 ./scripts/start-frontend.sh --port 5175 --strictPort
+```
+
+Open **http://127.0.0.1:5175**. After a genuine factory run, validate its paired manifest and set `SENTINEL_PROFILE_PATH` before starting. See [exact setup](docs/setup.md#factory-release-profiles). PENDING is intentional until verified matching assets arrive.
 
 ## Run genuine PipeGen replay
 
@@ -95,7 +113,7 @@ cd ..
 
 For a reproducible pnpm installation, use `pnpm install --frozen-lockfile --store-dir .pnpm-store` in `frontend/` instead of npm. [Setup](docs/setup.md) includes the already-installed Codex bundled runtime paths for this Linux host, where npm is absent.
 
-Latest executed checks: **103 backend tests passed, 15 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
+Latest executed checks: **123 backend tests passed, 17 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
 
 ## API reference
 

@@ -66,3 +66,10 @@ Reproduce actual-source validation against a **new** verification database:
 Latest suite: **103 backend tests + 15 frontend tests passed**, TypeScript and Vite production build passed. Read-only video/timeline transport, strict timestamp matching and shared normalized foot-point membership were added. The isolated unchanged-source regression still yields 33 computed alerts (23 initial-inside + 10 entries), and verifies all 1,029 frames / 7,688 person observations over HTTP/WebSocket, SQLite and acknowledgment persistence. Existing 66 historical rows and all acknowledgment states remained unchanged during actual video controls.
 
 The original video was fully CPU-decoded using installed GStreamer; all 1,029 raw buffer PTS matched metadata, with verified browser offset 33,366,700 ns. Actual browser playback, visual alignment at early/middle/late frames, pause/resume, seeks, 2× rate, ended state and narrow/desktop viewport geometry were observed. No new GPU inference was run. Detailed evidence, configuration and limitations: `synchronized-video-replay.md`.
+
+
+## Factory release branch checks
+
+The current release preparation passes **123 backend tests**, **17 frontend tests**, TypeScript, and the production frontend build. Profile tests cover file pairing, timestamps, dimensions, source, explicit polygons, missing/invalid profiles, asset mutation, database restart and cross-profile rejection. Browser checks verified the PENDING factory view has zero history and no substituted video; the historical engine evidence page renders; historical playback still aligns with its SVG. The full original source regression independently reproduced 33 alerts, persisted acknowledgment and history through restart, and reconnected WebSockets twice. See `evidence/07-real-mode-dashboard/release-baseline-regression.json`.
+
+The reusable CPU-only verifier decoded all 1,029 original frames and reproduced its +33,366,700 ns mapping. New factory timing/visual correctness, new incident counts, official PDF compliance and new export remain PENDING. These checks do not rerun GPU inference.

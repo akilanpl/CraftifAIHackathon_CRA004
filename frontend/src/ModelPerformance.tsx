@@ -1,0 +1,29 @@
+import { Cpu, Gauge, Layers, FileCheck2, CircleHelp } from 'lucide-react';
+import report from '../../evidence/04-tensorrt-fp16/measured-engine-summary.json';
+
+const measured = (value: unknown, digits = 5) => typeof value === 'number' && Number.isFinite(value) ? value.toFixed(digits) : 'Not reported';
+export default function ModelPerformance() {
+ const maximum=Math.max(report.measured_gpu_compute_ms,report.measured_end_to_end_engine_ms);
+ return <div className="performance-page">
+  <div className="performance-notice"><FileCheck2 size={21}/><div><strong>Historical engine evidence</strong><p>These values come from the existing compiler report. They describe the recorded model’s TensorRT engine benchmark, not the active scene, a new factory run, or complete application throughput.</p></div><span className="badge blue">SOURCE-BACKED</span></div>
+  <div className="performance-metrics">
+   <section className="stat-card"><div><span>GPU compute time</span><Cpu size={19} className="blue"/></div><strong>{measured(report.measured_gpu_compute_ms)}<em>ms</em></strong><small>Measured engine benchmark</small></section>
+   <section className="stat-card"><div><span>End-to-end engine time</span><Gauge size={19} className="mint"/></div><strong>{measured(report.measured_end_to_end_engine_ms)}<em>ms</em></strong><small>Engine scope · excludes full pipeline</small></section>
+   <section className="stat-card"><div><span>Engine precision</span><Layers size={19} className="amber"/></div><strong>{report.precision.toUpperCase()}</strong><small>{report.layer_count} layers · TensorRT {report.tensorrt}</small></section>
+  </div>
+  <div className="performance-grid">
+   <section className="panel"><div className="panel-heading"><div><span className="eyebrow">MEASURED · ENGINE SCOPE</span><h2>Reported execution timing</h2></div><span className="badge">Milliseconds</span></div><div className="performance-timing">{[{title:'GPU compute',value:report.measured_gpu_compute_ms,tone:'compute'},{title:'End-to-end engine',value:report.measured_end_to_end_engine_ms,tone:'engine'}].map(metric=><div className="timing-row" key={metric.title}><div><span>{metric.title}</span><strong>{measured(metric.value)} ms</strong></div><progress className={metric.tone} max={maximum} value={metric.value} aria-label={`${metric.title} ${measured(metric.value)} milliseconds`}/></div>)}<p>These timing scopes overlap and must not be added together. The benchmark device is unidentified in the report.</p></div><div className="performance-scope"><CircleHelp size={17}/><p>Full pipeline FPS, camera-to-alert latency, dashboard latency, and video playback speed are separate measurements. This engine report does not establish any of them.</p></div></section>
+   <section className="panel"><div className="panel-heading"><div><span className="eyebrow">COMPILED ARTIFACT</span><h2>Model and engine details</h2></div></div><dl className="details"><dt>Model</dt><dd>{report.model}</dd><dt>Semantic model version</dt><dd>{report.semantic_model_version}</dd><dt>Input shape</dt><dd>{report.input_shape.join(' × ')}</dd><dt>Engine size</dt><dd>{report.engine_bytes.toLocaleString()} bytes</dd><dt>Layer precision</dt><dd>{report.precision_mix.FP16} FP16 · {report.precision_mix.FP32} FP32</dd><dt>Derived engine rate</dt><dd>{(1000/report.measured_end_to_end_engine_ms).toFixed(2)} inferences/s · reciprocal of engine time</dd><dt>Benchmark device</dt><dd>Not identified in report</dd></dl></section>
+   <section className="panel full-width"><div className="panel-heading"><div><span className="eyebrow">EVIDENCE BOUNDARIES</span><h2>What remains unmeasured</h2></div><span className="badge amber">NO INFERRED RESULTS</span></div><div className="table-scroll"><table className="performance-boundaries"><thead><tr><th>METRIC / TARGET</th><th>STATUS</th><th>WHAT THE CURRENT EVIDENCE ESTABLISHES</th></tr></thead><tbody>{[
+    ['Full pipeline performance','NOT MEASURED','Engine timing does not include decoding, tracking, analytics, storage, or the dashboard.'],
+    ['Actual GPU power consumption','NOT TESTED','No verified wattage measurement is provided.'],
+    ['INT8 engine / accuracy','NOT TESTED','No measured INT8 build or comparison is supplied.'],
+    ['Precision / recall / mAP','NOT TESTED','No labeled validation dataset and measured accuracy report is supplied.'],
+    ['Dataset evaluation','NOT TESTED','Warehouse footage is a demonstration clip; no reviewed held-out ground truth is supplied.'],
+    ['Jetson hardware deployment','NOT TESTED','The report contains modeled Orin NX estimates; these are not physical-device results.'],
+    ['Factory-specific validation','NOT TESTED','Historical engine evidence does not verify an unseen factory clip or a new model.'],
+   ].map(([name,state,description])=><tr key={name}><td><strong>{name}</strong></td><td><span className="badge amber">{state}</span></td><td>{description}</td></tr>)}</tbody></table></div></section>
+   <section className="panel full-width"><div className="panel-heading"><h2>Evidence provenance</h2><span className="badge">Static report snapshot</span></div><div className="performance-provenance"><code>evidence/04-tensorrt-fp16/measured-engine-summary.json</code><p>{report.caveat}</p><p>FP16 engine timing alone establishes no accuracy advantage over INT8. Compare latency, power and held-out accuracy on the same device and workload before choosing a deployment trade-off.</p><p>This page reads the original checked-in JSON directly. It does not generate new benchmark results or assign the historical measurements to another profile.</p></div></section>
+  </div>
+ </div>;
+}

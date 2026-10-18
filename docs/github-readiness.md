@@ -10,7 +10,7 @@ The repository is an ordinary local directory, verified with `realpath` and `sta
 
 `stat` reported a directory owned by `vijayababu`, mode `775`; its README is a regular file owned by `vijayababu`, mode `664`. `git rev-parse --show-toplevel` resolved to that same directory. These checks establish a physical filesystem source directory rather than a hosted-only artifact. They do not imply that a remote GitHub repository exists.
 
-The authenticated GitHub account is `akilanpl`. The private repository is https://github.com/akilanpl/hazard-zone-sentinel and `origin` is `https://github.com/akilanpl/hazard-zone-sentinel.git`. Source is pushed on `main` using normal Git history, without a force-push. Repository visibility remains private; public publication has not been authorized. Credentials are kept outside this source repository.
+The authenticated GitHub account is `akilanpl`. The private repository is https://github.com/akilanpl/hazard-zone-sentinel and `origin` is `https://github.com/akilanpl/hazard-zone-sentinel.git`. The known-good baseline is preserved on `main`; factory release work uses the separate `release/factory-safety` branch. Final branch push/commit status is reported by the primary agent. Repository visibility remains private; public publication has not been authorized. Credentials are kept outside this source repository.
 
 ## Exact launch commands on this host
 
@@ -47,3 +47,8 @@ Use the existing `frontend/pnpm-lock.yaml` and `requirements-lock.txt` for repro
 ## Submission state
 
 The application implementation and synthetic verification are ready for review. Genuine metadata and the real recorded replay dashboard are verified in `../evidence/checklist.json`; model/compiler/execution summaries are partial, and remaining official screenshots/exports still need packaging. A working synthetic application is not completion of the perception track. Capture genuine evidence, configure the actual metadata parser, verify real-mode behavior, and review the submission checklist before making the private repository public or submitting it for judging.
+
+
+## Factory release assets
+
+The historical export is preserved as a verified asset in a private draft release; see `export-release-assets.md`. The draft is not final hackathon submission and requires authenticated repository access. Factory assets remain pending. Use the profile launch commands in `setup.md#factory-release-profiles` to show an honest pending factory state, without relabeling the historical street source.

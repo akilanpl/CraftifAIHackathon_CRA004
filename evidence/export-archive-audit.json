@@ -1,0 +1,31 @@
+{
+  "archive": "/home/vijayababu/.pipegen/exports/pipegen-deepstream-workplace-safety-pipeline.tar.gz",
+  "bytes": 134814850,
+  "sha256": "f6d0caa49fa5957d1dc2c46e76af17bea62132c1af2d9dc53c42105b74253f1a",
+  "member_count": 28,
+  "uncompressed_bytes": 156758203,
+  "unsafe_path_members": [],
+  "credential_filename_candidates": [],
+  "symlink_count": 0,
+  "review_scope": "Read-only full member path/link review and credential-pattern scan of text members <=2 MB; ONNX/engine binaries excluded from content scanning. No extraction or upload. Pattern screening is not proof of absence of all secrets.",
+  "upload_status": "UPLOADED_TO_PRIVATE_DRAFT_RELEASE",
+  "profile": "historical_street_baseline",
+  "text_members_scanned": 19,
+  "content_pattern_findings": [],
+  "release_asset": {
+    "repository": "https://github.com/akilanpl/hazard-zone-sentinel",
+    "release_id": 416346957,
+    "tag": "safety/pre-factory-40d2975",
+    "draft": true,
+    "private_repository": true,
+    "release_url": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/untagged-08c98dc0944deddac332",
+    "asset_id": 653041956,
+    "asset_bytes": 134814850,
+    "asset_state": "uploaded",
+    "asset_digest": "sha256:f6d0caa49fa5957d1dc2c46e76af17bea62132c1af2d9dc53c42105b74253f1a",
+    "digest_matches_local": true,
+    "evidence_scope": "historical_street_baseline",
+    "access": "Authorized repository viewers; draft is not a public or final submitted release",
+    "verification_source": "Primary agent reported authenticated GitHub API verification"
+  }
+}

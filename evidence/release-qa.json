@@ -1,0 +1,28 @@
+{
+  "status": "FACTORY_INFERENCE_PENDING",
+  "backend_tests": 123,
+  "frontend_tests": 17,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "browser": {
+    "factory_pending_no_video": true,
+    "factory_history_empty": true,
+    "performance_page_loaded": true,
+    "historical_video_regression": true,
+    "sampled_frame": 261,
+    "sampled_pts_ns": 4387721054,
+    "sampled_media_seconds": 4.354354,
+    "sampled_delta_ns": 354,
+    "video_svg_equal_rect": true
+  },
+  "factory_video_sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+  "factory_metadata": null,
+  "factory_counts": null,
+  "main_merge": "WITHHELD_UNTIL_FACTORY_ACCEPTANCE",
+  "limitations": [
+    "No factory metadata yet",
+    "No official PDF supplied",
+    "No measured INT8, labeled accuracy or Jetson deployment"
+  ],
+  "baseline": "40d2975972dd5b02e3f183338e02956dfaeb84b2"
+}
