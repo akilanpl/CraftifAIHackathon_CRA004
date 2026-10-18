@@ -12,7 +12,7 @@ import time
 from typing import Literal,Optional
 from uuid import UUID,uuid4
 from fastapi import FastAPI,HTTPException,Request,WebSocket,WebSocketDisconnect
-from pydantic import Field
+from pydantic import Field, PrivateAttr, model_validator
 from .database import Database
 from .engine import ZoneEngine
 from .models import StrictModel,ZoneInput,Zone,Frame,Detection,Acknowledge
@@ -24,9 +24,21 @@ SCENARIO=[None,.2,.6,.6,.6,.2,.6,.6,.2]
 
 class SessionInput(StrictModel):
     source_type: Literal['simulation','virtual_video','uploaded_video','usb_camera']
+    capture_origin: Optional[Literal['physical_camera','simulated_usb_camera','recorded_video','simulation_fixture']]=None
+    _capture_origin_was_explicit: bool=PrivateAttr(default=False)
     name: str=Field(default='AI monitor session',min_length=1,max_length=100)
     polygon: list[tuple[float,float]]
     confidence_threshold: float=Field(default=.5,ge=0,le=1)
+
+    @model_validator(mode='after')
+    def validate_capture_origin(self):
+        defaults={'simulation':'simulation_fixture','virtual_video':'recorded_video','uploaded_video':'recorded_video','usb_camera':'physical_camera'}
+        self._capture_origin_was_explicit=self.capture_origin is not None
+        if self.capture_origin is None:self.capture_origin=defaults[self.source_type]
+        allowed={'simulation':{'simulation_fixture'},'virtual_video':{'recorded_video'},'uploaded_video':{'recorded_video'},'usb_camera':{'physical_camera','simulated_usb_camera'}}
+        if self.capture_origin not in allowed[self.source_type]:
+            raise ValueError('capture_origin does not match the selected source type')
+        return self
 
     def zone(self):
         return ZoneInput(name='Restricted zone',camera_id='ai-camera',polygon=self.polygon,confidence_threshold=self.confidence_threshold)
@@ -88,7 +100,10 @@ class EstimatedTracker:
 
 class MonitorSession:
     def __init__(self,directory,config,recovered=False):
-        self.directory=directory;self.config=config
+        self.directory=directory;self.config=dict(config)
+        defaults={'simulation':'simulation_fixture','virtual_video':'recorded_video','uploaded_video':'recorded_video','usb_camera':'physical_camera'}
+        self.config.setdefault('capture_origin',defaults[self.config['source_type']])
+        self.config.setdefault('capture_origin_basis','source_type_default')
         self.id=config['id'];self.db=Database(directory/'monitor.sqlite3')
         self.media_clock=0.
         self.engine=ZoneEngine(self.db,stale_seconds=TRACK_RETENTION_SECONDS,clock=lambda:self.media_clock,visible_only=True)
@@ -96,17 +111,21 @@ class MonitorSession:
         self.last_seq=config.get('last_seq',-1);self.last_media_time=config.get('last_media_time',-1.)
         self.state='stopped' if recovered else 'running'
         self.reason='Service restarted; create a new session to continue without duplicating old history' if recovered else None
-        self.last_result=None;self.last_digest=None;self.simulation_index=0
+        self.last_result=None;self.last_digest=None;self.simulation_index=config.get('simulation_index',0)
         self.processing_latency_ms=None;self.processing_fps=None
-        self.transition_counts=dict(entries=0,exits=0,reentries=0)
+        self.transition_counts={key:int(config.get('transition_counts',{}).get(key,0)) for key in ('entries','exits','reentries')}
         self.ever_inside=set()
         self.persist()
 
     @property
     def simulated(self):return self.config['source_type']=='simulation'
 
+    def capture_info(self):
+        origin=self.config['capture_origin']
+        return dict(capture_origin=origin,capture_origin_basis=self.config['capture_origin_basis'],capture_origin_verified=False,input_is_simulated=origin in ('simulated_usb_camera','simulation_fixture'),physical_camera_hardware_test='NOT TESTED')
+
     def persist(self):
-        value={**self.config,'last_seq':self.last_seq,'last_media_time':self.last_media_time,'state':self.state}
+        value={**self.config,'last_seq':self.last_seq,'last_media_time':self.last_media_time,'state':self.state,'transition_counts':self.transition_counts,'simulation_index':self.simulation_index}
         temp=self.directory/('session-'+str(uuid4())+'.tmp')
         try:
             with temp.open('x',encoding='utf-8') as handle:handle.write(json.dumps(value,indent=2))
@@ -117,7 +136,7 @@ class MonitorSession:
     def status(self):
         with self.db.lock:
             incident_count=self.db.conn.execute('SELECT COUNT(*) FROM incidents').fetchone()[0]
-        return dict(id=self.id,name=self.config['name'],source_type=self.config['source_type'],state=self.state,reason=self.reason,created_at=self.config['created_at'],provenance='SIMULATED_TEST_DATA' if self.simulated else 'independent_ai_inference',synthetic=self.simulated,tracking='fixture_ground_truth_ids' if self.simulated else 'experimental_iou_association',tracking_verified=False,tracking_note='Fixture IDs test business logic, not detector accuracy' if self.simulated else 'IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID',physical_camera_hardware_test='NOT TESTED',last_seq=self.last_seq,last_media_time=self.last_media_time,processing_latency_ms=self.processing_latency_ms,processing_fps=self.processing_fps,active_intrusions=self.engine.occupancy,incident_count=incident_count,transition_counts=self.transition_counts,zone=self.db.zones()[0] if self.db.zones() else None,simulation_steps=len(SCENARIO),simulation_index=self.simulation_index)
+        return dict(id=self.id,name=self.config['name'],source_type=self.config['source_type'],state=self.state,reason=self.reason,created_at=self.config['created_at'],provenance='SIMULATED_TEST_DATA' if self.simulated else 'independent_ai_inference',synthetic=self.simulated,tracking='fixture_ground_truth_ids' if self.simulated else 'experimental_iou_association',tracking_verified=False,tracking_note='Fixture IDs test business logic, not detector accuracy' if self.simulated else 'IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID',**self.capture_info(),last_seq=self.last_seq,last_media_time=self.last_media_time,processing_latency_ms=self.processing_latency_ms,processing_fps=self.processing_fps,active_intrusions=self.engine.occupancy,incident_count=incident_count,transition_counts=self.transition_counts,zone=self.db.zones()[0] if self.db.zones() else None,simulation_steps=len(SCENARIO),simulation_index=self.simulation_index)
 
     async def broadcast(self,kind,payload):
         for socket in list(self.clients):
@@ -127,6 +146,7 @@ class MonitorSession:
 
     async def process(self,detections,width,height,seq,media_time,digest,telemetry=None):
         if self.state!='running':raise HTTPException(409,'Session is paused or stopped')
+        telemetry=telemetry or {}
         self.media_clock=media_time
         # Expiration means lost observation, never an observed physical exit.
         self.engine.expire()
@@ -144,12 +164,12 @@ class MonitorSession:
         for event in events:
             event_key=(event['camera_id'],event['zone_id'],event['track_id'])
             event['entry_basis']='observed_outside_to_inside' if event_key in observed_outside_before else 'first_observed_inside'
-            event.update(session_id=self.id,source_type=self.config['source_type'],provenance='SIMULATED_TEST_DATA' if self.simulated else 'independent_ai_inference',media_time=media_time,seq=seq,timestamp_basis='session_origin_plus_media_time',tracking='fixture_ground_truth_ids' if self.simulated else 'experimental_iou_association')
+            event.update(session_id=self.id,source_type=self.config['source_type'],**self.capture_info(),model_sha256=telemetry.get('model_sha256'),engine=telemetry.get('engine'),provenance='SIMULATED_TEST_DATA' if self.simulated else 'independent_ai_inference',media_time=media_time,seq=seq,timestamp_basis='session_origin_plus_media_time',tracking='fixture_ground_truth_ids' if self.simulated else 'experimental_iou_association')
             self.db.save_incident(event)
         self.last_seq=seq;self.last_media_time=media_time;self.last_digest=digest
         telemetry=telemetry or {}
         self.processing_latency_ms=telemetry.get('processing_latency_ms');self.processing_fps=telemetry.get('processing_fps')
-        result=dict(type='frame',session_id=self.id,seq=seq,media_time=media_time,timestamp=stamp.isoformat(),timestamp_basis='session_origin_plus_media_time',frame_width=width,frame_height=height,detections=[d.model_dump(mode='json') for d in frame.detections],incidents=events,warnings=warnings,provenance='SIMULATED_TEST_DATA' if self.simulated else 'independent_ai_inference',synthetic=self.simulated,transitions=dict(entries=len(events),exits=exits,reentries=reentries),status=self.status(),processing_latency_ms=self.processing_latency_ms,processing_fps=self.processing_fps,model_sha256=telemetry.get('model_sha256'),engine=telemetry.get('engine'))
+        result=dict(type='frame',session_id=self.id,**self.capture_info(),seq=seq,media_time=media_time,timestamp=stamp.isoformat(),timestamp_basis='session_origin_plus_media_time',frame_width=width,frame_height=height,detections=[d.model_dump(mode='json') for d in frame.detections],incidents=events,warnings=warnings,provenance='SIMULATED_TEST_DATA' if self.simulated else 'independent_ai_inference',synthetic=self.simulated,transitions=dict(entries=len(events),exits=exits,reentries=reentries),status=self.status(),processing_latency_ms=self.processing_latency_ms,processing_fps=self.processing_fps,model_sha256=telemetry.get('model_sha256'),engine=telemetry.get('engine'))
         self.last_result=result;self.persist()
         await self.broadcast('frame',result)
         for event in events:await self.broadcast('incident',event)
@@ -212,7 +232,7 @@ def create_ai_app(data_dir=None,detector=None):
         except ValueError as exc:raise HTTPException(422,str(exc)) from exc
         if sum(session.state!='stopped' for session in sessions.values())>=8:raise HTTPException(429,'Maximum eight active AI sessions; stop an existing session')
         identifier=str(uuid4());directory=root/identifier;directory.mkdir(mode=0o700)
-        session=MonitorSession(directory,dict(id=identifier,name=payload.name,source_type=payload.source_type,created_at=datetime.now(timezone.utc).isoformat()))
+        session=MonitorSession(directory,dict(id=identifier,name=payload.name,source_type=payload.source_type,capture_origin=payload.capture_origin,capture_origin_basis='client_declared' if payload._capture_origin_was_explicit else 'source_type_default',created_at=datetime.now(timezone.utc).isoformat()))
         session.db.save_zone(Zone(id=identifier+'-zone',**{**zone.model_dump(),'camera_id':identifier}).model_dump(mode='json'))
         sessions[identifier]=session
         return session.status()
@@ -301,6 +321,7 @@ def create_ai_app(data_dir=None,detector=None):
             detections=[] if x is None else [dict(track_id='simulation-person-1',class_name='person',confidence=.99,bbox=[x-.05,.2,x+.05,.8])]
             result=await session.process(detections,1280,720,seq,media_time,'simulation-step-'+str(session.simulation_index))
             session.simulation_index+=1
+            session.persist()
             result['status']=session.status();return result
         finally:session.inflight=False
 
@@ -309,8 +330,10 @@ def create_ai_app(data_dir=None,detector=None):
         session=get_session(session_id)
         if action not in ('pause','resume','stop'):raise HTTPException(404,'Unknown AI control')
         if session.state=='stopped' and action!='stop':raise HTTPException(409,'Stopped sessions cannot resume; create a new session')
+        target={'pause':'paused','resume':'running','stop':'stopped'}[action]
+        if session.state==target:return session.status()
         session.generation+=1
-        session.state={'pause':'paused','resume':'running','stop':'stopped'}[action]
+        session.state=target
         if action=='stop':
             session.engine.states.clear();session.engine.replay_visible.clear();session.tracker=EstimatedTracker()
             session.last_result=None;session.last_digest=None

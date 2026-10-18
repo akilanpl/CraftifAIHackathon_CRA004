@@ -1,0 +1,1439 @@
+{
+  "capture_origin": "simulated_usb_camera",
+  "hardware_test": "NOT TESTED",
+  "frames": [
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 12,
+      "media_time": 12.760098,
+      "timestamp": "2026-10-18T11:15:45.564505+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-6",
+          "class_name": "person",
+          "confidence": 0.9127225279808044,
+          "bbox": [
+            0.2797211170196533,
+            0.3411511103312174,
+            0.43916831016540525,
+            0.8399203618367513
+          ]
+        },
+        {
+          "track_id": "estimated-8",
+          "class_name": "person",
+          "confidence": 0.9099588990211487,
+          "bbox": [
+            0.40438213348388674,
+            0.23407524956597223,
+            0.5257641792297363,
+            0.7270082261827256
+          ]
+        },
+        {
+          "track_id": "estimated-7",
+          "class_name": "person",
+          "confidence": 0.8812394142150879,
+          "bbox": [
+            0.5512033462524414,
+            0.24490144517686632,
+            0.6938447952270508,
+            0.7669460720486111
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 12,
+        "last_media_time": 12.760098,
+        "processing_latency_ms": 723.1366020023415,
+        "processing_fps": 1.3828645891122546,
+        "active_intrusions": 1,
+        "incident_count": 3,
+        "transition_counts": {
+          "entries": 3,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 723.1366020023415,
+      "processing_fps": 1.3828645891122546,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 13,
+      "media_time": 13.520792,
+      "timestamp": "2026-10-18T11:15:46.325199+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-8",
+          "class_name": "person",
+          "confidence": 0.920215904712677,
+          "bbox": [
+            0.43003368377685547,
+            0.26768858167860243,
+            0.5519946098327637,
+            0.7704332987467448
+          ]
+        },
+        {
+          "track_id": "estimated-7",
+          "class_name": "person",
+          "confidence": 0.9173673987388611,
+          "bbox": [
+            0.566213846206665,
+            0.29516574011908636,
+            0.7031189441680908,
+            0.756590207417806
+          ]
+        },
+        {
+          "track_id": "estimated-6",
+          "class_name": "person",
+          "confidence": 0.9152879118919373,
+          "bbox": [
+            0.2860161304473877,
+            0.4286172866821289,
+            0.44234819412231446,
+            0.9479018105400934
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 13,
+        "last_media_time": 13.520792,
+        "processing_latency_ms": 737.5866570000653,
+        "processing_fps": 1.3557728986953617,
+        "active_intrusions": 1,
+        "incident_count": 3,
+        "transition_counts": {
+          "entries": 3,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 737.5866570000653,
+      "processing_fps": 1.3557728986953617,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 14,
+      "media_time": 14.320138,
+      "timestamp": "2026-10-18T11:15:47.124545+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-8",
+          "class_name": "person",
+          "confidence": 0.9237686991691589,
+          "bbox": [
+            0.4504981279373169,
+            0.33374063703748913,
+            0.5830950498580932,
+            0.919753286573622
+          ]
+        },
+        {
+          "track_id": "estimated-7",
+          "class_name": "person",
+          "confidence": 0.9195572137832642,
+          "bbox": [
+            0.588736891746521,
+            0.3543683793809679,
+            0.7292629480361938,
+            0.8516795264350043
+          ]
+        },
+        {
+          "track_id": "estimated-6",
+          "class_name": "person",
+          "confidence": 0.9085615873336792,
+          "bbox": [
+            0.29772605895996096,
+            0.5159613715277778,
+            0.45063443183898927,
+            0.9943289862738716
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 14,
+        "last_media_time": 14.320138,
+        "processing_latency_ms": 661.5045609978552,
+        "processing_fps": 1.5117053743235527,
+        "active_intrusions": 1,
+        "incident_count": 3,
+        "transition_counts": {
+          "entries": 3,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 661.5045609978552,
+      "processing_fps": 1.5117053743235527,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 15,
+      "media_time": 15.04011,
+      "timestamp": "2026-10-18T11:15:47.844517+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-8",
+          "class_name": "person",
+          "confidence": 0.9277582764625549,
+          "bbox": [
+            0.46482093334198,
+            0.4122943878173828,
+            0.5903701066970826,
+            0.8858314938015408
+          ]
+        },
+        {
+          "track_id": "estimated-6",
+          "class_name": "person",
+          "confidence": 0.9060424566268921,
+          "bbox": [
+            0.31834231615066527,
+            0.6054206000434028,
+            0.4902486681938171,
+            0.9963205973307292
+          ]
+        },
+        {
+          "track_id": "estimated-7",
+          "class_name": "person",
+          "confidence": 0.9052489995956421,
+          "bbox": [
+            0.6167287826538086,
+            0.4154238806830512,
+            0.7752028465270996,
+            0.9482205284966363
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 15,
+        "last_media_time": 15.04011,
+        "processing_latency_ms": 685.1793380010349,
+        "processing_fps": 1.459471914196119,
+        "active_intrusions": 1,
+        "incident_count": 3,
+        "transition_counts": {
+          "entries": 3,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 685.1793380010349,
+      "processing_fps": 1.459471914196119,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 16,
+      "media_time": 15.800087,
+      "timestamp": "2026-10-18T11:15:48.604494+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-7",
+          "class_name": "person",
+          "confidence": 0.9305902719497681,
+          "bbox": [
+            0.6483823537826539,
+            0.525329695807563,
+            0.7951696634292602,
+            0.97367492251926
+          ]
+        },
+        {
+          "track_id": "estimated-8",
+          "class_name": "person",
+          "confidence": 0.9240157604217529,
+          "bbox": [
+            0.49617829322814944,
+            0.527475102742513,
+            0.6313670635223388,
+            0.9961678822835286
+          ]
+        },
+        {
+          "track_id": "estimated-6",
+          "class_name": "person",
+          "confidence": 0.8912004232406616,
+          "bbox": [
+            0.3393390655517578,
+            0.7609763251410591,
+            0.5162223815917969,
+            0.9983203464084202
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 1,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 16,
+        "last_media_time": 15.800087,
+        "processing_latency_ms": 668.8486680031929,
+        "processing_fps": 1.4951065133843195,
+        "active_intrusions": 0,
+        "incident_count": 3,
+        "transition_counts": {
+          "entries": 3,
+          "exits": 1,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 668.8486680031929,
+      "processing_fps": 1.4951065133843195,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 17,
+      "media_time": 16.520083,
+      "timestamp": "2026-10-18T11:15:49.324490+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-8",
+          "class_name": "person",
+          "confidence": 0.8752449750900269,
+          "bbox": [
+            0.5243377685546875,
+            0.6439425998263889,
+            0.6742969512939453,
+            0.9960681491427952
+          ]
+        },
+        {
+          "track_id": "estimated-7",
+          "class_name": "person",
+          "confidence": 0.5206354260444641,
+          "bbox": [
+            0.6600118398666381,
+            0.62097045050727,
+            0.778755784034729,
+            0.9238897111680773
+          ]
+        }
+      ],
+      "incidents": [
+        {
+          "id": "b2fdd0f6-f8d9-4c6a-ad19-4a8bbb3994d9",
+          "timestamp": "2026-10-18T11:15:49.324490+00:00",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "zone_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone",
+          "zone_name": "Restricted zone",
+          "track_id": "estimated-7",
+          "confidence": 0.5206354260444641,
+          "event_type": "zone_entry",
+          "severity": "high",
+          "acknowledged": false,
+          "source": "independent_ai_inference",
+          "synthetic": false,
+          "entry_basis": "observed_outside_to_inside",
+          "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "source_type": "usb_camera",
+          "capture_origin": "simulated_usb_camera",
+          "capture_origin_basis": "client_declared",
+          "capture_origin_verified": false,
+          "input_is_simulated": true,
+          "physical_camera_hardware_test": "NOT TESTED",
+          "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+          "engine": "onnxruntime_cpu",
+          "provenance": "independent_ai_inference",
+          "media_time": 16.520083,
+          "seq": 17,
+          "timestamp_basis": "session_origin_plus_media_time",
+          "tracking": "experimental_iou_association"
+        }
+      ],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 1,
+        "exits": 0,
+        "reentries": 1
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 17,
+        "last_media_time": 16.520083,
+        "processing_latency_ms": 667.7444619999733,
+        "processing_fps": 1.4975788747163583,
+        "active_intrusions": 1,
+        "incident_count": 4,
+        "transition_counts": {
+          "entries": 4,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 667.7444619999733,
+      "processing_fps": 1.4975788747163583,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 18,
+      "media_time": 17.282734,
+      "timestamp": "2026-10-18T11:15:50.087141+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-8",
+          "class_name": "person",
+          "confidence": 0.8967165946960449,
+          "bbox": [
+            0.5402031898498535,
+            0.7958893246120877,
+            0.6822134017944336,
+            0.9967389848497179
+          ]
+        },
+        {
+          "track_id": "estimated-9",
+          "class_name": "person",
+          "confidence": 0.5272524356842041,
+          "bbox": [
+            0.7200562000274658,
+            0.0056159125434027775,
+            0.9979274272918701,
+            0.984493170844184
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 18,
+        "last_media_time": 17.282734,
+        "processing_latency_ms": 865.7683849996829,
+        "processing_fps": 1.1550433318264055,
+        "active_intrusions": 0,
+        "incident_count": 4,
+        "transition_counts": {
+          "entries": 4,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 865.7683849996829,
+      "processing_fps": 1.1550433318264055,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 19,
+      "media_time": 18.240117,
+      "timestamp": "2026-10-18T11:15:51.044524+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 19,
+        "last_media_time": 18.240117,
+        "processing_latency_ms": 731.6813149991503,
+        "processing_fps": 1.3667152344886124,
+        "active_intrusions": 0,
+        "incident_count": 4,
+        "transition_counts": {
+          "entries": 4,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 731.6813149991503,
+      "processing_fps": 1.3667152344886124,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 20,
+      "media_time": 19.040136,
+      "timestamp": "2026-10-18T11:15:51.844543+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 20,
+        "last_media_time": 19.040136,
+        "processing_latency_ms": 650.7459720014594,
+        "processing_fps": 1.536697948239866,
+        "active_intrusions": 0,
+        "incident_count": 4,
+        "transition_counts": {
+          "entries": 4,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 650.7459720014594,
+      "processing_fps": 1.536697948239866,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 21,
+      "media_time": 19.723388,
+      "timestamp": "2026-10-18T11:15:52.527795+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 21,
+        "last_media_time": 19.723388,
+        "processing_latency_ms": 649.1187789979449,
+        "processing_fps": 1.5405501001584272,
+        "active_intrusions": 0,
+        "incident_count": 4,
+        "transition_counts": {
+          "entries": 4,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 649.1187789979449,
+      "processing_fps": 1.5405501001584272,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 22,
+      "media_time": 20.440138,
+      "timestamp": "2026-10-18T11:15:53.244545+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-10",
+          "class_name": "person",
+          "confidence": 0.9285385608673096,
+          "bbox": [
+            0.270565402507782,
+            0.24862323337131076,
+            0.4124448895454407,
+            0.7366504245334201
+          ]
+        },
+        {
+          "track_id": "estimated-11",
+          "class_name": "person",
+          "confidence": 0.919060468673706,
+          "bbox": [
+            0.501683235168457,
+            0.20114601982964408,
+            0.6414618492126465,
+            0.6248341030544705
+          ]
+        },
+        {
+          "track_id": "estimated-12",
+          "class_name": "person",
+          "confidence": 0.9146639108657837,
+          "bbox": [
+            0.3861392855644226,
+            0.18037649790445964,
+            0.493348228931427,
+            0.6393417570326063
+          ]
+        }
+      ],
+      "incidents": [
+        {
+          "id": "d726c59d-c327-4a92-826e-c981c2d64eb6",
+          "timestamp": "2026-10-18T11:15:53.244545+00:00",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "zone_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone",
+          "zone_name": "Restricted zone",
+          "track_id": "estimated-11",
+          "confidence": 0.919060468673706,
+          "event_type": "zone_entry",
+          "severity": "high",
+          "acknowledged": false,
+          "source": "independent_ai_inference",
+          "synthetic": false,
+          "entry_basis": "first_observed_inside",
+          "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "source_type": "usb_camera",
+          "capture_origin": "simulated_usb_camera",
+          "capture_origin_basis": "client_declared",
+          "capture_origin_verified": false,
+          "input_is_simulated": true,
+          "physical_camera_hardware_test": "NOT TESTED",
+          "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+          "engine": "onnxruntime_cpu",
+          "provenance": "independent_ai_inference",
+          "media_time": 20.440138,
+          "seq": 22,
+          "timestamp_basis": "session_origin_plus_media_time",
+          "tracking": "experimental_iou_association"
+        }
+      ],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 1,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 22,
+        "last_media_time": 20.440138,
+        "processing_latency_ms": 696.4184610005759,
+        "processing_fps": 1.4359182818951335,
+        "active_intrusions": 1,
+        "incident_count": 5,
+        "transition_counts": {
+          "entries": 5,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 696.4184610005759,
+      "processing_fps": 1.4359182818951335,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "type": "frame",
+      "session_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "capture_origin": "simulated_usb_camera",
+      "capture_origin_basis": "client_declared",
+      "capture_origin_verified": false,
+      "input_is_simulated": true,
+      "physical_camera_hardware_test": "NOT TESTED",
+      "seq": 23,
+      "media_time": 21.241246,
+      "timestamp": "2026-10-18T11:15:54.045653+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-12",
+          "class_name": "person",
+          "confidence": 0.9191855192184448,
+          "bbox": [
+            0.401790714263916,
+            0.18676562839084201,
+            0.5095105171203613,
+            0.6818619622124567
+          ]
+        },
+        {
+          "track_id": "estimated-11",
+          "class_name": "person",
+          "confidence": 0.9133408069610596,
+          "bbox": [
+            0.5182053327560425,
+            0.20648379855685764,
+            0.6479806184768677,
+            0.6926829867892795
+          ]
+        },
+        {
+          "track_id": "estimated-10",
+          "class_name": "person",
+          "confidence": 0.9114660024642944,
+          "bbox": [
+            0.27612780332565307,
+            0.2718672858344184,
+            0.4128138661384583,
+            0.7955379909939236
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+        "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+        "source_type": "usb_camera",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T11:15:32.804407+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "capture_origin": "simulated_usb_camera",
+        "capture_origin_basis": "client_declared",
+        "capture_origin_verified": false,
+        "input_is_simulated": true,
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 23,
+        "last_media_time": 21.241246,
+        "processing_latency_ms": 685.3719700011425,
+        "processing_fps": 1.4590617121361602,
+        "active_intrusions": 1,
+        "incident_count": 5,
+        "transition_counts": {
+          "entries": 5,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 685.3719700011425,
+      "processing_fps": 1.4590617121361602,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    }
+  ],
+  "session": {
+    "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+    "name": "SIMULATED USB CAMERA \u00b7 prerecorded warehouse pixels",
+    "source_type": "usb_camera",
+    "state": "running",
+    "reason": null,
+    "created_at": "2026-10-18T11:15:32.804407+00:00",
+    "provenance": "independent_ai_inference",
+    "synthetic": false,
+    "tracking": "experimental_iou_association",
+    "tracking_verified": false,
+    "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+    "capture_origin": "simulated_usb_camera",
+    "capture_origin_basis": "client_declared",
+    "capture_origin_verified": false,
+    "input_is_simulated": true,
+    "physical_camera_hardware_test": "NOT TESTED",
+    "last_seq": 23,
+    "last_media_time": 21.241246,
+    "processing_latency_ms": 685.3719700011425,
+    "processing_fps": 1.4590617121361602,
+    "active_intrusions": 1,
+    "incident_count": 5,
+    "transition_counts": {
+      "entries": 5,
+      "exits": 1,
+      "reentries": 1
+    },
+    "zone": {
+      "name": "Restricted zone",
+      "camera_id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "polygon": [
+        [
+          0.55,
+          0.45
+        ],
+        [
+          0.95,
+          0.45
+        ],
+        [
+          0.95,
+          0.95
+        ],
+        [
+          0.55,
+          0.95
+        ]
+      ],
+      "severity": "high",
+      "confidence_threshold": 0.5,
+      "debounce_frames": 1,
+      "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869-zone"
+    },
+    "simulation_steps": 9,
+    "simulation_index": 0
+  }
+}

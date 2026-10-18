@@ -1,0 +1,37 @@
+{
+  "result": "PASS",
+  "live_service_restart_prior_ack_retained": true,
+  "later_real_session_sqlite_snapshot_recovery": [
+    {
+      "id": "28e2c43f-2fad-41d9-85bd-a0cb6507a869",
+      "incidents": 10,
+      "acknowledged": 1,
+      "counts_preserved": true,
+      "recovered_stopped": true
+    },
+    {
+      "id": "ceecae91-35be-4836-9226-67483aa78627",
+      "incidents": 1,
+      "acknowledged": 0,
+      "counts_preserved": true,
+      "recovered_stopped": true
+    },
+    {
+      "id": "2ccb2de9-43eb-4cd6-929b-90b322705b67",
+      "incidents": 2,
+      "acknowledged": 0,
+      "counts_preserved": true,
+      "recovered_stopped": true
+    },
+    {
+      "id": "f37f2b1b-c456-4acb-bbae-f0540a2dc49f",
+      "incidents": 2,
+      "acknowledged": 0,
+      "counts_preserved": true,
+      "recovered_stopped": true
+    }
+  ],
+  "v2_original_incidents": 2,
+  "v2_acknowledgments_unchanged": true,
+  "physical_camera_hardware_test": "NOT TESTED"
+}

@@ -49,3 +49,13 @@ Create annotations by independently reviewing the original frame, preferably wit
 ```
 
 Keep whole videos/scenes separated between evaluation splits. Store model predictions in a different file linked by the same source/frame identity. Report reviewed frame/person counts, IoU matching threshold, confidence threshold, precision/recall/F1 and any applicable mAP only after actual independent evaluation. Record ambiguous persons, annotation limits and per-scene errors. A few frames are a small diagnostic set, not a reliable general factory-accuracy benchmark.
+
+## Browser captureStream harness boundary
+
+The independent feature includes a simulated USB-path harness using a real prerecorded video's `captureStream()` and the same capture/inference protocol; genuine browser inference and device/error controls have been exercised. A passing harness result would establish browser pathway behavior with that supplied stream, not physical USB hardware acceptance. Preserve capture-origin provenance on its sessions/events and keep **PHYSICAL CAMERA HARDWARE TEST: NOT TESTED**. Permission/device errors may be mocked; do not describe those mocks as a real device connected or a real user permission granted. Final harness execution results must be recorded separately from this manual procedure.
+
+
+Current simulated harness evidence includes browser A/B discovery/selection, simulated grant/denial, unavailable device, disconnect/reconnect and genuine CPU worker boxes. The final browser/API rerun confirmed disconnect stops the backend session, releases all streams/tracks and frees the worker; reconnecting A/B resumed genuine inference. A replacement service remained stable for over seven minutes after an earlier unexplained SIGTERM. These simulated tests do not complete this manual physical-device procedure.
+
+
+Final automated checks: 161 backend tests, 35 frontend tests, TypeScript and build passed. Simulated browser media/device tests do not change **PHYSICAL CAMERA HARDWARE TEST: NOT TESTED**. Perform the manual procedure above before changing that status.

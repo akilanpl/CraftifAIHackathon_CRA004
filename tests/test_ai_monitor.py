@@ -271,3 +271,60 @@ def test_independent_incident_entry_basis_distinguishes_initial_inside_from_obse
         reacquired=await session.process([person('initially-outside',.6)],1280,720,2,4,'basis-expired')
         assert reacquired['incidents'][0]['entry_basis']=='first_observed_inside'
     asyncio.run(run());session.db.conn.close()
+
+
+@pytest.mark.parametrize('source_type,origin', [('usb_camera','physical_camera'),('virtual_video','recorded_video'),('uploaded_video','recorded_video'),('simulation','simulation_fixture')])
+def test_capture_origin_defaults_and_incompatible_source_rejected(source_type,origin):
+    from pydantic import ValidationError
+    from backend.ai_monitor import SessionInput
+    payload=SessionInput(source_type=source_type,polygon=POLYGON)
+    assert payload.capture_origin==origin
+    assert not payload._capture_origin_was_explicit
+    if source_type!='usb_camera':
+        with pytest.raises(ValidationError):SessionInput(source_type=source_type,capture_origin='simulated_usb_camera',polygon=POLYGON)
+    with pytest.raises(ValidationError):SessionInput(source_type=source_type,capture_origin='unknown',polygon=POLYGON)
+
+
+def test_simulated_usb_real_frame_protocol_retains_capture_provenance_and_hardware_untested(tmp_path):
+    """Mock detector validates metadata plumbing only; genuine model tests are separate."""
+    detector=FixtureDetector();detector.results=[dict(class_name='person',confidence=.9,bbox=[.5,.2,.7,.8])]
+    directory=tmp_path/'simulated-usb-provenance'
+    with TestClient(create_ai_app(directory,detector)) as client:
+        response=client.post('/api/ai/sessions',json=dict(source_type='usb_camera',capture_origin='simulated_usb_camera',polygon=POLYGON))
+        session=response.json();identifier=session['id']
+        assert session['capture_origin']=='simulated_usb_camera' and session['capture_origin_basis']=='client_declared'
+        assert session['input_is_simulated'] and not session['synthetic']
+        frame=client.post(f'/api/ai/sessions/{identifier}/frames?seq=1&media_time=0',content=JPEG,headers={'content-type':'image/jpeg'}).json()
+        assert detector.calls==1
+        assert frame['capture_origin']=='simulated_usb_camera' and frame['input_is_simulated']
+        assert frame['provenance']=='independent_ai_inference' and not frame['synthetic']
+        assert frame['physical_camera_hardware_test']=='NOT TESTED'
+        incident=client.get(f'/api/ai/sessions/{identifier}/incidents').json()[0]
+        assert incident['capture_origin']=='simulated_usb_camera' and incident['physical_camera_hardware_test']=='NOT TESTED'
+        assert incident['engine']=='MOCK_DETECTOR_NOT_REAL_AI'
+        assert client.post(f'/api/ai/sessions/{identifier}/simulation/step').status_code==409
+    with TestClient(create_ai_app(directory,detector)) as recovered:
+        session=recovered.get(f'/api/ai/sessions/{identifier}').json()
+        assert session['capture_origin']=='simulated_usb_camera' and session['state']=='stopped'
+        assert session['physical_camera_hardware_test']=='NOT TESTED'
+        assert session['transition_counts']['entries']==1
+        incident=recovered.get(f'/api/ai/sessions/{identifier}/incidents').json()[0]
+        assert incident['capture_origin']=='simulated_usb_camera'
+
+
+def test_retrying_running_resume_does_not_invalidate_an_inflight_frame(tmp_path):
+    from backend.ai_monitor import SessionInput
+    app=create_ai_app(tmp_path/'idempotent-controls',UnavailableDetector())
+    endpoints={getattr(route,'path',None):getattr(route,'endpoint',None) for route in app.routes}
+    async def run():
+        created=await endpoints['/api/ai/sessions'](SessionInput(source_type='virtual_video',polygon=POLYGON))
+        session=app.state.sessions[created['id']]
+        before=session.generation
+        await endpoints['/api/ai/sessions/{session_id}/{action}'](created['id'],'resume')
+        assert session.generation==before
+        await endpoints['/api/ai/sessions/{session_id}/{action}'](created['id'],'pause')
+        assert session.generation==before+1
+        await endpoints['/api/ai/sessions/{session_id}/{action}'](created['id'],'pause')
+        assert session.generation==before+1
+        session.db.conn.close()
+    asyncio.run(run())

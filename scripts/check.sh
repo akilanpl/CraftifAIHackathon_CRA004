@@ -12,5 +12,6 @@ node tests/replaySync.test.ts
 node tests/replayResources.test.ts
 node tests/datasetScope.test.ts
 node tests/aiCamera.test.ts
+node tests/cameraDevices.test.ts
 node node_modules/typescript/bin/tsc -b
 node node_modules/vite/bin/vite.js build

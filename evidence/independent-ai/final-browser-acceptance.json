@@ -1,0 +1,81 @@
+{
+  "result": "PASS",
+  "host_storage_guard": {
+    "operator_exit_code": 0,
+    "reported_root_free": "1.4G",
+    "reported_external_free": "39G"
+  },
+  "automated": {
+    "backend": 161,
+    "frontend": 35,
+    "typescript": "PASS",
+    "production_build": "PASS",
+    "genuine_http_ws_source_cases": 3
+  },
+  "simulated_usb": {
+    "hardware": "NOT TESTED",
+    "browser_capture": "Actual prerecorded video.captureStream() MediaStream through USB lifecycle",
+    "discovery": "PASS two simulated devices",
+    "permission_granted": "PASS",
+    "permission_denied": "PASS",
+    "unavailable": "PASS",
+    "selected_devices": [
+      "sim-usb-a",
+      "sim-usb-b"
+    ],
+    "disconnect": "PASS backend STOPPED; live tracks0; active streams0; worker released",
+    "reconnect": "PASS",
+    "sampled_websocket_frames": 12,
+    "person_observations": 25,
+    "processing_latency_ms": {
+      "min": 649.1187789979449,
+      "median": 685.2756540010887,
+      "max": 865.7683849996829
+    },
+    "clock": "monotonic MediaStream capture time; input video loops, counts are not unique people",
+    "scope": "real independent inference on simulated capture, not physical hardware"
+  },
+  "synthetic_event_rules": {
+    "expected_entries": 2,
+    "actual_entries": 2,
+    "expected_exits": 2,
+    "actual_exits": 2,
+    "expected_reentries": 1,
+    "actual_reentries": 1,
+    "drawn_polygon": "Browser pointer-drawn normalized rectangle approximately[.4,.35]..[.9,.9]",
+    "labels": "SIMULATED_TEST_DATA, not AI detection evidence"
+  },
+  "browser": {
+    "upload_real_inference": "PASS three visible workers matched to captured pixels",
+    "pause_resume_seek_speed": "PASS, backward seek requires new session",
+    "mobile": "PASS390x844",
+    "zone_drawing_and_persistence": "PASS",
+    "acknowledgment": "PASS",
+    "source_switching": "PASS",
+    "network_failure": "Observed service SIGTERM; client stopped sampling and reported failure; WS reconnected after restart",
+    "normal_final_console_errors": 0,
+    "normal_final_console_warnings": 0,
+    "v2_port5173_play_pause": "PASS"
+  },
+  "v2": {
+    "incidents_exactly_unchanged": 2,
+    "zones_exactly_unchanged": true,
+    "video_metadata_original_model_hashes_unchanged": true,
+    "pipegen_opened_or_rerun": false
+  },
+  "screenshots": [
+    "simulated-usb-genuine-inference.png",
+    "simulated-usb-release.png",
+    "simulated-usb-unavailable.png",
+    "final-upload-browser.png",
+    "final-mobile-browser.png",
+    "final-v2-5173.png"
+  ],
+  "limitations": [
+    "Physical USB hardware NOT TESTED",
+    "Approximate IoU IDs, not reliable physical identity",
+    "Known low-confidence shelving false positive",
+    "No independent mAP/precision/recall evaluation",
+    "DEV localhost opt-in simulated camera harness; production physical capture remains separate"
+  ]
+}

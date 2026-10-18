@@ -35,7 +35,7 @@ Simulation fixtures may provide known boxes to test the same event engine, but m
 
 Correlate each result with source ID, session ID, frame sequence and source/media timestamp. Match overlay to the displayed frame, discard stale responses and bound in-flight work; a slow worker must drop/defer capture instead of accumulating unlimited lag. Timestamp, confidence, dimensions and bbox values must be validated. FPS/latency appear only when measured from actual work, with their measured scope stated.
 
-A start/restart/replay action must create or explicitly resume its own session; it must not silently replay incidents into an old session. Seeking in an already-analyzed file is visualization rather than a second persistence pass unless the operator explicitly chooses a new analysis session. Acknowledgments belong to isolated incident records. Stop/disconnect must release browser tracks, decoding resources, in-flight work and session ownership.
+A start/restart/replay action must create or explicitly resume its own session; it must not silently replay incidents into an old session. Seeking in an already-analyzed file is visualization rather than a second persistence pass unless the operator explicitly chooses a new analysis session. Acknowledgments belong to isolated incident records. Stop/disconnect releases browser tracks, decoding resources, in-flight work and session ownership; final browser/API cleanup checks passed.
 
 ## Required release report
 
@@ -82,13 +82,13 @@ The implemented fixture sequence is empty → outside → inside → hold → ho
 
 ## Frontend launch and capture-rate distinction
 
-Keep the V2 backend on its established port 8003, start the independent service on 8004, then run the existing frontend in another terminal:
+The primary final dashboard serves V2 and AI Camera Monitor on frontend **5173**, preserving V2 backend 8003 and routing independent AI to backend 8005:
 
 ```bash
-SENTINEL_API_TARGET=http://127.0.0.1:8003 SENTINEL_AI_TARGET=http://127.0.0.1:8004 ./scripts/start-frontend.sh --port 5173 --strictPort
+SENTINEL_API_TARGET=http://127.0.0.1:8003 SENTINEL_AI_TARGET=http://127.0.0.1:8005 ./scripts/start-frontend.sh --port 5173 --strictPort
 ```
 
-Open **http://127.0.0.1:5173** and select **AI Camera Monitor**. Vite routes the more specific `/api/ai` and `/ws/ai` paths to the independent service; V2 routes retain their existing target. Browser simulation, genuine virtual-video processing, uploaded MP4 processing, lifecycle/speed controls, mobile layout and V2 replay regression have passed. Final automated regressions and operational release holds are recorded below.
+Open **http://127.0.0.1:5173** and select **AI Camera Monitor**. Vite routes the more specific `/api/ai` and `/ws/ai` paths to the independent service; V2 routes retain their existing target. Browser simulation, genuine virtual-video processing, uploaded MP4 processing, simulated USB lifecycle, speed controls, mobile layout and V2 replay regression passed. Final automated checks passed; actual Git push/main-merge status is recorded by the primary agent.
 
 Capture resizes the longest image edge to at most 960 pixels and samples at a ceiling of 3 FPS. That capture ceiling is a client scheduling limit, **not measured detector throughput**. The processed frame records its own dimensions; normalized overlays must use those dimensions/viewport consistently. Actual inference latency/FPS must be measured by the real worker and recorded separately.
 
@@ -112,16 +112,16 @@ The primary agent verified genuine virtual video and browser-selected upload, pa
 
 **Known false positive:** browser inspection observed shelving classified as a person near media time **4.24 s**, confidence about **0.54**. The model is imperfect; detector confidence is not correctness. IoU IDs are approximate associations and do not establish physical identity across occlusion, motion or missed detections. No independent labeled accuracy, mAP, precision or recall is claimed. The moving-camera stock video and configurable image polygon do not validate a real factory safety system.
 
-## Operational release holds
+## Host guard and release authorization
 
-Root free space unexpectedly dropped to approximately **962 MiB**, below the required 1 GiB reserve. The agent's download cache was cleared and the user was asked to free at least 250 MiB on the host. Do not start new downloads, large writes or experiments until the storage guard passes again; external session storage does not waive the root reserve.
+The earlier approximately 962 MiB root-space hold is resolved: the user supplied a successful host storage-guard result, **exit 0**, with approximately **1.4 GB root free and 39 GB external free**. The primary agent confirmed this host output. Continue to rerun the guard before future large writes/downloads; the required reserves remain 1 GiB root and 20 GiB external. No system/mount changes were made by this feature.
 
-The user explicitly approved keeping the existing **PUBLIC** visibility and pushing only the feature branch. Main stays at `14b787201de81263a4ebf1e393f406e7a57266a0`; this feature is not merged. Physical USB hardware test and independent quality metrics remain **NOT TESTED**. Storage reserve remains an operational hold until the host reports sufficient free space.
+The user explicitly approved keeping the existing **PUBLIC** visibility and pushing the feature branch, and subsequently authorized merging main **only after all checks and V2 regression pass**. Authorization is not evidence that a merge/push occurred; the primary agent records final commit, push and merge status. Physical USB hardware and independent quality metrics remain **NOT TESTED**.
 
 
 ## Current isolated demonstration and reproducible check
 
-The verified running feature demonstration is **http://127.0.0.1:5177/** → **AI Camera Monitor**, using independent backend **8005** and the existing V2 backend **8003**. V2 stays on **http://127.0.0.1:5173/**. To launch on a host after the storage guard passes, in separate terminals from the repository root:
+The primary dashboard is **http://127.0.0.1:5173/** → **AI Camera Monitor**, with independent backend **8005** and V2 backend **8003**. The alternate test frontend **http://127.0.0.1:5177/** remains available; its exact opt-in USB harness URL is **http://127.0.0.1:5177/?cameraTest=1**. The following alternate-port launch keeps the primary frontend available. To launch on a host after the storage guard passes, in separate terminals from the repository root:
 
 ```bash
 AI_PORT=8005 ./scripts/start-ai-monitor.sh
@@ -143,3 +143,30 @@ Linux Mint's existing system PyGObject/GStreamer can reproduce real H.264 MP4 in
 ```
 
 The clip is the original attributed warehouse source in the V2 manifest/README; no video or model binary is added to Git. The normalized verification polygon is an independent session rule and never replaces the V2 polygon. The utility samples every tenth source frame, acknowledges one resulting incident when present, stops its own session and writes its report.
+
+## Simulated USB browser pathway — verified genuine inference and cleanup
+
+The localhost Vite development test harness is enabled with **`?cameraTest=1`**; it is disabled by default in production. On the isolated demonstration open **http://127.0.0.1:5177/?cameraTest=1**, choose AI Camera Monitor → USB Camera and use the visible test-device controls. This is an application-owned MediaDevices abstraction; it does not override global `navigator.mediaDevices`.
+
+The supplied stream is the real prerecorded warehouse video through `HTMLVideoElement.captureStream()`, using the same USB-frame capture and independent ONNX pathway. Source and detection provenance are separate: `capture_origin: "simulated_usb_camera"`, `input_is_simulated: true`, while real pixel/model processing has `provenance: "independent_ai_inference"`. The origin is **client-declared**, not server-attested; a source label cannot prove physical hardware identity. Session name visibly says SIMULATED USB CAMERA. This is neither a synthetic detection fixture nor a physical USB-camera test.
+
+Actual browser checks passed discovery of two selectable test devices A/B, simulated permission grant/denial, unavailable-device handling, disconnect/reconnect, genuine CPU detection of three visible workers and acknowledgment. `../evidence/independent-ai/simulated-usb-genuine-inference.png` and `simulated-usb-unavailable.png` retain the browser evidence. The real captured/processed result displayed boxes on the workers.
+
+`simulated-usb-real-stream.json` records **12 sampled actual WebSocket frame messages** with person counts **[3,3,3,3,3,2,2,0,0,0,3,3]** and approximately **649–866 ms** processing. The video loops to sustain the mock camera stream. Observations and incident totals across loops are **not unique people counts or reliable physical reentry evidence**; looping and approximate IoU identities affect transitions. Physical hardware always remains NOT TESTED.
+
+The disconnect lifecycle defect was fixed and a fresh browser/API rerun confirmed **backend STOPPED, zero active streams, zero live tracks and a free inference worker**. Reconnecting test devices A/B resumed real frame inference. `simulated-usb-release.png` retains cleanup evidence. An earlier unexpected service SIGTERM had no Python exception; the dashboard stopped sampling, displayed error and reconnected after restart. The replacement service remained stable for more than seven minutes during final checks; this short observation is not a long-term reliability guarantee and the original SIGTERM cause remains unknown.
+
+## CPU resource and final test checkpoints
+
+`../evidence/independent-ai/cpu-runtime-validation.json` records a separate genuine six-frame CPU sample: **12 person observations**, two configured intra-op threads, approximately **1.99 average CPU cores** and **399.5 MiB peak process RSS**. The source is original warehouse JPEG pixels, without metadata inference input. This is a small process-resource sample, not camera/GPU/full-pipeline performance or a universal deployment bound.
+
+Final combined checks passed **161 backend tests**, including **three actual-model live HTTP/WebSocket source integration tests with no skips**, **35 frontend tests**, TypeScript and production build. Final browser reload had zero unexpected console errors.
+
+A real pointer-drawn rectangle from normalized `[0.4,0.35]` to `[0.9,0.9]` persisted in a new independent session; its fixture run returned 2 entries, 2 exits and 1 reentry. The final uploaded-video session produced three genuine worker detections. `final-upload-browser.png` and `final-mobile-browser.png` retain final upload and 390×844 browser checks. These session rules never replace the V2 polygon.
+
+`../evidence/independent-ai/restart-isolation-verification.json` reports PASS: a live service restart retained the earlier real acknowledgment, and later real-session SQLite snapshot recovery preserved incident counts and acknowledgment states across the recorded sessions. Recovered sessions are stopped. Warehouse V2 play/pause and its two original incidents remained unchanged.
+
+**Functional acceptance: PASS for independent real-video inference, simulation, browser upload, simulated USB pathway, lifecycle/cleanup, persistence, source isolation and V2 regression.** Physical USB camera hardware and independent accuracy metrics remain NOT TESTED. Public push/main merge are authorized subject to these checks; only the primary agent's final Git report establishes actual completion. No further feature-code changes are required by this documentation pass.
+
+
+Final V2 check: the primary frontend process on 5173 was restored with V2 target 8003 and independent AI target 8005; backend data remained unchanged. A fresh browser verified source hash, play/pause, the two original incidents and zero console errors. `../evidence/independent-ai/final-v2-5173.png` records this final primary-dashboard check. All functional/browser release checks are complete; actual commit/push/merge remains the primary agent's final step.

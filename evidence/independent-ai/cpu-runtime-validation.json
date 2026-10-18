@@ -1,0 +1,229 @@
+{
+  "model": {
+    "available": true,
+    "engine": "onnxruntime_cpu",
+    "runtime_version": "1.31.0",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "model": "YOLOv8m ONNX",
+    "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+    "input_shape": [
+      1,
+      3,
+      480,
+      640
+    ],
+    "physical_camera_hardware_test": "NOT TESTED"
+  },
+  "source": "Original warehouse video JPEGs, no metadata input",
+  "confidence_threshold": 0.5,
+  "frames": [
+    {
+      "source_frame_index": 0,
+      "width": 960,
+      "height": 540,
+      "detections": [
+        {
+          "bbox": [
+            0.2711170792579651,
+            0.24890823364257814,
+            0.4122714400291443,
+            0.7351348029242621
+          ],
+          "class_name": "person",
+          "confidence": 0.9279053211212158
+        },
+        {
+          "bbox": [
+            0.501905107498169,
+            0.20134379069010416,
+            0.6415019512176514,
+            0.6250281439887153
+          ],
+          "class_name": "person",
+          "confidence": 0.9195235967636108
+        },
+        {
+          "bbox": [
+            0.38619470596313477,
+            0.17998250325520834,
+            0.49335107803344724,
+            0.6376577589246962
+          ],
+          "class_name": "person",
+          "confidence": 0.917510986328125
+        }
+      ],
+      "processing_latency_ms": 673.7703889994009,
+      "processing_fps": 1.4841851412987654,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "provenance": "independent_ai_inference"
+    },
+    {
+      "source_frame_index": 38,
+      "width": 960,
+      "height": 540,
+      "detections": [
+        {
+          "bbox": [
+            0.2720391273498535,
+            0.2877078586154514,
+            0.4138615608215332,
+            0.8381303575303819
+          ],
+          "class_name": "person",
+          "confidence": 0.9210661053657532
+        },
+        {
+          "bbox": [
+            0.4065244674682617,
+            0.2074938456217448,
+            0.5253678321838379,
+            0.7465206570095486
+          ],
+          "class_name": "person",
+          "confidence": 0.906388521194458
+        },
+        {
+          "bbox": [
+            0.5298618078231812,
+            0.21670998467339408,
+            0.664078164100647,
+            0.7012196858723958
+          ],
+          "class_name": "person",
+          "confidence": 0.8601408004760742
+        }
+      ],
+      "processing_latency_ms": 609.2223630002991,
+      "processing_fps": 1.6414367901322575,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "provenance": "independent_ai_inference"
+    },
+    {
+      "source_frame_index": 66,
+      "width": 960,
+      "height": 540,
+      "detections": [
+        {
+          "bbox": [
+            0.2802011966705322,
+            0.35667809380425347,
+            0.44246516227722166,
+            0.9059649997287327
+          ],
+          "class_name": "person",
+          "confidence": 0.9157605171203613
+        },
+        {
+          "bbox": [
+            0.40649964809417727,
+            0.24220504760742187,
+            0.5426847696304321,
+            0.7612408955891927
+          ],
+          "class_name": "person",
+          "confidence": 0.9043517112731934
+        },
+        {
+          "bbox": [
+            0.5526158571243286,
+            0.25394795735677084,
+            0.7030152082443237,
+            0.7840269300672743
+          ],
+          "class_name": "person",
+          "confidence": 0.8968331813812256
+        }
+      ],
+      "processing_latency_ms": 595.585367998865,
+      "processing_fps": 1.6790204288596724,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "provenance": "independent_ai_inference"
+    },
+    {
+      "source_frame_index": 125,
+      "width": 960,
+      "height": 540,
+      "detections": [
+        {
+          "bbox": [
+            0.47357778549194335,
+            0.4423302544487847,
+            0.614533519744873,
+            0.9692345513237848
+          ],
+          "class_name": "person",
+          "confidence": 0.9095776081085205
+        },
+        {
+          "bbox": [
+            0.3238521695137024,
+            0.6407755533854167,
+            0.5017655253410339,
+            0.9964718288845487
+          ],
+          "class_name": "person",
+          "confidence": 0.9022404551506042
+        },
+        {
+          "bbox": [
+            0.6233994245529175,
+            0.44310537974039715,
+            0.7781134843826294,
+            0.9751697328355577
+          ],
+          "class_name": "person",
+          "confidence": 0.895582377910614
+        }
+      ],
+      "processing_latency_ms": 613.5224370009382,
+      "processing_fps": 1.6299322399491492,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "provenance": "independent_ai_inference"
+    },
+    {
+      "source_frame_index": 200,
+      "width": 960,
+      "height": 540,
+      "detections": [],
+      "processing_latency_ms": 596.3934139981575,
+      "processing_fps": 1.6767455450188613,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "provenance": "independent_ai_inference"
+    },
+    {
+      "source_frame_index": 253,
+      "width": 960,
+      "height": 540,
+      "detections": [],
+      "processing_latency_ms": 592.4052029986342,
+      "processing_fps": 1.6880337899434443,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "provenance": "independent_ai_inference"
+    }
+  ],
+  "resource_measurement": {
+    "sample_wall_seconds": 3.6819374859987875,
+    "process_cpu_seconds": 7.319201,
+    "average_cpu_cores": 1.987866721755202,
+    "peak_process_rss_kib": 409116,
+    "configured_intra_op_threads": 2,
+    "configured_inter_op_threads": 1,
+    "scope": "Six-frame CPU process sample, not hardware/pipeline benchmark"
+  },
+  "physical_camera_hardware_test": "NOT TESTED"
+}
