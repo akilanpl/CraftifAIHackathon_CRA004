@@ -15,7 +15,7 @@ Two processing paths are implemented and kept separate:
 
 **Physical USB camera hardware: NOT TESTED.** The simulated USB pathway uses prerecorded video through `captureStream()` and real inference; it is not evidence of a connected physical camera. This moving-camera, image-space demonstration is not a calibrated industrial protective system.
 
-![Verified recorded warehouse video with person boxes and restricted zone](evidence/07-real-mode-dashboard/warehouse-real-video-overlay.jpg)
+![Overview · light three-page workspace](evidence/ui-light-redesign/design-overview-desktop.png)
 
 ## What works
 
@@ -143,6 +143,12 @@ Warehouse footage: [Men Working in a Warehouse](https://www.pexels.com/video/men
 
 ## Integrated release acceptance
 
-The post-integration browser run verified V2 replay, simulation, genuine independent virtual-camera and simulated USB inference, permission denial, disconnect/reconnect cleanup, uploaded MP4, pause/resume/half-speed/end, session acknowledgments and source isolation. Mobile390×844 passed visual inspection; the console warning/error check was empty. The original two V2 incidents and all source/model/engine hashes remained unchanged. Formal independent accuracy remains **PENDING HUMAN REVIEW** and does not block this verified application release. INT8, Jetson, FirmGen closed-loop hardware and physical USB hardware remain **NOT TESTED**. No final hackathon submission receipt has been verified.
+The post-integration browser run verified V2 replay, simulation, genuine independent virtual-camera and simulated USB inference, permission denial, disconnect/reconnect cleanup, uploaded MP4, pause/resume/half-speed/end, session acknowledgments and source isolation. Mobile390 × 844 passed visual inspection; the console warning/error check was empty. The original two V2 incidents and all source/model/engine hashes remained unchanged. Formal independent accuracy remains **PENDING HUMAN REVIEW** and does not block this verified application release. INT8, Jetson, FirmGen closed-loop hardware and physical USB hardware remain **NOT TESTED**. No final hackathon submission receipt has been verified.
 
 ![Integrated genuine CPU detections from uploaded video](evidence/evaluation/released-upload.png)
+
+## Three-page light workspace
+
+Overview, Recorded Monitoring and Incident Center now follow the supplied light design references: white cards, a pale sidebar, compact breadcrumbs, video-first layout, pipeline context and real incident data. The three pages retain source-hash checks, synchronized PTS overlays, original IDs/timestamps, polygon occupancy, filters, JSON export, incident details and acknowledgments. Mobile tables scroll inside their cards, and detail dialogs support keyboard focus and Escape. The full source 16:9frame is preserved; tall video views may require vertical scrolling. Other pages retain their existing styling.
+
+Actual browser comparisons covered1600 × 900, 1920 × 1080, 1366 × 768, and 390 × 844. **231 backend and 35 frontend tests,TypeScript and production build passed.** Original V2 incidents,acknowledgments and video/model/engine/metadata hashes remain unchanged. [Visual and functional acceptance](evidence/ui-light-redesign/acceptance.json) · [Screenshots and test guide](docs/three-page-ui-redesign.md).

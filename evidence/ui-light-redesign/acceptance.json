@@ -1,0 +1,94 @@
+{
+  "scope": [
+    "Overview",
+    "Recorded Monitoring",
+    "Incident Center"
+  ],
+  "baseline_commit": "5dd18431e82dc281e0a327e587dc12dc4d54c5f1",
+  "branch": "feature/light-dashboard-redesign",
+  "computer_use_skill": "No separate skill available; actual CUA browser automation, screenshots and inspection executed",
+  "viewport_requests": [
+    [
+      1600,
+      900
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "scrollbar_note": "Content viewport width may be15px narrower than the requested browser viewport",
+  "backend_tests": 231,
+  "frontend_tests": 35,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "browser": {
+    "visual_reference_comparison": "PASS all three pages; at least one correction pass",
+    "corrections": [
+      "Removed inherited dark incident filters",
+      "Tightened Overview title and removed decorative KPI band",
+      "Improved light text contrast",
+      "Added explicit filter labels and accessible row actions",
+      "Added incident-dialog focus trap/restoration after acknowledgment"
+    ],
+    "page_horizontal_overflow": false,
+    "video_frames_visually_checked": [
+      38,
+      106,
+      245
+    ],
+    "frame_38_inside_count": 1,
+    "frame_106_inside_count": 0,
+    "frame_245_person_boxes": 0,
+    "matched_frame_delta_ms": 0,
+    "maximum_measured_box_drift_px": 7.052951389141526e-05,
+    "polygon_pixels": [
+      [
+        806,
+        799
+      ],
+      [
+        1190,
+        799
+      ],
+      [
+        1190,
+        929
+      ],
+      [
+        806,
+        929
+      ]
+    ],
+    "play_pause_seek": "PASS",
+    "speed_4x_end_replay": "PASS",
+    "reload_and_refresh": "PASS",
+    "severity_zone_event_filters": "PASS",
+    "export_json": "PASS downloaded two exact original IDs",
+    "incident_details": "PASS desktop/mobile",
+    "keyboard_dialog": "PASS Tab wraps, Escape closes, row-action focus restores",
+    "acknowledgment_sqlite": "PASS isolated QA database; original history untouched",
+    "optional_analysis": "PASS expand/collapse and controls inspected; no analysis started",
+    "mobile_table_scroll": "PASS table880px inside321px container; document375px with no horizontal overflow",
+    "console_errors": 0,
+    "console_warnings": 0,
+    "independent_simulation": "PASS two entries,two exits,one reentry after complete nine-step scenario",
+    "independent_virtual_cpu_inference": "PASS actual960x540captured frame,three model detections",
+    "upload_simulated_usb": "PASS existing real-model HTTP/WS source tests and unchanged camera/upload components"
+  },
+  "limitations": [
+    "Source remains moving-camera,frame-relative demonstration ROI",
+    "Full source16:9preserved; tall desktop video may require vertical scroll to controls,unlike cropped reference images",
+    "Other five pages keep their existing design",
+    "Independent accuracy PENDING HUMAN REVIEW",
+    "Physical USB hardware,INT8 execution,Jetson,FirmGen hardware NOT TESTED"
+  ]
+}

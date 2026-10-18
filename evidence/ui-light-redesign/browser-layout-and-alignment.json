@@ -1,0 +1,52 @@
+[
+  {
+    "label": "monitoring-1600-frame106",
+    "alignment": {
+      "boxes": 3,
+      "maxPersonBoxDriftPx": 0.00006293402793744463,
+      "polygon": "806,799 1190,799 1190,929 806,929",
+      "renderedHeight": 696.0625,
+      "renderedWidth": 1239,
+      "sourceHeight": 1080,
+      "sourceWidth": 1920,
+      "videoSvgViewportDriftPx": 0
+    },
+    "deltaNs": "0",
+    "documentWidth": 1585,
+    "frame": "106",
+    "horizontalOverflow": false,
+    "media": "4.240000000",
+    "ptsNs": "4320000000",
+    "viewportHeight": 900,
+    "viewportWidth": 1585
+  },
+  {
+    "label": "monitoring-1920-frame106",
+    "alignment": {
+      "boxes": 3,
+      "maxPersonBoxDriftPx": 0.00007052951389141526,
+      "polygon": "806,799 1190,799 1190,929 806,929",
+      "renderedHeight": 871.5625,
+      "renderedWidth": 1551,
+      "sourceHeight": 1080,
+      "sourceWidth": 1920,
+      "videoSvgViewportDriftPx": 0
+    },
+    "deltaNs": "0",
+    "documentWidth": 1905,
+    "frame": "106",
+    "horizontalOverflow": false,
+    "media": "4.240000000",
+    "ptsNs": "4320000000",
+    "viewportHeight": 1080,
+    "viewportWidth": 1905
+  },
+  {
+    "label": "incidents-1920",
+    "alignment": null,
+    "documentWidth": 1920,
+    "horizontalOverflow": false,
+    "viewportHeight": 1080,
+    "viewportWidth": 1920
+  }
+]

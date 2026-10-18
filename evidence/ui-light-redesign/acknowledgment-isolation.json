@@ -1,0 +1,5 @@
+{
+  "qa_sqlite_acknowledgment_persisted": true,
+  "original_live_incidents_exactly_unchanged": true,
+  "scope": "UI mutation only against isolated QA database copy"
+}
