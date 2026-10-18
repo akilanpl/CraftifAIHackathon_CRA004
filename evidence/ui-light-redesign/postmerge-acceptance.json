@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "tested_functional_commit": "05102e47158a62eb8fe71d69f4e11be9f660ab0f",
+  "followup_commit_scope": "Evidence and guide only; no functional-source changes",
+  "backend_passed": 231,
+  "frontend_passed": 35,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "skips": 0,
+  "api_smoke": {
+    "/api/health": 200,
+    "/api/profile": 200,
+    "/api/zones": 200,
+    "/api/incidents": 200,
+    "/api/analytics/summary": 200,
+    "/api/replay/timeline": 200
+  },
+  "original_incidents_exactly_unchanged": true,
+  "original_incident_count": 2,
+  "original_acknowledgments_unchanged": true,
+  "main_url": "http://127.0.0.1:5173/",
+  "main_browser": "Actual light Overview with real matching video/person boxes inspected after merge",
+  "physical_usb": "NOT HARDWARE TESTED",
+  "accuracy": "PENDING HUMAN REVIEW"
+}

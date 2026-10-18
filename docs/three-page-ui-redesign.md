@@ -40,3 +40,7 @@ npm run dev -- --port 5173
  Set the existing `SENTINEL_API_TARGET`/`SENTINEL_AI_TARGET`to match chosen backend ports. Current demo uses V2 backend 8003 and independent service 8005; defaults remain 8000 and 8004. A separate QA frontend 5181 used a SQLite snapshot on 8006 to test acknowledgment without changing live V2. No new dependencies were installed.
 
 Independent accuracy remains PENDING HUMAN REVIEW. Physical USB hardware, INT8 execution, Jetson and FirmGen closed-loop hardware remain NOT TESTED. This UI release does not add measured accuracy or hardware evidence.
+
+## Post-merge validation
+
+[Post-merge acceptance](../evidence/ui-light-redesign/postmerge-acceptance.json) records the executed 231 backend / 35 frontend tests, TypeScript, production build and API smoke checks. [The full 254-frame HTTP/WebSocket/SQLite check](../evidence/ui-light-redesign/postmerge-api-websocket-sqlite.json) passed in a new verification database. The live original two incidents and acknowledgments remained exactly unchanged. The main URL was visually inspected after merge; [this screenshot](../evidence/ui-light-redesign/released-overview.png) shows the released frontend.

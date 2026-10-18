@@ -1,0 +1,35 @@
+{
+  "source_sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+  "frames_received_over_websocket": 254,
+  "person_observations_received": 522,
+  "unique_observed_track_ids": 6,
+  "computed_incidents": 2,
+  "entry_basis": {
+    "observed_outside_to_inside": 2
+  },
+  "distinct_incident_tracks": 1,
+  "final_visible_active_intrusions": 0,
+  "sqlite_incidents": 2,
+  "acknowledge_persistence_verified": true,
+  "input_unchanged": true,
+  "restart_recovery_verified": true,
+  "websocket_reconnect_verified": true,
+  "observed_track_transitions": {
+    "first_observed_inside": 0,
+    "observed_entries": 2,
+    "observed_reentries": 1,
+    "observed_exits": 2,
+    "hold_observations": 43
+  },
+  "native_roi_geometry_comparison": {
+    "compared_zone_frames": 254,
+    "disagreeing_zone_frames": 9,
+    "maximum_count_difference": 1
+  },
+  "comparison_note": "Geometry occupancy uses all exported person boxes; incident transitions additionally apply confidence. Missing tracks never imply exits; counts do not establish physical identities.",
+  "mode": "RECORDED PIPEGEN REPLAY",
+  "verification_scope": "backend metadata analysis; no video decoding or inference",
+  "session_id": "a1253720-eed7-43d9-8cc0-8d7b9c64ecdd",
+  "elapsed_verification_seconds": 1.201,
+  "note": "Verification elapsed time is not inference performance; incident counts depend on the seeded polygon and session."
+}
