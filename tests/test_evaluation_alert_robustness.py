@@ -24,7 +24,7 @@ RESULTS={}
 
 
 @pytest.fixture(scope='session',autouse=True)
-def write_evaluation_report():
+def write_evaluation_report(tmp_path_factory):
     yield
     cases=list(RESULTS.values())
     report=dict(schema_version=1,scope='Deterministic fixture business logic and direct API handler audit',
@@ -38,7 +38,8 @@ def write_evaluation_report():
         interpretation='Passing tests characterize current behavior; observed limitations are not robustness successes.',
         not_evaluated=['Real detector accuracy','Browser permission handling','Physical USB hardware','V2 full regression','Actual network WebSocket delivery'],
         cases=cases)
-    target=Path(__file__).resolve().parents[1]/'evidence/evaluation/alert-robustness-tests.json'
+    # Regression runs must not overwrite the committed historical evidence.
+    target=tmp_path_factory.getbasetemp()/'alert-robustness-tests.json'
     target.parent.mkdir(parents=True,exist_ok=True)
     target.write_text(json.dumps(report,indent=2)+'\n')
 

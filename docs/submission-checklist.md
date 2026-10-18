@@ -1,5 +1,7 @@
 # Submission checklist mapped to the official problem statement
 
+> Current consolidated evidence and Mac validation: [submission package](../submission/README.md). Historical status notes below describe earlier checkpoints; current public export access is verified in the [export manifest](../pipegen_export/manifest.json). New NVIDIA/venue execution, original PipeGen GUI captures and final organizer receipt remain pending.
+
 Source reviewed: [official problem statement](../evidence/01-requirement-and-flow/official-problem-statement.pdf), **Embedded SF: CraftifAI Physical AI Hackathon — Official Problem Statement**, 7-page local PDF, 142,647 bytes, SHA-256 `a1da48261c91d9668e15619b40f5c93e492f40814f0921c31c831db407862966`. Full text was read and the mandatory/submission pages were visually inspected. Page references below use the PDF's physical page order.
 
 The PDF states **4:00 pm** on page 6 without a timezone. The user explicitly selected **October 18, 2026, 4 PM IST** as the operative cutoff; earlier 6 PM instructions are superseded.

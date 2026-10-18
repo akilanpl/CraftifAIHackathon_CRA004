@@ -1,0 +1,16 @@
+{
+  "release_url": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18",
+  "asset_name": "pipegen-warehouse-hazard-sentinel-pipeline.tar.gz",
+  "download_url": "https://github.com/akilanpl/hazard-zone-sentinel/releases/download/warehouse-fp16-v2-2026-10-18/pipegen-warehouse-hazard-sentinel-pipeline.tar.gz",
+  "bytes": 134818189,
+  "sha256": "5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec",
+  "release_draft": false,
+  "release_prerelease": true,
+  "access_verification": "Unauthenticated HTTP HEAD followed redirect to HTTP 200; Content-Length 134818189. GitHub release API digest matched preserved full-export audit. Archive not downloaded again.",
+  "original_audit": {
+    "path": "evidence/factory-export-audit.json",
+    "sha256": "87f4ad74a1cd95aa1337f854a51a4c9435e34d1b32912066dc4776bed0b1c326",
+    "verification_method": "Read committed artifact and compute SHA-256"
+  },
+  "new_gpu_execution": "PENDING_GPU_DEMONSTRATION"
+}

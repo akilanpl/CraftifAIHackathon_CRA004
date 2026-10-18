@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "RECORDED METADATA REPLAY; no new NVIDIA inference",
+  "platform": "Darwin",
+  "architecture": "arm64",
+  "metadata_sha256": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+  "frames": 254,
+  "person_observations": 522,
+  "track_ids": 6,
+  "entry_incidents": 2,
+  "observed_exits": 2,
+  "observed_reentries": 1,
+  "suppressed_holds": 43,
+  "websocket_frames": 254,
+  "acknowledgment_persisted_after_restart": true,
+  "timeline_reads_and_stop_preserve_history": true,
+  "source_isolation": "PASS",
+  "independent_service_failure_isolation": "PASS",
+  "protected_hashes": {
+    "evidence/06-real-metadata/warehouse-fp16-v2-metadata.json": "b88db711a3daf13d494c8c438ad8f13b6f5aa262d9d7402e621be83439c9ccce",
+    "examples/warehouse-profile.json": "b921fa5f5ea59b7713dc616c0b37ce46070d41b81bd3c14c4fad69892545b568",
+    "evidence/04-tensorrt-fp16/warehouse-engine-summary.json": "35389cf8c9a8306646c9d62c4da9e80c0f8ba49114f393510d87d938695f2a00",
+    "evidence/factory-export-audit.json": "87f4ad74a1cd95aa1337f854a51a4c9435e34d1b32912066dc4776bed0b1c326"
+  },
+  "browser": {
+    "status": "BLOCKED",
+    "reason": "Existing Chromium launch aborted with SIGABRT in the local execution environment; no browser assertions completed."
+  },
+  "video_synchronization": "NOT_RETESTED; source MP4 unavailable",
+  "cpu_inference": "NOT_RUN; local model unavailable",
+  "temporary_services_and_databases": "cleaned"
+}
