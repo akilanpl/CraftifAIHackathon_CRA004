@@ -21,3 +21,35 @@ test('normalized polygon vertex coordinates adapt to a resized canvas', () => {
   assert.deepEqual(normalizedPoint(300,150,{left:0,top:0,width:600,height:300}),[.5,.5]);
   assert.deepEqual(normalizedPoint(600,300,{left:0,top:0,width:1200,height:600}),[.5,.5]);
 });
+
+
+test('recorded PipeGen evidence is distinct from live and synthetic input', async () => {
+  const {sourceKind} = await import('../src/domain.ts');
+  assert.equal(sourceKind('pipegen_replay',false), 'replay');
+  assert.equal(sourceKind(undefined,false,'replay'), 'replay');
+  assert.equal(sourceKind('pipegen',false), 'live');
+  assert.equal(sourceKind('pipegen_replay',true), 'synthetic');
+  assert.equal(sourceKind(undefined), 'canonical');
+});
+test('relative video PTS handles offsets, zero, and unavailable timestamps', async () => {
+  const {relativePtsSeconds, formatRelativePts} = await import('../src/domain.ts');
+  assert.equal(relativePtsSeconds(9_500_000_000,8_000_000_000),1.5);
+  assert.equal(formatRelativePts(0,0),'0.00 s');
+  assert.equal(relativePtsSeconds(1,2),0);
+  assert.equal(formatRelativePts(undefined,0),'PTS unavailable');
+  assert.equal(relativePtsSeconds(Infinity,0),null);
+});
+
+test('replay first-inside observations are never labeled as observed boundary crossings', async () => {
+  const {incidentEventLabel} = await import('../src/domain.ts');
+  assert.equal(incidentEventLabel('zone_entry','pipegen_replay',false,'first_observed_inside'),'Inside on first observation');
+  assert.equal(incidentEventLabel('zone_entry','pipegen_replay',false,'observed_outside_to_inside'),'Observed zone entry');
+  assert.equal(incidentEventLabel('zone_entry','pipegen_replay'),'Recorded zone alert (basis unavailable)');
+  assert.equal(incidentEventLabel('zone_entry','pipegen'),'zone entry');
+});
+test('original replay IDs preserve raw ID zero and fall back without fabricating IDs', async () => {
+  const {originalTrackId} = await import('../src/domain.ts');
+  assert.equal(originalTrackId('session:0:0',{'session:0:0':'0'}),'0');
+  assert.equal(originalTrackId('unmapped',{}),'unmapped');
+  assert.equal(originalTrackId(null,{}),null);
+});

@@ -53,8 +53,19 @@ class NativeEvent(StrictModel):
     confidence: Optional[float] = Field(default=None,ge=0,le=1)
 
 
+class ReplayContext(StrictModel):
+    session_id: str
+    frame_index: int = Field(ge=0)
+    pts_ns: int = Field(ge=0)
+    source_id: int = Field(ge=0)
+    original_track_ids: dict[str,str] = Field(default_factory=dict)
+    raw_roi_counts: list[dict[str,int]] = Field(default_factory=list)
+
+
 class Frame(StrictModel):
     timestamp: datetime
+    timestamp_basis: Optional[Literal['replay_session_clock']] = None
+    replay: Optional[ReplayContext] = None
     camera_id: str = Field(min_length=1,max_length=100)
     frame_width: int = Field(gt=0,le=32768)
     frame_height: int = Field(gt=0,le=32768)

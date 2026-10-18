@@ -1,4 +1,4 @@
-# Evidence collection — pending genuine pipeline execution
+# Evidence collection — real recorded replay verified
 
 Application tests and synthetic screenshots verify application behavior only. They do not prove GPU inference or PipeGen execution.
 
@@ -19,7 +19,7 @@ These names are suggestions, not existing evidence. Preserve timestamps and sour
 
 ## Seven-stage genuine evidence ledger
 
-The machine-readable ledger is `checklist.json`. Every stage below is **PENDING**:
+The machine-readable ledger is `checklist.json`. Current stage statuses are in the ledger: metadata and replay-dashboard evidence are verified; selected model/compiler/execution facts are partial, and official Requirement/IR packaging remains pending.
 
 | Stage | Required genuine artifact |
 | --- | --- |
@@ -35,4 +35,4 @@ No synthetic screenshot fills any row. Do not rename synthetic QA captures to im
 
 `synthetic-submission-qa.jpg` documents the final historical-zone filtering and persisted acknowledgment QA. It contains only explicitly synthetic test records.
 
-Seven numbered evidence folders now mirror the pending ledger. Their READMEs are placeholders, not completed evidence. Source video provenance is in `../demo-video/source-provenance.json`; no raw footage is included.
+Seven numbered evidence folders mirror the ledger. Verified replay artifacts are in 06 and 07; other folders retain their explicit partial/pending status. Source video provenance is in `../demo-video/source-provenance.json`; no raw footage is included.

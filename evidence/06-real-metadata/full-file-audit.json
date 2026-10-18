@@ -1,0 +1,47 @@
+{
+  "source_file": "metadata.json",
+  "source_sha256": "ae10cfba371d2d553f4804058240e56ade5653c83c86916f354892c55df6d941",
+  "source_size_bytes": 3086411,
+  "frames": 1029,
+  "person_observations": 7688,
+  "unique_observed_person_ids": 89,
+  "unique_physical_people": "not established",
+  "first_pts_ns": 33366700,
+  "last_pts_ns": 17183850517,
+  "malformed_records": 0,
+  "nonfinite_values": 0,
+  "within_frame_duplicate_ids": 0,
+  "frames_with_positive_native_roi_count": 1023,
+  "native_roi_peak": 5,
+  "native_roi_person_observations": 2461,
+  "native_roi_tag_count_mismatches": 0,
+  "polygon_membership_disagreement_frames": 52,
+  "native_line_crossing_records": 0,
+  "native_entry_exit_events": "not present; ROI occupancy is not an event",
+  "configured_polygon_normalized": [
+    [
+      0.55,
+      0.45
+    ],
+    [
+      0.95,
+      0.45
+    ],
+    [
+      0.95,
+      0.95
+    ],
+    [
+      0.55,
+      0.95
+    ]
+  ],
+  "computed_alerts_one_session": 33,
+  "computed_alert_basis": {
+    "first_observed_inside": 23,
+    "observed_outside_to_inside": 10
+  },
+  "observed_exits": 11,
+  "observed_reentries": 0,
+  "source_snapshot": "Preserved outside Git, unchanged; one original frame excerpt included."
+}

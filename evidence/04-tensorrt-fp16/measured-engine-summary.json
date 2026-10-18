@@ -1,0 +1,32 @@
+{
+  "model": "YOLOv8m ONNX",
+  "semantic_model_version": "not reported",
+  "tensorrt": "10.3.0",
+  "precision": "fp16",
+  "engine_bytes": 52730564,
+  "layer_count": 184,
+  "precision_mix": {
+    "FP16": 174,
+    "FP32": 10
+  },
+  "measured_gpu_compute_ms": 4.94176,
+  "measured_end_to_end_engine_ms": 5.84506,
+  "benchmark_device_in_report": "unidentified",
+  "modeled_profile": {
+    "device": "Jetson Orin NX 16GB",
+    "device_key": "orin_nx",
+    "device_arch": "sm_87",
+    "precision": "fp16",
+    "power_mode": "15W",
+    "total_latency_ms": 5.927012947444544,
+    "est_fps": 168.71905104090487
+  },
+  "caveat": "Modeled Orin NX estimates are not RTX2060SUPER measurements. Measured benchmark is model/engine timing, not full pipeline FPS. ModelStage.json permission denied. No new inference was run for this audit.",
+  "power_watts_verified": null,
+  "input_shape": [
+    1,
+    3,
+    480,
+    640
+  ]
+}

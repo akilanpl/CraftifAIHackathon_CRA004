@@ -15,3 +15,30 @@ export function normalizedPoint(clientX: number, clientY: number, rect: { left: 
   const clamp = (value: number) => Math.max(0, Math.min(1, value));
   return [clamp((clientX - rect.left - border) / width), clamp((clientY - rect.top - border) / height)];
 }
+
+export type SourceKind = 'replay' | 'synthetic' | 'live' | 'canonical';
+/** Replay is recorded real evidence, never live input or simulated detections. */
+export function sourceKind(source?: string, synthetic = false, mode?: string): SourceKind {
+  if (synthetic || mode === 'synthetic') return 'synthetic';
+  if (source === 'pipegen_replay' || mode === 'replay') return 'replay';
+  return source === 'pipegen' ? 'live' : 'canonical';
+}
+export function relativePtsSeconds(pts?: number | null, first?: number | null): number | null {
+  if (pts == null || first == null || !Number.isFinite(pts) || !Number.isFinite(first)) return null;
+  return Math.max(0, (pts - first) / 1e9);
+}
+export function formatRelativePts(pts?: number | null, first?: number | null): string {
+  const seconds = relativePtsSeconds(pts, first);
+  return seconds == null ? 'PTS unavailable' : `${seconds.toFixed(2)} s`;
+}
+
+/** A first observation inside a zone is not evidence of crossing its boundary. */
+export function incidentEventLabel(eventType: string, source?: string, synthetic = false, entryBasis?: string): string {
+  if (sourceKind(source, synthetic) !== 'replay') return eventType.replace(/_/g, ' ');
+  if (entryBasis === 'first_observed_inside') return 'Inside on first observation';
+  if (entryBasis === 'observed_outside_to_inside') return 'Observed zone entry';
+  return 'Recorded zone alert (basis unavailable)';
+}
+export function originalTrackId(trackId: string | null, mapping?: Record<string, string>): string | null {
+  return trackId == null ? null : mapping?.[trackId] ?? trackId;
+}

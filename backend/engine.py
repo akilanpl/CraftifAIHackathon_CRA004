@@ -6,10 +6,14 @@ from .geometry import point_in_polygon
 
 
 class ZoneEngine:
-    def __init__(self,db,stale_seconds=5,clock=time.monotonic):
+    def __init__(self,db,stale_seconds=5,clock=time.monotonic,visible_only=False):
         self.db,self.stale_seconds,self.clock = db,stale_seconds,clock
         self.states = {}
         self.last_timestamps = {}
+        # Replay retains inside state for deduplication, but occupancy describes
+        # only confident tracked people observed in each camera's latest frame.
+        # Live/native behavior keeps its existing timeout-based occupancy.
+        self.replay_visible = {} if visible_only else None
 
     def expire(self):
         now = self.clock()
@@ -17,11 +21,14 @@ class ZoneEngine:
 
     def clear_zone(self,zone_id):
         self.states = {k:v for k,v in self.states.items() if k[1] != zone_id}
+        if self.replay_visible is not None:
+            self.replay_visible = {camera:{k for k in keys if k[1]!=zone_id} for camera,keys in self.replay_visible.items()}
 
     @property
     def occupancy(self):
         self.expire()
-        return sum(1 for v in self.states.values() if v['inside'])
+        visible = None if self.replay_visible is None else set().union(*self.replay_visible.values())
+        return sum(1 for k,v in self.states.items() if v['inside'] and (visible is None or k in visible))
 
     def process(self,frame,source,synthetic=False):
         self.expire()
@@ -36,8 +43,12 @@ class ZoneEngine:
         events,warnings = [],[]
         now = self.clock()
 
-        def emit(zone,track,confidence):
+        def emit(zone,track,confidence,entry_basis=None):
             event = dict(id=str(uuid4()),timestamp=frame.timestamp.isoformat(),camera_id=frame.camera_id,zone_id=zone['id'],zone_name=zone['name'],track_id=track,confidence=confidence,event_type='zone_entry',severity=zone['severity'],acknowledged=False,source=source,synthetic=synthetic)
+            if frame.replay is not None:
+                event['timestamp_basis'] = frame.timestamp_basis
+                event['replay'] = frame.replay.model_dump(mode='json')
+                event['entry_basis'] = entry_basis
             self.db.save_incident(event)
             events.append(event)
 
@@ -58,6 +69,7 @@ class ZoneEngine:
                     emit(zone,native.track_id,native.confidence)
             return events,warnings
 
+        visible = set()
         for detection in frame.detections:
             if detection.class_name.lower() != 'person':
                 continue
@@ -72,12 +84,15 @@ class ZoneEngine:
                 if detection.confidence < zone['confidence_threshold']:
                     state['count'] = 0
                     continue  # Uncertain observation must not manufacture an exit/re-entry.
+                visible.add(key)
                 inside = point_in_polygon(foot,zone['polygon'])
                 if not inside:
-                    state.update(inside=False,count=0)
+                    state.update(inside=False,count=0,observed_outside=True)
                 elif not state['inside']:
                     state['count'] += 1
                     if state['count'] >= zone.get('debounce_frames',1):
                         state['inside'] = True
-                        emit(zone,detection.track_id,detection.confidence)
+                        emit(zone,detection.track_id,detection.confidence,'observed_outside_to_inside' if state.get('observed_outside') else 'first_observed_inside')
+        if self.replay_visible is not None:
+            self.replay_visible[frame.camera_id] = visible
         return events,list(dict.fromkeys(warnings))

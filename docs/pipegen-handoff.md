@@ -1,5 +1,8 @@
 # Genuine PipeGen handoff
 
+**Update:** the actual `video_json_export` batch is now supported by the dedicated recorded replay adapter. See [real PipeGen replay](real-pipegen-replay.md). The strict wall-clock requirements below still apply to live ingestion; replay explicitly uses relative PTS and a labeled session clock. No capture UTC is inferred.
+
+
 The dashboard, event engine, database, API, and configurable metadata mapper are integration-ready. This repository has not run PipeGen, compiled TensorRT, measured GPU inference, or supplied judging evidence. CraftifAI PipeGen remains the required actual vision pipeline.
 
 ## What the PipeGen operator must supply

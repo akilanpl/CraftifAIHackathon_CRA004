@@ -1,7 +1,3 @@
-# Actual model details
+# Selected model — partial provenance
 
-**PENDING — no verified genuine artifact has been added here.**
-
-Actual model identifier/version, labels, ONNX provenance, shape and checksum.
-
-Synthetic tests, source-only previews, and installation checks do not complete this requirement. Update the evidence ledger only after verification.
+Actual compiler artifacts identify YOLOv8m ONNX, input 1×3×480×640, FP16-enabled TensorRT 10.3.0 engine. No semantic model version is reported. See `../04-tensorrt-fp16/measured-engine-summary.json`. Full model provenance/version export and source checkpoint hash remain to be packaged; do not invent them.

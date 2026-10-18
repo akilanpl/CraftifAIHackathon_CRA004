@@ -1,7 +1,3 @@
-# DeepStream execution
+# DeepStream run — real output verified, run capture pending
 
-**PENDING — no verified genuine artifact has been added here.**
-
-Actual GPU run output/logs and camera/video source identity. Installation/container visibility is not run evidence.
-
-Synthetic tests, source-only previews, and installation checks do not complete this requirement. Update the evidence ledger only after verification.
+The actual exported metadata contains 1,029 frames and has been validated in full. Its original remains local, with fingerprint and real excerpt under `../06-real-metadata/`. Replay validates downstream metadata handling; it does not rerun GPU inference. Preserve the original PipeGen/DeepStream execution logs or screenshot to complete the execution evidence package.

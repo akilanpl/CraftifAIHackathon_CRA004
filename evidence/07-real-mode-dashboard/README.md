@@ -1,7 +1,5 @@
-# Real-mode dashboard demonstration
+# Real PipeGen replay dashboard
 
-**PENDING — no verified genuine artifact has been added here.**
+`real-pipegen-replay-dashboard.jpg` is a genuine browser capture after replaying the actual 1,029-frame export. It shows 33 computed alerts, 3 people inside the polygon in the latest frame, original candidate tracker IDs, and explicit REAL PIPEGEN REPLAY / metadata-only labels. This is neither synthetic QA nor a synchronized live camera view.
 
-Actual dashboard incident matched to the same real source time/camera/track; outside/entry/hold/exit/re-entry sequence.
-
-Synthetic tests, source-only previews, and installation checks do not complete this requirement. Update the evidence ledger only after verification.
+A fresh replay session persists a separate set of computed alerts; history across sessions includes repetitions. Original capture UTC and synchronized annotated video remain unavailable.

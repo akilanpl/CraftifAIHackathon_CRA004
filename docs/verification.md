@@ -38,6 +38,25 @@ An actual browser-created four-point zone was dragged, saved and reloaded. `scri
 
 Backend restart retained all three multi-person records and two acknowledgment states. Automatic WebSocket reconnect and cleared offline errors were visible without reloading. A separate live-mode database had zero zones/incidents, rejected synthetic generation with 409 and rejected unconfigured native PipeGen ingestion with 501. No test fixture was sent as real PipeGen input.
 
-`schemas/` was generated from actual validation models. Both canonical and artificial mapping examples passed the local-only metadata validator, which makes no network calls or database writes. Python source and JSON templates were checked. The evidence ledger has exactly seven genuine stages, all PENDING. New screenshot `evidence/synthetic-submission-qa.jpg` is synthetic QA only.
+`schemas/` was generated from actual validation models. Both canonical and artificial mapping examples passed the local-only metadata validator, which makes no network calls or database writes. Python source and JSON templates were checked. At that earlier synthetic-only verification, the ledger had seven genuine stages pending. The real replay milestone below supersedes that status. New screenshot `evidence/synthetic-submission-qa.jpg` is synthetic QA only.
 
 Read-only installed-resource inspection found `/opt/PipeGen/PipeGenApp`; external workspace exists at `/mnt/seagate4/PipeGenHackathon`. Format preparation uses official CraftifAI/NVIDIA sources in `demo-video/README.md`; actual PipeGen version-specific format acceptance remains pending. No PipeGen download, Docker/containerd operation, mount change or GPU workload was performed.
+
+
+## Genuine PipeGen replay verification — October 18, 2026
+
+- Final full backend suite: **82 passed** (one existing Starlette/AnyIO deprecation warning).
+- Frontend domain tests: **7 passed**; TypeScript and Vite production build passed.
+- Full actual source replay through HTTP/WebSockets: 1,029 frames and 7,688 person detections received; every normalized bbox checked against its original pixel values.
+- 89 observed person tracker IDs, not verified physical people. Original raw file SHA-256 unchanged.
+- 33 computed alerts for the original restricted polygon: 23 initial-inside observations, 10 observed outside-to-inside entries. 11 observed exits, no observed reentry; 2,458 repeated inside observations did not create alerts.
+- 33 incidents independently read from SQLite; acknowledgment persisted. Latest-frame visible occupancy is three, separate from retained deduplication state.
+- The actual React dashboard was opened and replayed at 1x; completion, boxes, IDs, 33 alerts and replay labels were visually checked and captured.
+- Native occupancy tags/counts agree; bottom-center geometry differs on 52 frames. See `real-pipegen-replay.md`.
+- These checks replay recorded metadata. They do not rerun inference, verify power draw, establish ground-truth people identities, or prove a synchronized video feed.
+
+Reproduce actual-source validation against a **new** verification database:
+
+```bash
+.venv/bin/python scripts/verify_real_replay.py /absolute/path/to/actual/metadata.json --db data/new-verification.sqlite3 --report data/replay-verification.json
+```

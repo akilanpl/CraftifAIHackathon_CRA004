@@ -6,9 +6,17 @@ Source repository: [akilanpl/hazard-zone-sentinel](https://github.com/akilanpl/h
 
 A local React + FastAPI safety operations application for CraftifAI PipeGen perception output. Tracked people entering normalized restricted polygons produce persistent incidents, live dashboard updates and optional JSONL output.
 
-**Integration status:** the application and synthetic test workflow are implemented. The real PipeGen installation, native metadata mapping, TensorRT compilation/speed report and live DeepStream run are pending external integration. No model, live camera inference or benchmark result is fabricated. PipeGen is the required actual vision pipeline.
+**Integration status:** genuine PipeGen metadata replay is integrated and verified: 1,029 frames, 7,688 person observations, 89 observed track IDs, and 33 computed polygon alerts in one replay session. These include 23 initial-inside observations and 10 observed outside-to-inside transitions. This is explicitly metadata-only replay, not live camera inference. See [real replay](docs/real-pipegen-replay.md) for timestamp, tracking and benchmark limitations.
 
-## Run locally
+## Run genuine PipeGen replay
+
+```bash
+bash scripts/start-real-replay.sh /absolute/path/to/actual/metadata.json
+```
+
+Then run `bash scripts/start-frontend.sh`, open `http://127.0.0.1:5173`, and click **Start replay**. The full genuine metadata stays local; its fingerprint, a real frame excerpt, API/WebSocket/SQLite validation, and a real replay dashboard screenshot are included in `evidence/`. Replay uses its own database and explicit labels. [Instructions and verified semantics](docs/real-pipegen-replay.md).
+
+## Run locally for synthetic QA
 
 From this directory, install dependencies as described in [setup](docs/setup.md), then use two terminals:
 
@@ -127,4 +135,4 @@ The selected input is `people-crossing.mp4`, H.264 MP4, 1920×1080, approximatel
 
 ## Pending submission evidence
 
-All seven genuine evidence stages remain **PENDING** in [the ledger](evidence/checklist.json). Clearly named directories under `evidence/` cover Requirement/finalized flow, official Pipeline IR, actual model details, TensorRT FP16 report, DeepStream execution, real metadata and real-mode dashboard demonstration. Existing screenshots are explicitly synthetic application QA.
+Genuine metadata and the explicitly labeled replay dashboard are now verified in [the ledger](evidence/checklist.json). Model/compiler summaries are partial evidence; the official Pipeline IR screenshot, full export and original run evidence still need packaging. Clearly named directories under `evidence/` cover Requirement/finalized flow, official Pipeline IR, actual model details, TensorRT FP16 report, DeepStream execution, real metadata and real-mode dashboard demonstration. Historical synthetic screenshots remain labeled; the new real replay screenshot is under `evidence/07-real-mode-dashboard/`.

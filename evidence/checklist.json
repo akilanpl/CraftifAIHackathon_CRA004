@@ -16,33 +16,38 @@
     },
     {
       "stage": "Selected model/version",
-      "status": "PENDING",
+      "status": "PARTIAL",
       "required": "Genuine selected model identifier, version, provenance and ONNX export details",
-      "artifact": null
+      "artifact": "04-tensorrt-fp16/measured-engine-summary.json",
+      "notes": "YOLOv8m ONNX and FP16 engine verified from compile artifacts; semantic model version not reported."
     },
     {
       "stage": "TensorRT FP16 report",
-      "status": "PENDING",
+      "status": "PARTIAL",
       "required": "Actual PipeGen compiler output and speed report from ONNX to TensorRT FP16",
-      "artifact": null
+      "artifact": "04-tensorrt-fp16/measured-engine-summary.json",
+      "notes": "Actual compiler/benchmark facts inspected; selected summary included. Original full report remains external. Modeled Orin figures separated from measured engine timings."
     },
     {
       "stage": "DeepStream execution",
-      "status": "PENDING",
+      "status": "PARTIAL",
       "required": "Actual live GPU DeepStream run on camera, video or supported stream",
-      "artifact": null
+      "artifact": "06-real-metadata/full-file-audit.json",
+      "notes": "Real exported metadata audited; original live GPU run screenshot/log is not packaged here."
     },
     {
       "stage": "Genuine metadata",
-      "status": "PENDING",
+      "status": "VERIFIED",
       "required": "Real source metadata plus validated parser and actionable incident output",
-      "artifact": null
+      "artifact": "06-real-metadata/replay-verification.json",
+      "notes": "Full original preserved locally by hash; genuine excerpt, actual schema adapter, and 33 computed replay alerts verified. Not native event IDs."
     },
     {
       "stage": "Real-mode dashboard",
-      "status": "PENDING",
+      "status": "VERIFIED_REPLAY",
       "required": "Dashboard incident and source status matched to genuine source metadata and actual pipeline run",
-      "artifact": null
+      "artifact": "07-real-mode-dashboard/real-pipegen-replay-dashboard.jpg",
+      "notes": "REAL PIPEGEN REPLAY, metadata-only. Not a synchronized video feed or live camera inference."
     }
   ],
   "synthetic_qa_only": [

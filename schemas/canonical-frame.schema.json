@@ -114,6 +114,55 @@
       ],
       "title": "NativeEvent",
       "type": "object"
+    },
+    "ReplayContext": {
+      "additionalProperties": false,
+      "properties": {
+        "session_id": {
+          "title": "Session Id",
+          "type": "string"
+        },
+        "frame_index": {
+          "minimum": 0,
+          "title": "Frame Index",
+          "type": "integer"
+        },
+        "pts_ns": {
+          "minimum": 0,
+          "title": "Pts Ns",
+          "type": "integer"
+        },
+        "source_id": {
+          "minimum": 0,
+          "title": "Source Id",
+          "type": "integer"
+        },
+        "original_track_ids": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Original Track Ids",
+          "type": "object"
+        },
+        "raw_roi_counts": {
+          "items": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object"
+          },
+          "title": "Raw Roi Counts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "session_id",
+        "frame_index",
+        "pts_ns",
+        "source_id"
+      ],
+      "title": "ReplayContext",
+      "type": "object"
     }
   },
   "additionalProperties": false,
@@ -122,6 +171,30 @@
       "format": "date-time",
       "title": "Timestamp",
       "type": "string"
+    },
+    "timestamp_basis": {
+      "anyOf": [
+        {
+          "const": "replay_session_clock",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Timestamp Basis"
+    },
+    "replay": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReplayContext"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "camera_id": {
       "maxLength": 100,

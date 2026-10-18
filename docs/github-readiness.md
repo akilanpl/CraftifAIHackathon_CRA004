@@ -46,4 +46,4 @@ Use the existing `frontend/pnpm-lock.yaml` and `requirements-lock.txt` for repro
 
 ## Submission state
 
-The application implementation and synthetic verification are ready for review. The seven required genuine PipeGen evidence stages remain **PENDING** in `../evidence/checklist.json`. A working synthetic application is not completion of the perception track. Capture genuine evidence, configure the actual metadata parser, verify real-mode behavior, and review the submission checklist before making the private repository public or submitting it for judging.
+The application implementation and synthetic verification are ready for review. Genuine metadata and the real recorded replay dashboard are verified in `../evidence/checklist.json`; model/compiler/execution summaries are partial, and remaining official screenshots/exports still need packaging. A working synthetic application is not completion of the perception track. Capture genuine evidence, configure the actual metadata parser, verify real-mode behavior, and review the submission checklist before making the private repository public or submitting it for judging.
