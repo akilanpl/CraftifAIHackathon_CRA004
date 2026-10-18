@@ -1,0 +1,11 @@
+{
+  "capture": {
+    "at": "2026-10-18T12:00:00+05:30",
+    "camera": "mapping-test-camera",
+    "width": 1000,
+    "height": 500
+  },
+  "objects": [
+    {"kind": 0, "score": 0.94, "identity": 17, "rectangle": [250, 100, 200, 300]}
+  ]
+}

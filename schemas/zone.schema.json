@@ -1,0 +1,66 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "camera_id": {
+      "default": "cam-01",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Camera Id",
+      "type": "string"
+    },
+    "polygon": {
+      "items": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ],
+        "type": "array"
+      },
+      "title": "Polygon",
+      "type": "array"
+    },
+    "severity": {
+      "default": "high",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "confidence_threshold": {
+      "default": 0.5,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence Threshold",
+      "type": "number"
+    },
+    "debounce_frames": {
+      "default": 1,
+      "maximum": 120,
+      "minimum": 1,
+      "title": "Debounce Frames",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "name",
+    "polygon"
+  ],
+  "title": "ZoneInput",
+  "type": "object"
+}

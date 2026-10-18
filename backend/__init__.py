@@ -1,0 +1,1 @@
+"""Hazard Zone Sentinel application."""

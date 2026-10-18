@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-10-18T12:00:00+00:00",
+  "camera_id": "cam-01",
+  "frame_width": 1280,
+  "frame_height": 720,
+  "source_name": "CANONICAL SCHEMA EXAMPLE — NOT REAL PIPEGEN EVIDENCE",
+  "detections": [
+    {
+      "track_id": "17",
+      "class_name": "person",
+      "confidence": 0.94,
+      "bbox": [0.25, 0.2, 0.45, 0.9]
+    }
+  ]
+}

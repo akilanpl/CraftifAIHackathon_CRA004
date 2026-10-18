@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "timestamp": {"path": "/capture/at"},
+  "timestamp_format": "iso8601",
+  "camera_id": {"path": "/capture/camera"},
+  "frame_width": {"path": "/capture/width"},
+  "frame_height": {"path": "/capture/height"},
+  "analytics_mode": "detections",
+  "detections": {
+    "list_path": "/objects",
+    "class_name": {"path": "/kind"},
+    "class_map": {"0": "person", "2": "forklift"},
+    "confidence": {"path": "/score"},
+    "track_id": {"path": "/identity"},
+    "bbox": {"path": "/rectangle", "format": "xywh", "units": "pixels"}
+  }
+}

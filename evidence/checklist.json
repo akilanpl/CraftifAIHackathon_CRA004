@@ -1,0 +1,57 @@
+{
+  "project": "Hazard Zone Sentinel",
+  "evidence_policy": "Synthetic application QA cannot satisfy genuine PipeGen evidence requirements.",
+  "pipegen_evidence": [
+    {
+      "stage": "Requirement",
+      "status": "PENDING",
+      "required": "Actual PipeGen requirement-stage output or exported requirement configuration",
+      "artifact": null
+    },
+    {
+      "stage": "Pipeline IR",
+      "status": "PENDING",
+      "required": "Actual Pipeline IR screenshot and exported configuration",
+      "artifact": null
+    },
+    {
+      "stage": "Selected model/version",
+      "status": "PENDING",
+      "required": "Genuine selected model identifier, version, provenance and ONNX export details",
+      "artifact": null
+    },
+    {
+      "stage": "TensorRT FP16 report",
+      "status": "PENDING",
+      "required": "Actual PipeGen compiler output and speed report from ONNX to TensorRT FP16",
+      "artifact": null
+    },
+    {
+      "stage": "DeepStream execution",
+      "status": "PENDING",
+      "required": "Actual live GPU DeepStream run on camera, video or supported stream",
+      "artifact": null
+    },
+    {
+      "stage": "Genuine metadata",
+      "status": "PENDING",
+      "required": "Real source metadata plus validated parser and actionable incident output",
+      "artifact": null
+    },
+    {
+      "stage": "Real-mode dashboard",
+      "status": "PENDING",
+      "required": "Dashboard incident and source status matched to genuine source metadata and actual pipeline run",
+      "artifact": null
+    }
+  ],
+  "synthetic_qa_only": [
+    "synthetic-dashboard.jpg",
+    "synthetic-analytics-mobile.jpg",
+    "synthetic-submission-qa.jpg"
+  ],
+  "github_remote": {
+    "status": "NOT_CONFIGURED",
+    "published": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PENDING",
+  "host_file_path": null,
+  "runtime_file_path": null,
+  "sha256": null,
+  "codec": null,
+  "container": null,
+  "width": null,
+  "height": null,
+  "fps": null,
+  "duration_seconds": null,
+  "camera_id": null,
+  "participant_permission_confirmed": false,
+  "recorded_at": null,
+  "entry_exit_timestamps": [],
+  "pipegen_acceptance_verified": false,
+  "notes": "Template only; fill from the actual clip. No footage is bundled."
+}
