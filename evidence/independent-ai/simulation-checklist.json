@@ -1,0 +1,207 @@
+{
+  "feature": "Independent AI Camera Monitor",
+  "branch": "feature/independent-ai-camera",
+  "scope": "New independent feature only; does not modify the Warehouse V2 evidence ledger",
+  "simulation_label": "SIMULATED TEST DATA",
+  "simulation_is_yolo_evidence": false,
+  "physical_camera_hardware_test": "NOT_TESTED",
+  "independent_real_inference": {
+    "status": "REAL_26_FRAME_STREAM_AND_BROWSER_VIRTUAL_UPLOAD_VERIFIED",
+    "engine": "ONNX Runtime1.31.0",
+    "provider": "CPUExecutionProvider",
+    "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+    "actual_inference_results": {
+      "report": "genuine-api-stream.json",
+      "sampled_real_frames": 26,
+      "person_observations": 52,
+      "persisted_incidents": 2,
+      "first_observed_inside_incidents": 1,
+      "observed_reentry_incidents": 1,
+      "observed_exits": 1,
+      "acknowledgment_verified": true,
+      "input": "Decoded real visual frames; no old PipeGen JSON detections"
+    },
+    "measured_fps": {
+      "reciprocal_median_processing_rate": 1.48,
+      "scope": "Derived from median frame-processing latency, notmeasuredcameraFPS/endtoendpipelinebenchmark"
+    },
+    "measured_latency_ms": {
+      "min": 629.44,
+      "median": 675.5,
+      "max": 858.28,
+      "scope": "CPU JPEG decode/preprocess/ORT/postprocess; sample notcameraorfullpipelinebenchmark"
+    },
+    "visual_alignment": "Genuine virtual and browserupload checked;knownshelvingfalsepositive at4.24s confidence~.54",
+    "input_shape": [
+      1,
+      3,
+      480,
+      640
+    ],
+    "stream_validation": "PASS reproducible26sampledframe run;experimentalIoUidentitylimitations remain"
+  },
+  "deterministic_single_person_scenario": {
+    "status": "BROWSER_VERIFIED_SIMULATION",
+    "phases": [
+      "empty",
+      "outside",
+      "inside",
+      "hold",
+      "hold",
+      "outside",
+      "reentry",
+      "hold",
+      "outside"
+    ],
+    "expected_entries": 2,
+    "expected_exits": 2,
+    "expected_reentries": 1,
+    "expected_duplicate_hold_alerts": 0,
+    "actual_entries": 2,
+    "actual_exits": 2,
+    "actual_reentries": 1,
+    "actual_duplicate_hold_alerts": 0,
+    "ground_truth_basis": "Explicit deterministic simulation fixtures; no real model accuracy claim",
+    "screenshot": "simulation-browser.png",
+    "acknowledgment": "PASS"
+  },
+  "required_checks": [
+    {
+      "check": "polygon validation, entry/hold/exit/reentry",
+      "status": "SIMULATION_BROWSER_PASS"
+    },
+    {
+      "check": "multiple people, occlusion and missed observations",
+      "status": "PASS_AUTOMATED_FIXTURE_LOGIC_NOT_PHYSICAL_IDENTITY"
+    },
+    {
+      "check": "timestamps and displayed-frame overlay alignment",
+      "status": "PASS_PROTOCOL_TESTS_AND_REAL_BROWSER_VISUAL_CHECKS"
+    },
+    {
+      "check": "SQLite persistence and acknowledgments",
+      "status": "REAL_AND_SIMULATION_ACK_PASS"
+    },
+    {
+      "check": "WebSocket updates and reconnect",
+      "status": "PASS_AUTOMATED_DELIVERY_AND_BROWSER_RECONNECT_AFTER_SERVICE_RESTART"
+    },
+    {
+      "check": "independent session isolation and no V2 contamination",
+      "status": "PASS_AUTOMATED_AND_TWO_ORIGINAL_V2_IDS_UNCHANGED"
+    },
+    {
+      "check": "pause, seek, replay and restart",
+      "status": "BROWSER_PASS_PAUSE_RESUME_END_RESTART_SPEED0.5x2x_BACKWARDSEEK409_REQUIRES_NEWSESSION"
+    },
+    {
+      "check": "bounded queue/backpressure and resource cleanup",
+      "status": "PASS_AUTOMATED_CANCELLATION_LOCK_AND_BROWSER_HELPER_CLEANUP"
+    },
+    {
+      "check": "permission denied, missing device and disconnected camera mocks",
+      "status": "HELPER_TESTS_PASSED_HARDWARE_NOT_TESTED"
+    },
+    {
+      "check": "malformed/empty/oversized upload rejection",
+      "status": "PASS_HELPER_TESTS_AND_BROWSER_NON_MP4_REJECTION"
+    },
+    {
+      "check": "genuine uploaded/virtual video through independent model",
+      "status": "BROWSER_AND_REAL_26_FRAME_REPORT_PASS"
+    },
+    {
+      "check": "browser V2 regression and responsive layout",
+      "status": "PASS_V2_PLAY_PAUSE_TWO_ORIGINAL_INCIDENTS_MOBILE390x844"
+    },
+    {
+      "check": "backend/frontend/typecheck/build regression",
+      "status": "PASS_152_BACKEND_30_FRONTEND_TYPESCRIPT_PRODUCTION_BUILD"
+    }
+  ],
+  "manual_annotation": {
+    "status": "UNREVIEWED_TEMPLATE_ONLY",
+    "template": "../../docs/camera-hardware-acceptance.md",
+    "predictions_are_ground_truth": false,
+    "reviewed_frames": null,
+    "reviewed_person_instances": null,
+    "accuracy_metrics": null
+  },
+  "hardware_procedure": "../../docs/camera-hardware-acceptance.md",
+  "release_gate": "Do not merge until real independent video inference, browser checks and regression checks actually succeed; report exact blockers otherwise",
+  "service": {
+    "backend": "http://127.0.0.1:8004",
+    "entrypoint": "backend.monitor_main:app",
+    "launcher": "scripts/start-ai-monitor.sh",
+    "database_isolation": "data/ai-monitor/<new UUID>/; optional explicitSENTINEL_AI_DATA_DIR; notV2database",
+    "actual_runtime_ready": true,
+    "frontend": "http://127.0.0.1:5173 \u2192 AI Camera Monitor",
+    "frontend_ai_proxy_env": "SENTINEL_AI_TARGET=http://127.0.0.1:8004",
+    "v2_proxy_unchanged": "SENTINEL_API_TARGET=http://127.0.0.1:8003",
+    "external_home": "/mnt/seagate4/PipeGenHackathon/independent-ai-monitor",
+    "verified_demonstration": "http://127.0.0.1:5177/ \u2192 AI Camera Monitor",
+    "verified_backend": "http://127.0.0.1:8005"
+  },
+  "capture_contract": {
+    "frame_limit_bytes": 2097152,
+    "browser_file_limit_bytes": 262144000,
+    "original_mp4_stored_on_backend": false,
+    "one_inflight_browser_frame": true,
+    "one_global_inference_worker": true,
+    "unbounded_queue": false,
+    "display": "Captured JPEG plus matching returnedseq/mediaTime/sessionID; preview not overlaid",
+    "tracking": "Experimental IoU association; not physical identity proof",
+    "longest_edge_pixels": 960,
+    "sampling_ceiling_fps": 3,
+    "sampling_ceiling_is_measured_model_fps": false
+  },
+  "runtime_setup": {
+    "status": "HOST_SETUP_PASSED",
+    "source": "External setup-provenance.json + primaryagentverifiedmodel load",
+    "original_model_unchanged": true
+  },
+  "test_checkpoint": {
+    "backend_passed": 152,
+    "frontend_passed": 30,
+    "typescript": "PASS",
+    "production_build": "PASS",
+    "final_latest_regression": "PASS",
+    "real_external_model_configured": true
+  },
+  "limitations": [
+    "PhysicalUSBcameraNOT_TESTED",
+    "IndependentgroundtruthmAP/precision/recallNOT_TESTED",
+    "Knownshelvingfalsepositive",
+    "ExperimentalIoUassociationsnotverifiedphysicalidentity",
+    "Processingrateisnotcamera/pipelinebenchmark",
+    "Root storage reserve below1GiB; host cleanup requested"
+  ],
+  "browser_evidence": {
+    "virtual_video": "genuine-virtual-camera-browser.png",
+    "browser_upload": "genuine-upload-browser.png",
+    "mobile": "mobile-browser.png",
+    "v2_regression": "v2-regression-browser.png",
+    "console_errors": 0,
+    "console_warnings": 0,
+    "v2_original_incidents_preserved": 2,
+    "physical_camera_hardware_test": "NOT_TESTED"
+  },
+  "known_model_error": {
+    "type": "false_positive",
+    "observed_object": "shelving",
+    "media_time_seconds": 4.24,
+    "confidence_approximately": 0.54,
+    "source": "Primaryagentbrowserinspection;notindependentmAPevaluation"
+  },
+  "operational_holds": {
+    "root_free_mib_approximately": 962,
+    "root_minimum_mib": 1024,
+    "storage_status": "BELOW_RESERVE_STOP_NEW_LARGE_WORK",
+    "agent_download_cache": "CLEARED",
+    "user_action_requested": "Freeatleast250MiBonhostandrerunguard",
+    "actual_repository_visibility": "PUBLIC",
+    "visibility_user_decision": "KEEP_PUBLIC_AND_PUSH_FEATURE_BRANCH_APPROVED",
+    "push_executed": false,
+    "main_merged": false
+  }
+}

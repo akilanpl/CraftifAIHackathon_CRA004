@@ -1,0 +1,2832 @@
+{
+  "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+  "video_name": "warehouse-workers-4281405-1080p.mp4",
+  "video_sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+  "config": {
+    "source_type": "virtual_video",
+    "name": "Genuine decoded video verification",
+    "polygon": [
+      [
+        0.55,
+        0.45
+      ],
+      [
+        0.95,
+        0.45
+      ],
+      [
+        0.95,
+        0.95
+      ],
+      [
+        0.55,
+        0.95
+      ]
+    ],
+    "confidence_threshold": 0.5
+  },
+  "capability": {
+    "service": "independent_ai_monitor",
+    "inference": {
+      "available": true,
+      "engine": "onnxruntime_cpu",
+      "runtime_version": "1.31.0",
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "model": "YOLOv8m ONNX",
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "input_shape": [
+        1,
+        3,
+        480,
+        640
+      ],
+      "physical_camera_hardware_test": "NOT TESTED"
+    },
+    "simulation_available": true,
+    "physical_camera_hardware_test": "NOT TESTED",
+    "max_frame_bytes": 2097152,
+    "max_detections_per_frame": 128,
+    "max_active_sessions": 8,
+    "worker_busy": false,
+    "queue_capacity": 0,
+    "upload_storage_enabled": false,
+    "upload_note": "Browser-selected videos are sampled as JPEG frames; server-side upload storage is disabled until off-root storage is configured and verified"
+  },
+  "frames": [
+    {
+      "source_frame_index": 0,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 0,
+      "media_time": 0.0,
+      "timestamp": "2026-10-18T10:54:31.365739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9256545305252075,
+          "bbox": [
+            0.27074313163757324,
+            0.2487013922797309,
+            0.41238040924072267,
+            0.7360829671223958
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9204543828964233,
+          "bbox": [
+            0.3862446308135986,
+            0.179754638671875,
+            0.4932697772979736,
+            0.6393600463867187
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.9186434745788574,
+          "bbox": [
+            0.5016367912292481,
+            0.2011429680718316,
+            0.6415929794311523,
+            0.624928707546658
+          ]
+        }
+      ],
+      "incidents": [
+        {
+          "id": "35ac9cba-db1d-478d-b78c-e0197902c9bd",
+          "timestamp": "2026-10-18T10:54:31.365739+00:00",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "zone_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone",
+          "zone_name": "Restricted zone",
+          "track_id": "estimated-2",
+          "confidence": 0.9186434745788574,
+          "event_type": "zone_entry",
+          "severity": "high",
+          "acknowledged": false,
+          "source": "independent_ai_inference",
+          "synthetic": false,
+          "entry_basis": "first_observed_inside",
+          "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "source_type": "virtual_video",
+          "provenance": "independent_ai_inference",
+          "media_time": 0.0,
+          "seq": 0,
+          "timestamp_basis": "session_origin_plus_media_time",
+          "tracking": "experimental_iou_association"
+        }
+      ],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 1,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 0,
+        "last_media_time": 0.0,
+        "processing_latency_ms": 841.4299319993006,
+        "processing_fps": 1.1884530867875416,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 841.4299319993006,
+      "processing_fps": 1.1884530867875416,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 10,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 1,
+      "media_time": 0.4,
+      "timestamp": "2026-10-18T10:54:31.765739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.9090122580528259,
+          "bbox": [
+            0.5102167367935181,
+            0.19926223754882813,
+            0.6515502691268921,
+            0.6883814493815105
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9057639241218567,
+          "bbox": [
+            0.27812260389328003,
+            0.2621843761867947,
+            0.4126372456550598,
+            0.8031637615627713
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.900831401348114,
+          "bbox": [
+            0.3941819190979004,
+            0.18377821180555556,
+            0.5066274642944336,
+            0.6949875725640191
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 1,
+        "last_media_time": 0.4,
+        "processing_latency_ms": 747.5198450010794,
+        "processing_fps": 1.3377571267001696,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 747.5198450010794,
+      "processing_fps": 1.3377571267001696,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 20,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 2,
+      "media_time": 0.8,
+      "timestamp": "2026-10-18T10:54:32.165739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9152868986129761,
+          "bbox": [
+            0.40245225429534914,
+            0.18851023779975043,
+            0.5121219873428344,
+            0.6765957938300239
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8990384340286255,
+          "bbox": [
+            0.5198071718215942,
+            0.20687247382269966,
+            0.6456286191940308,
+            0.6860891554090712
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.8842485547065735,
+          "bbox": [
+            0.27579307556152344,
+            0.2736004299587674,
+            0.41320037841796875,
+            0.792431131998698
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 2,
+        "last_media_time": 0.8,
+        "processing_latency_ms": 677.5262569972256,
+        "processing_fps": 1.4759575583564357,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 677.5262569972256,
+      "processing_fps": 1.4759575583564357,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 30,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 3,
+      "media_time": 1.2,
+      "timestamp": "2026-10-18T10:54:32.565739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9287971258163452,
+          "bbox": [
+            0.2707200884819031,
+            0.26785589853922526,
+            0.4150434613227844,
+            0.7423359553019205
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9200494289398193,
+          "bbox": [
+            0.40609216690063477,
+            0.18659803602430555,
+            0.520672607421875,
+            0.6532764010959201
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8885890245437622,
+          "bbox": [
+            0.5228599548339844,
+            0.2034682379828559,
+            0.6570775985717774,
+            0.6304924011230468
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 3,
+        "last_media_time": 1.2,
+        "processing_latency_ms": 858.2773960006307,
+        "processing_fps": 1.1651244745111116,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 858.2773960006307,
+      "processing_fps": 1.1651244745111116,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 40,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 4,
+      "media_time": 1.6,
+      "timestamp": "2026-10-18T10:54:32.965739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9257313013076782,
+          "bbox": [
+            0.2731625080108643,
+            0.29475504557291665,
+            0.4151418209075928,
+            0.8428098890516493
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9047420024871826,
+          "bbox": [
+            0.4063129425048828,
+            0.21329608493381078,
+            0.5258746147155762,
+            0.7505502488878039
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8889408111572266,
+          "bbox": [
+            0.5332606315612793,
+            0.22009404500325522,
+            0.6646475791931152,
+            0.7022013346354167
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 4,
+        "last_media_time": 1.6,
+        "processing_latency_ms": 660.798958997475,
+        "processing_fps": 1.5133195753170385,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 660.798958997475,
+      "processing_fps": 1.5133195753170385,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 50,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 5,
+      "media_time": 2.0,
+      "timestamp": "2026-10-18T10:54:33.365739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.9174758791923523,
+          "bbox": [
+            0.5444958448410034,
+            0.2265775892469618,
+            0.6781827211380005,
+            0.7034124586317274
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9144442677497864,
+          "bbox": [
+            0.2773118495941162,
+            0.311731931898329,
+            0.4143517017364502,
+            0.8487016889784071
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.8977910280227661,
+          "bbox": [
+            0.4009725093841553,
+            0.2303866916232639,
+            0.5209805011749268,
+            0.7400011698404948
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 5,
+        "last_media_time": 2.0,
+        "processing_latency_ms": 692.3100399981195,
+        "processing_fps": 1.4444395461933737,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 692.3100399981195,
+      "processing_fps": 1.4444395461933737,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 60,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 6,
+      "media_time": 2.4,
+      "timestamp": "2026-10-18T10:54:33.765739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9221768379211426,
+          "bbox": [
+            0.4029566287994385,
+            0.2295040554470486,
+            0.5190046787261963,
+            0.6954607645670573
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9151633977890015,
+          "bbox": [
+            0.27860369682312014,
+            0.32821227179633244,
+            0.4346319675445557,
+            0.8028912438286675
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8942845463752747,
+          "bbox": [
+            0.5505335330963135,
+            0.231913333468967,
+            0.6931776523590087,
+            0.7110107421875
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 6,
+        "last_media_time": 2.4,
+        "processing_latency_ms": 673.797466999531,
+        "processing_fps": 1.4841254961273045,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 673.797466999531,
+      "processing_fps": 1.4841254961273045,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 70,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 7,
+      "media_time": 2.8,
+      "timestamp": "2026-10-18T10:54:34.165739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9127124547958374,
+          "bbox": [
+            0.410882568359375,
+            0.25477593739827475,
+            0.5494573593139649,
+            0.7894811630249023
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9030002355575562,
+          "bbox": [
+            0.2828201651573181,
+            0.38093157874213324,
+            0.4456810593605042,
+            0.9478058073255751
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8855697512626648,
+          "bbox": [
+            0.5547239780426025,
+            0.26827028062608504,
+            0.6904632091522217,
+            0.7947652180989583
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 7,
+        "last_media_time": 2.8,
+        "processing_latency_ms": 669.0917300002184,
+        "processing_fps": 1.494563383707752,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 669.0917300002184,
+      "processing_fps": 1.494563383707752,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 80,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 8,
+      "media_time": 3.2,
+      "timestamp": "2026-10-18T10:54:34.565739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9169074892997742,
+          "bbox": [
+            0.28580317497253416,
+            0.423910395304362,
+            0.4428302764892578,
+            0.9547428978814019
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.914474368095398,
+          "bbox": [
+            0.42763028144836424,
+            0.26841275956895616,
+            0.5448776721954346,
+            0.7870407316419813
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.9119254350662231,
+          "bbox": [
+            0.5647999048233032,
+            0.2935124715169271,
+            0.700179648399353,
+            0.7652983771430122
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 8,
+        "last_media_time": 3.2,
+        "processing_latency_ms": 654.8614160019497,
+        "processing_fps": 1.5270406464091064,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 654.8614160019497,
+      "processing_fps": 1.5270406464091064,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 90,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 9,
+      "media_time": 3.6,
+      "timestamp": "2026-10-18T10:54:34.965739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9311854839324951,
+          "bbox": [
+            0.4382151126861572,
+            0.27248577541775176,
+            0.570263147354126,
+            0.7552456325954862
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9140560030937195,
+          "bbox": [
+            0.2875520706176758,
+            0.4488998201158312,
+            0.4438138961791992,
+            0.9131756464640299
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.9039778709411621,
+          "bbox": [
+            0.5752815723419189,
+            0.307163937886556,
+            0.706873083114624,
+            0.7706889470418294
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 9,
+        "last_media_time": 3.6,
+        "processing_latency_ms": 780.8773819997441,
+        "processing_fps": 1.2806107886479003,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 780.8773819997441,
+      "processing_fps": 1.2806107886479003,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 100,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 10,
+      "media_time": 4.0,
+      "timestamp": "2026-10-18T10:54:35.365739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.923021137714386,
+          "bbox": [
+            0.5882112264633179,
+            0.34685425228542754,
+            0.7230240106582642,
+            0.8501999537150066
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9190656542778015,
+          "bbox": [
+            0.4489875793457031,
+            0.31789207458496094,
+            0.5824162483215332,
+            0.9073096805148655
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9091206789016724,
+          "bbox": [
+            0.29405823945999143,
+            0.5025669521755642,
+            0.45003451108932496,
+            0.9950633578830295
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 10,
+        "last_media_time": 4.0,
+        "processing_latency_ms": 679.8158050005441,
+        "processing_fps": 1.4709866888122727,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 679.8158050005441,
+      "processing_fps": 1.4709866888122727,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 110,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 11,
+      "media_time": 4.4,
+      "timestamp": "2026-10-18T10:54:35.765739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.9236783385276794,
+          "bbox": [
+            0.606710410118103,
+            0.37738049825032555,
+            0.7571821451187134,
+            0.8265057457817926
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9209058284759521,
+          "bbox": [
+            0.45341691970825193,
+            0.37390878465440536,
+            0.5843341827392579,
+            0.9169206831190321
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.910162627696991,
+          "bbox": [
+            0.3095600247383118,
+            0.5542245229085286,
+            0.46089533567428587,
+            0.9939827389187283
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 11,
+        "last_media_time": 4.4,
+        "processing_latency_ms": 629.4440999990911,
+        "processing_fps": 1.5887034289485658,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 629.4440999990911,
+      "processing_fps": 1.5887034289485658,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 120,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 12,
+      "media_time": 4.8,
+      "timestamp": "2026-10-18T10:54:36.165739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9280387163162231,
+          "bbox": [
+            0.4650367975234985,
+            0.4122689353095161,
+            0.590531325340271,
+            0.8847060945298937
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.9028751850128174,
+          "bbox": [
+            0.31829859018325807,
+            0.6051976097954644,
+            0.49010480642318727,
+            0.9966202206081815
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8991429805755615,
+          "bbox": [
+            0.6166799068450928,
+            0.4151240454779731,
+            0.7740272045135498,
+            0.9460931989881728
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 12,
+        "last_media_time": 4.8,
+        "processing_latency_ms": 651.4911120029865,
+        "processing_fps": 1.534940356938309,
+        "active_intrusions": 1,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 0,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 651.4911120029865,
+      "processing_fps": 1.534940356938309,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 130,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 13,
+      "media_time": 5.2,
+      "timestamp": "2026-10-18T10:54:36.565739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8984265327453613,
+          "bbox": [
+            0.6299463987350464,
+            0.47466316223144533,
+            0.7824450731277466,
+            0.9892328474256727
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.8893465399742126,
+          "bbox": [
+            0.32983940839767456,
+            0.6816414727105035,
+            0.5098032116889953,
+            0.9969992743598091
+          ]
+        },
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.8755400776863098,
+          "bbox": [
+            0.48106482028961184,
+            0.47185327741834854,
+            0.62023446559906,
+            0.9949315600925022
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 1,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 13,
+        "last_media_time": 5.2,
+        "processing_latency_ms": 651.0783240009914,
+        "processing_fps": 1.5359135193671065,
+        "active_intrusions": 0,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 1,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 651.0783240009914,
+      "processing_fps": 1.5359135193671065,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 140,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 14,
+      "media_time": 5.6,
+      "timestamp": "2026-10-18T10:54:36.965739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9225069284439087,
+          "bbox": [
+            0.49618802070617674,
+            0.5323823716905381,
+            0.6346272945404052,
+            0.996349589029948
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.9210454225540161,
+          "bbox": [
+            0.6500289916992188,
+            0.5299858940972222,
+            0.7958580017089844,
+            0.971807861328125
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.8915412425994873,
+          "bbox": [
+            0.34059600830078124,
+            0.7677409278021918,
+            0.5167623519897461,
+            0.9968132442898221
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 14,
+        "last_media_time": 5.6,
+        "processing_latency_ms": 679.3884459984838,
+        "processing_fps": 1.471911990687919,
+        "active_intrusions": 0,
+        "incident_count": 1,
+        "transition_counts": {
+          "entries": 1,
+          "exits": 1,
+          "reentries": 0
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 679.3884459984838,
+      "processing_fps": 1.471911990687919,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 150,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 15,
+      "media_time": 6.0,
+      "timestamp": "2026-10-18T10:54:37.365739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.925472617149353,
+          "bbox": [
+            0.516232943534851,
+            0.5869737413194445,
+            0.6607568025588989,
+            0.997082010904948
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.8952304124832153,
+          "bbox": [
+            0.6595046997070313,
+            0.578812747531467,
+            0.7871232986450195,
+            0.9488700866699219
+          ]
+        },
+        {
+          "track_id": "estimated-0",
+          "class_name": "person",
+          "confidence": 0.8310588598251343,
+          "bbox": [
+            0.35728577375411985,
+            0.8367862701416016,
+            0.5302322506904602,
+            0.9994475894504123
+          ]
+        }
+      ],
+      "incidents": [
+        {
+          "id": "98a1aab5-2bc0-40b0-b78e-d5abce6911d1",
+          "timestamp": "2026-10-18T10:54:37.365739+00:00",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "zone_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone",
+          "zone_name": "Restricted zone",
+          "track_id": "estimated-2",
+          "confidence": 0.8952304124832153,
+          "event_type": "zone_entry",
+          "severity": "high",
+          "acknowledged": false,
+          "source": "independent_ai_inference",
+          "synthetic": false,
+          "entry_basis": "observed_outside_to_inside",
+          "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "source_type": "virtual_video",
+          "provenance": "independent_ai_inference",
+          "media_time": 6.0,
+          "seq": 15,
+          "timestamp_basis": "session_origin_plus_media_time",
+          "tracking": "experimental_iou_association"
+        }
+      ],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 1,
+        "exits": 0,
+        "reentries": 1
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 15,
+        "last_media_time": 6.0,
+        "processing_latency_ms": 708.2807879996835,
+        "processing_fps": 1.4118694406835257,
+        "active_intrusions": 1,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 708.2807879996835,
+      "processing_fps": 1.4118694406835257,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 160,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 16,
+      "media_time": 6.4,
+      "timestamp": "2026-10-18T10:54:37.765739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.8525823354721069,
+          "bbox": [
+            0.5266466617584229,
+            0.6698511759440104,
+            0.6757481098175049,
+            0.9948976304796007
+          ]
+        },
+        {
+          "track_id": "estimated-2",
+          "class_name": "person",
+          "confidence": 0.5186651945114136,
+          "bbox": [
+            0.6657504081726074,
+            0.6396854824490017,
+            0.7762688636779785,
+            0.9186827765570746
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 16,
+        "last_media_time": 6.4,
+        "processing_latency_ms": 676.8747589994746,
+        "processing_fps": 1.4773781806816884,
+        "active_intrusions": 1,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 676.8747589994746,
+      "processing_fps": 1.4773781806816884,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 170,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 17,
+      "media_time": 6.8,
+      "timestamp": "2026-10-18T10:54:38.165739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.9100568294525146,
+          "bbox": [
+            0.531648325920105,
+            0.7580265045166016,
+            0.6784308671951294,
+            0.9967817094590928
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 17,
+        "last_media_time": 6.8,
+        "processing_latency_ms": 664.7113549988717,
+        "processing_fps": 1.5044123926568058,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 664.7113549988717,
+      "processing_fps": 1.5044123926568058,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 180,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 18,
+      "media_time": 7.2,
+      "timestamp": "2026-10-18T10:54:38.565739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [
+        {
+          "track_id": "estimated-1",
+          "class_name": "person",
+          "confidence": 0.844007134437561,
+          "bbox": [
+            0.5501197338104248,
+            0.8218907250298394,
+            0.687383508682251,
+            0.9977904001871745
+          ]
+        }
+      ],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 18,
+        "last_media_time": 7.2,
+        "processing_latency_ms": 638.5106769994309,
+        "processing_fps": 1.5661445235329892,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 638.5106769994309,
+      "processing_fps": 1.5661445235329892,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 190,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 19,
+      "media_time": 7.6,
+      "timestamp": "2026-10-18T10:54:38.965739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 19,
+        "last_media_time": 7.6,
+        "processing_latency_ms": 744.8986750023323,
+        "processing_fps": 1.3424644633672747,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 744.8986750023323,
+      "processing_fps": 1.3424644633672747,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 200,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 20,
+      "media_time": 8.0,
+      "timestamp": "2026-10-18T10:54:39.365739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 20,
+        "last_media_time": 8.0,
+        "processing_latency_ms": 685.4754960004357,
+        "processing_fps": 1.4588413529509514,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 685.4754960004357,
+      "processing_fps": 1.4588413529509514,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 210,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 21,
+      "media_time": 8.4,
+      "timestamp": "2026-10-18T10:54:39.765739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 21,
+        "last_media_time": 8.4,
+        "processing_latency_ms": 643.1123209986254,
+        "processing_fps": 1.554938332462981,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 643.1123209986254,
+      "processing_fps": 1.554938332462981,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 220,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 22,
+      "media_time": 8.8,
+      "timestamp": "2026-10-18T10:54:40.165739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 22,
+        "last_media_time": 8.8,
+        "processing_latency_ms": 647.6238639988878,
+        "processing_fps": 1.544106163453108,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 647.6238639988878,
+      "processing_fps": 1.544106163453108,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 230,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 23,
+      "media_time": 9.2,
+      "timestamp": "2026-10-18T10:54:40.565739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 23,
+        "last_media_time": 9.2,
+        "processing_latency_ms": 648.2116910010518,
+        "processing_fps": 1.5427058997588758,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 648.2116910010518,
+      "processing_fps": 1.5427058997588758,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 240,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 24,
+      "media_time": 9.6,
+      "timestamp": "2026-10-18T10:54:40.965739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 24,
+        "last_media_time": 9.6,
+        "processing_latency_ms": 690.8914720006578,
+        "processing_fps": 1.447405331410789,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 690.8914720006578,
+      "processing_fps": 1.447405331410789,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    },
+    {
+      "source_frame_index": 250,
+      "type": "frame",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "seq": 25,
+      "media_time": 10.0,
+      "timestamp": "2026-10-18T10:54:41.365739+00:00",
+      "timestamp_basis": "session_origin_plus_media_time",
+      "frame_width": 960,
+      "frame_height": 540,
+      "detections": [],
+      "incidents": [],
+      "warnings": [],
+      "provenance": "independent_ai_inference",
+      "synthetic": false,
+      "transitions": {
+        "entries": 0,
+        "exits": 0,
+        "reentries": 0
+      },
+      "status": {
+        "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+        "name": "Genuine decoded video verification",
+        "source_type": "virtual_video",
+        "state": "running",
+        "reason": null,
+        "created_at": "2026-10-18T10:54:31.365739+00:00",
+        "provenance": "independent_ai_inference",
+        "synthetic": false,
+        "tracking": "experimental_iou_association",
+        "tracking_verified": false,
+        "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+        "physical_camera_hardware_test": "NOT TESTED",
+        "last_seq": 25,
+        "last_media_time": 10.0,
+        "processing_latency_ms": 674.1172269976232,
+        "processing_fps": 1.4834215177288828,
+        "active_intrusions": 0,
+        "incident_count": 2,
+        "transition_counts": {
+          "entries": 2,
+          "exits": 1,
+          "reentries": 1
+        },
+        "zone": {
+          "name": "Restricted zone",
+          "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+          "polygon": [
+            [
+              0.55,
+              0.45
+            ],
+            [
+              0.95,
+              0.45
+            ],
+            [
+              0.95,
+              0.95
+            ],
+            [
+              0.55,
+              0.95
+            ]
+          ],
+          "severity": "high",
+          "confidence_threshold": 0.5,
+          "debounce_frames": 1,
+          "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+        },
+        "simulation_steps": 9,
+        "simulation_index": 0
+      },
+      "processing_latency_ms": 674.1172269976232,
+      "processing_fps": 1.4834215177288828,
+      "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+      "engine": "onnxruntime_cpu"
+    }
+  ],
+  "final": {
+    "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+    "name": "Genuine decoded video verification",
+    "source_type": "virtual_video",
+    "state": "running",
+    "reason": null,
+    "created_at": "2026-10-18T10:54:31.365739+00:00",
+    "provenance": "independent_ai_inference",
+    "synthetic": false,
+    "tracking": "experimental_iou_association",
+    "tracking_verified": false,
+    "tracking_note": "IDs are estimated IoU associations, not verified physical identities; occlusion or large motion can start a new ID",
+    "physical_camera_hardware_test": "NOT TESTED",
+    "last_seq": 25,
+    "last_media_time": 10.0,
+    "processing_latency_ms": 674.1172269976232,
+    "processing_fps": 1.4834215177288828,
+    "active_intrusions": 0,
+    "incident_count": 2,
+    "transition_counts": {
+      "entries": 2,
+      "exits": 1,
+      "reentries": 1
+    },
+    "zone": {
+      "name": "Restricted zone",
+      "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "polygon": [
+        [
+          0.55,
+          0.45
+        ],
+        [
+          0.95,
+          0.45
+        ],
+        [
+          0.95,
+          0.95
+        ],
+        [
+          0.55,
+          0.95
+        ]
+      ],
+      "severity": "high",
+      "confidence_threshold": 0.5,
+      "debounce_frames": 1,
+      "id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone"
+    },
+    "simulation_steps": 9,
+    "simulation_index": 0
+  },
+  "incidents": [
+    {
+      "id": "98a1aab5-2bc0-40b0-b78e-d5abce6911d1",
+      "timestamp": "2026-10-18T10:54:37.365739+00:00",
+      "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "zone_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone",
+      "zone_name": "Restricted zone",
+      "track_id": "estimated-2",
+      "confidence": 0.8952304124832153,
+      "event_type": "zone_entry",
+      "severity": "high",
+      "acknowledged": true,
+      "source": "independent_ai_inference",
+      "synthetic": false,
+      "entry_basis": "observed_outside_to_inside",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "source_type": "virtual_video",
+      "provenance": "independent_ai_inference",
+      "media_time": 6.0,
+      "seq": 15,
+      "timestamp_basis": "session_origin_plus_media_time",
+      "tracking": "experimental_iou_association"
+    },
+    {
+      "id": "35ac9cba-db1d-478d-b78c-e0197902c9bd",
+      "timestamp": "2026-10-18T10:54:31.365739+00:00",
+      "camera_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "zone_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908-zone",
+      "zone_name": "Restricted zone",
+      "track_id": "estimated-2",
+      "confidence": 0.9186434745788574,
+      "event_type": "zone_entry",
+      "severity": "high",
+      "acknowledged": false,
+      "source": "independent_ai_inference",
+      "synthetic": false,
+      "entry_basis": "first_observed_inside",
+      "session_id": "12d66203-0dd5-4a17-8af4-0fa01d0ed908",
+      "source_type": "virtual_video",
+      "provenance": "independent_ai_inference",
+      "media_time": 0.0,
+      "seq": 0,
+      "timestamp_basis": "session_origin_plus_media_time",
+      "tracking": "experimental_iou_association"
+    }
+  ],
+  "acknowledgment_verified": true,
+  "latency_ms": {
+    "min": 629.4440999990911,
+    "median": 675.4959929985489,
+    "max": 858.2773960006307
+  },
+  "scope": "CPU JPEG decode/preprocess/ORT/postprocess; not live camera FPS or TensorRT benchmark",
+  "physical_camera_hardware_test": "NOT TESTED",
+  "tracking": "experimental IoU associations, not verified identities"
+}
