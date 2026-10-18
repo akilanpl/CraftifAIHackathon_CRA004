@@ -32,3 +32,10 @@ This is the **historical street baseline export**, not a factory run/export. It 
 Name baseline and factory assets separately, for example `historical-street-pipegen-export.tar.gz` and a future `factory-pipegen-export.tar.gz`. Upload a factory archive only after its own actual run/export exists. Record its independently computed hash, media/metadata hashes, model/engine provenance, exact run ID and matching stage screenshots. Engine reuse must be labeled reuse rather than a fresh compilation/benchmark.
 
 Before upload, review text configurations for camera URLs, paths, account names, embedded credentials and license restrictions. Retain the immutable original locally; create a separately labeled redacted distribution copy if needed and give it its own hash. Keep source media external unless redistribution is permitted and intentionally included.
+
+
+## Verified new factory export
+
+The actual Warehouse FP16 v2 export is now uploaded as a [private repository prerelease asset](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18), release416371459/asset653142177. It is separate from the historical draft. GitHub reports134,818,189bytes and SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`, matching the unchanged local archive. Project/model/ROI and archive safety checks passed; see `../evidence/factory-export-audit.json` and `factory-export-release.json`.
+
+The export does not bundle the video; pass its wrapper `--input` the exact matching warehouse MP4. The repository remains private. Authorized GitHub viewers can retrieve this asset; judge access and organizer acceptance of the external asset mechanism remain unconfirmed. No public visibility was enabled, and no model/video/archive was added as an ordinary Git blob.

@@ -67,3 +67,5 @@ Current factory checkpoint: saved Requirement and IR JSON are verified; the newl
 ## Final factory replay facts and limitations
 
 Final local frontend: **http://127.0.0.1:5173**; backend: `http://127.0.0.1:8003`. Analysis: 2 observed entries including 1 same-track reentry, 0 initial-inside alerts, 2 exits and 43 suppressed holds. Native ROI occupancy disagrees with application geometry on 9 frames, cause unresolved. Camera motion and a hypothetical image-space ROI limit safety interpretation. No independent ground-truth accuracy is claimed. The captured warehouse app screenshot verifies recorded-video presentation; it does not establish a current GPU run or satisfy missing PipeGen GUI screenshots. Final regression results are recorded by the primary agent when completed.
+
+New factory export is now available as the authenticated private prerelease asset, with matching remote/local digest. The remaining export-related gate is judge access and organizer acceptance, not archive creation. See [export delivery](export-release-assets.md).

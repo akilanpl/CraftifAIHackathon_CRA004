@@ -37,7 +37,24 @@
       "bytes": 175878
     },
     "profile_manifest": "../examples/warehouse-profile.json",
-    "pipeline_export": null,
+    "pipeline_export": {
+      "repository": "https://github.com/akilanpl/hazard-zone-sentinel",
+      "release_id": 416371459,
+      "tag": "warehouse-fp16-v2-2026-10-18",
+      "release_url": "https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18",
+      "asset_id": 653142177,
+      "asset_name": "pipegen-warehouse-hazard-sentinel-pipeline.tar.gz",
+      "bytes": 134818189,
+      "sha256": "5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec",
+      "state": "uploaded",
+      "digest_verified": true,
+      "private_repository": true,
+      "draft": false,
+      "prerelease": true,
+      "access": "Authenticated authorized repository viewers; judge access is not yet confirmed",
+      "input_video_bundled": false,
+      "input_argument_required": true
+    },
     "run_evidence": null,
     "dashboard_evidence": "07-real-mode-dashboard/warehouse-real-video-overlay.jpg",
     "requirement": "01-requirement-and-flow/factory-RequirementState.redacted.json",
@@ -101,7 +118,7 @@
       "access": "Authorized repository viewers; draft is not a public or final submitted release",
       "verification_source": "Primary agent reported authenticated GitHub API verification"
     },
-    "factory_asset": "PENDING"
+    "factory_asset": "VERIFIED_PRIVATE_PRERELEASE"
   },
   "verification": {
     "backend_tests": 136,

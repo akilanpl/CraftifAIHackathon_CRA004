@@ -84,3 +84,8 @@ No new factory export archive was located under the scoped external exports/Chat
 ## Final verification boundary
 
 Recorded factory playback, frame/overlay timing and two persisted incidents are verified. Actual PipeGen GUI IR/speed-report screenshots, a new factory export and the live hardware demonstration remain pending. The operative cutoff remains **October 18, 2026, 4 PM IST**. The primary agent is running the final regression suite; do not label anticipated test totals as completed until its results are recorded.
+
+
+## Final export distribution
+
+New factory export independently audited and uploaded to the private repository [warehouse release](https://github.com/akilanpl/hazard-zone-sentinel/releases/tag/warehouse-fp16-v2-2026-10-18). Remote134,818,189byte asset digest matches local SHA-256 `5a2314ab3b97787ec699bb185b767bbf4ab70b7517433988d8e6d9e0c3aa4dec`. New export availability is complete; judge access and official GUI screenshots remain submission gates. The source video stays external.
