@@ -34,3 +34,5 @@ The machine-readable ledger is `checklist.json`. Every stage below is **PENDING*
 No synthetic screenshot fills any row. Do not rename synthetic QA captures to imply live or GPU evidence. Update each row only after checking the underlying genuine artifact and retain traceable source identifiers and timestamps.
 
 `synthetic-submission-qa.jpg` documents the final historical-zone filtering and persisted acknowledgment QA. It contains only explicitly synthetic test records.
+
+Seven numbered evidence folders now mirror the pending ledger. Their READMEs are placeholders, not completed evidence. Source video provenance is in `../demo-video/source-provenance.json`; no raw footage is included.

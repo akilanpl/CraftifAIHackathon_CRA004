@@ -67,3 +67,62 @@ Required genuine hackathon artifacts remain: real Pipeline IR screenshot, real T
 - [Exact metadata contract](docs/canonical-schema.md) and [PipeGen operator handoff](docs/pipegen-handoff.md).
 - [Footage recording guide](demo-video/README.md) and [90-second narration](docs/demo-script.md).
 - [Expanded application QA](docs/application-qa.md) and [executed verification](docs/verification.md).
+
+## Setup requirements and verified checks
+
+Use **Python 3.12** for the tested locked environment and **Node 22.18+** for the complete checks (tested Node 24.19.0). Python source targets 3.10+, but execution on 3.10 has not been verified. The tested dependency versions are captured in `requirements-lock.txt` and `frontend/pnpm-lock.yaml`. No GPU, Docker, Redis or cloud database is needed for the application alone.
+
+On a clean checkout with Python/pip and Node/npm available:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-lock.txt
+cd frontend
+npm install
+cd ..
+./scripts/check.sh
+```
+
+For a reproducible pnpm installation, use `pnpm install --frozen-lockfile --store-dir .pnpm-store` in `frontend/` instead of npm. [Setup](docs/setup.md) includes the already-installed Codex bundled runtime paths for this Linux host, where npm is absent.
+
+Latest executed checks: **68 backend/adapter tests passed, 3 frontend tests passed, TypeScript passed, production build passed**. HTTP/WebSocket, browser interaction, persistent SQLite history, reconnect and synthetic/live isolation were also exercised. One upstream Starlette/AnyIO deprecation warning remains; genuine inference has not been tested by these checks. See [verification](docs/verification.md).
+
+## API reference
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/health`, `GET /api/status` | Application and source status; genuine telemetry when supplied |
+| `GET /api/zones`, `POST /api/zones` | List/create normalized restricted polygons |
+| `PUT /api/zones/{id}`, `DELETE /api/zones/{id}` | Edit/delete a zone; incident history is retained |
+| `GET /api/incidents`, `GET /api/incidents/{id}` | Filtered history and incident details |
+| `PATCH /api/incidents/{id}/acknowledge` | Acknowledge or unacknowledge |
+| `GET /api/analytics/summary` | Counts and daily trends from SQLite |
+| `POST /api/ingest/detections` | This application's canonical frame schema |
+| `POST /api/ingest/pipegen` | Genuine metadata through an explicitly configured parser |
+| `POST /api/synthetic/step` | Test generator; rejected in live mode |
+| `WS /ws/live` | Frame, incident, status and zone updates |
+
+Interactive OpenAPI documentation: `http://127.0.0.1:8000/docs` after starting the backend. Exact validation contracts are in `schemas/` and [canonical schema documentation](docs/canonical-schema.md).
+
+## Real mode after genuine integration
+
+Stop the synthetic backend. Configure the mapper only from actual PipeGen output, create matching camera zones in the separate live database, then run:
+
+```bash
+SENTINEL_MODE=live \
+SENTINEL_PIPEGEN_PARSER=backend.adapters.field_mapping:parse \
+SENTINEL_FIELD_MAPPING="$PWD/config/local-pipegen-mapping.json" \
+./scripts/start-backend.sh
+```
+
+Keep the frontend running in the other terminal. Feed actual producer records through the configured adapter, using the [metadata handoff](docs/pipegen-handoff.md). Without a genuine mapping, start `SENTINEL_MODE=live ./scripts/start-backend.sh` to inspect an empty waiting-for-source dashboard; native ingestion deliberately remains unconfigured.
+
+## Video credit and licensing
+
+Prepared source footage: [Busy City Intersection with Pedestrians and Traffic](https://www.pexels.com/video/busy-city-intersection-with-pedestrians-and-traffic-36306747/) by **Nothing Ahead**, provided under the [Pexels License](https://www.pexels.com/license/). The original and losslessly remuxed test input remain on external storage and are excluded from Git. Respect the linked license and avoid implying endorsement. This credit does not relicense the footage as application source.
+
+The selected input is `people-crossing.mp4`, H.264 MP4, 1920×1080, approximately 17.17 seconds. Its SHA-256 was checked against the PipeGen operator's provenance record. See [source provenance](demo-video/source-provenance.json) and [recording instructions](demo-video/README.md). This is source preparation only: the clip does not establish the same person's exit/re-entry, genuine detections, TensorRT performance or a real dashboard alert.
+
+## Pending submission evidence
+
+All seven genuine evidence stages remain **PENDING** in [the ledger](evidence/checklist.json). Clearly named directories under `evidence/` cover Requirement/finalized flow, official Pipeline IR, actual model details, TensorRT FP16 report, DeepStream execution, real metadata and real-mode dashboard demonstration. Existing screenshots are explicitly synthetic application QA.
