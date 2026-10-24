@@ -1,0 +1,356 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "formal_metrics_available": false,
+  "person_class": "person",
+  "image_count": 41,
+  "human_reviewed_image_count": 0,
+  "review_required_image_ids": [
+    "warehouse-frame-000",
+    "warehouse-frame-006",
+    "warehouse-frame-013",
+    "warehouse-frame-019",
+    "warehouse-frame-026",
+    "warehouse-frame-032",
+    "warehouse-frame-039",
+    "warehouse-frame-045",
+    "warehouse-frame-052",
+    "warehouse-frame-058",
+    "warehouse-frame-065",
+    "warehouse-frame-071",
+    "warehouse-frame-078",
+    "warehouse-frame-084",
+    "warehouse-frame-091",
+    "warehouse-frame-097",
+    "warehouse-frame-104",
+    "warehouse-frame-106",
+    "warehouse-frame-110",
+    "warehouse-frame-117",
+    "warehouse-frame-123",
+    "warehouse-frame-130",
+    "warehouse-frame-136",
+    "warehouse-frame-143",
+    "warehouse-frame-149",
+    "warehouse-frame-156",
+    "warehouse-frame-162",
+    "warehouse-frame-169",
+    "warehouse-frame-175",
+    "warehouse-frame-182",
+    "warehouse-frame-188",
+    "warehouse-frame-195",
+    "warehouse-frame-201",
+    "warehouse-frame-208",
+    "warehouse-frame-214",
+    "warehouse-frame-221",
+    "warehouse-frame-227",
+    "warehouse-frame-234",
+    "warehouse-frame-240",
+    "warehouse-frame-247",
+    "warehouse-frame-253"
+  ],
+  "review_issues": {
+    "warehouse-frame-000": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-006": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-013": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-019": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-026": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-032": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-039": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-045": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-052": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-058": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-065": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-071": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-078": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-084": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-091": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-097": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-104": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-106": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-110": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-117": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-123": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-130": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-136": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-143": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-149": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-156": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-162": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-169": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-175": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-182": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-188": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-195": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-201": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-208": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-214": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-221": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-227": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-234": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-240": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-247": [
+      "Human review has not been approved"
+    ],
+    "warehouse-frame-253": [
+      "Human review has not been approved"
+    ]
+  },
+  "ground_truth_person_count": null,
+  "person_prediction_count": 4100,
+  "ignored_nonperson_prediction_count": 0,
+  "prediction_filter_counts_are_not_accuracy": true,
+  "thresholds": [
+    {
+      "confidence_threshold": 0.25,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 94,
+      "threshold_rejection_count": 4006,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.4,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 88,
+      "threshold_rejection_count": 4012,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.5,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 82,
+      "threshold_rejection_count": 4018,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.6,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 80,
+      "threshold_rejection_count": 4020,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    },
+    {
+      "confidence_threshold": 0.7,
+      "iou_threshold": 0.5,
+      "retained_prediction_count": 80,
+      "threshold_rejection_count": 4020,
+      "tp": null,
+      "fp": null,
+      "fn": null,
+      "precision": null,
+      "recall": null,
+      "f1": null
+    }
+  ],
+  "ap50": null,
+  "map50_95": null,
+  "ap_by_iou": [
+    {
+      "iou_threshold": 0.5,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.55,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.6,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.65,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.7,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.75,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.8,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.85,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.9,
+      "ap": null
+    },
+    {
+      "iou_threshold": 0.95,
+      "ap": null
+    }
+  ],
+  "methodology": {
+    "matching": "confidence-ranked, per-image, person-class, highest-IoU unmatched ground truth; each GT matched once",
+    "ap": "101-point interpolated precision at recall 0.00, 0.01, ..., 1.00; all supplied person predictions",
+    "ap_iou_thresholds": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "confidence_ties": "stable input prediction order",
+    "iou_ties": "first annotation order",
+    "box_convention": "normalized xyxy in [0,1], positive area",
+    "ground_truth": "human_manual plus reviewed_by_human=true for every image"
+  },
+  "limitations": [
+    "Person-only AP over supplied prediction records, not a complete COCO benchmark.",
+    "AP uses all supplied confidences; upstream detector confidence floors and candidate caps must be disclosed separately.",
+    "Unreviewed images are unknown, not negative images; predictions are never ground truth.",
+    "No crowd, ignore-region, area-range, or COCO maxDets handling is implemented."
+  ],
+  "experiment_date": "2026-10-18T11:45:38.368384+00:00",
+  "dataset_id": "warehouse-independent-review-14fb11cda9d0",
+  "source_video_sha256": "14fb11cda9d031b497755195c04f6781df3a579d9044155114a3923cc5f43671",
+  "model": {
+    "available": true,
+    "engine": "onnxruntime_cpu",
+    "runtime_version": "1.31.0",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "model": "YOLOv8m ONNX",
+    "model_sha256": "8db1e3bb5e53410eb79da1e166fa3e1a05d6d1ff29df33af7345f2f3b73e20d7",
+    "input_shape": [
+      1,
+      3,
+      480,
+      640
+    ],
+    "physical_camera_hardware_test": "NOT TESTED"
+  },
+  "images_evaluated": 41,
+  "independently_human_reviewed_images": 0,
+  "human_review_record_accepted": false,
+  "human_review_record": {
+    "status": "PENDING",
+    "reviewer_name": null,
+    "complete": false,
+    "model_predictions_used_as_ground_truth": false
+  },
+  "annotation_file_sha256": "fa1e7c712988f0316a2b4fad8724358e5357e55901694f5c0ec38dff529f3983",
+  "prediction_file_sha256": "f33f76fa56e477bf6baacf8970fc8e5404e28dc8ef477f17ab593717d049c326",
+  "model_preprocessing_unchanged": true,
+  "production_confidence_threshold_unchanged": true,
+  "processing_latency_ms": {
+    "min": 600.4552029990009,
+    "median": 629.744252000819,
+    "max": 775.7980469978065
+  },
+  "evaluation_limits": [
+    "Single short moving-camera source, no deployment generalization",
+    "Detector outputs capped at100 NMS0.45 person candidates perframe;AP conditional on these bounded outputs",
+    "Review boxes cover visible extents, not hidden full bodies",
+    "No crowd/ignore/area-ranges or full COCO benchmark semantics",
+    "CPU processing is not PipeGen TensorRT FP16 speed evidence"
+  ]
+}
